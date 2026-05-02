@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microbiome Methods - BIOL 3303 Study Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232733;
+    --border: #2e3344;
+    --text: #e2e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --green: #00cec9;
+    --green-dim: #00cec920;
+    --red: #fd7272;
+    --red-dim: #fd727220;
+    --orange: #ffa94d;
+    --orange-dim: #ffa94d20;
+    --blue: #74b9ff;
+    --yellow: #ffd43b;
+    --yellow-dim: #ffd43b18;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 8px;
+    overflow-x: auto;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent-light);
+    white-space: nowrap;
+    margin-right: 16px;
+    letter-spacing: -0.3px;
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .nav-btn:hover { color: var(--text); background: var(--surface2); }
+  .nav-btn.active {
+    color: var(--accent-light);
+    background: #6c5ce715;
+    border-color: #6c5ce740;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 84px 24px 60px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+    color: var(--accent-light);
+  }
+  .card p, .card li {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 6px; }
+  .card li::marker { color: var(--accent); }
+
+  .highlight { color: var(--green); font-weight: 600; }
+  .organism { color: var(--orange); font-weight: 600; }
+  .warn { color: var(--red); font-weight: 600; }
+  .key {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+
+  /* HIGH YIELD */
+  .hy-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin-left: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    animation: hyPulse 2s ease-in-out infinite;
+  }
+  @keyframes hyPulse {
+    0%, 100% { box-shadow: 0 0 0 0 #ffd43b40; }
+    50% { box-shadow: 0 0 12px 4px #ffd43b30; }
+  }
+  .hy-card {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .hy-card h2 { color: var(--yellow); }
+
+  .hy-legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: var(--yellow-dim);
+    border: 1px solid #ffd43b40;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--yellow);
+    font-weight: 600;
+  }
+
+  .exam-topics {
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: var(--surface2);
+    border: 1px solid #ffd43b30;
+    border-radius: 10px;
+  }
+  .exam-topics p {
+    font-size: 12px;
+    color: var(--yellow);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .exam-topics ul { padding-left: 18px; }
+  .exam-topics li {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .exam-topics li::marker { color: var(--yellow); }
+
+  /* HERO */
+  .hero-card {
+    background: linear-gradient(135deg, #6c5ce730, #00cec915);
+    border-color: #6c5ce740;
+    text-align: center;
+    padding: 48px 28px;
+  }
+  .hero-card h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .hero-card p { color: var(--text-dim); font-size: 15px; }
+  .hero-stats {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat-num { font-size: 24px; font-weight: 800; color: var(--accent-light); }
+  .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+  /* TABS */
+  .tab-row { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .tab-btn.hy-tab { border-color: #ffd43b60; }
+  .tab-btn.hy-tab.active { background: linear-gradient(135deg, #ffd43b, #f59f00); color: #1a1d27; border-color: #ffd43b; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* TABLES */
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .data-table th, .data-table td { padding: 8px 12px; border: 1px solid var(--border); text-align: left; font-size: 13.5px; }
+  .data-table th { background: var(--surface2); color: var(--accent-light); font-weight: 600; }
+  .data-table td { color: var(--text-dim); }
+  .data-table.hy-table th { color: var(--yellow); }
+
+  /* DIAGRAM */
+  .diagram-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 14px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .diagram-box .arr { color: var(--accent-light); }
+  .diagram-box .mol { color: var(--green); font-weight: 700; }
+  .diagram-box .label { color: var(--text-dim); font-style: italic; }
+
+  .callout {
+    background: #00cec920;
+    border: 1px solid #00cec940;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    font-size: 13.5px;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* SCORE BAR */
+  .score-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .score-text { font-size: 15px; font-weight: 600; }
+  .score-pct { font-size: 28px; font-weight: 800; color: var(--accent-light); }
+  .reset-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { background: var(--accent-light); color: var(--bg); }
+
+  /* FLASHCARD */
+  .fc-container { perspective: 1000px; margin-bottom: 16px; }
+  .flashcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    cursor: pointer;
+    transition: transform 0.5s, box-shadow 0.3s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .flashcard:hover { box-shadow: 0 4px 24px #6c5ce720; }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .fc-front, .fc-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    backface-visibility: hidden;
+    border-radius: 14px;
+  }
+  .fc-front { font-size: 16px; font-weight: 600; color: var(--text); }
+  .fc-back {
+    transform: rotateY(180deg);
+    font-size: 15px;
+    color: var(--green);
+    background: var(--surface);
+    line-height: 1.6;
+  }
+  .fc-nav { display: flex; gap: 10px; justify-content: center; align-items: center; }
+  .fc-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .fc-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .fc-counter { font-size: 13px; color: var(--text-dim); font-weight: 600; min-width: 60px; text-align: center; }
+  .fc-hint { text-align: center; color: var(--text-dim); font-size: 12px; margin-top: 10px; }
+
+  /* MATCHING */
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .match-col-header {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+  .match-item {
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .match-item:hover { border-color: var(--accent); color: var(--text); }
+  .match-item.selected { border-color: var(--accent); background: #6c5ce715; color: var(--accent-light); }
+  .match-item.matched { border-color: var(--green); background: var(--green-dim); color: var(--green); pointer-events: none; opacity: 0.7; }
+  .match-item.wrong-match { border-color: var(--red); background: var(--red-dim); color: var(--red); }
+
+  /* FRQ */
+  .frq-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .frq-card.hy-frq {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .frq-card .q-num {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .frq-card.hy-frq .q-num {
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+  }
+  .frq-card .frq-prompt { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+  .frq-card .frq-hint { font-size: 12px; color: var(--text-dim); margin-bottom: 12px; font-style: italic; }
+  .frq-card textarea {
+    width: 100%;
+    min-height: 100px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    padding: 14px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+  .frq-card textarea:focus { outline: none; border-color: var(--accent); }
+  .frq-card textarea::placeholder { color: #4a4e63; }
+  .frq-reveal-btn {
+    display: inline-block;
+    margin-top: 12px;
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent-light);
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .frq-reveal-btn:hover { background: #6c5ce715; }
+  .frq-answer {
+    display: none;
+    margin-top: 14px;
+    padding: 16px;
+    background: var(--surface2);
+    border-radius: 10px;
+    border-left: 3px solid var(--green);
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .frq-answer.show { display: block; }
+  .frq-answer strong { color: var(--green); }
+  .frq-self-grade { display: none; margin-top: 12px; gap: 8px; }
+  .frq-self-grade.show { display: flex; }
+  .grade-btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .grade-btn.got-it { color: var(--green); border-color: var(--green); }
+  .grade-btn.got-it:hover { background: var(--green-dim); }
+  .grade-btn.partial { color: var(--orange); border-color: var(--orange); }
+  .grade-btn.partial:hover { background: var(--orange-dim); }
+  .grade-btn.missed { color: var(--red); border-color: var(--red); }
+  .grade-btn.missed:hover { background: var(--red-dim); }
+  .grade-btn.selected-grade { font-weight: 800; }
+  .grade-btn.got-it.selected-grade { background: var(--green-dim); }
+  .grade-btn.partial.selected-grade { background: var(--orange-dim); }
+  .grade-btn.missed.selected-grade { background: var(--red-dim); }
+
+  @media (max-width: 600px) {
+    .nav-brand { display: none; }
+    main { padding: 76px 14px 40px; }
+    .card { padding: 20px; }
+    .hero-card { padding: 32px 20px; }
+    .hero-card h1 { font-size: 22px; }
+    .match-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">MicrobiomeStudy</span>
+    <button class="nav-btn active" onclick="showSection('home')">Home</button>
+    <button class="nav-btn" onclick="showSection('learn')">Learn</button>
+    <button class="nav-btn" onclick="showSection('flashcards')">Flashcards</button>
+    <button class="nav-btn" onclick="showSection('frq')">FRQ</button>
+    <button class="nav-btn" onclick="showSection('matching')">Matching</button>
+    <button class="nav-btn" onclick="showSection('hard')">Hard FRQ</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ==================== HOME ==================== -->
+<div class="section active" id="sec-home">
+  <div class="card hero-card">
+    <h1>Microbiomes &amp; Microbial Ecology Methods</h1>
+    <p>BIOL 3303 &middot; Lecture 19 &mdash; Syntrophy, Cultivation Methods, Cultivation Bias, Amplicon vs FISH vs Shotgun</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Topics</div></div>
+      <div class="stat"><div class="stat-num">28</div><div class="stat-label">Flashcards</div></div>
+      <div class="stat"><div class="stat-num">18</div><div class="stat-label">FRQs</div></div>
+    </div>
+    <div class="hy-legend">HIGH YIELD = Confirmed exam topics from your professor. Prioritize these.</div>
+    <div class="exam-topics">
+      <p>Your Professor's Exam Topics</p>
+      <ul>
+        <li><strong>Syntrophy</strong> &mdash; what it is, why it matters, the <em>M. omelianskii</em> example</li>
+        <li><strong>Methods: culture-dependent vs culture-independent</strong> &mdash; what each does, advantages and limits</li>
+        <li><strong>Cultivation bias</strong> &mdash; why we know more about some microbes than others</li>
+        <li><strong>Amplicon vs FISH vs Shotgun metagenomics</strong> &mdash; mechanism, what each tells you, pros/cons</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LEARN ==================== -->
+<div class="section" id="sec-learn">
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="showTab(this,'overview')">Overview</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'syntrophy')">Syntrophy</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'methods')">Culture-Dep vs Indep</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'bias')">Cultivation Bias</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'amplicon')">Amplicon</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'fish')">FISH</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'shotgun')">Shotgun</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'compare')">Compare All</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-content active" id="tab-overview">
+    <div class="card">
+      <h2>Why Microbial Ecology is Hard</h2>
+      <p>The aim of all ecology is to determine <span class="highlight">which organisms are present</span> in an environment and <span class="highlight">what they are doing there</span>. For microbes, both questions are <span class="warn">difficult</span> because microbe morphology reveals very little about identity. We have to use <span class="highlight">genome sequence and metabolism</span> instead.</p>
+
+      <h3>Themes of Microbial Ecology</h3>
+      <ul>
+        <li><span class="highlight">Ubiquity</span> &mdash; microbes are present everywhere on Earth where liquid water exists</li>
+        <li><span class="highlight">Abundance</span> &mdash; microbes occur in huge numbers (~10<sup>30</sup> bacteria + archaea on Earth; 1 L seawater = ~1 billion bacteria from 20,000+ species)</li>
+        <li><span class="highlight">Metabolic Power</span> &mdash; extremely chemically active in diverse ways; squeeze every bit of energy from chemicals</li>
+        <li><span class="highlight">Communities</span> &mdash; microbes live in groups that allow them to perform functions individual cells never could</li>
+      </ul>
+
+      <h3>The Two Approaches</h3>
+      <table class="data-table">
+        <tr><th>Approach</th><th>What it does</th></tr>
+        <tr><td><span class="highlight">Cultivation-DEPENDENT</span></td><td>Grow microbes in the lab to study them &mdash; oldest method</td></tr>
+        <tr><td><span class="highlight">Cultivation-INDEPENDENT</span></td><td>Assess microbial communities directly in the sample through sequencing &mdash; bypasses the need to grow them</td></tr>
+      </table>
+
+      <div class="callout">Both approaches are needed. Cultivation gives you organisms to do experiments on. Cultivation-independent methods give you the <em>true diversity</em> of who is there &mdash; including the &gt;99% we cannot grow.</div>
+
+      <h3>Big Picture: 4 Things You Need to Know Cold</h3>
+      <table class="data-table">
+        <tr><th>Concept</th><th>What it is</th></tr>
+        <tr><td>Syntrophy</td><td>Microbes feed together; one's product is another's food. Why many microbes can't be cultured alone.</td></tr>
+        <tr><td>Culture-dep vs indep</td><td>Two ways to study microbes; only ~1% are culturable.</td></tr>
+        <tr><td>Cultivation bias</td><td>We know what we can grow &mdash; mostly aerobic chemoheterotrophs like <em>E. coli</em>.</td></tr>
+        <tr><td>Amplicon vs FISH vs Shotgun</td><td>Three culture-independent sequencing methods. Each answers a different question.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- SYNTROPHY -->
+  <div class="tab-content" id="tab-syntrophy">
+    <div class="card hy-card">
+      <h2>Syntrophy <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p><span class="key">DEF</span> <strong>Syntrophy</strong> = an interaction where microbes <span class="highlight">feed together</span>: one microbe catalyzes a reaction, and another eats the reaction product. Microbes <span class="highlight">exchange metabolic byproducts</span> needed for growth.</p>
+
+      <h3>Why Syntrophy Exists</h3>
+      <ul>
+        <li>One microbe <span class="highlight">depends on its neighbor</span> to consume waste products that would otherwise <span class="warn">accumulate and inhibit its own metabolism</span> (feedback inhibition)</li>
+        <li>The neighbor benefits because the waste is its food source</li>
+        <li>This is the basis of <span class="highlight">interdependent nutritional consortia</span> &mdash; one of the main reasons many microbes flourish in nature but cannot be grown alone in pure culture</li>
+      </ul>
+
+      <h3>Example 1 &mdash; Anaerobic Hydrocarbon Degradation</h3>
+      <ul>
+        <li>Anaerobic degradation of hydrocarbons generates <span class="highlight">butyrate</span></li>
+        <li>Other bacteria use butyrate as a <span class="highlight">carbon source</span></li>
+        <li>If butyrate were to accumulate, hydrocarbon degradation would <span class="warn">stop</span> (product feedback inhibition)</li>
+        <li>If you tried to cultivate the hydrocarbon degrader alone, you would have to <span class="warn">manually remove butyrate</span> from the system &mdash; in nature, the partner does it for free</li>
+      </ul>
+
+      <h3>Example 2 &mdash; <em>Methanobacillus omelianskii</em> (the lecture's classic example)</h3>
+      <p>Originally thought to be a <strong>single species</strong> that grew in pure culture by converting <span class="highlight">ethanol + CO<sub>2</sub> to methane</span>.</p>
+
+      <p><span class="warn">Actually it's TWO organisms:</span></p>
+      <ul>
+        <li>The <span class="highlight">S-organism</span> &mdash; a <span class="organism">bacterium</span></li>
+        <li><span class="organism"><em>Methanobacterium bryantii</em></span> &mdash; an <span class="highlight">archaeon</span></li>
+      </ul>
+
+      <h3>The S-organism Reaction (only works if H<sub>2</sub> is removed)</h3>
+      <div class="diagram-box"><span class="label">S-organism (bacterium):</span>
+   ethanol &rarr; <span class="mol">acetate</span> + <span class="mol">H<sub>2</sub></span>
+   <span class="warn">but only if H<sub>2</sub> is removed!</span>
+
+<span class="label">M. bryantii (archaeon):</span>
+   <span class="mol">H<sub>2</sub></span> + CO<sub>2</sub> &rarr; <span class="mol">methane (CH<sub>4</sub>)</span>
+
+<span class="arr">Together (the "fake species"):</span>
+   ethanol + CO<sub>2</sub> &rarr; acetate + methane</div>
+
+      <p>The S-organism's H<sub>2</sub> is <span class="warn">thermodynamically inhibitory</span> &mdash; if it builds up, the ethanol-fermentation reaction stops being favorable. The archaeon constantly siphons off the H<sub>2</sub> by making methane, which keeps the bacterium's reaction running. <span class="highlight">Neither can grow alone</span>; together they look like a single organism.</p>
+
+      <div class="callout">Why this matters for cultivation: when you try to grow microbes from nature alone, you may have <strong>broken the syntrophic partnership</strong> they need. This is one of the main reasons most microbes are unculturable &mdash; they're missing their "lab partner."</div>
+    </div>
+  </div>
+
+  <!-- CULTURE METHODS -->
+  <div class="tab-content" id="tab-methods">
+    <div class="card hy-card">
+      <h2>Cultivation-Dependent vs Cultivation-Independent Methods <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3>Cultivation-DEPENDENT Methods</h3>
+      <p>The <span class="highlight">oldest method of identification</span>. Mimic the microbe's natural environment so that you can grow it in the lab. Variables you change to favor your target organism:</p>
+      <ul>
+        <li><span class="highlight">Different food sources</span> &mdash; e.g., for a bacterium that infects plants, grow with cellulose</li>
+        <li><span class="highlight">Different atmospheric conditions</span> &mdash; anaerobic, aerobic, microaerobic, etc.</li>
+        <li><span class="highlight">Different temperatures</span></li>
+        <li><span class="highlight">Different pH</span></li>
+      </ul>
+
+      <p><span class="warn">Even with the most valiant effort, only a small fraction of microbes can be recovered by culture.</span></p>
+
+      <h3>Enrichment Culture</h3>
+      <p><span class="key">DEF</span> <strong>Enrichment</strong> = adjusting culture conditions to favor the growth of the desired microbe(s). It is a <span class="highlight">crucial step</span> for cultivation.</p>
+
+      <p>Lecture example &mdash; enriching for <span class="highlight">anaerobic photosynthesizers</span> in phylum <span class="organism">Chloroflexi</span>:</p>
+      <ul>
+        <li>Add a small amount of soil to an <span class="highlight">oxygen-free medium</span> supplemented with <span class="highlight">sulfur compounds</span></li>
+        <li>Fill the head space of the culture vessel with <span class="highlight">CO<sub>2</sub> gas</span></li>
+        <li>Incubate in the presence of <span class="highlight">light</span></li>
+      </ul>
+
+      <h3>Why Cultivation Is Still Important</h3>
+      <ul>
+        <li>Genomes only give you the <span class="highlight">code</span> &mdash; not how it works under different conditions</li>
+        <li>Cultivation is essential for <span class="highlight">hypothesis testing</span></li>
+        <li>The presence of a gene <span class="warn">does NOT mean</span> it is being used when and how you think</li>
+        <li>You need <span class="highlight">controlled genetic experiments</span> to prove a gene's function &mdash; and cultivation is a prerequisite for that</li>
+      </ul>
+
+      <h3>Cultivation-INDEPENDENT Methods</h3>
+      <p>Answer the simple question of <span class="highlight">WHO is there</span> by skipping cultivation entirely. These methods <span class="highlight">indirectly assess the abundance and taxonomic affiliation</span> of microbes in environmental samples by sequencing or hybridizing nucleic acids directly from the sample.</p>
+
+      <p>The three main cultivation-independent methods:</p>
+      <ul>
+        <li><span class="highlight">Amplicon-based community profiling</span> (e.g., 16S rRNA sequencing)</li>
+        <li><span class="highlight">Fluorescence in situ hybridization (FISH)</span></li>
+        <li><span class="highlight">Shotgun metagenomic sequencing</span></li>
+      </ul>
+
+      <h3>Side-by-Side</h3>
+      <table class="data-table hy-table">
+        <tr><th></th><th>Cultivation-Dependent</th><th>Cultivation-Independent</th></tr>
+        <tr><td>What you do</td><td>Grow the microbes in the lab</td><td>Sequence/hybridize DNA from the sample</td></tr>
+        <tr><td>Strength</td><td>Lets you do experiments &amp; test hypotheses</td><td>Captures unculturable diversity (the &gt;99%)</td></tr>
+        <tr><td>Weakness</td><td>Strong cultivation bias; misses most microbes</td><td>Tells you who but not always what they're doing in real time</td></tr>
+        <tr><td>Examples</td><td>Enrichment cultures, selective media</td><td>16S amplicon, FISH, shotgun metagenomics</td></tr>
+      </table>
+
+      <div class="callout">The two are complementary, not competing. Cultivation-independent methods tell you who lives in the community; cultivation lets you take individual microbes back to the bench and figure out what they actually do.</div>
+    </div>
+  </div>
+
+  <!-- CULTIVATION BIAS -->
+  <div class="tab-content" id="tab-bias">
+    <div class="card hy-card">
+      <h2>Cultivation Bias <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p><span class="key">DEF</span> <strong>Cultivation bias</strong> = the systematic distortion in our knowledge of microbes that arises because <span class="highlight">we only cultivate microbes that grow well in our chosen culturing condition</span>. The microbes we know best are not the most ecologically important &mdash; they're just the easiest to grow.</p>
+
+      <h3>Why It Happens</h3>
+      <ul>
+        <li>You can only cultivate microbes that grow best in <span class="highlight">your particular culture conditions</span></li>
+        <li><span class="warn">You don't even know what the optimal conditions are</span> for most microbes &mdash; how could you, if you've never seen them grow?</li>
+        <li>Only a handful of organisms grow well in the most common culture medium/condition: <span class="highlight">Luria Broth (LB) in ambient air (aerobic)</span></li>
+      </ul>
+
+      <h3>Why We Know <em>E. coli</em> Best</h3>
+      <ul>
+        <li><em>E. coli</em> is an <span class="highlight">aerobic chemoheterotroph</span> &mdash; grows well on LB in ambient air</li>
+        <li><span class="warn">"They are easy to culture!"</span> (lecture quote)</li>
+        <li>We're also motivated to study <em>E. coli</em>-like organisms because <span class="highlight">many KNOWN pathogenic microbes fall in this class</span> &mdash; aerobic chemoheterotrophs</li>
+      </ul>
+
+      <h3>What Gets Missed</h3>
+      <ul>
+        <li><span class="warn">Anaerobes</span> &mdash; can't grow on aerobic LB; need oxygen-free conditions</li>
+        <li><span class="warn">Autotrophs</span> &mdash; don't eat the carbon sources we provide; fix CO<sub>2</sub> instead</li>
+        <li>These groups have a <span class="highlight">larger ecological impact</span> than the cultured aerobic chemoheterotrophs we focus on, but we know far less about them</li>
+        <li>Microbes that depend on <span class="highlight">syntrophy</span> &mdash; can't be cultivated alone because they need a partner</li>
+      </ul>
+
+      <h3>The Practical Consequence</h3>
+      <p>Our textbook and database picture of "what microbes do" is heavily skewed toward a small slice of microbial diversity. This is a major reason cultivation-independent methods (amplicon, FISH, shotgun) revolutionized microbial ecology &mdash; they <span class="highlight">finally let us see</span> what we'd been missing.</p>
+
+      <div class="callout">One sentence summary: cultivation bias means we know the <em>easiest</em> microbes, not the <em>most important</em> microbes &mdash; aerobic chemoheterotrophs like <em>E. coli</em>, which happen to include many human pathogens, while ecologically critical anaerobes and autotrophs remain understudied.</div>
+    </div>
+  </div>
+
+  <!-- AMPLICON -->
+  <div class="tab-content" id="tab-amplicon">
+    <div class="card hy-card">
+      <h2>Amplicon-Based Community Profiling <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>A <span class="highlight">commonly used culture-independent method</span> that detects microbe-specific marker genes from environmental samples.</p>
+
+      <h3>Target Genes</h3>
+      <ul>
+        <li><span class="highlight">16S rRNA</span> &mdash; for prokaryotes (Bacteria + Archaea)</li>
+        <li><span class="highlight">18S rRNA</span> &mdash; for eukaryotes</li>
+      </ul>
+
+      <h3>Workflow</h3>
+      <div class="diagram-box">1. Extract DNA from environmental sample
+2. Amplify target sequences (16S rRNA) using <span class="mol">PCR</span>
+3. Clone into bacteria <span class="arr">OR</span> sequence directly
+4. Compare reads against gene databases &rarr; identify homologs
+5. Build phylogenetic trees &rarr; infer relatedness
+6. Group into <span class="mol">OTUs</span> (operational taxonomic units)</div>
+
+      <h3>Why 16S/18S rRNA? (3 must-have features)</h3>
+      <ul>
+        <li><span class="highlight">ALL microbes within the community must have this gene</span> &mdash; otherwise you'd miss them</li>
+        <li>It must be possible to design <span class="highlight">UNIVERSAL PCR primers</span> that anneal to the gene in all microbes (so you only need one primer set, not one per species)</li>
+        <li>There must also be <span class="highlight">VARIABLE regions</span> of this gene that are different in all microbes (so you can tell them apart)</li>
+      </ul>
+      <p>16S and 18S rRNA fit the bill: highly conserved (universal primers work) but with variable regions (species discrimination).</p>
+
+      <h3>Operational Taxonomic Units (OTUs)</h3>
+      <p>Sequences are <span class="highlight">lumped into OTUs</span> based on sequence similarity. Specific homology thresholds are used to classify OTUs at each taxonomic level:</p>
+      <table class="data-table hy-table">
+        <tr><th>Taxonomic level</th><th>Sequence identity threshold</th></tr>
+        <tr><td>Species</td><td><span class="highlight">98.7%</span></td></tr>
+        <tr><td>Genus</td><td><span class="highlight">94.5%</span></td></tr>
+        <tr><td>Family</td><td><span class="highlight">86.5%</span></td></tr>
+      </table>
+      <p>The output reveals the <span class="highlight">relative abundance</span> of each OTU in the native community.</p>
+
+      <h3>Limitations of Amplicon Sequencing</h3>
+      <ul>
+        <li>The <span class="warn">"universal" primers are not actually completely universal</span> &mdash; they don't equally amplify the target gene in all species</li>
+        <li>Universal primers are designed from <span class="warn">sequences already in databases</span> &mdash; they don't capture the diversity of organisms we haven't seen yet</li>
+        <li><span class="warn">Least abundant microbes are under-sampled</span> and missed because PCR amplification is exponential (rare templates lose out to common ones)</li>
+        <li>Can usually only reliably give <span class="warn">genus-level resolution</span></li>
+        <li>Tells you only <span class="warn">WHO is there</span> &mdash; no genomic or functional information</li>
+      </ul>
+
+      <div class="callout">Amplicon = "WHO is there." It's fast and cheap, but biased and tells you nothing about what they're doing.</div>
+    </div>
+  </div>
+
+  <!-- FISH -->
+  <div class="tab-content" id="tab-fish">
+    <div class="card hy-card">
+      <h2>Fluorescence in situ Hybridization (FISH) <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>FISH uses <span class="highlight">fluorescent DNA probes</span> that hybridize directly to DNA/RNA <span class="highlight">in intact cells</span> in a sample. Unlike amplicon sequencing, FISH does not destroy the sample &mdash; you can see the cells in their actual location.</p>
+
+      <h3>How It Works</h3>
+      <ul>
+        <li>The same PCR primers used for amplicon sequencing can be used to make <span class="highlight">fluorescent DNA probes</span></li>
+        <li>Probes target the <span class="highlight">16S rRNA</span> in prokaryotes (the rRNA inside intact cells)</li>
+        <li>Both <span class="highlight">universal probes</span> (label all bacteria) and <span class="highlight">genus-specific probes</span> (label one specific genus) can be designed</li>
+        <li>Probes are hybridized with the sample and visualized with a <span class="highlight">fluorescent microscope</span></li>
+      </ul>
+
+      <h3>Example: Bacteria vs Archaea</h3>
+      <p>FISH probes that distinguish between the <span class="highlight">16S rRNA gene of Bacteria and Archaea</span> can be used to tag members of the two domains in the same sample &mdash; one color for Bacteria, another for Archaea &mdash; and visualize their relative locations.</p>
+
+      <h3>Major Advantage: <span class="warn">SPATIAL INFORMATION</span></h3>
+      <ul>
+        <li>FISH preserves the <span class="highlight">3D architecture</span> of the microbial community &mdash; you see who is next to whom</li>
+        <li>Used to understand the <span class="highlight">architecture of the oral microbiome</span> &mdash; we can see how bacteria spatially arrange within dental plaque</li>
+        <li>Each color represents a different genus, so you can map out the community structure</li>
+      </ul>
+
+      <h3>Limitations</h3>
+      <ul>
+        <li><span class="warn">Limited by how many colors you can distinguish</span> simultaneously in a microscope &mdash; usually a handful</li>
+        <li>You have to <span class="warn">already know what to look for</span> to design the probes &mdash; not a discovery method on its own</li>
+        <li>Lower throughput than sequencing-based methods</li>
+      </ul>
+
+      <div class="callout">FISH = "WHERE in space." It's the only method (among amplicon, FISH, shotgun) that preserves spatial architecture &mdash; useful for biofilms and tissue-associated communities like the oral microbiome.</div>
+    </div>
+  </div>
+
+  <!-- SHOTGUN -->
+  <div class="tab-content" id="tab-shotgun">
+    <div class="card hy-card">
+      <h2>Shotgun Metagenomic Sequencing <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>An innovation in sequencing technology made shotgun metagenomics possible. The method <span class="highlight">sequences ALL the DNA present within the sample</span> &mdash; not just one marker gene.</p>
+
+      <h3>What It Captures</h3>
+      <ul>
+        <li>At sufficient sequencing depth, the <span class="highlight">entire genome of every microbe in the sample</span> can theoretically be sequenced</li>
+        <li><span class="highlight">Eliminates amplicon bias</span> &mdash; no PCR primers, no preferential amplification</li>
+        <li><span class="highlight">Bacteria, Archaea, Eukaryotes, and viruses</span> can all be detected in a <span class="highlight">single sequencing run</span></li>
+        <li>Tells you the <span class="highlight">WHO, WHAT, and HOW</span> of microbial ecology &mdash; identity AND function</li>
+      </ul>
+
+      <h3>The Trade-off</h3>
+      <ul>
+        <li><span class="warn">More expensive</span> than amplicon sequencing</li>
+        <li>Requires more sample DNA and deeper sequencing to get full coverage</li>
+        <li>Computationally intensive analysis</li>
+      </ul>
+
+      <h3>Workflow</h3>
+      <div class="diagram-box">1. Total genomic DNA extracted from sample
+2. DNA <span class="mol">sheared</span> into small fragments for Illumina sequencing
+3. <span class="mol">Illumina deep sequencing</span> (millions&ndash;billions of reads)
+4. Taxonomic classification of reads via marker gene analysis
+   &rarr; gives <span class="mol">relative abundance</span> info (like amplicon, but unbiased)
+5. <span class="mol">Assembly</span>-based analysis to construct
+   <span class="mol">MAGs</span> = metagenome associated genomes
+6. <span class="arr">MAG annotation &amp; functional profiling:</span>
+   - antibiotic resistance genes
+   - metabolic pathways
+   - virulence genes
+   - etc.</div>
+
+      <h3>MAGs: Metagenome-Associated Genomes</h3>
+      <p>By assembling shotgun reads, researchers can <span class="highlight">reconstruct draft genomes</span> for individual microbes in the community &mdash; even ones that have <span class="warn">never been cultured</span>. This has revealed huge swaths of microbial diversity and revolutionized our understanding of the unculturable majority.</p>
+
+      <div class="callout">Shotgun = "WHO + WHAT + HOW." It tells you who is there, what genes they have, and what metabolic / virulence / resistance functions they're capable of. The most powerful method &mdash; and the most expensive.</div>
+    </div>
+  </div>
+
+  <!-- COMPARE -->
+  <div class="tab-content" id="tab-compare">
+    <div class="card hy-card">
+      <h2>Amplicon vs FISH vs Shotgun &mdash; Compare All <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>This is the comparison your professor will most likely test. Memorize the table.</p>
+
+      <table class="data-table hy-table">
+        <tr><th></th><th>Amplicon</th><th>FISH</th><th>Shotgun</th></tr>
+        <tr><td><strong>What it sequences/sees</strong></td><td>One marker gene (16S/18S rRNA) after PCR</td><td>Fluorescent probe binding inside intact cells</td><td>ALL DNA in the sample</td></tr>
+        <tr><td><strong>Question answered</strong></td><td>WHO is there</td><td>WHERE in space</td><td>WHO + WHAT (function) + HOW</td></tr>
+        <tr><td><strong>Cells intact?</strong></td><td>No (DNA extracted)</td><td><span class="highlight">YES</span> &mdash; spatial info preserved</td><td>No (DNA extracted)</td></tr>
+        <tr><td><strong>Resolution</strong></td><td>Genus-level (usually)</td><td>By probe design (universal &rarr; genus)</td><td>Up to species/strain &amp; genome-level</td></tr>
+        <tr><td><strong>PCR-based?</strong></td><td>YES &mdash; amplicon bias</td><td>No PCR (probes hybridize directly)</td><td>NO PCR &mdash; eliminates amplicon bias</td></tr>
+        <tr><td><strong>Captures viruses?</strong></td><td>No (16S is bacterial)</td><td>Only if probe designed</td><td><span class="highlight">YES</span></td></tr>
+        <tr><td><strong>Cost</strong></td><td>Cheapest</td><td>Moderate</td><td><span class="warn">Most expensive</span></td></tr>
+        <tr><td><strong>Function info?</strong></td><td>None</td><td>None</td><td><span class="highlight">YES &mdash; pathways, AMR, virulence</span></td></tr>
+        <tr><td><strong>Main limitation</strong></td><td>"Universal" primers aren't truly universal; rare microbes under-sampled</td><td>Limited by # of distinguishable colors; need to know what to look for</td><td>Expensive; computationally heavy</td></tr>
+      </table>
+
+      <h3>Quick Picking Guide</h3>
+      <ul>
+        <li><strong>Want a quick, cheap census of who's there?</strong> &rarr; <span class="highlight">Amplicon</span></li>
+        <li><strong>Want to see how cells are arranged in 3D space (e.g., a biofilm)?</strong> &rarr; <span class="highlight">FISH</span></li>
+        <li><strong>Want unbiased identity + functional capability + viruses + everything?</strong> &rarr; <span class="highlight">Shotgun</span></li>
+      </ul>
+
+      <h3>Mnemonics</h3>
+      <ul>
+        <li><strong>Amplicon = "Ask who"</strong> (cheap, narrow, 16S only)</li>
+        <li><strong>FISH = "Find in situ"</strong> (spatial, microscopy)</li>
+        <li><strong>Shotgun = "See everything"</strong> (all DNA, all domains, all functions)</li>
+      </ul>
+
+      <div class="callout">Don't confuse them: amplicon and shotgun both end up as sequencing reads, but amplicon only sequences ONE gene (after PCR amplifying it) while shotgun sequences EVERYTHING (no PCR). FISH doesn't sequence at all &mdash; it visualizes.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FLASHCARDS ==================== -->
+<div class="section" id="sec-flashcards">
+  <div class="score-bar">
+    <div><span class="score-text">Flashcard Progress</span></div>
+    <div><span class="score-pct" id="fc-score">0 / 28</span></div>
+  </div>
+  <div class="fc-container">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="fc-front" id="fc-front"></div>
+      <div class="fc-back" id="fc-back"></div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button class="fc-btn" onclick="prevCard()">&larr;</button>
+    <span class="fc-counter" id="fc-counter">1 / 28</span>
+    <button class="fc-btn" onclick="nextCard()">&rarr;</button>
+  </div>
+  <div class="fc-hint">Click to flip &middot; Arrow keys to navigate</div>
+</div>
+
+<!-- ==================== FRQ ==================== -->
+<div class="section" id="sec-frq">
+  <div class="score-bar">
+    <div><span class="score-text">FRQ Self-Assessment</span></div>
+    <div><span class="score-pct" id="frq-score">0%</span></div>
+    <button class="reset-btn" onclick="resetFRQ()">Reset All</button>
+  </div>
+  <div id="frq-container"></div>
+</div>
+
+<!-- ==================== MATCHING ==================== -->
+<div class="section" id="sec-matching">
+  <div class="score-bar">
+    <div><span class="score-text">Matching</span></div>
+    <div><span class="score-pct" id="match-score">0 / 12</span></div>
+    <button class="reset-btn" onclick="initMatching()">Reset</button>
+  </div>
+  <div class="match-grid">
+    <div>
+      <div class="match-col-header">Term</div>
+      <div id="match-left"></div>
+    </div>
+    <div>
+      <div class="match-col-header">Definition</div>
+      <div id="match-right"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HARD FRQ ==================== -->
+<div class="section" id="sec-hard">
+  <div class="score-bar">
+    <div><span class="score-text">Hard FRQ (Exam-Level)</span></div>
+    <div><span class="score-pct" id="hard-score">0%</span></div>
+    <button class="reset-btn" onclick="resetHard()">Reset All</button>
+  </div>
+  <div id="hard-container"></div>
+</div>
+
+</main>
+
+<script>
+// ====== NAVIGATION ======
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+function showTab(btn, id) {
+  btn.closest('.section').querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.closest('.section').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ====== FLASHCARDS ======
+const flashcards = [
+  {q:"What is syntrophy?", a:"An interaction where microbes feed together: one microbe catalyzes a reaction and another eats the reaction product. Microbes exchange metabolic byproducts needed for growth."},
+  {q:"Why does syntrophy prevent feedback inhibition?", a:"In nature, a microbe's waste product is consumed by its partner before it can accumulate. If the waste built up, it would inhibit the first microbe's reaction. Example: anaerobic hydrocarbon degradation generates butyrate; partner bacteria consume the butyrate as a carbon source, preventing accumulation."},
+  {q:"What was originally thought to be one organism but is actually two?", a:"<em>Methanobacillus omelianskii</em> &mdash; once thought to convert ethanol + CO<sub>2</sub> to methane in pure culture. It's actually a syntrophic pair: the <strong>S-organism</strong> (a bacterium) + <strong><em>Methanobacterium bryantii</em></strong> (an archaeon)."},
+  {q:"What does the S-organism do, and why does it need a partner?", a:"The S-organism (a bacterium) ferments <strong>ethanol &rarr; acetate + H<sub>2</sub></strong>, but only if H<sub>2</sub> is removed. <em>M. bryantii</em> (an archaeon) consumes the H<sub>2</sub> by combining it with CO<sub>2</sub> to make <strong>methane</strong>, keeping the bacterium's reaction thermodynamically favorable."},
+  {q:"Why are most microbes unculturable?", a:"Many microbes flourish in nature only as part of <strong>interdependent nutritional consortia</strong> (syntrophy). When taken alone, they lack the partner that consumes their waste products or provides essential metabolites. Cultivation in pure culture often fails because we've broken the partnership."},
+  {q:"What are the cultivation-dependent methods?", a:"The oldest method &mdash; mimic the microbe's natural environment to grow it in the lab. Vary food source, atmospheric conditions (anaerobic/aerobic), temperature, and pH. Even with great effort, only a fraction of microbes can be recovered."},
+  {q:"What is enrichment culture?", a:"Adjusting culture conditions to favor the growth of desired microbes. It is a crucial step for cultivation. Example: to enrich for anaerobic photosynthesizers in <em>Chloroflexi</em>, add soil to an oxygen-free medium with sulfur compounds, fill the headspace with CO<sub>2</sub>, and incubate in light."},
+  {q:"What are cultivation-independent methods?", a:"Methods that assess microbial communities <strong>directly in the sample</strong> through sequencing or hybridization, without needing to grow the microbes. Examples: 16S rRNA amplicon sequencing, FISH, and shotgun metagenomic sequencing."},
+  {q:"What is cultivation bias?", a:"The systematic distortion in our knowledge of microbes that arises because we only cultivate microbes that grow well in our chosen culture conditions. We can't even know what optimal conditions are for microbes we've never grown."},
+  {q:"What is the most common culture condition, and which organisms does it favor?", a:"<strong>Luria Broth (LB) in ambient air (aerobic)</strong>. Only a handful of organisms grow well in it &mdash; aerobic chemoheterotrophs like <em>E. coli</em>. They're easy to culture, AND many known pathogens fall in this class &mdash; so we know them best for two reasons."},
+  {q:"Which microbes have a larger ecological impact but are understudied due to cultivation bias?", a:"<strong>Anaerobes</strong> and <strong>autotrophs</strong>. They don't grow well in LB + ambient air, so they're underrepresented in our cultured collections, even though their ecological impact is greater."},
+  {q:"Why is cultivation still important even with sequencing?", a:"Genomes only give you the <em>code</em> &mdash; not how it works under different conditions. The presence of a gene doesn't mean it's being used when and how you think. You need controlled genetic experiments to test gene function, and cultivation is a prerequisite for that."},
+  {q:"What does amplicon-based community profiling do?", a:"Detects microbe-specific marker genes from environmental DNA: <strong>16S rRNA</strong> for prokaryotes (Bacteria/Archaea), <strong>18S rRNA</strong> for eukaryotes. Workflow: extract DNA &rarr; PCR amplify the marker &rarr; sequence (or clone) &rarr; classify reads &rarr; report relative abundance of OTUs."},
+  {q:"What three features must a target gene have for amplicon sequencing?", a:"1) <strong>ALL microbes</strong> in the community must have the gene. 2) It must be possible to design <strong>universal PCR primers</strong> that anneal in all microbes. 3) The gene must have <strong>variable regions</strong> that differ between microbes (so they can be told apart). 16S/18S rRNA fit all three."},
+  {q:"What are OTUs and what are the lecture's % identity thresholds?", a:"<strong>Operational Taxonomic Units</strong> &mdash; groups of microbes lumped by sequence similarity. Thresholds: <strong>species 98.7%</strong>, <strong>genus 94.5%</strong>, <strong>family 86.5%</strong>."},
+  {q:"List the limitations of amplicon sequencing.", a:"1) 'Universal' primers aren't truly universal &mdash; don't equally amplify all species. 2) Primers designed from existing databases &mdash; miss undiscovered diversity. 3) Least-abundant microbes under-sampled because PCR is exponential. 4) Usually only genus-level resolution. 5) Tells you only WHO is there &mdash; no genomic/functional info."},
+  {q:"What is FISH and how does it work?", a:"<strong>Fluorescence in situ hybridization</strong>. Same primer regions used for amplicon are used to make <strong>fluorescent DNA probes</strong> that hybridize with DNA/RNA <strong>in intact cells</strong>. Probes target 16S rRNA in prokaryotes. Visualized by fluorescent microscope."},
+  {q:"What are universal vs genus-specific FISH probes?", a:"<strong>Universal probes</strong> label all bacteria (or all archaea, etc.) at once. <strong>Genus-specific probes</strong> label only one genus. Example: probes that distinguish 16S rRNA of Bacteria vs Archaea can tag members of each domain in different colors."},
+  {q:"What is the major advantage of FISH?", a:"FISH preserves <strong>spatial information</strong>. The cells stay intact, so you can see how microbes are arranged in 3D &mdash; e.g., the architecture of the oral microbiome and how bacteria spatially arrange within dental plaque."},
+  {q:"What are the limitations of FISH?", a:"You're limited by how many <strong>colors you can distinguish</strong> in a microscope (a handful at most). You also have to know in advance what to look for to design probes &mdash; not a discovery method."},
+  {q:"What is shotgun metagenomic sequencing?", a:"A method that sequences <strong>ALL the DNA present in a sample</strong>. At sufficient depth, the entire genome of every microbe in the sample can theoretically be sequenced. Bacteria, Archaea, Eukaryotes, and viruses are all detected in a single run."},
+  {q:"What does shotgun metagenomics tell you that amplicon does NOT?", a:"<strong>Function</strong>. Shotgun sequences whole genomes &mdash; you can identify metabolic pathways, antibiotic resistance genes, virulence genes, etc. Amplicon only sequences one marker gene, telling you who is there but nothing about what they do."},
+  {q:"What is a MAG?", a:"<strong>Metagenome-Associated Genome</strong> &mdash; a draft genome reconstructed from shotgun metagenomic reads by assembly. MAGs let researchers study the genomes of microbes that have never been cultured."},
+  {q:"Walk through the shotgun metagenomics workflow.", a:"1) Total genomic DNA extracted from sample. 2) DNA sheared into small fragments. 3) Illumina deep sequencing. 4) Taxonomic classification of reads by marker gene analysis &rarr; relative abundance. 5) Assembly to construct MAGs. 6) MAG annotation &amp; functional profiling (AMR, metabolism, virulence)."},
+  {q:"How does shotgun eliminate amplicon bias?", a:"There is <strong>no PCR step</strong> in shotgun &mdash; all DNA in the sample is sequenced directly. Without PCR, there are no 'universal' primers that fail on certain species, and rare templates aren't out-competed by abundant ones in exponential amplification."},
+  {q:"In one phrase, summarize what each method tells you.", a:"<strong>Amplicon</strong> = WHO is there (cheap, biased, 16S only). <strong>FISH</strong> = WHERE in space (microscopy, color-limited). <strong>Shotgun</strong> = WHO + WHAT (function) + HOW (most info, most expensive)."},
+  {q:"Why is the oral microbiome a good showcase for FISH specifically?", a:"The oral microbiome forms structured biofilms (e.g., dental plaque) where bacteria <strong>spatially arrange in characteristic 3D patterns</strong>. FISH is the only method that preserves intact cells and reveals their spatial relationships &mdash; sequencing-based methods homogenize the sample and lose all spatial information."},
+  {q:"How does cultivation bias relate to syntrophy?", a:"Both contribute to why we cannot grow most microbes. Cultivation bias = our standard conditions (LB, aerobic) suit only a narrow slice of microbes. Syntrophy = many microbes additionally require a metabolic partner that we cannot easily provide. Together they explain why &gt;99% of microbial diversity is uncultured."}
+];
+
+let fcIdx = 0;
+function renderCard() {
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('fc-front').innerHTML = flashcards[fcIdx].q;
+  document.getElementById('fc-back').innerHTML = flashcards[fcIdx].a.replace(/\n/g,'<br>');
+  document.getElementById('fc-counter').textContent = (fcIdx+1)+' / '+flashcards.length;
+  document.getElementById('fc-score').textContent = (fcIdx+1)+' / '+flashcards.length;
+}
+function flipCard() { document.getElementById('flashcard').classList.toggle('flipped'); }
+function nextCard() { fcIdx = (fcIdx+1) % flashcards.length; renderCard(); }
+function prevCard() { fcIdx = (fcIdx-1+flashcards.length) % flashcards.length; renderCard(); }
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight') nextCard();
+  if(e.key==='ArrowLeft') prevCard();
+  if(e.key===' '||e.key==='Enter') { e.preventDefault(); flipCard(); }
+});
+renderCard();
+
+// ====== FRQ ======
+const frqs = [
+  {q:"Define syntrophy and explain why it is a major reason most microbes are unculturable.", a:"<strong>Syntrophy</strong> is a metabolic interaction where microbes <strong>feed together</strong>: one microbe catalyzes a reaction and another consumes the product. The partners exchange metabolic byproducts &mdash; one's waste is the other's food. Many microbes are unculturable in pure culture because <strong>they depend on a partner</strong> to remove inhibitory waste products or to provide essential metabolites. When you isolate them alone, the missing partner causes their metabolism to stall (feedback inhibition) or starves them of needed substrates. To grow such microbes alone, you'd have to artificially recreate the partner's role &mdash; e.g., constantly removing butyrate from the system in the case of hydrocarbon degraders.", hy:true},
+  {q:"Describe the <em>Methanobacillus omelianskii</em> example of syntrophy in detail.", a:"<em>M. omelianskii</em> was originally thought to be a <strong>single species</strong> growing in pure culture by converting <strong>ethanol + CO<sub>2</sub> to methane</strong>. In reality it is <strong>two organisms</strong>: the <strong>S-organism</strong> (a bacterium) and <strong><em>Methanobacterium bryantii</em></strong> (an archaeon). The S-organism ferments <strong>ethanol &rarr; acetate + H<sub>2</sub></strong>, but only if H<sub>2</sub> is continuously removed (otherwise the reaction becomes thermodynamically unfavorable). <em>M. bryantii</em> consumes the H<sub>2</sub> with CO<sub>2</sub> to make <strong>methane</strong>, keeping H<sub>2</sub> low and the bacterium's reaction running. Neither organism can grow alone &mdash; together they create the illusion of a single species.", hy:true},
+  {q:"Compare cultivation-dependent and cultivation-independent methods. Give one example of each and one strength of each.", a:"<strong>Cultivation-dependent</strong> methods grow microbes in the lab by mimicking their natural environment (varying carbon source, atmosphere, temperature, pH). Example: <strong>enrichment culture</strong> for anaerobic photosynthesizers in <em>Chloroflexi</em> &mdash; oxygen-free medium with sulfur compounds, CO<sub>2</sub> headspace, and light. Strength: lets you do <strong>controlled experiments</strong> on the organism (essential for hypothesis testing about gene function). <strong>Cultivation-independent</strong> methods study microbes directly in the sample without growing them. Example: <strong>16S rRNA amplicon sequencing</strong>. Strength: captures the diversity of <strong>unculturable microbes</strong> (the &gt;99% we can't grow), giving a much truer picture of community composition.", hy:true},
+  {q:"Even with the best effort, only a fraction of microbes can be recovered by culture. List four conditions a microbiologist might vary in attempting to cultivate a target microbe.", a:"1) <strong>Food source / carbon source</strong> &mdash; e.g., cellulose for a plant-infecting bacterium. 2) <strong>Atmospheric conditions</strong> &mdash; anaerobic vs aerobic vs microaerobic. 3) <strong>Temperature</strong> &mdash; matching the microbe's natural environment. 4) <strong>pH</strong> &mdash; acidic, neutral, or alkaline as appropriate.", hy:false},
+  {q:"Define cultivation bias and explain why we know more about <em>E. coli</em> than about most microbes.", a:"<strong>Cultivation bias</strong> = the systematic distortion in our knowledge of microbes that arises because we only cultivate microbes that grow well in our chosen culturing condition. We don't even know what optimal conditions are for microbes we've never grown. Only a small set of organisms grow well in the most common condition: <strong>Luria Broth in ambient air (aerobic)</strong>. <em>E. coli</em>, an <strong>aerobic chemoheterotroph</strong>, thrives in this condition &mdash; it's literally easy to culture. Additionally, many <strong>known pathogens fall in this same class</strong>, motivating us to study them. The combined result is that we know <em>E. coli</em>-like organisms in great detail while remaining far more ignorant about anaerobes and autotrophs, which actually have a larger ecological impact.", hy:true},
+  {q:"Why is cultivation still essential, even though we have powerful sequencing methods?", a:"Sequencing tells you the <strong>code</strong> (which genes are present in a genome) but not <strong>how that code is used</strong> under different conditions. The presence of a gene does not mean it is being expressed when, where, or how you think it is. To prove a gene's function and test hypotheses, you need <strong>controlled genetic experiments</strong> &mdash; knockouts, complementation, expression studies. <strong>Cultivation is a prerequisite</strong> for those experiments. Without a growable organism, you cannot manipulate it experimentally.", hy:false},
+  {q:"What three features must a target gene have to be useful for amplicon-based community profiling? Why does 16S rRNA fit those criteria?", a:"1) <strong>Universally present</strong> &mdash; ALL microbes in the community must have the gene, otherwise they'd be invisible. 2) <strong>Universal PCR primers must be designable</strong> &mdash; you need conserved regions where the same primer pair anneals to the gene in every microbe. 3) <strong>Variable regions</strong> &mdash; the gene must contain regions that differ between microbes so they can be distinguished. <strong>16S rRNA</strong> (prokaryotes) and <strong>18S rRNA</strong> (eukaryotes) satisfy all three: they are <strong>essential ribosomal RNAs found in all microbes of their domain</strong>, contain highly conserved regions where universal primers bind, and have interspersed variable regions that differ between species.", hy:true},
+  {q:"List the OTU sequence-identity thresholds used for species, genus, and family classification.", a:"<strong>Species</strong>: 98.7%. <strong>Genus</strong>: 94.5%. <strong>Family</strong>: 86.5%. Sequences are clustered into operational taxonomic units (OTUs) at these thresholds; relative abundance of each OTU in the community is then reported.", hy:true},
+  {q:"List the limitations of amplicon-based community profiling.", a:"1) <strong>'Universal' primers are not truly universal</strong> &mdash; they don't equally amplify the target gene in all species. 2) Primers are designed from <strong>databases of known sequences</strong> &mdash; they miss undiscovered diversity. 3) <strong>Least-abundant microbes are under-sampled</strong> because PCR is exponential &mdash; rare templates are out-competed by abundant ones. 4) Usually only <strong>genus-level resolution</strong>. 5) Tells you only WHO is there &mdash; <strong>no genomic or functional information</strong> beyond identity.", hy:true},
+  {q:"How does FISH work, and what is its biggest advantage over sequencing-based methods?", a:"<strong>FISH (Fluorescence in situ hybridization)</strong> uses <strong>fluorescent DNA probes</strong> &mdash; designed from the same conserved regions as amplicon primers &mdash; to hybridize with DNA or rRNA <strong>inside intact cells</strong> in a sample. Probes can be universal (label all bacteria, for example) or genus-specific. The sample is then visualized with a fluorescent microscope. <strong>Biggest advantage: spatial information</strong>. Sequencing destroys the sample to extract DNA &mdash; FISH preserves cell location, so you can see the 3D architecture of a community (e.g., the oral microbiome / dental plaque, where each color represents a different genus).", hy:true},
+  {q:"What are the limitations of FISH?", a:"1) You are <strong>limited by how many fluorophore colors</strong> can be distinguished simultaneously in a microscope &mdash; usually a handful. 2) You have to <strong>know what to look for in advance</strong> to design the probes &mdash; not a discovery method on its own. 3) Lower throughput than sequencing-based methods.", hy:false},
+  {q:"What is shotgun metagenomic sequencing, and what does it offer beyond amplicon sequencing?", a:"<strong>Shotgun metagenomics</strong> sequences <strong>ALL the DNA</strong> in a sample, not just one marker gene. At sufficient depth, the entire genome of every microbe can theoretically be reconstructed. Beyond what amplicon offers: it (1) <strong>eliminates amplicon/PCR bias</strong>, (2) detects <strong>Bacteria, Archaea, Eukaryotes, AND viruses</strong> in a single run, (3) provides <strong>functional information</strong> (metabolic pathways, antibiotic resistance genes, virulence genes), and (4) allows <strong>MAG (metagenome-associated genome) reconstruction</strong> &mdash; whole draft genomes for uncultured microbes.", hy:true},
+  {q:"Walk through the shotgun metagenomics workflow.", a:"1) <strong>Extract total genomic DNA</strong> from the sample. 2) <strong>Shear DNA</strong> into small fragments suitable for Illumina sequencing. 3) Perform <strong>Illumina deep sequencing</strong> &mdash; many reads per sample. 4) <strong>Taxonomic classification</strong> of reads by marker-gene analysis to give relative abundance. 5) <strong>Assembly</strong>-based analysis to construct <strong>MAGs (metagenome-associated genomes)</strong>. 6) <strong>MAG annotation and functional profiling</strong> &mdash; identify antibiotic resistance genes, metabolic pathways, virulence genes, etc.", hy:true},
+  {q:"What is a MAG, and why is it important?", a:"A <strong>MAG</strong> is a <strong>Metagenome-Associated Genome</strong> &mdash; a draft genome reconstructed by assembling shotgun metagenomic reads from a community sample. MAGs are important because they let researchers study the genomes of microbes that <strong>have never been cultured</strong>, opening up the &gt;99% of microbial diversity that cultivation bias prevents us from accessing.", hy:true},
+  {q:"In a single sentence each, summarize what amplicon, FISH, and shotgun each tell you.", a:"<strong>Amplicon</strong>: WHO is there, based on a single marker gene like 16S rRNA. <strong>FISH</strong>: WHERE microbes are spatially located within a sample, by hybridizing fluorescent probes to intact cells. <strong>Shotgun</strong>: WHO is there + WHAT functions they have + WHICH organisms (including viruses), by sequencing all DNA without PCR.", hy:true},
+  {q:"You want to study the spatial architecture of biofilms in dental plaque. Which method should you choose, and why?", a:"<strong>FISH</strong>. It is the only method (among amplicon, FISH, shotgun) that <strong>preserves intact cells in the sample</strong> and lets you visualize them with a fluorescent microscope, so the 3D arrangement of bacteria in the plaque is preserved. Sequencing-based methods (amplicon, shotgun) require DNA extraction, which destroys all spatial information. With multi-color FISH probes (each color = a different genus), you can directly map who lives next to whom in the biofilm.", hy:true},
+  {q:"Why does shotgun metagenomic sequencing eliminate amplicon bias?", a:"Shotgun has <strong>no PCR amplification step</strong>. Amplicon bias arises because: (1) 'universal' PCR primers don't anneal equally well to the target gene in all species, so some species are systematically under- or over-represented; (2) PCR is exponential, so rare templates lose out to abundant ones. Shotgun sequences <strong>all DNA in the sample directly</strong>, so each genome's representation in the read pool reflects its true abundance in the sample (modulo extraction biases), and there is no primer-dependent species selection.", hy:true},
+  {q:"You sequence a sample with shotgun metagenomics and find a gene encoding a beta-lactamase. What functional inference can you make, and what would you NOT have learned from amplicon sequencing alone?", a:"You can infer that the community contains microbes capable of <strong>antibiotic resistance to beta-lactam drugs</strong> (e.g., penicillins, cephalosporins) &mdash; relevant to clinical and environmental antibiotic resistance surveillance. With assembly into MAGs, you might even pin the gene to a specific organism. <strong>Amplicon sequencing of 16S rRNA would have given you only the taxonomic identities of microbes present</strong> &mdash; no functional information. You would not have learned anything about resistance genes, metabolic pathways, or virulence factors, because amplicon only targets one ribosomal marker gene, not the whole genome.", hy:true},
+];
+
+const hardFrqs = [
+  {q:"You are studying a methanogenic archaeon that grows in pure culture in your lab on H<sub>2</sub> + CO<sub>2</sub>, but its closest natural environment is a microbial mat where it appears tightly coupled to a fermentative bacterium. (a) Explain how this is a syntrophic interaction. (b) What experimental approach would you use to confirm syntrophy and identify the bacterial partner? (c) Explain how cultivation alone could have hidden the partnership.", a:"(a) The fermentative bacterium produces <strong>H<sub>2</sub> as a metabolic waste</strong>; the methanogenic archaeon consumes the H<sub>2</sub> to make methane. The bacterium's reaction is only thermodynamically favorable if H<sub>2</sub> is kept low &mdash; the archaeon does that for it. Both microbes benefit, and neither operates as efficiently alone. This is the same logic as <em>Methanobacillus omelianskii</em>: the bacterium's H<sub>2</sub> is the archaeon's food. (b) <strong>FISH</strong> on the natural mat with universal Bacteria vs Archaea probes (or genus-specific probes) would reveal whether the archaeon is <strong>spatially co-localized</strong> with a candidate bacterium &mdash; spatial proximity is a hallmark of syntrophy. <strong>Shotgun metagenomics</strong> on the mat would identify both partners and their genomes, including the bacterium's H<sub>2</sub>-producing pathways and the archaeon's H<sub>2</sub>-consuming methanogenesis pathway. <strong>Co-cultivation experiments</strong>: try to grow the bacterium alone, and show it fails or grows poorly without the archaeon &mdash; then add back the archaeon and confirm rescue. (c) If you only cultivated the archaeon (which grows on H<sub>2</sub> + CO<sub>2</sub> alone in pure culture), you would have <strong>completely missed the bacterial partner</strong> in nature &mdash; you would have assumed the archaeon was a free-living methanogen. The bacterium might be unculturable on its own (without the archaeon to remove H<sub>2</sub>). Cultivation alone is biased toward members that happen to grow well in lab conditions and can hide ecological dependencies.", hy:true},
+  {q:"Suppose you sequence the soil microbiome with both 16S amplicon and shotgun metagenomics. Amplicon shows 200 OTUs and reports that <em>Pseudomonas</em> dominates at 25% of reads. Shotgun shows ~1,500 distinct genomes and reports <em>Pseudomonas</em> at only 8% of reads, with much higher diversity from Acidobacteria. Explain the discrepancy in terms of methodology.", a:"The amplicon and shotgun results disagree because of <strong>amplicon (PCR) bias</strong>. The 16S 'universal' primers <strong>preferentially amplify <em>Pseudomonas</em></strong>-like sequences (and other taxa whose 16S regions match the primer well), while they amplify Acidobacteria less efficiently. Combined with the exponential nature of PCR, this <strong>over-represents Pseudomonas</strong> and <strong>under-represents Acidobacteria</strong> in amplicon read counts. The lower OTU count (200 vs 1,500 genomes) reflects two compounding issues: (1) primers fail to amplify diverse rare taxa, so they're invisible; and (2) amplicon resolution is typically only genus-level (98.7% identity threshold lumps closely-related strains). Shotgun, with no PCR step, captures all DNA proportional to its actual abundance and reaches genome-level resolution via MAG assembly. Conclusion: <strong>shotgun is closer to the truth</strong>; the amplicon's <em>Pseudomonas</em> dominance was an artifact of primer preference, and Acidobacteria are a much bigger part of the soil community than amplicon suggested.", hy:true},
+  {q:"Critically compare amplicon, FISH, and shotgun: for each method, give one scientific question it CAN answer and one it CANNOT, and one practical limitation. Then explain why ALL THREE remain useful.", a:"<strong>Amplicon</strong>. CAN answer: 'Roughly which genera are present in this community, and at what relative abundance?' CANNOT answer: 'What metabolic functions or antibiotic resistance genes does this community encode?' Limitation: PCR primer bias under-represents species whose 16S/18S sequences don't match 'universal' primers; rare taxa lost. <strong>FISH</strong>. CAN answer: 'How are different bacterial genera physically arranged in this biofilm?' CANNOT answer: 'What organisms are present that we did NOT design probes for?' &mdash; FISH cannot discover; it confirms. Limitation: limited by the number of distinguishable fluorophore colors per image. <strong>Shotgun</strong>. CAN answer: 'What functional capabilities (metabolic pathways, AMR genes, virulence) does this community have, and which organisms encode them?' CANNOT answer: 'How are these microbes spatially arranged in the original sample?' &mdash; DNA extraction destroys spatial info. Limitation: most expensive; computationally demanding; requires high-quality DNA and deep sequencing. <strong>Why all three remain useful</strong>: each answers a different question. Amplicon is the cheapest screen for community surveys at scale. FISH is the only method preserving spatial architecture, indispensable for biofilms and tissue-associated communities. Shotgun is the gold standard for identity + function but too expensive for routine use. They complement each other.", hy:true},
+  {q:"A colleague claims, 'Cultivation is dead &mdash; we have shotgun metagenomics, so we don't need to grow microbes anymore.' Refute this claim using specific points from the lecture.", a:"This claim is wrong. Cultivation is still essential for several reasons: (1) <strong>Genomes give you the code, not how it works</strong>. Shotgun sequencing tells you which genes are present in a genome, but it does NOT tell you when, where, or how those genes are expressed under different physiological conditions. (2) <strong>The presence of a gene does not mean it's being used</strong> in the way you assume &mdash; gene presence is a hypothesis, not a conclusion. (3) <strong>Hypothesis testing requires controlled genetic experiments</strong> &mdash; gene knockouts, complementation, expression studies, biochemical assays &mdash; and these all require a growable organism in the lab. (4) Many <strong>therapeutic and biotech applications</strong> (e.g., engineering a strain to produce a compound, characterizing a new antibiotic resistance mechanism) require <strong>cultivable</strong> organisms. So while shotgun is essential for discovery and characterization of unculturable diversity, it does not replace cultivation &mdash; the two are <strong>complementary</strong>. Shotgun expands the range of microbes we can <em>see</em>; cultivation is still the only way we can <em>experimentally test</em> what they do.", hy:true},
+  {q:"You receive a sample of dental plaque and want to: (a) identify all bacterial genera present at relative abundance, (b) determine the spatial arrangement of those genera within the plaque, and (c) characterize antibiotic resistance genes carried by the community. Design a minimal multi-method study that combines amplicon, FISH, and shotgun to answer all three questions, and justify each choice.", a:"<strong>Step 1 (Question a) &mdash; 16S amplicon sequencing</strong> on extracted DNA from the plaque. This gives a fast, inexpensive census of bacterial genera and their relative abundances. Sufficient for community composition at genus-level resolution. Choose amplicon over shotgun here because amplicon is cheaper and the question is purely identity at genus level. <strong>Step 2 (Question b) &mdash; FISH</strong> on intact, fixed plaque sections. Use a panel of <strong>genus-specific fluorescent probes</strong> targeting the dominant genera identified in Step 1 (this is why we did Step 1 first &mdash; we know which probes to design). Image with fluorescent microscopy to resolve the 3D spatial architecture of the biofilm. FISH is the only method that preserves cell location, so it's essential for the spatial question. <strong>Step 3 (Question c) &mdash; Shotgun metagenomics</strong> on extracted DNA from the plaque. Sequence all DNA, assemble into MAGs, annotate AMR genes, and link those genes to the organisms that encode them. Amplicon cannot answer this because it sequences only 16S; FISH cannot answer this because it visualizes but does not catalog gene content. <strong>Justification of the multi-method approach</strong>: each method's strengths are different; we use the cheapest method that can answer each question. The methods are also <strong>complementary</strong> &mdash; amplicon's Step 1 informs FISH probe design; shotgun's Step 3 confirms identity calls and adds functional information, helping interpret the spatial relationships in Step 2.", hy:true},
+  {q:"Explain the deep relationship between cultivation bias, syntrophy, and the rise of cultivation-independent methods. Why was sequencing such a transformative tool for microbial ecology?", a:"<strong>Cultivation bias</strong> is the systematic distortion in our microbial knowledge caused by only being able to grow microbes that thrive in standard lab conditions (e.g., Luria Broth, ambient air). This means <strong>we know <em>E. coli</em>-like aerobic chemoheterotrophs in great detail</strong> but remain ignorant about anaerobes and autotrophs &mdash; even though they have larger ecological impact. <strong>Syntrophy</strong> compounds the problem: many microbes additionally require a metabolic partner to survive, so they cannot be cultivated in pure isolation. The combined effect: <strong>&gt;99% of environmental microbes</strong> were essentially invisible to microbiology before sequencing. <strong>Cultivation-independent methods</strong> (amplicon, FISH, shotgun) transformed microbial ecology by sidestepping cultivation entirely. They sample microbes <em>in situ</em> &mdash; from soil, water, the gut, dental plaque &mdash; without needing to grow them. This revealed: enormous diversity we hadn't suspected; whole new phyla without cultured representatives; and the genomic evidence (via MAGs) of the metabolic strategies of unculturable organisms. The transformation was so complete that it changed the working definition of microbial diversity: from 'what we can grow' to 'what we can sequence.' Crucially, sequencing methods did not eliminate the need for cultivation &mdash; they revealed how much of microbiology had been driven by cultivation bias and pointed us at the right organisms to <em>try</em> to cultivate next.", hy:true},
+];
+
+function buildFRQ(container, questions, prefix) {
+  const el = document.getElementById(container);
+  el.innerHTML = '';
+  questions.forEach((q,i) => {
+    const hy = q.hy ? 'hy-frq' : '';
+    el.innerHTML += `
+    <div class="frq-card ${hy}">
+      <div class="frq-prompt"><span class="q-num">${i+1}</span>${q.q}${q.hy?'<span class="hy-badge">HIGH YIELD</span>':''}</div>
+      <textarea placeholder="Write your answer..." id="${prefix}-ta-${i}"></textarea>
+      <button class="frq-reveal-btn" onclick="revealFRQ('${prefix}',${i})">Reveal Answer</button>
+      <div class="frq-answer" id="${prefix}-ans-${i}">${q.a}</div>
+      <div class="frq-self-grade" id="${prefix}-grade-${i}">
+        <button class="grade-btn got-it" onclick="gradeFRQ('${prefix}',${i},'got-it')">Got it</button>
+        <button class="grade-btn partial" onclick="gradeFRQ('${prefix}',${i},'partial')">Partial</button>
+        <button class="grade-btn missed" onclick="gradeFRQ('${prefix}',${i},'missed')">Missed</button>
+      </div>
+    </div>`;
+  });
+}
+
+const frqGrades = {};
+const hardGrades = {};
+
+function revealFRQ(prefix, i) {
+  document.getElementById(prefix+'-ans-'+i).classList.add('show');
+  document.getElementById(prefix+'-grade-'+i).classList.add('show');
+}
+function gradeFRQ(prefix, i, grade) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  grades[i] = grade;
+  const btns = document.getElementById(prefix+'-grade-'+i).querySelectorAll('.grade-btn');
+  btns.forEach(b => b.classList.remove('selected-grade'));
+  event.target.classList.add('selected-grade');
+  updateFRQScore(prefix);
+}
+function updateFRQScore(prefix) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  const total = prefix === 'frq' ? frqs.length : hardFrqs.length;
+  let pts = 0;
+  Object.values(grades).forEach(g => { if(g==='got-it') pts+=1; else if(g==='partial') pts+=0.5; });
+  document.getElementById(prefix+'-score').textContent = Math.round((pts/total)*100)+'%';
+}
+function resetFRQ() {
+  Object.keys(frqGrades).forEach(k => delete frqGrades[k]);
+  buildFRQ('frq-container', frqs, 'frq');
+  document.getElementById('frq-score').textContent = '0%';
+}
+function resetHard() {
+  Object.keys(hardGrades).forEach(k => delete hardGrades[k]);
+  buildFRQ('hard-container', hardFrqs, 'hard');
+  document.getElementById('hard-score').textContent = '0%';
+}
+
+buildFRQ('frq-container', frqs, 'frq');
+buildFRQ('hard-container', hardFrqs, 'hard');
+
+// ====== MATCHING ======
+const matchPairs = [
+  {term:"Syntrophy", def:"Microbes feed together &mdash; one's reaction product is another's food source"},
+  {term:"<em>Methanobacillus omelianskii</em>", def:"Originally thought to be one species; actually a bacterium (S-organism) + archaeon (<em>M. bryantii</em>)"},
+  {term:"Cultivation-dependent", def:"Grow microbes in the lab; oldest method; recovers only a small fraction of diversity"},
+  {term:"Enrichment culture", def:"Adjust culture conditions to favor growth of desired microbes; crucial step before isolation"},
+  {term:"Cultivation-independent", def:"Assess communities directly from sample by sequencing/hybridization; bypasses culture"},
+  {term:"Cultivation bias", def:"We know best the microbes that grow in LB + ambient air (e.g., <em>E. coli</em>) &mdash; not the most ecologically important"},
+  {term:"Amplicon (16S/18S)", def:"PCR-amplify a marker gene, sequence it, classify into OTUs &mdash; tells you WHO is there"},
+  {term:"OTU thresholds", def:"Species 98.7%, genus 94.5%, family 86.5% sequence identity"},
+  {term:"FISH", def:"Fluorescent probes hybridize to rRNA in intact cells; preserves spatial information"},
+  {term:"Shotgun metagenomics", def:"Sequences all DNA in a sample; no PCR bias; reveals identity AND function"},
+  {term:"MAG", def:"Metagenome-Associated Genome &mdash; draft genome assembled from shotgun reads of an uncultured microbe"},
+  {term:"Why 16S rRNA?", def:"Universal in prokaryotes; allows universal primers; has variable regions for species discrimination"},
+];
+
+let matchLeft = null, matchRight = null, matchedCount = 0;
+function initMatching() {
+  matchLeft = null; matchRight = null; matchedCount = 0;
+  const lDiv = document.getElementById('match-left');
+  const rDiv = document.getElementById('match-right');
+  const sL = [...matchPairs].sort(() => Math.random()-0.5);
+  const sR = [...matchPairs].sort(() => Math.random()-0.5);
+  lDiv.innerHTML = sL.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('left',this)">${p.term}</div>`).join('');
+  rDiv.innerHTML = sR.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('right',this)">${p.def}</div>`).join('');
+  document.getElementById('match-score').textContent = '0 / '+matchPairs.length;
+}
+function selectMatch(side, el) {
+  if(el.classList.contains('matched')) return;
+  el.parentElement.querySelectorAll('.match-item').forEach(i => { if(!i.classList.contains('matched')) i.classList.remove('selected'); });
+  el.classList.add('selected');
+  if(side==='left') matchLeft = el; else matchRight = el;
+  if(matchLeft && matchRight) checkMatch();
+}
+function checkMatch() {
+  if(matchLeft.dataset.term === matchRight.dataset.term) {
+    matchLeft.classList.add('matched'); matchLeft.classList.remove('selected');
+    matchRight.classList.add('matched'); matchRight.classList.remove('selected');
+    matchedCount++;
+    document.getElementById('match-score').textContent = matchedCount+' / '+matchPairs.length;
+  } else {
+    matchLeft.classList.add('wrong-match'); matchRight.classList.add('wrong-match');
+    const l=matchLeft, r=matchRight;
+    setTimeout(() => { l.classList.remove('wrong-match','selected'); r.classList.remove('wrong-match','selected'); }, 700);
+  }
+  matchLeft = null; matchRight = null;
+}
+initMatching();
+</script>
+</body>
+</html>

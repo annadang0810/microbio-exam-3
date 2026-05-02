@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bacterial Secretion Systems - BIOL 3303 Study Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232733;
+    --border: #2e3344;
+    --text: #e2e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --green: #00cec9;
+    --green-dim: #00cec920;
+    --red: #fd7272;
+    --red-dim: #fd727220;
+    --orange: #ffa94d;
+    --orange-dim: #ffa94d20;
+    --blue: #74b9ff;
+    --yellow: #ffd43b;
+    --yellow-dim: #ffd43b18;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 8px;
+    overflow-x: auto;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent-light);
+    white-space: nowrap;
+    margin-right: 16px;
+    letter-spacing: -0.3px;
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .nav-btn:hover { color: var(--text); background: var(--surface2); }
+  .nav-btn.active {
+    color: var(--accent-light);
+    background: #6c5ce715;
+    border-color: #6c5ce740;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 84px 24px 60px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+    color: var(--accent-light);
+  }
+  .card p, .card li {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 6px; }
+  .card li::marker { color: var(--accent); }
+
+  .highlight { color: var(--green); font-weight: 600; }
+  .organism { color: var(--orange); font-weight: 600; }
+  .warn { color: var(--red); font-weight: 600; }
+  .key {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+
+  /* HIGH YIELD */
+  .hy-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin-left: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    animation: hyPulse 2s ease-in-out infinite;
+  }
+  @keyframes hyPulse {
+    0%, 100% { box-shadow: 0 0 0 0 #ffd43b40; }
+    50% { box-shadow: 0 0 12px 4px #ffd43b30; }
+  }
+  .hy-card {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .hy-card h2 { color: var(--yellow); }
+
+  .hy-legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: var(--yellow-dim);
+    border: 1px solid #ffd43b40;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--yellow);
+    font-weight: 600;
+  }
+
+  .exam-topics {
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: var(--surface2);
+    border: 1px solid #ffd43b30;
+    border-radius: 10px;
+  }
+  .exam-topics p {
+    font-size: 12px;
+    color: var(--yellow);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .exam-topics ul { padding-left: 18px; }
+  .exam-topics li {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .exam-topics li::marker { color: var(--yellow); }
+
+  /* HERO */
+  .hero-card {
+    background: linear-gradient(135deg, #6c5ce730, #00cec915);
+    border-color: #6c5ce740;
+    text-align: center;
+    padding: 48px 28px;
+  }
+  .hero-card h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .hero-card p { color: var(--text-dim); font-size: 15px; }
+  .hero-stats {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat-num { font-size: 24px; font-weight: 800; color: var(--accent-light); }
+  .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+  /* TABS */
+  .tab-row { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .tab-btn.hy-tab { border-color: #ffd43b60; }
+  .tab-btn.hy-tab.active { background: linear-gradient(135deg, #ffd43b, #f59f00); color: #1a1d27; border-color: #ffd43b; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* TABLES */
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .data-table th, .data-table td { padding: 8px 12px; border: 1px solid var(--border); text-align: left; font-size: 13.5px; }
+  .data-table th { background: var(--surface2); color: var(--accent-light); font-weight: 600; }
+  .data-table td { color: var(--text-dim); }
+  .data-table.hy-table th { color: var(--yellow); }
+
+  /* DIAGRAM */
+  .diagram-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 14px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .diagram-box .arr { color: var(--accent-light); }
+  .diagram-box .mol { color: var(--green); font-weight: 700; }
+  .diagram-box .label { color: var(--text-dim); font-style: italic; }
+
+  .callout {
+    background: #00cec920;
+    border: 1px solid #00cec940;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    font-size: 13.5px;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* SCORE BAR */
+  .score-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .score-text { font-size: 15px; font-weight: 600; }
+  .score-pct { font-size: 28px; font-weight: 800; color: var(--accent-light); }
+  .reset-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { background: var(--accent-light); color: var(--bg); }
+
+  /* FLASHCARD */
+  .fc-container { perspective: 1000px; margin-bottom: 16px; }
+  .flashcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    cursor: pointer;
+    transition: transform 0.5s, box-shadow 0.3s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .flashcard:hover { box-shadow: 0 4px 24px #6c5ce720; }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .fc-front, .fc-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    backface-visibility: hidden;
+    border-radius: 14px;
+  }
+  .fc-front { font-size: 16px; font-weight: 600; color: var(--text); }
+  .fc-back {
+    transform: rotateY(180deg);
+    font-size: 15px;
+    color: var(--green);
+    background: var(--surface);
+    line-height: 1.6;
+  }
+  .fc-nav { display: flex; gap: 10px; justify-content: center; align-items: center; }
+  .fc-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .fc-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .fc-counter { font-size: 13px; color: var(--text-dim); font-weight: 600; min-width: 60px; text-align: center; }
+  .fc-hint { text-align: center; color: var(--text-dim); font-size: 12px; margin-top: 10px; }
+
+  /* MATCHING */
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .match-col-header {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+  .match-item {
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .match-item:hover { border-color: var(--accent); color: var(--text); }
+  .match-item.selected { border-color: var(--accent); background: #6c5ce715; color: var(--accent-light); }
+  .match-item.matched { border-color: var(--green); background: var(--green-dim); color: var(--green); pointer-events: none; opacity: 0.7; }
+  .match-item.wrong-match { border-color: var(--red); background: var(--red-dim); color: var(--red); }
+
+  /* FRQ */
+  .frq-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .frq-card.hy-frq {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .frq-card .q-num {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .frq-card.hy-frq .q-num {
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+  }
+  .frq-card .frq-prompt { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+  .frq-card .frq-hint { font-size: 12px; color: var(--text-dim); margin-bottom: 12px; font-style: italic; }
+  .frq-card textarea {
+    width: 100%;
+    min-height: 100px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    padding: 14px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+  .frq-card textarea:focus { outline: none; border-color: var(--accent); }
+  .frq-card textarea::placeholder { color: #4a4e63; }
+  .frq-reveal-btn {
+    display: inline-block;
+    margin-top: 12px;
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent-light);
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .frq-reveal-btn:hover { background: #6c5ce715; }
+  .frq-answer {
+    display: none;
+    margin-top: 14px;
+    padding: 16px;
+    background: var(--surface2);
+    border-radius: 10px;
+    border-left: 3px solid var(--green);
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .frq-answer.show { display: block; }
+  .frq-answer strong { color: var(--green); }
+  .frq-self-grade { display: none; margin-top: 12px; gap: 8px; }
+  .frq-self-grade.show { display: flex; }
+  .grade-btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .grade-btn.got-it { color: var(--green); border-color: var(--green); }
+  .grade-btn.got-it:hover { background: var(--green-dim); }
+  .grade-btn.partial { color: var(--orange); border-color: var(--orange); }
+  .grade-btn.partial:hover { background: var(--orange-dim); }
+  .grade-btn.missed { color: var(--red); border-color: var(--red); }
+  .grade-btn.missed:hover { background: var(--red-dim); }
+  .grade-btn.selected-grade { font-weight: 800; }
+  .grade-btn.got-it.selected-grade { background: var(--green-dim); }
+  .grade-btn.partial.selected-grade { background: var(--orange-dim); }
+  .grade-btn.missed.selected-grade { background: var(--red-dim); }
+
+  @media (max-width: 600px) {
+    .nav-brand { display: none; }
+    main { padding: 76px 14px 40px; }
+    .card { padding: 20px; }
+    .hero-card { padding: 32px 20px; }
+    .hero-card h1 { font-size: 22px; }
+    .match-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">BioStudy</span>
+    <button class="nav-btn active" onclick="showSection('home')">Home</button>
+    <button class="nav-btn" onclick="showSection('learn')">Learn</button>
+    <button class="nav-btn" onclick="showSection('flashcards')">Flashcards</button>
+    <button class="nav-btn" onclick="showSection('frq')">FRQ</button>
+    <button class="nav-btn" onclick="showSection('matching')">Matching</button>
+    <button class="nav-btn" onclick="showSection('hard')">Hard FRQ</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ==================== HOME ==================== -->
+<div class="section active" id="sec-home">
+  <div class="card hero-card">
+    <h1>Bacterial Secretion Systems</h1>
+    <p>BIOL 3303 &middot; Lecture 16 &mdash; Sec System, Signal Peptides &amp; Extracellular Secretion (Types 1&ndash;6)</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Topics</div></div>
+      <div class="stat"><div class="stat-num">28</div><div class="stat-label">Flashcards</div></div>
+      <div class="stat"><div class="stat-num">26</div><div class="stat-label">FRQs</div></div>
+    </div>
+    <div class="hy-legend">HIGH YIELD = Confirmed exam topics from your professor. Prioritize these.</div>
+    <div class="exam-topics">
+      <p>Your Professor's Exam Topics</p>
+      <ul>
+        <li><strong>Sec system</strong> &mdash; how proteins cross the inner membrane</li>
+        <li><strong>Signal peptides</strong> &mdash; structure and function of N-terminal targeting sequences</li>
+        <li><strong>Extracellular secretion systems (Types 2&ndash;6)</strong> &mdash; structure, Sec dependency, substrates, function</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LEARN ==================== -->
+<div class="section" id="sec-learn">
+  <div class="tab-row">
+    <button class="tab-btn" onclick="showTab(this,'overview')">Overview</button>
+    <button class="tab-btn hy-tab active" onclick="showTab(this,'signal')">Signal Peptides</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'sec')">Sec System</button>
+    <button class="tab-btn" onclick="showTab(this,'t1')">Type I</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'t2')">Type II</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'t3')">Type III</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'t4')">Type IV</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'t5')">Type V</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'t6')">Type VI</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-content" id="tab-overview">
+    <div class="card">
+      <h2>The Compartment Problem</h2>
+      <p>All proteins are <span class="highlight">made in the cytoplasm</span>, but not all proteins <em>function</em> there. They need to get to one of several compartments:</p>
+      <ul>
+        <li><span class="highlight">Inner membrane</span> (cytoplasmic / plasma membrane)</li>
+        <li><span class="highlight">Periplasm</span> (only in <span class="organism">gram-negative</span> bacteria)</li>
+        <li><span class="highlight">Outer membrane</span> (only in <span class="organism">gram-negative</span> bacteria)</li>
+        <li><span class="highlight">Extracellular space</span> (or directly into a host cell)</li>
+      </ul>
+
+      <p><span class="key">DEF</span> <strong>Protein secretion</strong> = the translocation of proteins from the cytoplasm to <em>any</em> other compartment.</p>
+
+      <div class="callout">Gram-negative bacteria face the toughest topology problem &mdash; they have TWO membranes (inner + outer) plus a periplasm in between. This is why secretion systems are mostly studied in gram-negatives.</div>
+
+      <h3>Big Picture: 3 Routes Out of the Cytoplasm</h3>
+      <table class="data-table">
+        <tr><th>Route</th><th>Mechanism</th><th>Sec dependency</th></tr>
+        <tr><td>Stay in inner membrane</td><td>SRP/ffs &rarr; SecYEG (or self-insertion)</td><td>Sec dependent (most)</td></tr>
+        <tr><td>Cross to periplasm/OM</td><td>Sec system &rarr; Skp/SurA &rarr; Bam complex</td><td>Sec dependent</td></tr>
+        <tr><td>Out to extracellular space</td><td>Type I&ndash;VI secretion systems</td><td>Mixed (see each type)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- SIGNAL PEPTIDES -->
+  <div class="tab-content active" id="tab-signal">
+    <div class="card hy-card">
+      <h2>Signal Peptides (N-terminal Signal Sequences) <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>Proteins that are secreted have <span class="highlight">N-terminal signal sequences</span> &mdash; short amino acid tags that act like a "shipping address" telling the cell where to send the protein.</p>
+
+      <h3>Structure of a Signal Peptide</h3>
+      <p>The signal sequence has two distinct regions:</p>
+      <ul>
+        <li><span class="highlight">Hydrophilic basic region</span> (N-terminal end) &mdash; contains positively charged residues (Lys, Arg, His)</li>
+        <li><span class="highlight">Hydrophobic region</span> (toward the cleavage site) &mdash; contains nonpolar residues (Leu, Ala, Val, Ile, Pro)</li>
+      </ul>
+
+      <div class="diagram-box"><span class="label">N-terminal signal sequence (cleaved during/after secretion):</span>
+
+NH&#8322; &mdash; <span class="mol">[Lys-Lys-Arg]</span> &mdash; <span class="arr">[Leu-Ala-Val-Pro-Phe-Ala]</span> &mdash; <span class="warn">|</span> &mdash; mature protein
+       <span class="label">basic region</span>          <span class="label">hydrophobic region</span>     <span class="warn">cleavage</span>
+       (hydrophilic)                                <span class="warn">site</span></div>
+
+      <h3>Why N-terminal?</h3>
+      <ul>
+        <li>Proteins are translated <span class="highlight">N-to-C</span> by the ribosome</li>
+        <li>An N-terminal signal sequence appears <span class="highlight">first</span>, while the rest of the protein is still being made</li>
+        <li>This lets the cell recognize and target the protein <span class="warn">co-translationally</span> &mdash; before it folds in the cytoplasm</li>
+      </ul>
+
+      <h3>Cleavage</h3>
+      <ul>
+        <li>The signal peptide is <span class="highlight">cleaved during/after secretion</span> by signal peptidase (Lep)</li>
+        <li>Cleavage releases the <span class="highlight">mature protein</span> in its destination compartment</li>
+        <li>Cleavage site is at the boundary between the hydrophobic region and the mature sequence (the "red residue" in the slide table)</li>
+      </ul>
+
+      <h3>Examples from the Lecture Table</h3>
+      <table class="data-table hy-table">
+        <tr><th>Precursor</th><th>Localization</th></tr>
+        <tr><td>Lipoprotein</td><td>OM (outer membrane)</td></tr>
+        <tr><td>&lambda; receptor</td><td>OM</td></tr>
+        <tr><td>Maltose-binding protein</td><td>PS (periplasmic space)</td></tr>
+        <tr><td>&beta;-Lactamase</td><td>PS</td></tr>
+        <tr><td>fd phage major coat protein</td><td>CM (cytoplasmic membrane)</td></tr>
+        <tr><td>fd phage minor coat protein</td><td>CM</td></tr>
+      </table>
+
+      <div class="callout">Key concept: The signal sequence is the "address label." The Sec system (and other transporters) is the "postal service" that reads the label and delivers the protein. No signal sequence = protein stays in the cytoplasm (with one big exception: Type I/ABC).</div>
+    </div>
+  </div>
+
+  <!-- SEC SYSTEM -->
+  <div class="tab-content" id="tab-sec">
+    <div class="card hy-card">
+      <h2>The Sec System <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>The Sec system is the <span class="highlight">main route</span> for proteins to journey beyond the cytoplasm into the inner membrane, periplasm, or beyond. Most secreted proteins use it.</p>
+
+      <h3>Two Pathways into the Sec Channel</h3>
+
+      <h3>Pathway A &mdash; SRP (for membrane-anchored proteins)</h3>
+      <ul>
+        <li>The <span class="highlight">signal recognition particle (SRP)</span> &mdash; made of the protein <span class="highlight">Ffh</span> + the small RNA molecule <span class="highlight">ffs</span> &mdash; binds the signal sequence as it emerges from the ribosome</li>
+        <li>SRP escorts the ribosome-protein complex to the <span class="highlight">SecYEG channel</span> in the inner membrane</li>
+        <li>The protein gets inserted into the <span class="highlight">inner membrane</span></li>
+        <li>Some hydrophobic proteins skip SRP and self-insert (no help needed)</li>
+      </ul>
+
+      <h3>Pathway B &mdash; SecA / SecB (for proteins crossing the membrane)</h3>
+      <ul>
+        <li><span class="highlight">SecA</span> recognizes the N-terminal signal sequence as it comes off the ribosome and brings the protein to the SecYEG channel</li>
+        <li>The chaperone <span class="highlight">SecB</span> binds the protein in the cytoplasm to <span class="warn">prevent it from folding</span> &mdash; only unfolded proteins fit through SecYEG</li>
+        <li><span class="highlight">ATP hydrolysis by SecA</span> powers translocation: the protein is threaded through the SecYEG channel</li>
+        <li>Once across, signal peptidase (<span class="highlight">Lep</span>) cleaves off the signal peptide</li>
+        <li>The mature, folded protein is released into the periplasm (or beyond)</li>
+      </ul>
+
+      <h3>The Sec Players</h3>
+      <table class="data-table hy-table">
+        <tr><th>Component</th><th>Role</th></tr>
+        <tr><td><span class="highlight">SecA</span></td><td>Cytoplasmic ATPase; recognizes signal sequence + powers translocation</td></tr>
+        <tr><td><span class="highlight">SecB</span></td><td>Cytoplasmic chaperone; keeps protein unfolded until translocation</td></tr>
+        <tr><td><span class="highlight">SecYEG</span></td><td>The channel itself, embedded in the inner membrane</td></tr>
+        <tr><td><span class="highlight">SRP (Ffh + ffs)</span></td><td>Targets ribosome with hydrophobic signal sequence to SecYEG</td></tr>
+        <tr><td><span class="highlight">Lep</span></td><td>Signal peptidase; cleaves off the signal peptide</td></tr>
+      </table>
+
+      <h3>Why N-terminal Sec Targeting?</h3>
+      <p>The N-terminal signal emerges from the ribosome <span class="highlight">first</span>. SecA / SRP can grab it co-translationally and bring the rest of the still-being-made protein to the membrane <span class="warn">before it folds</span> in the cytoplasm. Once a protein folds, it can't fit through SecYEG.</p>
+
+      <h3>Crossing to the Outer Membrane (Bam complex)</h3>
+      <p>Gram-negatives need to get some proteins all the way to the outer membrane. After Sec dumps an OM protein into the periplasm:</p>
+      <ul>
+        <li>The chaperone <span class="highlight">Skp</span> binds the protein in the periplasm and protects it from the <span class="warn">DegP protease</span> (which would otherwise degrade it)</li>
+        <li>Skp escorts the protein to the <span class="highlight">Bam complex</span> in the outer membrane</li>
+        <li>The chaperone <span class="highlight">SurA</span> assists Bam in <span class="highlight">folding</span> the protein and <span class="highlight">inserting</span> it as a &beta;-barrel into the outer membrane</li>
+      </ul>
+
+      <div class="callout">Sec system summary: Signal sequence &rarr; SecA/SecB or SRP &rarr; SecYEG channel &rarr; ATP-driven threading &rarr; signal peptidase cleavage &rarr; mature protein in destination compartment. For OM proteins, add: Skp &rarr; Bam + SurA.</div>
+    </div>
+  </div>
+
+  <!-- TYPE I -->
+  <div class="tab-content" id="tab-t1">
+    <div class="card">
+      <h2>Type I Secretion System (T1SS) &mdash; ABC Exporter</h2>
+      <p>Type I is the simplest extracellular secretion system. It's the one that does NOT use Sec.</p>
+
+      <h3>Key Features</h3>
+      <ul>
+        <li><span class="warn">Sec INDEPENDENT</span> &mdash; bypasses the Sec system entirely</li>
+        <li>Made of <span class="highlight">3 proteins</span>, one of which is the <span class="highlight">ABC transporter</span> (<u>A</u>TPase <u>b</u>inding <u>c</u>assette)</li>
+        <li>Operates on proteins that <span class="warn">LACK a signal sequence</span></li>
+        <li>Protein is exported <span class="highlight">directly</span> from the cytoplasm into the extracellular space &mdash; one step, no periplasmic intermediate</li>
+        <li>Uses <span class="highlight">ATP hydrolysis</span> (via the ABC ATPase) to power transport</li>
+      </ul>
+
+      <div class="diagram-box"><span class="label">Type I (ABC exporter) &mdash; Sec independent</span>
+
+  Cytoplasm &rarr; ABC transporter &rarr; <span class="mol">extracellular space</span>
+              <span class="warn">(no signal seq required)</span>
+              <span class="warn">(ATP-powered)</span></div>
+
+      <div class="callout">Easy way to remember: Type I is the "1-step" system &mdash; one ATPase pump, no Sec, no signal peptide, straight from cytoplasm to outside.</div>
+    </div>
+  </div>
+
+  <!-- TYPE II -->
+  <div class="tab-content" id="tab-t2">
+    <div class="card hy-card">
+      <h2>Type II Secretion System (T2SS) &mdash; Two-Step <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>Type II is the classic two-step extracellular secretion system. It piggybacks on the Sec system.</p>
+
+      <h3>Key Features</h3>
+      <ul>
+        <li><span class="highlight">Sec DEPENDENT</span> &mdash; can't function without Sec</li>
+        <li><span class="highlight">Two-step</span> mechanism (the "two-step system")</li>
+        <li>Substrate: secreted proteins with N-terminal signal sequences</li>
+      </ul>
+
+      <h3>Step 1 &mdash; Cytoplasm to Periplasm</h3>
+      <p>Protein moves from the cytoplasm to the periplasm using the <span class="highlight">Sec system</span> (SecA/SecB &rarr; SecYEG). Signal peptide is cleaved.</p>
+
+      <h3>Step 2 &mdash; Periplasm to Extracellular Space</h3>
+      <p><span class="highlight">14 accessory proteins</span> form a complex that moves the now-folded protein <span class="highlight">across the outer membrane</span> into the extracellular space.</p>
+
+      <h3>Components in the Lecture Diagram</h3>
+      <ul>
+        <li><span class="highlight">GspD</span> &mdash; the outer membrane channel ("secretin")</li>
+        <li><span class="highlight">GspC, GspM, GspL</span> &mdash; inner membrane platform</li>
+        <li><span class="highlight">GspE</span> &mdash; cytoplasmic ATPase that powers the system</li>
+        <li><span class="highlight">GspG, H, I, J, K</span> &mdash; pseudopilus subunits that push the substrate through GspD</li>
+        <li><span class="highlight">GspF</span> &mdash; inner membrane platform protein</li>
+      </ul>
+
+      <div class="diagram-box"><span class="label">Type II (Two-step) &mdash; Sec dependent</span>
+
+Step 1:  Cytoplasm &mdash;<span class="arr">[Sec]</span>&rarr; <span class="mol">Periplasm</span>
+Step 2:  Periplasm &mdash;<span class="arr">[14 accessory proteins / GspD pore]</span>&rarr; <span class="mol">Extracellular</span></div>
+
+      <div class="callout">Mnemonic: Type II = "two-step." Sec gets it across the inner membrane, then the GspD machinery pushes it across the outer membrane.</div>
+    </div>
+  </div>
+
+  <!-- TYPE III -->
+  <div class="tab-content" id="tab-t3">
+    <div class="card hy-card">
+      <h2>Type III Secretion System (T3SS) &mdash; The Injectisome <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>The T3SS is a <span class="highlight">syringe-like nanomachine</span> that injects bacterial proteins directly into a eukaryotic host cell. Major virulence factor in pathogens.</p>
+
+      <h3>Key Features</h3>
+      <ul>
+        <li><span class="warn">Sec INDEPENDENT</span></li>
+        <li>Found in pathogenic gram-negative bacteria: <span class="organism">Salmonella, Shigella, Yersinia, Pseudomonas</span></li>
+        <li>Spans <span class="highlight">both membranes</span> (double-membrane-embedded)</li>
+        <li>Delivers <span class="highlight">effector proteins</span> directly into the cytoplasm or plasma membrane of a target eukaryotic cell</li>
+        <li>Effectors <span class="warn">subvert host cell functions</span> &mdash; promote bacterial invasion and colonization</li>
+      </ul>
+
+      <h3>The Injectisome Structure (~25 proteins)</h3>
+      <ul>
+        <li><span class="highlight">Basal body</span> &mdash; double-membrane-spanning base made of stacked rings (in IM and OM)</li>
+        <li><span class="highlight">Needle/pilus</span> &mdash; filament that protrudes from the bacterial surface into the extracellular space</li>
+        <li><span class="highlight">Translocon</span> &mdash; pore-forming proteins that insert into the host cell membrane (delivered upon contact)</li>
+        <li><span class="highlight">C ring + Export apparatus + ATPase</span> &mdash; cytoplasmic machinery that powers secretion</li>
+      </ul>
+
+      <h3>How Substrates Are Selected</h3>
+      <ul>
+        <li>T3SS substrates have a <span class="highlight">secretion signal in the first ~100 residues</span> (NOT a typical N-terminal signal peptide; it's not cleaved)</li>
+        <li><span class="highlight">T3SS chaperones</span> bind the signal region, keep the substrate <span class="warn">unfolded and secretion-competent</span>, and guide it to the <span class="highlight">sorting platform</span></li>
+        <li>The <span class="highlight">T3SS ATPase</span> (green in diagram) translocates the unfolded protein through the needle, powered by ATP</li>
+      </ul>
+
+      <h3>Trigger</h3>
+      <p>Following <span class="highlight">contact with a host cell</span>, secretion is triggered: translocator proteins form a pore in the host membrane, then effectors are injected through the needle into the host.</p>
+
+      <h3>T3SS Evolved from the Flagellum</h3>
+      <ul>
+        <li>The <span class="highlight">basal body</span> of the T3SS and the <span class="highlight">basal body of the bacterial flagellum</span> share extremely high sequence homology</li>
+        <li>T3SS is thought to have <span class="highlight">evolved from the flagellum</span></li>
+        <li>Bacteria can even secrete <span class="warn">virulence factors through their flagellar apparatus</span></li>
+      </ul>
+
+      <div class="callout">Mnemonic: Type III = the "injection" system. It's a molecular syringe (basal body + needle + ATPase) that fires effectors directly into a host cell. Contact-triggered. Evolved from the flagellum.</div>
+    </div>
+  </div>
+
+  <!-- TYPE IV -->
+  <div class="tab-content" id="tab-t4">
+    <div class="card hy-card">
+      <h2>Type IV Secretion System (T4SS) <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>The T4SS is unique because it can translocate <span class="warn">DNA</span> as well as proteins. It evolved from conjugation pili.</p>
+
+      <h3>Key Features</h3>
+      <ul>
+        <li><span class="warn">Unique ability among secretion systems: translocates DNA</span> (and proteins) into bacterial or eukaryotic target cells</li>
+        <li>Found in both <span class="highlight">gram-negative AND gram-positive</span> bacteria, and in some <span class="highlight">archaea</span> (broadest distribution of any secretion system)</li>
+        <li>Has <span class="highlight">homology to pili</span> &mdash; structurally related to conjugation pili</li>
+        <li>Most common role: <span class="highlight">conjugation of plasmid DNA</span> between bacteria</li>
+      </ul>
+
+      <h3>Other Roles</h3>
+      <ul>
+        <li>Bacterial pathogenesis</li>
+        <li>Secretion of <span class="highlight">transforming DNA</span></li>
+        <li>Secretion of <span class="highlight">toxins</span></li>
+        <li>Secretion of <span class="highlight">effector proteins</span> required to support an intracellular lifestyle inside a host</li>
+      </ul>
+
+      <h3>Key Components</h3>
+      <ul>
+        <li><span class="highlight">VirB4, VirB11</span> &mdash; cytoplasmic ATPases (provide energy)</li>
+        <li><span class="highlight">VirD4</span> &mdash; coupling protein that recruits the substrate</li>
+        <li><span class="highlight">Pilus subunit</span> &mdash; can extend a pilus to contact target cells</li>
+      </ul>
+
+      <h3>Case Study: <span class="organism">Agrobacterium tumefaciens</span> &amp; Crown Gall Disease</h3>
+      <ul>
+        <li>The T4SS of <span class="organism">A. tumefaciens</span> moves <span class="highlight">bacterial T-DNA</span> across both bacterial membranes</li>
+        <li>Then injects the T-DNA into <span class="warn">plant cells</span></li>
+        <li>The T-DNA <span class="highlight">integrates into the plant host genome</span></li>
+        <li>Virulence factors encoded by T-DNA induce <span class="warn">tumor-like growths called crown gall disease</span> in host plants</li>
+        <li>This is the basis for plant biotech &mdash; we use <span class="organism">Agrobacterium</span> to insert genes into plants on purpose!</li>
+      </ul>
+
+      <div class="callout">Mnemonic: Type IV = the "DNA delivery" system. Only secretion system that moves DNA. Conjugation in normal life, plant-genome hijack in Agrobacterium.</div>
+    </div>
+  </div>
+
+  <!-- TYPE V -->
+  <div class="tab-content" id="tab-t5">
+    <div class="card hy-card">
+      <h2>Type V Secretion System (T5SS) &mdash; Autotransport <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>T5SS is also called <span class="highlight">autotransport</span> &mdash; the secreted protein <span class="warn">drives its own secretion</span>. The substrate and its pore are part of the same polypeptide.</p>
+
+      <h3>Key Features</h3>
+      <ul>
+        <li><span class="highlight">Sec DEPENDENT</span> &mdash; relies on Sec to get into the periplasm</li>
+        <li>The <span class="highlight">substrate and secretion pore are fused into a single polypeptide</span></li>
+        <li>A single polypeptide drives its own secretion through the outer membrane &mdash; "pretty cool!"</li>
+        <li><span class="warn">Does NOT require ATP</span> or a proton gradient &mdash; energy comes from the <span class="highlight">folding</span> of the passenger domain on the outside</li>
+      </ul>
+
+      <h3>The Two Domains</h3>
+      <ul>
+        <li><span class="highlight">Passenger domain</span> &mdash; the actual secreted protein. Unfolded in the periplasm, threads through the pore, folds on the outside</li>
+        <li><span class="highlight">Translocator domain</span> &mdash; transmembrane domain that inserts into the OM as a <span class="highlight">&beta;-barrel</span>, forming the pore for the passenger to thread through</li>
+      </ul>
+
+      <h3>Mechanism</h3>
+      <div class="diagram-box"><span class="label">Type V (Autotransport) &mdash; Sec dependent</span>
+
+1. Cytoplasm &rarr; <span class="arr">[Sec system]</span> &rarr; periplasm (whole polypeptide, unfolded)
+2. <span class="mol">Translocator domain</span> inserts into OM as a <span class="mol">&beta;-barrel</span>
+3. <span class="mol">Passenger domain</span> threads through the pore of the &beta;-barrel
+4. Passenger folds on the outside &rarr; folding energy pulls the rest through
+5. Cleavage releases the mature passenger (<span class="warn">"Cleavage occurs here"</span>)</div>
+
+      <h3>Activities of T5SS Autotransporters (8 functions)</h3>
+      <ul>
+        <li><span class="highlight">Adhesion</span> to host cells or extracellular matrix (ECM)</li>
+        <li><span class="highlight">Invasion</span> of host cells</li>
+        <li><span class="highlight">Immune evasion</span> and serum resistance</li>
+        <li><span class="highlight">Contact-dependent growth inhibition</span></li>
+        <li><span class="highlight">Toxicity</span> toward host cells (cytolysins)</li>
+        <li><span class="highlight">Intracellular motility</span></li>
+        <li><span class="highlight">Protease activity</span></li>
+        <li><span class="highlight">Auto-aggregation / biofilm formation</span></li>
+      </ul>
+
+      <div class="callout">Mnemonic: Type V = "auto" transport. The substrate IS the transporter. Sec drops it in the periplasm, then it folds itself out through its own &beta;-barrel pore. No ATP needed &mdash; folding is the engine.</div>
+    </div>
+  </div>
+
+  <!-- TYPE VI -->
+  <div class="tab-content" id="tab-t6">
+    <div class="card hy-card">
+      <h2>Type VI Secretion System (T6SS) &mdash; The Phage-Tail Cannon <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>The T6SS is a <span class="highlight">cell envelope-spanning machine</span> that fires effector proteins into both eukaryotic AND prokaryotic cells. It evolved from <span class="highlight">phage tails</span>.</p>
+
+      <h3>Key Features</h3>
+      <ul>
+        <li>Delivers effectors into <span class="warn">eukaryotic AND prokaryotic cells</span></li>
+        <li>Pivotal role in both <span class="highlight">pathogenesis</span> (eukaryote target) and <span class="highlight">bacterial competition</span> (prokaryote target)</li>
+        <li><span class="highlight">A single contraction event shoots multiple effectors/toxins</span> into a target cell</li>
+      </ul>
+
+      <h3>Two Main Complexes</h3>
+      <ul>
+        <li><span class="highlight">Membrane complex</span> &mdash; made of inner-membrane proteins that are <span class="highlight">homologous to T4SS components</span>; anchors the system in the cell envelope</li>
+        <li><span class="highlight">Tail complex</span> &mdash; the firing apparatus, anchored to the cell envelope by the membrane complex; <span class="warn">perpendicular to the membrane</span> and extends into the bacterial cytoplasm</li>
+      </ul>
+
+      <h3>Tail Complex = Inverted Phage Tail</h3>
+      <p>The tail complex evolved from a <span class="highlight">contractile phage tail</span> and has structural elements equivalent to:</p>
+      <ul>
+        <li><span class="highlight">Tail sheath</span> (TssB&ndash;TssC) &mdash; the contractile outer sheath</li>
+        <li><span class="highlight">Inner tube</span> (Hcp tube) &mdash; the tube that gets ejected</li>
+        <li><span class="highlight">Baseplate</span> &mdash; conformational trigger</li>
+        <li><span class="highlight">VgrG spike</span> &mdash; tip of the tube; pierces the target membrane</li>
+        <li><span class="highlight">ClpV</span> &mdash; recycles/disassembles the contracted sheath after firing</li>
+      </ul>
+
+      <h3>Mechanism (resembles phage tail contraction)</h3>
+      <div class="diagram-box">1. <span class="label">Loaded state:</span> sheath is extended, <span class="mol">effectors</span> bound to spike-tube
+2. <span class="label">Trigger:</span> extracellular signal &rarr; baseplate conformational change
+3. <span class="warn">Sheath contracts</span> &rarr; inner tube + spike <span class="mol">shoots out</span> across target membrane
+4. Multiple effectors / toxins delivered into target cell in one shot
+5. <span class="mol">ClpV</span> disassembles spent sheath for recycling</div>
+
+      <h3>Comparison to T4 Bacteriophage</h3>
+      <p>The T6SS structure is essentially an <span class="highlight">upside-down phage tail</span> embedded in the bacterial envelope. Same parts (sheath, tube, baseplate), same contraction mechanism &mdash; just pointed outward from the bacterial cell instead of inward toward host DNA injection.</p>
+
+      <div class="callout">Mnemonic: Type VI = the "harpoon." Spring-loaded contractile sheath shoots a spike-tipped tube into a neighboring cell, delivering multiple toxins at once. Targets bacteria (warfare) AND eukaryotes (virulence).</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FLASHCARDS ==================== -->
+<div class="section" id="sec-flashcards">
+  <div class="score-bar">
+    <div><span class="score-text">Flashcard Progress</span></div>
+    <div><span class="score-pct" id="fc-score">0 / 28</span></div>
+  </div>
+  <div class="fc-container">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="fc-front" id="fc-front"></div>
+      <div class="fc-back" id="fc-back"></div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button class="fc-btn" onclick="prevCard()">&larr;</button>
+    <span class="fc-counter" id="fc-counter">1 / 28</span>
+    <button class="fc-btn" onclick="nextCard()">&rarr;</button>
+  </div>
+  <div class="fc-hint">Click to flip &middot; Arrow keys to navigate</div>
+</div>
+
+<!-- ==================== FRQ ==================== -->
+<div class="section" id="sec-frq">
+  <div class="score-bar">
+    <div><span class="score-text">FRQ Self-Assessment</span></div>
+    <div><span class="score-pct" id="frq-score">0%</span></div>
+    <button class="reset-btn" onclick="resetFRQ()">Reset All</button>
+  </div>
+  <div id="frq-container"></div>
+</div>
+
+<!-- ==================== MATCHING ==================== -->
+<div class="section" id="sec-matching">
+  <div class="score-bar">
+    <div><span class="score-text">Matching</span></div>
+    <div><span class="score-pct" id="match-score">0 / 12</span></div>
+    <button class="reset-btn" onclick="initMatching()">Reset</button>
+  </div>
+  <div class="match-grid">
+    <div>
+      <div class="match-col-header">Term</div>
+      <div id="match-left"></div>
+    </div>
+    <div>
+      <div class="match-col-header">Definition</div>
+      <div id="match-right"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HARD FRQ ==================== -->
+<div class="section" id="sec-hard">
+  <div class="score-bar">
+    <div><span class="score-text">Hard FRQ (Exam-Level)</span></div>
+    <div><span class="score-pct" id="hard-score">0%</span></div>
+    <button class="reset-btn" onclick="resetHard()">Reset All</button>
+  </div>
+  <div id="hard-container"></div>
+</div>
+
+</main>
+
+<script>
+// ====== NAVIGATION ======
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+function showTab(btn, id) {
+  btn.closest('.section').querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.closest('.section').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ====== FLASHCARDS ======
+const flashcards = [
+  {q:"What is protein secretion?", a:"The translocation of proteins from the cytoplasm to ANY other compartment (inner membrane, periplasm, outer membrane, or extracellular space)."},
+  {q:"Why is secretion more complex in gram-negative bacteria?", a:"They have TWO membranes (inner + outer) plus a periplasm in between. Proteins may need to cross both membranes, end up in either, or end up in the periplasm."},
+  {q:"What is a signal peptide and where is it located?", a:"A short N-terminal amino acid sequence that targets a protein for secretion. It has a hydrophilic basic region (positively charged, N-end) and a hydrophobic region (toward the cleavage site)."},
+  {q:"Why are signal sequences N-terminal and not C-terminal?", a:"Proteins are translated N-to-C. The N-terminal signal emerges from the ribosome FIRST, allowing co-translational targeting to the membrane BEFORE the protein folds in the cytoplasm."},
+  {q:"What happens to the signal peptide after secretion?", a:"It is cleaved off by signal peptidase (Lep) during or after translocation, releasing the mature protein in the destination compartment."},
+  {q:"What are the two regions of a signal peptide?", a:"1) Hydrophilic basic region (N-end) with positively charged residues like Lys, Arg, His. 2) Hydrophobic region with nonpolar residues like Leu, Ala, Val, Pro."},
+  {q:"What is the Sec system?", a:"The main pathway for transporting proteins from the cytoplasm across the inner membrane. Includes SecA (ATPase), SecB (chaperone), SecYEG (channel), and Lep (signal peptidase)."},
+  {q:"What is the role of SecA?", a:"Cytoplasmic ATPase that recognizes the N-terminal signal sequence as it emerges from the ribosome and brings the protein to the SecYEG channel. ATP hydrolysis powers translocation."},
+  {q:"What is the role of SecB?", a:"A cytoplasmic chaperone that binds the protein and PREVENTS IT FROM FOLDING in the cytoplasm. Only unfolded proteins fit through SecYEG."},
+  {q:"What is the role of SecYEG?", a:"The actual translocation channel embedded in the inner membrane. Threads unfolded proteins across."},
+  {q:"What is the SRP and what does it do?", a:"Signal Recognition Particle = the protein Ffh + the small RNA molecule ffs. Binds the signal sequence of inner-membrane-bound proteins as they come out of the ribosome and escorts them to SecYEG."},
+  {q:"How do membrane-anchored proteins get into the inner membrane?", a:"Two ways: 1) Self-insertion if they have sufficiently hydrophobic loops/tails. 2) SRP (Ffh + ffs) recognizes the signal sequence and escorts them to SecEY for insertion."},
+  {q:"What is the Bam complex and what does it do?", a:"A complex in the outer membrane (gram-negative) that folds outer membrane proteins into &beta;-barrels and inserts them into the OM. Assisted by the chaperone SurA."},
+  {q:"What are Skp and DegP?", a:"In the periplasm: Skp is a chaperone that binds OM proteins after Sec translocation and protects them from DegP, a periplasmic protease that degrades unfolded proteins. Skp escorts the protein to the Bam complex."},
+  {q:"What is the Type I Secretion System (T1SS)?", a:"An ABC exporter. Sec INDEPENDENT. 3 proteins, one of which is the ATP-binding cassette (ABC) ATPase. Operates on proteins LACKING a signal sequence. Exports directly from cytoplasm to extracellular space in one step, ATP-powered."},
+  {q:"What is the Type II Secretion System (T2SS)?", a:"The two-step system. Sec DEPENDENT. Step 1: Sec moves the protein from cytoplasm to periplasm. Step 2: 14 accessory proteins (Gsp proteins, including the GspD outer membrane secretin) push the protein across the OM into the extracellular space."},
+  {q:"What is the Type III Secretion System (T3SS)?", a:"The injectisome. Sec INDEPENDENT, double-membrane-embedded nanomachine in pathogens (Salmonella, Shigella, Yersinia, Pseudomonas). ~25 proteins; basal body + needle/pilus + translocon. Injects effector proteins directly into a host cell upon contact."},
+  {q:"What pathogens use T3SS?", a:"Salmonella, Shigella, Yersinia, and Pseudomonas (and other gram-negative pathogens). Used to inject effectors into eukaryotic host cells to subvert host functions for invasion and colonization."},
+  {q:"How are T3SS substrates recognized?", a:"They have a secretion signal in the FIRST ~100 RESIDUES of the protein. T3SS chaperones bind this region, keep the substrate unfolded and secretion-competent, and guide it to the sorting platform. ATP-dependent translocation through the needle by the T3SS ATPase."},
+  {q:"What did T3SS evolve from?", a:"The bacterial flagellum. The basal body of T3SS and the basal body of the flagellum share extremely high sequence homology. Bacteria can even secrete virulence factors through their flagellar apparatus."},
+  {q:"What is the Type IV Secretion System (T4SS)?", a:"The only secretion system that translocates DNA (and proteins). Found in gram-negative AND gram-positive bacteria, and some archaea. Has homology to pili. Most common role: conjugation of plasmid DNA. Also secretes toxins, transforming DNA, and effectors."},
+  {q:"What is unique about T4SS compared to other secretion systems?", a:"It can translocate DNA in addition to proteins &mdash; the only secretion system that does this."},
+  {q:"What is the Agrobacterium T4SS responsible for?", a:"Crown gall disease in plants. The T4SS of Agrobacterium tumefaciens moves bacterial T-DNA across both bacterial membranes and injects it into plant cells, where it integrates into the plant genome. T-DNA-encoded virulence factors induce tumor-like growths."},
+  {q:"What is the Type V Secretion System (T5SS)?", a:"Autotransport. Sec DEPENDENT for getting into the periplasm. Substrate and secretion pore are fused into a SINGLE polypeptide. The polypeptide drives its own secretion through the OM. Does NOT require ATP or a proton gradient &mdash; energy comes from folding of the passenger domain."},
+  {q:"What are the two domains of a T5SS protein?", a:"1) Passenger domain &mdash; the actual secreted protein, unfolded in the periplasm, threads through the pore, folds on the outside. 2) Translocator domain &mdash; transmembrane domain that inserts into the OM as a &beta;-barrel and forms the pore."},
+  {q:"What energy does T5SS use?", a:"NO ATP and NO proton gradient. Energy comes from the FOLDING of the passenger domain on the extracellular side &mdash; folding pulls the rest of the polypeptide through the pore."},
+  {q:"What is the Type VI Secretion System (T6SS)?", a:"A cell envelope-spanning machine that delivers effectors into BOTH eukaryotic and prokaryotic cells. Pivotal in pathogenesis AND bacterial competition. Two complexes: a membrane complex (homologous to T4SS components) and a tail complex (homologous to a contractile phage tail). A single contraction shoots multiple effectors into a target cell."},
+  {q:"What did T6SS evolve from?", a:"A contractile phage tail (T4 bacteriophage-like). The tail complex has the same parts: tail sheath, inner tube, baseplate. Sheath contraction shoots the inner tube + spike (loaded with effectors) across a target membrane."}
+];
+
+let fcIdx = 0;
+function renderCard() {
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('fc-front').innerHTML = flashcards[fcIdx].q;
+  document.getElementById('fc-back').innerHTML = flashcards[fcIdx].a.replace(/\n/g,'<br>');
+  document.getElementById('fc-counter').textContent = (fcIdx+1)+' / '+flashcards.length;
+  document.getElementById('fc-score').textContent = (fcIdx+1)+' / '+flashcards.length;
+}
+function flipCard() { document.getElementById('flashcard').classList.toggle('flipped'); }
+function nextCard() { fcIdx = (fcIdx+1) % flashcards.length; renderCard(); }
+function prevCard() { fcIdx = (fcIdx-1+flashcards.length) % flashcards.length; renderCard(); }
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight') nextCard();
+  if(e.key==='ArrowLeft') prevCard();
+  if(e.key===' '||e.key==='Enter') { e.preventDefault(); flipCard(); }
+});
+renderCard();
+
+// ====== FRQ ======
+const frqs = [
+  {q:"Define protein secretion and explain why it's more complex in gram-negative bacteria.", a:"Protein secretion is the <strong>translocation of proteins from the cytoplasm to any other compartment</strong> (inner membrane, periplasm, outer membrane, or extracellular space). It is more complex in gram-negatives because they have <strong>two membranes</strong> (inner + outer) and a <strong>periplasm</strong> between them. Some proteins must reach the periplasm; others must cross the outer membrane or be inserted into it as &beta;-barrels.", hy:false},
+  {q:"Describe the structure of a signal peptide and explain why it must be N-terminal.", a:"A signal peptide has two regions: a <strong>hydrophilic basic region</strong> at the N-terminal end (positively charged residues: Lys, Arg, His) and a <strong>hydrophobic region</strong> (Leu, Ala, Val, Pro) leading to the cleavage site. It must be N-terminal because translation proceeds <strong>N-to-C</strong>, so the signal emerges from the ribosome <strong>first</strong>. This allows co-translational targeting to the membrane <strong>before the protein folds</strong> in the cytoplasm &mdash; folded proteins can't fit through the SecYEG channel.", hy:true},
+  {q:"What happens to the signal peptide after the protein is secreted?", a:"The signal peptide is <strong>cleaved off by signal peptidase (Lep)</strong> during or after translocation across the membrane. This releases the mature protein in its destination compartment.", hy:true},
+  {q:"Walk through how the Sec system transports a protein across the inner membrane.", a:"1) The protein is made on a cytoplasmic ribosome with an <strong>N-terminal signal sequence</strong>. 2) <strong>SecA</strong> recognizes the signal sequence as it emerges. 3) The chaperone <strong>SecB</strong> binds the rest of the protein and <strong>keeps it unfolded</strong>. 4) SecA brings the protein to the <strong>SecYEG channel</strong> in the inner membrane. 5) <strong>ATP hydrolysis by SecA</strong> threads the unfolded protein through SecYEG. 6) <strong>Lep (signal peptidase)</strong> cleaves the signal peptide. 7) The mature protein folds in the periplasm.", hy:true},
+  {q:"What is SecB and why is it critical?", a:"<strong>SecB</strong> is a cytoplasmic chaperone that binds the secreted protein and <strong>prevents it from folding</strong> before translocation. This is critical because the SecYEG channel can only thread <strong>unfolded</strong> polypeptides &mdash; a folded protein would not fit through the pore.", hy:true},
+  {q:"What is the SRP, what is it made of, and what does it do?", a:"<strong>SRP = Signal Recognition Particle</strong>. Made of the protein <strong>Ffh</strong> + the small RNA molecule <strong>ffs</strong>. It recognizes the signal sequence of proteins destined for the inner membrane as they emerge from the ribosome and <strong>escorts the ribosome-protein complex to the SecYEG channel</strong>. Some hydrophobic proteins skip SRP and self-insert.", hy:true},
+  {q:"How do proteins get into the outer membrane in gram-negative bacteria?", a:"After Sec drops the OM protein into the periplasm, the chaperone <strong>Skp</strong> binds it and protects it from the periplasmic protease <strong>DegP</strong>. Skp escorts the protein to the <strong>Bam complex</strong> in the outer membrane. The chaperone <strong>SurA</strong> assists Bam in <strong>folding</strong> the protein and <strong>inserting</strong> it as a &beta;-barrel into the OM.", hy:false},
+  {q:"Compare Type I (ABC exporter) to Type II (Two-step) secretion in terms of Sec dependency, signal sequence, and steps.", a:"<strong>Type I (ABC exporter)</strong>: Sec INDEPENDENT, substrate LACKS a signal sequence, exports directly from cytoplasm to extracellular space in <strong>one step</strong>, powered by ATP via the ABC ATPase. <strong>Type II (Two-step)</strong>: Sec DEPENDENT, substrate HAS an N-terminal signal sequence, <strong>two steps</strong>: Step 1 = Sec moves it from cytoplasm to periplasm; Step 2 = 14 accessory proteins move it from periplasm across the OM to the extracellular space.", hy:true},
+  {q:"Describe the Type II secretion mechanism in detail.", a:"T2SS is the classic <strong>two-step Sec-dependent system</strong>. <strong>Step 1</strong>: the protein is transported from the cytoplasm to the periplasm by the <strong>Sec system</strong>; the signal peptide is cleaved. <strong>Step 2</strong>: <strong>14 accessory proteins</strong> form a complex that moves the protein across the outer membrane. Key components include <strong>GspD</strong> (the OM secretin pore), <strong>GspE</strong> (cytoplasmic ATPase), and <strong>GspG-K</strong> pseudopilus subunits that push the substrate through GspD into the extracellular space.", hy:true},
+  {q:"Describe the structure and function of the Type III injectisome.", a:"The T3SS is a <strong>syringe-like nanomachine</strong> made of ~25 proteins, found in pathogenic gram-negative bacteria like <strong>Salmonella, Shigella, Yersinia, Pseudomonas</strong>. It has two main parts: 1) a <strong>basal body</strong> &mdash; double-membrane-spanning base of stacked rings; 2) a <strong>needle/pilus</strong> filament that protrudes from the surface. Upon <strong>contact with a host cell</strong>, secretion of the <strong>translocator</strong> (forms a pore in host membrane) and <strong>effector proteins</strong> is triggered. Effectors are injected into the host cytoplasm/PM to subvert host functions and promote invasion/colonization.", hy:true},
+  {q:"How are T3SS substrates targeted, and how does this differ from typical Sec signals?", a:"T3SS substrates have a <strong>secretion signal in the first ~100 residues</strong>, but unlike Sec signal peptides, this signal is <strong>not cleaved</strong>. T3SS <strong>chaperones</strong> bind the secretion signal region, stabilize the substrate, and keep it in a <strong>secretion-competent (unfolded) state</strong> while guiding it to the <strong>sorting platform</strong>. The <strong>T3SS ATPase</strong> then powers translocation through the needle in an ATP-dependent manner.", hy:true},
+  {q:"What evidence suggests T3SS evolved from the bacterial flagellum?", a:"Structural components of the <strong>basal body of the flagellum</strong> and the <strong>basal body of the T3SS</strong> share <strong>extremely high sequence homology</strong>. They have very similar architectures (rings spanning IM and OM, C ring, export apparatus, ATPase). Furthermore, bacteria have been observed to <strong>secrete virulence factors through their flagellar apparatus</strong>, supporting a shared evolutionary origin.", hy:true},
+  {q:"What makes the Type IV secretion system unique among all secretion systems?", a:"T4SS is the <strong>only secretion system that can translocate DNA</strong> (in addition to proteins). It is found in both <strong>gram-negative and gram-positive</strong> bacteria, and even in some <strong>archaea</strong> &mdash; the broadest distribution of any secretion system. It has <strong>homology to pili</strong>, and its most common natural role is <strong>conjugation of plasmid DNA</strong> between bacteria.", hy:true},
+  {q:"Explain how Agrobacterium tumefaciens uses T4SS to cause crown gall disease.", a:"The T4SS of <strong>Agrobacterium tumefaciens</strong> mediates the translocation of <strong>bacterial T-DNA</strong> across both bacterial membranes. The T4SS then <strong>injects the T-DNA into plant cells</strong>, where it <strong>integrates into the host plant genome</strong>. Virulence factors encoded by the integrated T-DNA induce <strong>tumor-like growths called crown gall disease</strong>. This is also the basis for plant biotechnology &mdash; we exploit Agrobacterium to deliver genes into plants intentionally.", hy:true},
+  {q:"Describe how Type V autotransport works.", a:"T5SS is <strong>Sec dependent</strong> for getting into the periplasm. The substrate and secretion pore are <strong>fused into a single polypeptide</strong> with two parts: a <strong>passenger domain</strong> (the actual secreted protein) and a <strong>translocator domain</strong>. After Sec transports the polypeptide into the periplasm, the translocator domain inserts into the OM as a <strong>&beta;-barrel</strong>, creating a pore. The passenger domain threads through this pore and folds on the outside. <strong>Folding of the passenger</strong> on the extracellular side provides the energy &mdash; <strong>no ATP or proton gradient required</strong>. Cleavage releases the mature passenger.", hy:true},
+  {q:"List five activities mediated by T5SS autotransporters.", a:"Any 5 of: 1) <strong>Adhesion</strong> to host cells/ECM, 2) <strong>Invasion</strong> of host cells, 3) <strong>Immune evasion</strong> and serum resistance, 4) <strong>Contact-dependent growth inhibition</strong>, 5) <strong>Toxicity</strong> toward host cells (cytolysins), 6) <strong>Intracellular motility</strong>, 7) <strong>Protease activity</strong>, 8) <strong>Auto-aggregation/biofilm formation</strong>.", hy:true},
+  {q:"Describe the structure of the T6SS and its two main complexes.", a:"T6SS is a <strong>cell envelope-spanning machine</strong> with two main parts: 1) a <strong>membrane complex</strong> made of inner-membrane proteins that are <strong>homologous to T4SS components</strong>; this anchors the system. 2) a <strong>tail complex</strong> anchored to the cell envelope by the membrane complex. The tail is a long tubular structure <strong>perpendicular to the membrane</strong>, with the sheath extending into the bacterial cytoplasm.", hy:true},
+  {q:"How does T6SS secretion work mechanistically? What did it evolve from?", a:"T6SS evolved from a <strong>contractile phage tail</strong> (like T4 bacteriophage). Its tail complex has equivalent parts: <strong>tail sheath</strong>, <strong>inner tube</strong>, <strong>baseplate</strong>. <strong>Effectors</strong> are loaded onto the spike-tube complex. Upon an extracellular signal, a <strong>conformational change in the baseplate</strong> triggers <strong>contraction of the sheath</strong>, which translocates the inner tube + spike <strong>out of the cell and across a target membrane</strong>. A single contraction event delivers <strong>multiple effectors/toxins into one target cell</strong>.", hy:true},
+  {q:"What two kinds of cells does T6SS target, and what are its two main biological roles?", a:"T6SS delivers effectors into <strong>both eukaryotic AND prokaryotic cells</strong>. Two main roles: 1) <strong>Pathogenesis</strong> (eukaryote target &mdash; injecting toxins into host cells); 2) <strong>Bacterial competition / warfare</strong> (prokaryote target &mdash; injecting toxins into rival bacteria).", hy:true},
+  {q:"Compare T3SS, T4SS, and T6SS in terms of evolutionary origin.", a:"<strong>T3SS</strong> evolved from the <strong>bacterial flagellum</strong> (high homology between basal bodies). <strong>T4SS</strong> has homology to <strong>conjugation pili</strong>. <strong>T6SS</strong> evolved from a <strong>contractile phage tail</strong> (T4-like bacteriophage). Each system co-opted a pre-existing molecular machine for protein delivery.", hy:true},
+  {q:"Which extracellular secretion systems are Sec-dependent and which are Sec-independent?", a:"<strong>Sec-DEPENDENT</strong>: Type II (two-step) and Type V (autotransport) &mdash; both use Sec to get into the periplasm first. <strong>Sec-INDEPENDENT</strong>: Type I (ABC exporter), Type III (injectisome), Type IV (DNA translocator), and Type VI (phage-tail cannon) &mdash; these have their own machinery that bypasses Sec.", hy:true},
+  {q:"Why does the T2SS need 14 accessory proteins on top of Sec, and what are some of their roles?", a:"Sec gets the protein only as far as the periplasm; the accessory proteins are needed to push the now-folded substrate <strong>across the outer membrane</strong>. Roles include: <strong>GspD</strong> = the outer membrane secretin pore (a ring that the substrate passes through); <strong>GspE</strong> = cytoplasmic ATPase that powers the system; <strong>GspG, H, I, J, K</strong> = pseudopilus subunits that polymerize and physically push the substrate through the GspD pore; <strong>GspC, F, L, M</strong> = inner membrane platform that connects everything.", hy:true},
+  {q:"Explain how T5SS can secrete proteins without ATP or a proton gradient.", a:"Energy comes from <strong>folding of the passenger domain</strong> on the extracellular side. As the unfolded passenger threads through the &beta;-barrel pore, it begins to <strong>fold on the outside of the cell</strong>. Because folding is thermodynamically favorable (releases free energy), it acts as a <strong>ratchet</strong> that pulls the rest of the polypeptide through the pore. The protein is essentially \"sucked\" outward by its own folding.", hy:true},
+  {q:"What is the role of the chaperones SecB, Skp, and SurA in protein secretion?", a:"<strong>SecB</strong> (cytoplasm): binds Sec substrates and keeps them <strong>unfolded</strong> so they can fit through SecYEG. <strong>Skp</strong> (periplasm): binds Sec substrates after they cross the inner membrane and protects them from <strong>DegP protease</strong>; escorts them to the Bam complex. <strong>SurA</strong> (periplasm): assists the Bam complex in <strong>folding outer membrane proteins as &beta;-barrels</strong> and inserting them into the OM.", hy:false},
+  {q:"Which secretion systems require ATP, and where does the ATPase sit?", a:"<strong>Sec system</strong>: SecA (cytoplasmic ATPase). <strong>Type I</strong>: ABC ATPase on the cytoplasmic side. <strong>Type II</strong>: GspE (cytoplasmic ATPase). <strong>Type III</strong>: T3SS ATPase at the base/sorting platform. <strong>Type IV</strong>: VirB4 and VirB11 (cytoplasmic ATPases). <strong>Type V</strong>: NO ATP required &mdash; folding provides energy. <strong>Type VI</strong>: ClpV (ATPase) recycles the contracted sheath; the contraction itself is mechanical (stored energy in the sheath).", hy:true},
+  {q:"You are looking at a secreted bacterial protein and notice it does NOT have a signal sequence. Which secretion system is most likely responsible? Explain.", a:"<strong>Type I (ABC exporter)</strong> is the most likely. T1SS is unique among the systems we covered in that it operates on proteins that <strong>lack a signal sequence</strong>. It is Sec-independent and exports the protein directly from the cytoplasm into the extracellular space in one step using its ABC ATPase. Sec-dependent systems (T2SS, T5SS) require a Sec signal sequence; T3SS substrates use a (non-cleaved) secretion signal in the first ~100 residues; T4SS and T6SS substrates use system-specific signals.", hy:true},
+];
+
+const hardFrqs = [
+  {q:"You discover a new pathogen that injects toxins directly into a human epithelial cell upon contact with the cell surface. The system spans both the inner and outer bacterial membranes and is structurally similar to a bacterial flagellum. Which secretion system is this, and how would you design an experiment to confirm your hypothesis?", a:"This is the <strong>Type III Secretion System (T3SS)</strong> &mdash; the injectisome. Key clues: 1) double-membrane-spanning, 2) contact-triggered injection, 3) directly into a host cell, 4) flagellum homology. To confirm: a) <strong>Genetic knockout</strong> &mdash; identify candidate T3SS basal body genes (homologs of flagellar genes), knock them out, and test whether the bacterium can still inject effectors. b) <strong>Microscopy</strong> &mdash; visualize the needle structure by EM. c) <strong>Effector tagging</strong> &mdash; tag a candidate effector with a fluorescent marker, infect host cells, and confirm the effector ends up <strong>inside the host cell</strong>. d) <strong>Contact-dependence assay</strong> &mdash; show that secretion only occurs when bacteria are in physical contact with host cells.", hy:true},
+  {q:"A researcher wants to engineer a bacterium to secrete a recombinant protein into the medium for industrial purification. They tag the protein with an N-terminal signal peptide and express it in E. coli. The protein accumulates in the periplasm but does NOT reach the medium. Why? What secretion system would they need to add to push it the rest of the way?", a:"The N-terminal signal sequence successfully targeted the protein to the <strong>Sec system</strong>, which transported it across the inner membrane into the periplasm. However, Sec only delivers proteins to the periplasm &mdash; it cannot cross the <strong>outer membrane</strong>. To get the protein into the extracellular medium, the researcher needs an <strong>extracellular secretion system that's Sec-dependent</strong>: <strong>Type II (T2SS)</strong> would work &mdash; the 14 accessory proteins (including GspD secretin and GspE ATPase) push the periplasmic protein across the OM. Alternatively, they could use <strong>Type V (T5SS / autotransport)</strong> by fusing the protein to a translocator &beta;-barrel domain so it secretes itself.", hy:true},
+  {q:"Compare and contrast the way T3SS, T5SS, and T6SS deliver their substrates across the outer membrane. Include energy source and mechanism.", a:"<strong>T3SS</strong>: ATP-driven. The T3SS ATPase at the base unfolds substrates (kept unfolded by chaperones) and threads them through the polymerized <strong>needle</strong> structure across both membranes and into a host cell. Contact-triggered. <strong>T5SS</strong>: <strong>NO ATP</strong> required. Sec gets the polypeptide into the periplasm; the protein's own <strong>translocator domain</strong> inserts into the OM as a &beta;-barrel pore, and the <strong>passenger domain threads through and folds on the outside</strong>. Folding energy ratchets the protein out. <strong>T6SS</strong>: <strong>Mechanical / stored energy</strong>. The contractile sheath (assembled from TssB-TssC) is loaded in an extended, high-energy state. A baseplate trigger causes <strong>sheath contraction</strong>, which fires the spike-tipped inner tube (with effectors bound) across the OM and a target membrane in one shot. ATP is only used afterward (by ClpV) to recycle the spent sheath.", hy:true},
+  {q:"Explain why a co-translational targeting mechanism (signal sequence + SRP / SecA recognition) is biologically necessary for Sec substrates. What would happen if a Sec substrate were translated to completion in the cytoplasm before being targeted?", a:"Sec substrates must be <strong>unfolded</strong> to fit through the SecYEG channel. If a Sec substrate were translated to completion in the cytoplasm, it would <strong>fold into its native 3D structure</strong> (driven by hydrophobic interactions and hydrogen bonding), and a folded protein <strong>cannot fit through the narrow SecYEG pore</strong>. The N-terminal signal sequence emerges from the ribosome <strong>first</strong>, allowing SecA / SRP to grab it <strong>co-translationally</strong> &mdash; while the rest of the protein is still being made and is still unfolded. The chaperone <strong>SecB</strong> reinforces this by binding nascent Sec substrates and preventing premature folding. Together, signal sequence + chaperone + co-translational handoff guarantee the protein arrives at SecYEG in a translocation-competent unfolded state.", hy:true},
+  {q:"You are studying two strains of pathogenic E. coli. Strain A makes a virulence protein with a clear N-terminal signal sequence. Strain B makes a virulence protein with no signal sequence at all. Both proteins end up in the extracellular medium. Propose the most likely secretion mechanism for each strain and explain how you'd test your hypothesis.", a:"<strong>Strain A</strong> (signal sequence): most likely uses <strong>T2SS or T5SS</strong>, both of which are Sec-dependent and use the N-terminal signal to enter the periplasm. To distinguish: T2SS requires the 14-protein Gsp accessory complex; T5SS substrates have a fused C-terminal &beta;-barrel translocator domain. <strong>Bioinformatic check</strong>: look for a translocator domain in the protein sequence (T5SS) or a separate gsp operon in the genome (T2SS). <strong>Strain B</strong> (no signal sequence): most likely uses <strong>T1SS (ABC exporter)</strong>, which operates on proteins lacking a signal sequence. Test: knock out the candidate ABC transporter in the genome and confirm the protein no longer appears in the medium. (T3SS, T4SS, and T6SS substrates also lack classical N-terminal signal peptides, so check for those machineries in the genome too &mdash; e.g., presence of vir genes for T4SS, hcp/vgrG for T6SS, basal-body homologs for T3SS.)", hy:true},
+  {q:"Why is T6SS sometimes called a 'spring-loaded molecular harpoon,' and how does this analogy capture both its structure and its mechanism?", a:"<strong>Structural analogy</strong>: T6SS evolved from a <strong>contractile phage tail</strong>. It has a <strong>tail sheath</strong> (TssB&ndash;TssC) wrapped around an <strong>inner tube</strong> (Hcp), capped with a sharp <strong>VgrG spike</strong> &mdash; literally an inverted phage tail anchored in the bacterial envelope, pointing outward. <strong>Mechanism analogy</strong>: the sheath is assembled in an <strong>extended, energetically loaded state</strong> (like a stretched spring). Effectors are bound to the spike-tube. When triggered by an extracellular signal, the <strong>baseplate undergoes a conformational change</strong>, releasing the stored energy &mdash; the sheath <strong>snaps into a contracted state</strong>, propelling the inner tube + spike outward like a harpoon being fired. The spike pierces the target cell membrane, delivering multiple effectors in one shot. After firing, ClpV recycles the spent sheath. The whole thing requires no ATP at the moment of firing &mdash; just stored mechanical energy, like a crossbow.", hy:true},
+  {q:"A botanist is engineering disease-resistant tomato plants by inserting a defense gene into the plant genome. Which bacterial secretion system would they use as a delivery tool, and why does it work?", a:"They would use the <strong>Type IV Secretion System (T4SS)</strong> of <strong>Agrobacterium tumefaciens</strong>. T4SS is the only secretion system that can <strong>translocate DNA</strong>. In nature, A. tumefaciens uses T4SS to inject <strong>T-DNA</strong> into plant cells, where it <strong>integrates into the plant genome</strong> and induces crown gall disease via virulence factors. Plant biotechnologists exploit this by <strong>replacing the T-DNA tumor genes with a gene of interest</strong> (e.g., the defense gene). When Agrobacterium infects the plant, its T4SS injects the engineered T-DNA, and the gene integrates stably into the plant genome &mdash; producing transgenic plants. This is the standard method for plant transformation and works because T4SS naturally crosses both bacterial membranes, the plant cell wall, the plant plasma membrane, and gets DNA into the plant nucleus.", hy:true},
+  {q:"In a single paragraph, summarize the cell's overall logic for protein secretion: from where is each protein made, how does it know where to go, what gets it across each membrane, and what are the choices for the final destination?", a:"All bacterial proteins are <strong>made in the cytoplasm</strong> by ribosomes. Most secreted proteins carry an <strong>N-terminal signal sequence</strong> &mdash; a short peptide with a hydrophilic basic region and a hydrophobic region &mdash; that emerges from the ribosome first and acts as an address label. <strong>SRP (Ffh + ffs)</strong> or <strong>SecA</strong> recognizes the signal and brings the protein to the <strong>SecYEG channel</strong> in the inner membrane while the chaperone <strong>SecB</strong> keeps it unfolded. <strong>SecA's ATP hydrolysis</strong> threads the protein through SecYEG; <strong>signal peptidase (Lep)</strong> cleaves off the signal. Depending on the destination: (a) the protein stays embedded in the <strong>inner membrane</strong> (SRP route), (b) it folds in the <strong>periplasm</strong>, (c) it is escorted by <strong>Skp</strong> (protected from DegP protease) to the <strong>Bam complex</strong> + <strong>SurA</strong> for insertion into the <strong>outer membrane</strong>, or (d) it continues to the <strong>extracellular space</strong> via T2SS (Gsp accessory proteins) or T5SS (autotransport). Some proteins skip Sec entirely: <strong>T1SS</strong> exports unsignalled proteins straight from the cytoplasm via ABC ATPase; <strong>T3SS</strong> injects effectors into a host cell through a flagellum-like needle; <strong>T4SS</strong> delivers DNA and proteins via a pilus; <strong>T6SS</strong> fires effectors into target bacterial or eukaryotic cells with a phage-tail-like contractile harpoon.", hy:true},
+];
+
+function buildFRQ(container, questions, prefix) {
+  const el = document.getElementById(container);
+  el.innerHTML = '';
+  questions.forEach((q,i) => {
+    const hy = q.hy ? 'hy-frq' : '';
+    el.innerHTML += `
+    <div class="frq-card ${hy}">
+      <div class="frq-prompt"><span class="q-num">${i+1}</span>${q.q}${q.hy?'<span class="hy-badge">HIGH YIELD</span>':''}</div>
+      <textarea placeholder="Write your answer..." id="${prefix}-ta-${i}"></textarea>
+      <button class="frq-reveal-btn" onclick="revealFRQ('${prefix}',${i})">Reveal Answer</button>
+      <div class="frq-answer" id="${prefix}-ans-${i}">${q.a}</div>
+      <div class="frq-self-grade" id="${prefix}-grade-${i}">
+        <button class="grade-btn got-it" onclick="gradeFRQ('${prefix}',${i},'got-it')">Got it</button>
+        <button class="grade-btn partial" onclick="gradeFRQ('${prefix}',${i},'partial')">Partial</button>
+        <button class="grade-btn missed" onclick="gradeFRQ('${prefix}',${i},'missed')">Missed</button>
+      </div>
+    </div>`;
+  });
+}
+
+const frqGrades = {};
+const hardGrades = {};
+
+function revealFRQ(prefix, i) {
+  document.getElementById(prefix+'-ans-'+i).classList.add('show');
+  document.getElementById(prefix+'-grade-'+i).classList.add('show');
+}
+function gradeFRQ(prefix, i, grade) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  grades[i] = grade;
+  const btns = document.getElementById(prefix+'-grade-'+i).querySelectorAll('.grade-btn');
+  btns.forEach(b => b.classList.remove('selected-grade'));
+  event.target.classList.add('selected-grade');
+  updateFRQScore(prefix);
+}
+function updateFRQScore(prefix) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  const total = prefix === 'frq' ? frqs.length : hardFrqs.length;
+  let pts = 0;
+  Object.values(grades).forEach(g => { if(g==='got-it') pts+=1; else if(g==='partial') pts+=0.5; });
+  document.getElementById(prefix+'-score').textContent = Math.round((pts/total)*100)+'%';
+}
+function resetFRQ() {
+  Object.keys(frqGrades).forEach(k => delete frqGrades[k]);
+  buildFRQ('frq-container', frqs, 'frq');
+  document.getElementById('frq-score').textContent = '0%';
+}
+function resetHard() {
+  Object.keys(hardGrades).forEach(k => delete hardGrades[k]);
+  buildFRQ('hard-container', hardFrqs, 'hard');
+  document.getElementById('hard-score').textContent = '0%';
+}
+
+buildFRQ('frq-container', frqs, 'frq');
+buildFRQ('hard-container', hardFrqs, 'hard');
+
+// ====== MATCHING ======
+const matchPairs = [
+  {term:"Signal peptide", def:"N-terminal sequence with hydrophilic basic + hydrophobic regions; cleaved after secretion"},
+  {term:"SecA", def:"Cytoplasmic ATPase that recognizes the signal sequence and powers translocation"},
+  {term:"SecB", def:"Cytoplasmic chaperone that keeps Sec substrates unfolded before translocation"},
+  {term:"SRP (Ffh + ffs)", def:"Targets ribosome with hydrophobic signal sequence to SecYEG for inner membrane insertion"},
+  {term:"Bam complex + SurA", def:"Folds OM proteins into &beta;-barrels and inserts them into the outer membrane"},
+  {term:"Type I (ABC exporter)", def:"Sec-INDEPENDENT, no signal peptide, one-step ATP-driven export from cytoplasm to extracellular"},
+  {term:"Type II (Two-step)", def:"Sec-DEPENDENT, 14 accessory proteins push the periplasmic protein through GspD across the OM"},
+  {term:"Type III (Injectisome)", def:"Syringe-like nanomachine, evolved from flagellum, injects effectors into host cell upon contact"},
+  {term:"Type IV (T4SS)", def:"Only secretion system that translocates DNA; mediates conjugation; Agrobacterium uses it for crown gall"},
+  {term:"Type V (Autotransport)", def:"Substrate fused to its own &beta;-barrel pore; folding of passenger drives secretion; no ATP needed"},
+  {term:"Type VI (T6SS)", def:"Inverted contractile phage tail; harpoon-fires multiple effectors into bacterial OR eukaryotic cells"},
+  {term:"Skp + DegP", def:"Periplasmic chaperone that protects OM proteins from being degraded by the periplasmic protease"},
+];
+
+let matchLeft = null, matchRight = null, matchedCount = 0;
+function initMatching() {
+  matchLeft = null; matchRight = null; matchedCount = 0;
+  const lDiv = document.getElementById('match-left');
+  const rDiv = document.getElementById('match-right');
+  const sL = [...matchPairs].sort(() => Math.random()-0.5);
+  const sR = [...matchPairs].sort(() => Math.random()-0.5);
+  lDiv.innerHTML = sL.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('left',this)">${p.term}</div>`).join('');
+  rDiv.innerHTML = sR.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('right',this)">${p.def}</div>`).join('');
+  document.getElementById('match-score').textContent = '0 / '+matchPairs.length;
+}
+function selectMatch(side, el) {
+  if(el.classList.contains('matched')) return;
+  el.parentElement.querySelectorAll('.match-item').forEach(i => { if(!i.classList.contains('matched')) i.classList.remove('selected'); });
+  el.classList.add('selected');
+  if(side==='left') matchLeft = el; else matchRight = el;
+  if(matchLeft && matchRight) checkMatch();
+}
+function checkMatch() {
+  if(matchLeft.dataset.term === matchRight.dataset.term) {
+    matchLeft.classList.add('matched'); matchLeft.classList.remove('selected');
+    matchRight.classList.add('matched'); matchRight.classList.remove('selected');
+    matchedCount++;
+    document.getElementById('match-score').textContent = matchedCount+' / '+matchPairs.length;
+  } else {
+    matchLeft.classList.add('wrong-match'); matchRight.classList.add('wrong-match');
+    const l=matchLeft, r=matchRight;
+    setTimeout(() => { l.classList.remove('wrong-match','selected'); r.classList.remove('wrong-match','selected'); }, 700);
+  }
+  matchLeft = null; matchRight = null;
+}
+initMatching();
+</script>
+</body>
+</html>

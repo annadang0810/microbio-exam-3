@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epidemiology - BIOL 3303 Study Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232733;
+    --border: #2e3344;
+    --text: #e2e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --green: #00cec9;
+    --green-dim: #00cec920;
+    --red: #fd7272;
+    --red-dim: #fd727220;
+    --orange: #ffa94d;
+    --orange-dim: #ffa94d20;
+    --blue: #74b9ff;
+    --yellow: #ffd43b;
+    --yellow-dim: #ffd43b18;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 8px;
+    overflow-x: auto;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent-light);
+    white-space: nowrap;
+    margin-right: 16px;
+    letter-spacing: -0.3px;
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .nav-btn:hover { color: var(--text); background: var(--surface2); }
+  .nav-btn.active {
+    color: var(--accent-light);
+    background: #6c5ce715;
+    border-color: #6c5ce740;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 84px 24px 60px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+    color: var(--accent-light);
+  }
+  .card p, .card li {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 6px; }
+  .card li::marker { color: var(--accent); }
+
+  .highlight { color: var(--green); font-weight: 600; }
+  .organism { color: var(--orange); font-weight: 600; }
+  .warn { color: var(--red); font-weight: 600; }
+  .key {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+
+  /* HIGH YIELD */
+  .hy-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin-left: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    animation: hyPulse 2s ease-in-out infinite;
+  }
+  @keyframes hyPulse {
+    0%, 100% { box-shadow: 0 0 0 0 #ffd43b40; }
+    50% { box-shadow: 0 0 12px 4px #ffd43b30; }
+  }
+  .hy-card {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .hy-card h2 { color: var(--yellow); }
+
+  .hy-legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: var(--yellow-dim);
+    border: 1px solid #ffd43b40;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--yellow);
+    font-weight: 600;
+  }
+
+  .exam-topics {
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: var(--surface2);
+    border: 1px solid #ffd43b30;
+    border-radius: 10px;
+  }
+  .exam-topics p {
+    font-size: 12px;
+    color: var(--yellow);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .exam-topics ul { padding-left: 18px; }
+  .exam-topics li {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .exam-topics li::marker { color: var(--yellow); }
+
+  /* HERO */
+  .hero-card {
+    background: linear-gradient(135deg, #6c5ce730, #00cec915);
+    border-color: #6c5ce740;
+    text-align: center;
+    padding: 48px 28px;
+  }
+  .hero-card h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .hero-card p { color: var(--text-dim); font-size: 15px; }
+  .hero-stats {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat-num { font-size: 24px; font-weight: 800; color: var(--accent-light); }
+  .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+  /* TABS */
+  .tab-row { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .tab-btn.hy-tab { border-color: #ffd43b60; }
+  .tab-btn.hy-tab.active { background: linear-gradient(135deg, #ffd43b, #f59f00); color: #1a1d27; border-color: #ffd43b; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* TABLES */
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .data-table th, .data-table td { padding: 8px 12px; border: 1px solid var(--border); text-align: left; font-size: 13.5px; }
+  .data-table th { background: var(--surface2); color: var(--accent-light); font-weight: 600; }
+  .data-table td { color: var(--text-dim); }
+  .data-table.hy-table th { color: var(--yellow); }
+
+  /* DIAGRAM */
+  .diagram-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 14px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .diagram-box .arr { color: var(--accent-light); }
+  .diagram-box .mol { color: var(--green); font-weight: 700; }
+  .diagram-box .label { color: var(--text-dim); font-style: italic; }
+
+  .callout {
+    background: #00cec920;
+    border: 1px solid #00cec940;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    font-size: 13.5px;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  .formula-box {
+    background: linear-gradient(135deg, #6c5ce720, #ffd43b15);
+    border: 1px solid #ffd43b40;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin: 16px 0;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    color: var(--yellow);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .formula-box .var-key {
+    display: block;
+    margin-top: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-size: 13px;
+    color: var(--text-dim);
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.7;
+  }
+
+  /* SCORE BAR */
+  .score-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .score-text { font-size: 15px; font-weight: 600; }
+  .score-pct { font-size: 28px; font-weight: 800; color: var(--accent-light); }
+  .reset-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { background: var(--accent-light); color: var(--bg); }
+
+  /* FLASHCARD */
+  .fc-container { perspective: 1000px; margin-bottom: 16px; }
+  .flashcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    cursor: pointer;
+    transition: transform 0.5s, box-shadow 0.3s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .flashcard:hover { box-shadow: 0 4px 24px #6c5ce720; }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .fc-front, .fc-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    backface-visibility: hidden;
+    border-radius: 14px;
+  }
+  .fc-front { font-size: 16px; font-weight: 600; color: var(--text); }
+  .fc-back {
+    transform: rotateY(180deg);
+    font-size: 15px;
+    color: var(--green);
+    background: var(--surface);
+    line-height: 1.6;
+  }
+  .fc-nav { display: flex; gap: 10px; justify-content: center; align-items: center; }
+  .fc-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .fc-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .fc-counter { font-size: 13px; color: var(--text-dim); font-weight: 600; min-width: 60px; text-align: center; }
+  .fc-hint { text-align: center; color: var(--text-dim); font-size: 12px; margin-top: 10px; }
+
+  /* MATCHING */
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .match-col-header {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+  .match-item {
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .match-item:hover { border-color: var(--accent); color: var(--text); }
+  .match-item.selected { border-color: var(--accent); background: #6c5ce715; color: var(--accent-light); }
+  .match-item.matched { border-color: var(--green); background: var(--green-dim); color: var(--green); pointer-events: none; opacity: 0.7; }
+  .match-item.wrong-match { border-color: var(--red); background: var(--red-dim); color: var(--red); }
+
+  /* FRQ */
+  .frq-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .frq-card.hy-frq {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .frq-card .q-num {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .frq-card.hy-frq .q-num {
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+  }
+  .frq-card .frq-prompt { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+  .frq-card .frq-hint { font-size: 12px; color: var(--text-dim); margin-bottom: 12px; font-style: italic; }
+  .frq-card textarea {
+    width: 100%;
+    min-height: 100px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    padding: 14px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+  .frq-card textarea:focus { outline: none; border-color: var(--accent); }
+  .frq-card textarea::placeholder { color: #4a4e63; }
+  .frq-reveal-btn {
+    display: inline-block;
+    margin-top: 12px;
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent-light);
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .frq-reveal-btn:hover { background: #6c5ce715; }
+  .frq-answer {
+    display: none;
+    margin-top: 14px;
+    padding: 16px;
+    background: var(--surface2);
+    border-radius: 10px;
+    border-left: 3px solid var(--green);
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .frq-answer.show { display: block; }
+  .frq-answer strong { color: var(--green); }
+  .frq-self-grade { display: none; margin-top: 12px; gap: 8px; }
+  .frq-self-grade.show { display: flex; }
+  .grade-btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .grade-btn.got-it { color: var(--green); border-color: var(--green); }
+  .grade-btn.got-it:hover { background: var(--green-dim); }
+  .grade-btn.partial { color: var(--orange); border-color: var(--orange); }
+  .grade-btn.partial:hover { background: var(--orange-dim); }
+  .grade-btn.missed { color: var(--red); border-color: var(--red); }
+  .grade-btn.missed:hover { background: var(--red-dim); }
+  .grade-btn.selected-grade { font-weight: 800; }
+  .grade-btn.got-it.selected-grade { background: var(--green-dim); }
+  .grade-btn.partial.selected-grade { background: var(--orange-dim); }
+  .grade-btn.missed.selected-grade { background: var(--red-dim); }
+
+  @media (max-width: 600px) {
+    .nav-brand { display: none; }
+    main { padding: 76px 14px 40px; }
+    .card { padding: 20px; }
+    .hero-card { padding: 32px 20px; }
+    .hero-card h1 { font-size: 22px; }
+    .match-grid { grid-template-columns: 1fr; }
+    .formula-box { font-size: 15px; padding: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">EpiStudy</span>
+    <button class="nav-btn active" onclick="showSection('home')">Home</button>
+    <button class="nav-btn" onclick="showSection('learn')">Learn</button>
+    <button class="nav-btn" onclick="showSection('flashcards')">Flashcards</button>
+    <button class="nav-btn" onclick="showSection('frq')">FRQ</button>
+    <button class="nav-btn" onclick="showSection('matching')">Matching</button>
+    <button class="nav-btn" onclick="showSection('hard')">Hard FRQ</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ==================== HOME ==================== -->
+<div class="section active" id="sec-home">
+  <div class="card hero-card">
+    <h1>Epidemiology &amp; Vaccination</h1>
+    <p>BIOL 3303 &middot; Lecture 18 &mdash; John Snow, Descriptive vs Analytic Epi, R<sub>0</sub>, Herd Immunity, Vaccine Efficacy</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Topics</div></div>
+      <div class="stat"><div class="stat-num">26</div><div class="stat-label">Flashcards</div></div>
+      <div class="stat"><div class="stat-num">18</div><div class="stat-label">FRQs</div></div>
+    </div>
+    <div class="hy-legend">HIGH YIELD = Confirmed exam topics from your professor. Prioritize these.</div>
+    <div class="exam-topics">
+      <p>Your Professor's Exam Topics</p>
+      <ul>
+        <li><strong>John Snow's experiments</strong> &mdash; the 1854 cholera outbreak, spot map, two water companies</li>
+        <li><strong>Descriptive vs analytical epidemiology</strong> &mdash; what each does, examples</li>
+        <li><strong>R<sub>0</sub> (basic reproduction number)</strong> &mdash; what it is, what the values mean</li>
+        <li><strong>Herd immunity</strong> &mdash; what it is + how to calculate the threshold</li>
+        <li><strong>Vaccine efficacy</strong> &mdash; what it is + how to calculate it</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LEARN ==================== -->
+<div class="section" id="sec-learn">
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="showTab(this,'overview')">Overview</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'snow')">John Snow</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'desc-ana')">Descriptive vs Analytic</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'r0')">R<sub>0</sub></button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'herd')">Herd Immunity</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'ve')">Vaccine Efficacy</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'calc')">Calculations</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-content active" id="tab-overview">
+    <div class="card">
+      <h2>What is Epidemiology?</h2>
+      <p><span class="key">DEF</span> <strong>Epidemiology</strong> is the study of the <span class="highlight">distribution and determinants of health-related states or events in specified populations</span>, and the application of this study to the <span class="highlight">control of health problems</span>.</p>
+
+      <h3>Two Things Epidemiology Studies</h3>
+      <ul>
+        <li><span class="highlight">Frequency</span> &mdash; the number of health events <em>and</em> the relationship of that number to the size of the population (i.e., a <em>rate</em>, not just a count)</li>
+        <li><span class="highlight">Pattern</span> &mdash; the occurrence of health-related events by <span class="highlight">time</span>, <span class="highlight">place</span>, and <span class="highlight">person</span></li>
+      </ul>
+
+      <div class="callout">"Time, place, person" is the classic descriptive triad &mdash; remember it. Snow's 1854 spot map answered "place" + "person"; analytic epidemiology answers <em>why</em>.</div>
+
+      <h3>What Epidemiology Tells Us About a Pathogen</h3>
+      <ul>
+        <li><strong>Who?</strong> &mdash; collecting patient information reveals if a disease targets a particular age, gender, or behavior</li>
+        <li><strong>How infectious?</strong> &mdash; studying spread reveals the <span class="highlight">basic reproduction number (R<sub>0</sub>)</span></li>
+        <li><strong>Vaccination strategy?</strong> &mdash; epidemiology principles are also used to assess <span class="highlight">vaccine efficacy</span> and to calculate the <span class="highlight">herd immunity threshold</span></li>
+      </ul>
+
+      <h3>Big Picture: 5 Things You Need to Know Cold</h3>
+      <table class="data-table">
+        <tr><th>Concept</th><th>What it does</th></tr>
+        <tr><td>John Snow's experiments</td><td>Founded modern epi; spot map (descriptive) + two-water-company comparison (analytic)</td></tr>
+        <tr><td>Descriptive epidemiology</td><td>Describes <em>who/what/where/when</em> (e.g., spot map)</td></tr>
+        <tr><td>Analytical epidemiology</td><td>Tests hypotheses about <em>why</em> (e.g., comparing exposure groups)</td></tr>
+        <tr><td>R<sub>0</sub></td><td>Average # of secondary cases from one primary case in a susceptible population</td></tr>
+        <tr><td>Herd immunity</td><td>% immunized that breaks transmission; threshold = (1 &minus; 1/R<sub>0</sub>) &times; 100%</td></tr>
+        <tr><td>Vaccine efficacy</td><td>How well a vaccine reduces incidence; VE = (1 &minus; R<sub>V</sub>/R<sub>U</sub>) &times; 100%</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- JOHN SNOW -->
+  <div class="tab-content" id="tab-snow">
+    <div class="card hy-card">
+      <h2>John Snow &amp; the 1854 Cholera Outbreak <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>John Snow is called the <span class="highlight">"Father of Epidemiology"</span> &mdash; not because he was the first (Hippocrates tried in 400 BC), but because he <span class="highlight">established the modern techniques</span> of the field.</p>
+
+      <h3>The Outbreak</h3>
+      <ul>
+        <li>Year: <span class="highlight">1854</span></li>
+        <li>Location: <span class="highlight">Golden Square area, London</span> (Broad Street)</li>
+        <li>Disease: <span class="organism">cholera</span> (we now know it's caused by <em>Vibrio cholerae</em>, a gram-negative bacterium)</li>
+      </ul>
+
+      <h3>Step 1 &mdash; The Spot Map (Descriptive Epi)</h3>
+      <ul>
+        <li>Snow started by making a <span class="highlight">spot map</span> &mdash; he marked where on the city map each cholera victim lived</li>
+        <li>Because he believed water was the source, he <span class="highlight">overlaid the locations of local water pumps</span></li>
+        <li>He noticed a <span class="highlight">correlation</span>: cases clustered around a particular pump</li>
+        <li>This type of map (showing the geographic distribution of cases) is a form of <span class="warn">descriptive epidemiology</span></li>
+      </ul>
+
+      <div class="callout">A spot map describes <em>where</em> and <em>who</em> &mdash; it doesn't prove causation. It generates a hypothesis. That's why it's <strong>descriptive</strong>, not analytical.</div>
+
+      <h3>Step 2 &mdash; The Famous Pump Handle</h3>
+      <ul>
+        <li>Snow showed his spot map to city officials, who <span class="highlight">removed the handle from the suspect pump</span></li>
+        <li>The <span class="highlight">epidemic ended</span></li>
+        <li>He now hypothesized that <span class="highlight">water was the cause of cholera</span></li>
+      </ul>
+
+      <h3>Step 3 &mdash; The Two Water Companies (Analytic Epi)</h3>
+      <p>To <span class="highlight">test his hypothesis</span>, Snow went back <span class="highlight">retrospectively</span> to look at <em>who</em> got cholera in more detail. He found:</p>
+      <ul>
+        <li>Two water companies served the area, both pulling water from the <span class="highlight">Thames river</span></li>
+        <li><span class="highlight">Lambeth</span> &mdash; intake <span class="highlight">UPSTREAM</span> of London (cleaner)</li>
+        <li><span class="highlight">Southwark &amp; Vauxhall</span> &mdash; intake <span class="warn">DOWNSTREAM</span> of London (contaminated by city sewage)</li>
+        <li>Cholera deaths were <span class="warn">much higher</span> where the water came from <span class="warn">downstream</span></li>
+      </ul>
+
+      <h3>The Snow Comparison Table (1854)</h3>
+      <table class="data-table hy-table">
+        <tr><th>District water supply</th><th>Population (1851 census)</th><th>Cholera deaths</th><th>Death rate per 1,000</th></tr>
+        <tr><td>Southwark &amp; Vauxhall only</td><td>167,654</td><td>844</td><td><span class="warn">5.0</span></td></tr>
+        <tr><td>Lambeth only</td><td>19,133</td><td>18</td><td><span class="highlight">0.9</span></td></tr>
+        <tr><td>Both companies</td><td>300,149</td><td>652</td><td>2.2</td></tr>
+      </table>
+
+      <p>The <span class="highlight">~5&times; difference in death rate</span> between the two single-company districts (5.0 vs 0.9 per 1,000) was strong evidence that <span class="warn">contaminated water was causing cholera</span>. Because this step was <em>hypothesis-testing</em>, it is <span class="highlight">analytic epidemiology</span>.</p>
+
+      <h3>Why Snow Matters</h3>
+      <ul>
+        <li>He pioneered the <span class="highlight">map-based descriptive approach</span> &mdash; still used today (think: COVID dashboards)</li>
+        <li>He distinguished <span class="highlight">descriptive (hypothesis-generating)</span> from <span class="highlight">analytic (hypothesis-testing)</span> work</li>
+        <li>He showed that <span class="highlight">epidemiology can identify a cause without knowing the pathogen</span> &mdash; he didn't know about <em>V. cholerae</em>; he just had populations, exposure data, and counts</li>
+      </ul>
+
+      <div class="callout">Memorize the two stages: STAGE 1 = spot map (descriptive, generates hypothesis "water"). STAGE 2 = two-companies comparison (analytic, tests hypothesis using exposure groups).</div>
+    </div>
+  </div>
+
+  <!-- DESCRIPTIVE vs ANALYTIC -->
+  <div class="tab-content" id="tab-desc-ana">
+    <div class="card hy-card">
+      <h2>Descriptive vs Analytical Epidemiology <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>Epidemiology has two distinct modes of investigation. Snow's two stages are the textbook example of each.</p>
+
+      <h3>Descriptive Epidemiology</h3>
+      <ul>
+        <li>Asks: <span class="highlight">who, what, where, when</span></li>
+        <li><span class="highlight">Describes</span> the distribution of disease in a population &mdash; by time, place, and person</li>
+        <li>Generates hypotheses about possible causes; does <span class="warn">NOT test</span> them</li>
+        <li>Examples: <span class="highlight">spot map</span> (Snow's first step), case counts, age/sex distributions, time trends, incidence/prevalence reports</li>
+      </ul>
+
+      <h3>Analytical Epidemiology</h3>
+      <ul>
+        <li>Asks: <span class="highlight">why</span></li>
+        <li><span class="highlight">Tests hypotheses</span> by comparing groups (exposed vs unexposed, vaccinated vs unvaccinated, etc.)</li>
+        <li>Looks for <span class="highlight">associations</span> between an exposure and an outcome</li>
+        <li>Example: Snow's comparison of cholera death rates between districts served by the <strong>Southwark &amp; Vauxhall</strong> (downstream, contaminated) and <strong>Lambeth</strong> (upstream, cleaner) water companies. He had a hypothesis ("water is the cause") and tested it by comparing groups.</li>
+      </ul>
+
+      <h3>Side-by-Side</h3>
+      <table class="data-table hy-table">
+        <tr><th></th><th>Descriptive</th><th>Analytical</th></tr>
+        <tr><td>Question</td><td>Who/what/where/when?</td><td>Why?</td></tr>
+        <tr><td>Goal</td><td>Describe the pattern</td><td>Test a hypothesis</td></tr>
+        <tr><td>Output</td><td>Generates hypotheses</td><td>Identifies causal associations</td></tr>
+        <tr><td>Snow example</td><td>Spot map of cholera cases</td><td>Two water companies comparison</td></tr>
+        <tr><td>Methods</td><td>Spot maps, case series, prevalence/incidence rates</td><td>Cohort, case-control, cross-sectional studies</td></tr>
+      </table>
+
+      <div class="callout">Easy mnemonic: <strong>D</strong>escriptive = <strong>D</strong>escribes (who/what/where/when). <strong>A</strong>nalytical = <strong>A</strong>sks "why" and <strong>A</strong>nalyzes groups.</div>
+    </div>
+  </div>
+
+  <!-- R0 -->
+  <div class="tab-content" id="tab-r0">
+    <div class="card hy-card">
+      <h2>R<sub>0</sub> &mdash; The Basic Reproduction Number <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p><span class="key">DEF</span> <strong>R<sub>0</sub></strong> = the <span class="highlight">average number of secondary cases generated by one primary case in a fully susceptible population</span>.</p>
+
+      <p>R<sub>0</sub> is a property of the <em>pathogen + the population/setting</em>, not just the pathogen alone &mdash; the same virus can have a different R<sub>0</sub> in a dense city versus a remote village. But the assumption that the population is <span class="highlight">fully susceptible</span> (no one is yet immune or vaccinated) is fixed in the definition.</p>
+
+      <h3>What the Numbers Mean</h3>
+      <table class="data-table hy-table">
+        <tr><th>R<sub>0</sub> value</th><th>Meaning</th><th>What happens to the outbreak</th></tr>
+        <tr><td><strong>R<sub>0</sub> = 1</strong></td><td>Each primary case generates exactly one new case</td><td>Steady state &mdash; outbreak persists at constant size. (A primary case must generate <em>at least</em> one new case for the disease to be sustained.)</td></tr>
+        <tr><td><strong>R<sub>0</sub> &gt; 1</strong></td><td>Each case generates more than one new case</td><td><span class="warn">Expansion</span> of infected individuals &mdash; the outbreak grows</td></tr>
+        <tr><td><strong>R<sub>0</sub> &lt; 1</strong></td><td>Each case generates fewer than one new case</td><td><span class="highlight">Shrinking pool</span> of infected individuals &mdash; the outbreak dies out</td></tr>
+      </table>
+
+      <h3>R<sub>0</sub> Examples from the Lecture</h3>
+      <table class="data-table hy-table">
+        <tr><th>Pathogen / Variant</th><th>R<sub>0</sub></th></tr>
+        <tr><td>Ebola</td><td>~2</td></tr>
+        <tr><td>Original COVID-19 (Wuhan strain)</td><td>3</td></tr>
+        <tr><td>COVID-19 Delta</td><td>8</td></tr>
+        <tr><td>COVID-19 Omicron</td><td>9</td></tr>
+        <tr><td>COVID-19 Omicron <strong>BA.5</strong></td><td><span class="warn">18.6</span></td></tr>
+      </table>
+
+      <h3>Why R<sub>0</sub> Matters</h3>
+      <ul>
+        <li>Tells us <span class="highlight">how infectious a pathogen is</span> &mdash; useful for planning public health response</li>
+        <li>Lets us <span class="highlight">calculate the herd immunity threshold</span> (see next section)</li>
+        <li>Lets us <span class="warn">compare outbreaks</span>: COVID Delta (R<sub>0</sub> = 8) is more infectious than original COVID (R<sub>0</sub> = 3) is more infectious than Ebola (R<sub>0</sub> ~ 2)</li>
+      </ul>
+
+      <div class="callout">If R<sub>0</sub> &lt; 1, the disease can't sustain itself &mdash; this is the goal of public health interventions like vaccination and quarantine. They <em>effectively</em> push R below 1 even if the pathogen's intrinsic R<sub>0</sub> is high.</div>
+    </div>
+  </div>
+
+  <!-- HERD IMMUNITY -->
+  <div class="tab-content" id="tab-herd">
+    <div class="card hy-card">
+      <h2>Herd Immunity <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p><span class="key">DEF</span> <strong>Herd immunity</strong> = a state where <span class="highlight">enough of the population is vaccinated/immunized</span> against a pathogen that <span class="highlight">transmission through the population stops</span>.</p>
+
+      <h3>How It Works</h3>
+      <ul>
+        <li>The presence of immunized people in the population <span class="highlight">breaks the chain of transmission</span> &mdash; an infected person is more likely to bump into someone who can't be infected, so the chain stops</li>
+        <li>The <span class="warn">more infectious the disease</span> (higher R<sub>0</sub>), the <span class="warn">higher the percentage</span> of the population that needs to be vaccinated to achieve herd immunity</li>
+        <li>Herd immunity <span class="highlight">protects people who cannot be vaccinated</span>: too young, too old, or immunocompromised (e.g., chemo patients, organ transplant recipients)</li>
+      </ul>
+
+      <h3>The Herd Immunity Formula</h3>
+      <div class="formula-box">
+        Herd Immunity Threshold = (1 &minus; 1/R<sub>0</sub>) &times; 100%
+        <span class="var-key">
+          <strong>R<sub>0</sub></strong> = basic reproduction number<br>
+          The result is the <strong>minimum % of the population</strong> that must be immune to break transmission
+        </span>
+      </div>
+
+      <h3>Worked Examples (from the lecture)</h3>
+      <table class="data-table hy-table">
+        <tr><th>Pathogen</th><th>R<sub>0</sub></th><th>Calculation</th><th>Herd immunity %</th></tr>
+        <tr><td>Ebola</td><td>2</td><td>(1 &minus; 1/2) &times; 100%</td><td><span class="highlight">50%</span></td></tr>
+        <tr><td>Original COVID-19</td><td>3</td><td>(1 &minus; 1/3) &times; 100%</td><td><span class="highlight">66%</span></td></tr>
+        <tr><td>COVID-19 Delta</td><td>8</td><td>(1 &minus; 1/8) &times; 100%</td><td><span class="highlight">87.5%</span></td></tr>
+        <tr><td>COVID-19 Omicron BA.5</td><td>18.6</td><td>(1 &minus; 1/18.6) &times; 100%</td><td><span class="warn">94.6%</span></td></tr>
+      </table>
+
+      <h3>Why It's Hard for Highly Infectious Pathogens</h3>
+      <p>For BA.5, you'd need <span class="warn">~95% of the entire population immune</span> to stop transmission. With waning immunity, vaccine hesitancy, and unvaccinated children, that bar is extremely difficult to clear &mdash; which is why COVID continued to circulate even with widespread vaccination.</p>
+
+      <div class="callout">The intuition: at the threshold, an infected person on average meets fewer than one susceptible contact &mdash; so the effective R drops below 1 and the outbreak dies. The math: when fraction <em>p</em> are immune, R = R<sub>0</sub>(1&minus;p). Setting R = 1 and solving for p gives p = 1 &minus; 1/R<sub>0</sub>.</div>
+    </div>
+  </div>
+
+  <!-- VACCINE EFFICACY -->
+  <div class="tab-content" id="tab-ve">
+    <div class="card hy-card">
+      <h2>Vaccine Efficacy (VE) <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p><span class="key">DEF</span> <strong>Vaccine efficacy</strong> measures how well a vaccine reduces the <span class="highlight">incidence (or attack rate)</span> of disease in a vaccinated group, compared with an unvaccinated group, under controlled trial conditions.</p>
+
+      <h3>The Vaccine Efficacy Formula</h3>
+      <div class="formula-box">
+        VE (%) = (1 &minus; R<sub>V</sub> / R<sub>U</sub>) &times; 100
+        <span class="var-key">
+          <strong>R<sub>V</sub></strong> = incidence (or attack rate) in <em>vaccinated</em> people<br>
+          <strong>R<sub>U</sub></strong> = incidence (or attack rate) in <em>unvaccinated</em> people<br>
+          As R<sub>V</sub> gets smaller, VE increases.
+        </span>
+      </div>
+
+      <p>An <span class="highlight">attack rate</span> is the proportion of people who got sick out of the people at risk &mdash; e.g., if 5 of 1,000 vaccinated people got the disease, R<sub>V</sub> = 0.005 (or 0.5%).</p>
+
+      <h3>What VE Tells You</h3>
+      <ul>
+        <li><strong>VE = 100%</strong>: the vaccine is perfect &mdash; nobody vaccinated got sick (R<sub>V</sub> = 0)</li>
+        <li><strong>VE = 90%</strong>: vaccinated people had 90% lower incidence than unvaccinated &mdash; very good</li>
+        <li><strong>VE = 50%</strong>: vaccinated people had half the incidence of unvaccinated</li>
+        <li><strong>VE = 0%</strong>: vaccine had no effect (R<sub>V</sub> = R<sub>U</sub>)</li>
+        <li><strong>VE &lt; 0%</strong>: rare, but would mean vaccinated people got <em>more</em> sick &mdash; suggests a problem</li>
+      </ul>
+
+      <h3>Worked Example</h3>
+      <p>In a vaccine trial, <strong>1,000 vaccinated</strong> people and <strong>1,000 unvaccinated</strong> people are followed. After one year:</p>
+      <ul>
+        <li>10 vaccinated people get sick &rarr; R<sub>V</sub> = 10/1000 = <span class="highlight">0.01</span> (1%)</li>
+        <li>100 unvaccinated people get sick &rarr; R<sub>U</sub> = 100/1000 = <span class="highlight">0.10</span> (10%)</li>
+      </ul>
+      <div class="diagram-box">VE = (1 &minus; R<sub>V</sub>/R<sub>U</sub>) &times; 100
+   = (1 &minus; 0.01/0.10) &times; 100
+   = (1 &minus; 0.1) &times; 100
+   = <span class="mol">90%</span></div>
+
+      <h3>Important Distinctions</h3>
+      <ul>
+        <li><span class="highlight">Vaccine <em>efficacy</em></span> = measured under <span class="highlight">controlled trial conditions</span> (RCT) &mdash; the answer to "does this work?"</li>
+        <li><span class="highlight">Vaccine <em>effectiveness</em></span> = measured in the <span class="highlight">real world</span> &mdash; the answer to "how well does it work in practice?"</li>
+        <li>The lecture uses the same formula for both; just note that the input data (R<sub>V</sub>, R<sub>U</sub>) come from a trial vs. real-world surveillance respectively</li>
+      </ul>
+
+      <div class="callout">Quick gut check: if R<sub>V</sub> is half of R<sub>U</sub>, VE = 50%. If R<sub>V</sub> is one-tenth of R<sub>U</sub>, VE = 90%. If R<sub>V</sub> is one-hundredth of R<sub>U</sub>, VE = 99%. The smaller R<sub>V</sub> is relative to R<sub>U</sub>, the higher the VE.</div>
+    </div>
+  </div>
+
+  <!-- CALCULATIONS -->
+  <div class="tab-content" id="tab-calc">
+    <div class="card">
+      <h2>Calculations Cheat Sheet <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>Your professor said you need to know <em>how to calculate</em> these. Here are the only two formulas you must memorize, with practice problems.</p>
+
+      <h3>Formula 1 &mdash; Herd Immunity Threshold</h3>
+      <div class="formula-box">
+        HIT = (1 &minus; 1/R<sub>0</sub>) &times; 100%
+      </div>
+
+      <h3>Practice: Herd Immunity</h3>
+      <p><strong>Q1.</strong> Measles has R<sub>0</sub> = 15. What % of the population must be immune for herd immunity?</p>
+      <div class="diagram-box">HIT = (1 &minus; 1/15) &times; 100%
+    = (1 &minus; 0.0667) &times; 100%
+    = 0.9333 &times; 100%
+    = <span class="mol">93.3%</span></div>
+
+      <p><strong>Q2.</strong> Influenza has R<sub>0</sub> &asymp; 1.3. Herd immunity threshold?</p>
+      <div class="diagram-box">HIT = (1 &minus; 1/1.3) &times; 100%
+    = (1 &minus; 0.769) &times; 100%
+    &asymp; <span class="mol">23%</span></div>
+
+      <p><strong>Q3.</strong> A new pathogen has R<sub>0</sub> = 4. HIT?</p>
+      <div class="diagram-box">HIT = (1 &minus; 1/4) &times; 100%
+    = (1 &minus; 0.25) &times; 100%
+    = <span class="mol">75%</span></div>
+
+      <h3>Formula 2 &mdash; Vaccine Efficacy</h3>
+      <div class="formula-box">
+        VE (%) = (1 &minus; R<sub>V</sub> / R<sub>U</sub>) &times; 100
+      </div>
+
+      <h3>Practice: Vaccine Efficacy</h3>
+      <p><strong>Q4.</strong> In a trial, 50 of 5,000 vaccinated people get sick; 250 of 5,000 unvaccinated people get sick. VE?</p>
+      <div class="diagram-box">R<sub>V</sub> = 50/5000 = 0.01
+R<sub>U</sub> = 250/5000 = 0.05
+VE = (1 &minus; 0.01/0.05) &times; 100
+   = (1 &minus; 0.2) &times; 100
+   = <span class="mol">80%</span></div>
+
+      <p><strong>Q5.</strong> 5 of 1,000 vaccinated people get sick; 100 of 1,000 unvaccinated. VE?</p>
+      <div class="diagram-box">R<sub>V</sub> = 5/1000 = 0.005
+R<sub>U</sub> = 100/1000 = 0.10
+VE = (1 &minus; 0.005/0.10) &times; 100
+   = (1 &minus; 0.05) &times; 100
+   = <span class="mol">95%</span></div>
+
+      <p><strong>Q6.</strong> A vaccine has VE = 70%. If the unvaccinated attack rate is R<sub>U</sub> = 0.20, what is R<sub>V</sub>?</p>
+      <div class="diagram-box">VE = (1 &minus; R<sub>V</sub>/R<sub>U</sub>) &times; 100
+70  = (1 &minus; R<sub>V</sub>/0.20) &times; 100
+0.70 = 1 &minus; R<sub>V</sub>/0.20
+R<sub>V</sub>/0.20 = 0.30
+R<sub>V</sub> = 0.30 &times; 0.20 = <span class="mol">0.06 (6%)</span></div>
+
+      <h3>Combo Problem</h3>
+      <p><strong>Q7.</strong> Pathogen X has R<sub>0</sub> = 5. A vaccine for X has VE = 80% (R<sub>V</sub> = 0.02, R<sub>U</sub> = 0.10). (a) What is the herd immunity threshold? (b) Even if 100% of the population is vaccinated, can we achieve true sterilizing herd immunity with this vaccine?</p>
+      <div class="diagram-box">(a) HIT = (1 &minus; 1/5) &times; 100% = <span class="mol">80%</span>
+
+(b) Even at 100% coverage, only 80% of vaccinated people are
+   effectively protected (VE = 80%) &rarr; effective immune fraction = 80%.
+   That just barely meets the threshold &mdash; <span class="warn">very fragile</span>.
+   Any drop in coverage means transmission can resume.</div>
+
+      <div class="callout">Watch out for unit traps: incidence/attack rates are usually given as <em>proportions</em> (0.05) or <em>percentages</em> (5%). Make sure R<sub>V</sub> and R<sub>U</sub> are in the same units before dividing.</div>
+
+      <h3>The "Steps" Algorithm (use this on the exam)</h3>
+      <ul>
+        <li><strong>Step 1:</strong> Identify the formula. "How many need vaccinated?" &rarr; HIT. "How well does the vaccine work?" &rarr; VE.</li>
+        <li><strong>Step 2:</strong> Pull out the numbers. For HIT: R<sub>0</sub>. For VE: count cases &divide; total in each group to get R<sub>V</sub> and R<sub>U</sub>.</li>
+        <li><strong>Step 3:</strong> Plug into the formula <em>exactly</em> as written: (1 &minus; ...) &times; 100.</li>
+        <li><strong>Step 4:</strong> Sanity check &mdash; is your answer between 0 and 100%? Does a more infectious R<sub>0</sub> give a higher HIT? (It should.) Does a more effective vaccine give a higher VE? (It should.)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FLASHCARDS ==================== -->
+<div class="section" id="sec-flashcards">
+  <div class="score-bar">
+    <div><span class="score-text">Flashcard Progress</span></div>
+    <div><span class="score-pct" id="fc-score">0 / 26</span></div>
+  </div>
+  <div class="fc-container">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="fc-front" id="fc-front"></div>
+      <div class="fc-back" id="fc-back"></div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button class="fc-btn" onclick="prevCard()">&larr;</button>
+    <span class="fc-counter" id="fc-counter">1 / 26</span>
+    <button class="fc-btn" onclick="nextCard()">&rarr;</button>
+  </div>
+  <div class="fc-hint">Click to flip &middot; Arrow keys to navigate</div>
+</div>
+
+<!-- ==================== FRQ ==================== -->
+<div class="section" id="sec-frq">
+  <div class="score-bar">
+    <div><span class="score-text">FRQ Self-Assessment</span></div>
+    <div><span class="score-pct" id="frq-score">0%</span></div>
+    <button class="reset-btn" onclick="resetFRQ()">Reset All</button>
+  </div>
+  <div id="frq-container"></div>
+</div>
+
+<!-- ==================== MATCHING ==================== -->
+<div class="section" id="sec-matching">
+  <div class="score-bar">
+    <div><span class="score-text">Matching</span></div>
+    <div><span class="score-pct" id="match-score">0 / 12</span></div>
+    <button class="reset-btn" onclick="initMatching()">Reset</button>
+  </div>
+  <div class="match-grid">
+    <div>
+      <div class="match-col-header">Term</div>
+      <div id="match-left"></div>
+    </div>
+    <div>
+      <div class="match-col-header">Definition</div>
+      <div id="match-right"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HARD FRQ ==================== -->
+<div class="section" id="sec-hard">
+  <div class="score-bar">
+    <div><span class="score-text">Hard FRQ (Exam-Level)</span></div>
+    <div><span class="score-pct" id="hard-score">0%</span></div>
+    <button class="reset-btn" onclick="resetHard()">Reset All</button>
+  </div>
+  <div id="hard-container"></div>
+</div>
+
+</main>
+
+<script>
+// ====== NAVIGATION ======
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+function showTab(btn, id) {
+  btn.closest('.section').querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.closest('.section').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ====== FLASHCARDS ======
+const flashcards = [
+  {q:"What is epidemiology?", a:"The study of the distribution and determinants of health-related states or events in specified populations, and the application of this study to the control of health problems."},
+  {q:"What two things does epidemiology study?", a:"<strong>Frequency</strong> (number of health events relative to the size of the population) and <strong>Pattern</strong> (occurrence by time, place, and person)."},
+  {q:"Who is called the 'Father of Epidemiology' and why?", a:"<strong>John Snow</strong>. Not because he was first (Hippocrates tried in 400 BC), but because he established the modern techniques used in epidemiology."},
+  {q:"When and where was Snow's famous cholera outbreak?", a:"1854, in the Golden Square area (Broad Street) of London."},
+  {q:"What is a spot map and what type of epidemiology is it?", a:"A map marking where each disease victim lived. Snow overlaid water-pump locations on his cholera spot map. It's a form of <strong>descriptive epidemiology</strong> &mdash; it describes who and where, generating hypotheses but not testing them."},
+  {q:"What did Snow do after the spot map showed clustering near a pump?", a:"He showed it to city officials, who removed the pump handle. The epidemic ended. He hypothesized water was the cause."},
+  {q:"How did Snow test his water hypothesis (analytic epidemiology step)?", a:"Retrospectively, he compared cholera death rates between two London water companies: <strong>Lambeth</strong> (intake upstream of London, cleaner) vs <strong>Southwark &amp; Vauxhall</strong> (intake downstream, contaminated). Death rates were dramatically higher in the downstream-supplied districts (5.0 vs 0.9 per 1,000), supporting his water hypothesis."},
+  {q:"What were the death rates per 1,000 in Snow's table?", a:"Southwark &amp; Vauxhall only: <strong>5.0</strong> per 1,000. Lambeth only: <strong>0.9</strong> per 1,000. Both companies: 2.2 per 1,000."},
+  {q:"What is descriptive epidemiology?", a:"Describes the distribution of disease in a population by <strong>time, place, and person</strong> (who/what/where/when). It generates hypotheses but does NOT test them. Examples: spot maps, case counts, age/sex distributions."},
+  {q:"What is analytical epidemiology?", a:"Tests hypotheses by comparing groups (exposed vs unexposed). Asks <strong>why</strong> a disease is occurring. Looks for associations between exposures and outcomes. Snow's two-water-company comparison is the classic example."},
+  {q:"What is R<sub>0</sub>?", a:"<strong>The basic reproduction number</strong> &mdash; the average number of secondary cases generated by one primary case in a fully susceptible population."},
+  {q:"What does R<sub>0</sub> = 1 mean?", a:"Each primary case generates exactly one new case. The outbreak is at steady state. (A primary case must generate at least one new case for the disease to sustain itself.)"},
+  {q:"What does R<sub>0</sub> &gt; 1 mean?", a:"Each case generates more than one new case &mdash; expansion of infected individuals (the outbreak grows)."},
+  {q:"What does R<sub>0</sub> &lt; 1 mean?", a:"Each case generates fewer than one new case &mdash; the pool of infected individuals shrinks and the outbreak dies out."},
+  {q:"What is R<sub>0</sub> for original COVID-19, Delta, Omicron BA.5?", a:"Original COVID-19: <strong>R<sub>0</sub> = 3</strong>. Delta: <strong>R<sub>0</sub> = 8</strong>. Omicron BA.5: <strong>R<sub>0</sub> = 18.6</strong>. (Ebola is ~2 for comparison.)"},
+  {q:"What is herd immunity?", a:"A state where enough of the population is vaccinated/immunized that <strong>transmission through the population stops</strong>. Immunized people break the chain of transmission. The more infectious the disease, the higher the % needed."},
+  {q:"Who does herd immunity protect?", a:"Members of the population who <strong>cannot be vaccinated</strong> &mdash; people who are too young, too old, or have an underlying condition that compromises their immune system."},
+  {q:"What is the herd immunity threshold formula?", a:"<strong>HIT = (1 &minus; 1/R<sub>0</sub>) &times; 100%</strong>. The minimum % of the population that must be immune to break transmission."},
+  {q:"Calculate herd immunity threshold for Ebola (R<sub>0</sub> = 2).", a:"HIT = (1 &minus; 1/2) &times; 100% = <strong>50%</strong>."},
+  {q:"Calculate herd immunity threshold for original COVID-19 (R<sub>0</sub> = 3).", a:"HIT = (1 &minus; 1/3) &times; 100% = <strong>66%</strong> (~66.7%)."},
+  {q:"Calculate herd immunity threshold for Delta (R<sub>0</sub> = 8).", a:"HIT = (1 &minus; 1/8) &times; 100% = <strong>87.5%</strong>."},
+  {q:"Calculate herd immunity threshold for Omicron BA.5 (R<sub>0</sub> = 18.6).", a:"HIT = (1 &minus; 1/18.6) &times; 100% = <strong>~94.6%</strong>."},
+  {q:"What is vaccine efficacy (VE)?", a:"A measure of how well a vaccine reduces the incidence (or attack rate) of disease in a vaccinated group, compared with an unvaccinated group, under controlled trial conditions."},
+  {q:"What is the vaccine efficacy formula?", a:"<strong>VE (%) = (1 &minus; R<sub>V</sub> / R<sub>U</sub>) &times; 100</strong>, where R<sub>V</sub> = incidence/attack rate in vaccinated and R<sub>U</sub> = incidence/attack rate in unvaccinated. As R<sub>V</sub> gets smaller, VE increases."},
+  {q:"In a trial, 10/1000 vaccinated and 100/1000 unvaccinated get sick. What is VE?", a:"R<sub>V</sub> = 0.01, R<sub>U</sub> = 0.10. VE = (1 &minus; 0.01/0.10) &times; 100 = (1 &minus; 0.1) &times; 100 = <strong>90%</strong>."},
+  {q:"What does VE = 0% mean? VE = 100%?", a:"VE = 0%: the vaccine had no effect (R<sub>V</sub> = R<sub>U</sub>). VE = 100%: the vaccine was perfect (R<sub>V</sub> = 0, no vaccinated people got sick)."}
+];
+
+let fcIdx = 0;
+function renderCard() {
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('fc-front').innerHTML = flashcards[fcIdx].q;
+  document.getElementById('fc-back').innerHTML = flashcards[fcIdx].a.replace(/\n/g,'<br>');
+  document.getElementById('fc-counter').textContent = (fcIdx+1)+' / '+flashcards.length;
+  document.getElementById('fc-score').textContent = (fcIdx+1)+' / '+flashcards.length;
+}
+function flipCard() { document.getElementById('flashcard').classList.toggle('flipped'); }
+function nextCard() { fcIdx = (fcIdx+1) % flashcards.length; renderCard(); }
+function prevCard() { fcIdx = (fcIdx-1+flashcards.length) % flashcards.length; renderCard(); }
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight') nextCard();
+  if(e.key==='ArrowLeft') prevCard();
+  if(e.key===' '||e.key==='Enter') { e.preventDefault(); flipCard(); }
+});
+renderCard();
+
+// ====== FRQ ======
+const frqs = [
+  {q:"Define epidemiology and list the two things it studies (frequency and pattern).", a:"<strong>Epidemiology</strong> is the study of the <strong>distribution and determinants of health-related states or events in specified populations</strong>, and the application of this study to the <strong>control of health problems</strong>. It studies: (1) <strong>Frequency</strong> &mdash; the number of health events and the relationship of that number to the size of the population (i.e., a rate, not just a count); (2) <strong>Pattern</strong> &mdash; the occurrence of health-related events by <strong>time, place, and person</strong>.", hy:false},
+  {q:"Why is John Snow called the 'Father of Epidemiology'? Was he the first to attempt epidemiological work?", a:"Snow is called the Father of Epidemiology because he <strong>established the modern techniques</strong> used in the field. He was NOT the first &mdash; <strong>Hippocrates in 400 BC</strong> tried to link environmental and host factors to disease. Snow earns the title because he formalized two distinct approaches still used today: <strong>descriptive</strong> (his spot map) and <strong>analytic</strong> (his retrospective comparison of two water companies).", hy:true},
+  {q:"Walk through the three steps of John Snow's investigation of the 1854 cholera outbreak.", a:"<strong>Step 1 (descriptive):</strong> Snow made a <strong>spot map</strong> showing where in the Golden Square area of London cholera victims lived. He overlaid the locations of <strong>local water pumps</strong> and noticed cases clustered near one. <strong>Step 2 (intervention):</strong> Officials, on Snow's evidence, <strong>removed the pump handle</strong>, and the epidemic ended. He now hypothesized that water was the cause of cholera. <strong>Step 3 (analytic):</strong> To test his hypothesis, Snow retrospectively compared cholera deaths in districts served by two water companies. <strong>Lambeth</strong> drew water <strong>upstream</strong> of London (cleaner); <strong>Southwark &amp; Vauxhall</strong> drew water <strong>downstream</strong> (contaminated). Death rates were ~5&times; higher in the downstream-supplied districts (5.0 vs 0.9 per 1,000), supporting the water hypothesis.", hy:true},
+  {q:"Define descriptive epidemiology and analytical epidemiology, and give one example of each from Snow's work.", a:"<strong>Descriptive epidemiology</strong> describes the <strong>distribution</strong> of disease in a population by <strong>time, place, and person</strong>. It answers <em>who/what/where/when</em> and generates hypotheses without testing them. Snow's <strong>spot map</strong> of cholera cases is a classic example. <strong>Analytical epidemiology</strong> tests hypotheses by comparing groups and asks <em>why</em>. Snow's <strong>two-water-company comparison</strong> &mdash; comparing cholera death rates between districts served by Lambeth (upstream) versus Southwark &amp; Vauxhall (downstream) &mdash; is the textbook example.", hy:true},
+  {q:"What is R<sub>0</sub>? Define it precisely.", a:"<strong>R<sub>0</sub> (the basic reproduction number)</strong> = the <strong>average number of secondary cases generated by one primary case in a (fully) susceptible population</strong>. It quantifies how infectious a pathogen is in a setting where no one is yet immune.", hy:true},
+  {q:"Explain what R<sub>0</sub> = 1, R<sub>0</sub> &gt; 1, and R<sub>0</sub> &lt; 1 each mean for the trajectory of an outbreak.", a:"<strong>R<sub>0</sub> = 1</strong>: a primary case generates exactly one new case &mdash; the outbreak is at steady state. (Note: a primary case must generate at least one new case for the disease to be sustained.) <strong>R<sub>0</sub> &gt; 1</strong>: each case generates more than one new case &mdash; <strong>expansion of infected individuals</strong>; the outbreak grows. <strong>R<sub>0</sub> &lt; 1</strong>: each case generates less than one new case &mdash; <strong>shrinking pool of infected individuals</strong>; the outbreak dies out.", hy:true},
+  {q:"Define herd immunity and explain why more infectious diseases require a higher percentage of vaccinated individuals.", a:"<strong>Herd immunity</strong> is a state where <strong>enough of the population is vaccinated/immunized</strong> against a pathogen that <strong>transmission through the population stops</strong>. The presence of immunized people <strong>breaks the chain of transmission</strong> &mdash; an infected person is more likely to encounter someone immune than someone susceptible. The <strong>more infectious the disease (higher R<sub>0</sub>)</strong>, the higher the percentage that needs to be immune, because each infected person makes more contacts who could become infected. Mathematically, the threshold = (1 &minus; 1/R<sub>0</sub>) &times; 100%, which rises as R<sub>0</sub> rises.", hy:true},
+  {q:"Why is herd immunity important for public health?", a:"Herd immunity <strong>protects members of the population who cannot be vaccinated</strong>: people who are <strong>too young</strong> (e.g., infants below the age for a vaccine), <strong>too old</strong>, or have an <strong>underlying condition that compromises their immune system</strong> (e.g., chemotherapy patients, organ transplant recipients, people with HIV). These individuals depend on the immunity of those around them to avoid infection.", hy:true},
+  {q:"Write down the herd immunity threshold formula. Then calculate the threshold for a pathogen with R<sub>0</sub> = 4.", a:"Formula: <strong>HIT = (1 &minus; 1/R<sub>0</sub>) &times; 100%</strong>. For R<sub>0</sub> = 4: HIT = (1 &minus; 1/4) &times; 100% = (1 &minus; 0.25) &times; 100% = <strong>75%</strong>.", hy:true},
+  {q:"Calculate the herd immunity threshold for COVID-19 Delta variant (R<sub>0</sub> = 8).", a:"HIT = (1 &minus; 1/R<sub>0</sub>) &times; 100% = (1 &minus; 1/8) &times; 100% = (1 &minus; 0.125) &times; 100% = <strong>87.5%</strong>.", hy:true},
+  {q:"Calculate the herd immunity threshold for Omicron BA.5 (R<sub>0</sub> = 18.6) and explain why this is hard to achieve in practice.", a:"HIT = (1 &minus; 1/18.6) &times; 100% &asymp; (1 &minus; 0.0538) &times; 100% &asymp; <strong>94.6%</strong>. This is hard to achieve because: vaccines are not 100% effective (real protected fraction is lower than coverage), immunity wanes over time, vaccine hesitancy reduces coverage, and unvaccinated children pull the population fraction down. Hitting ~95% of the entire population immune simultaneously is extraordinarily difficult.", hy:true},
+  {q:"Define vaccine efficacy and write its formula.", a:"<strong>Vaccine efficacy (VE)</strong> measures how well a vaccine reduces the incidence (attack rate) of disease in vaccinated people compared with unvaccinated people, under controlled trial conditions. Formula: <strong>VE (%) = (1 &minus; R<sub>V</sub>/R<sub>U</sub>) &times; 100</strong>, where R<sub>V</sub> = incidence/attack rate in vaccinated, R<sub>U</sub> = incidence/attack rate in unvaccinated. As R<sub>V</sub> gets smaller, VE increases.", hy:true},
+  {q:"In a vaccine trial, 50 of 5,000 vaccinated and 250 of 5,000 unvaccinated participants get the disease. Calculate vaccine efficacy.", a:"R<sub>V</sub> = 50/5000 = 0.01. R<sub>U</sub> = 250/5000 = 0.05. VE = (1 &minus; 0.01/0.05) &times; 100 = (1 &minus; 0.2) &times; 100 = <strong>80%</strong>.", hy:true},
+  {q:"In a vaccine trial, 5 of 1,000 vaccinated and 100 of 1,000 unvaccinated get sick. What is VE?", a:"R<sub>V</sub> = 5/1000 = 0.005. R<sub>U</sub> = 100/1000 = 0.10. VE = (1 &minus; 0.005/0.10) &times; 100 = (1 &minus; 0.05) &times; 100 = <strong>95%</strong>.", hy:true},
+  {q:"Interpret the meaning of VE = 0%, VE = 50%, VE = 90%, and VE = 100%.", a:"<strong>VE = 0%</strong>: the vaccine had no effect &mdash; R<sub>V</sub> equals R<sub>U</sub>. <strong>VE = 50%</strong>: vaccinated people had half the incidence of unvaccinated people. <strong>VE = 90%</strong>: vaccinated people had 90% lower incidence &mdash; very effective. <strong>VE = 100%</strong>: the vaccine was perfect &mdash; no vaccinated person got sick (R<sub>V</sub> = 0).", hy:true},
+  {q:"Why does Snow's 1854 study count as 'epidemiology' even though he didn't know what was causing cholera at the molecular level?", a:"Epidemiology studies the <strong>distribution and determinants</strong> of disease in populations &mdash; you do not need to know the pathogen to identify patterns and exposures. Snow had population sizes (the 1851 census), exposure groups (different water suppliers), and outcome counts (cholera deaths). By comparing rates between groups with different exposures, he could pinpoint contaminated water as a cause and motivate an effective intervention (remove the pump handle), all without ever isolating <em>Vibrio cholerae</em>. Epidemiology produces actionable knowledge from population-level data.", hy:false},
+  {q:"A vaccine has VE = 70%. The unvaccinated attack rate is 0.20. What is the vaccinated attack rate (R<sub>V</sub>)?", a:"VE = (1 &minus; R<sub>V</sub>/R<sub>U</sub>) &times; 100. 70 = (1 &minus; R<sub>V</sub>/0.20) &times; 100. 0.70 = 1 &minus; R<sub>V</sub>/0.20. R<sub>V</sub>/0.20 = 0.30. <strong>R<sub>V</sub> = 0.06</strong> (i.e., 6% of vaccinated people got sick).", hy:true},
+  {q:"Compare descriptive and analytical epidemiology in a table.", a:"<strong>Descriptive:</strong> asks who/what/where/when; describes distribution; generates hypotheses; example methods are spot maps, case series, prevalence/incidence reports; Snow's spot map. <strong>Analytical:</strong> asks why; tests hypotheses; identifies causal associations; example methods are cohort, case-control, cross-sectional studies; Snow's two-water-company comparison.", hy:true},
+];
+
+const hardFrqs = [
+  {q:"A new respiratory virus emerges with R<sub>0</sub> = 6. (a) Calculate the herd immunity threshold. (b) The lead vaccine candidate has VE = 75% in clinical trials. If 100% of the population is vaccinated with this vaccine, will it achieve sterilizing herd immunity? Show your reasoning.", a:"(a) <strong>HIT = (1 &minus; 1/R<sub>0</sub>) &times; 100% = (1 &minus; 1/6) &times; 100% &asymp; 83.3%</strong>. (b) Even with 100% vaccination coverage, only 75% of vaccinated people are effectively protected (because VE = 75%). That means the <strong>effective immune fraction is 75%</strong>, which is <strong>below the 83.3% threshold</strong>. So <strong>NO, sterilizing herd immunity cannot be achieved</strong> with this vaccine alone. To reach the threshold, you would need either (i) a more efficacious vaccine (VE &ge; ~83.3%), (ii) supplemental natural immunity in some of the population, or (iii) other interventions to reduce R below 1.", hy:true},
+  {q:"You are an epidemiologist investigating a new outbreak of food poisoning at a wedding. Describe how you would use BOTH descriptive and analytical epidemiology to identify the cause. Use Snow's framework as a model.", a:"<strong>Descriptive phase (who/what/where/when):</strong> Collect a list of attendees and identify all who became ill. Record symptoms, time of onset, and demographic details (age, sex, table seating). Plot a <strong>time-of-onset histogram</strong> (analogous to Snow's spot map but in time) to identify a common exposure window. Map who sat where (analogous to Snow's geographic mapping). This generates hypotheses &mdash; e.g., 'cases cluster among people who had the shrimp.' <strong>Analytic phase (why):</strong> Conduct a <strong>retrospective cohort study</strong> &mdash; for each food item served, calculate the <strong>attack rate among people who ate it</strong> versus those who didn't (R<sub>exposed</sub> vs R<sub>unexposed</sub>). The food with the largest difference in attack rates (and a high attack rate among exposed) is the most likely culprit, mirroring Snow's two-water-company comparison. Confirm with lab testing of leftover food. The descriptive phase tells you <em>that</em> there is an outbreak and where to look; the analytic phase tells you <em>why</em> (which exposure caused it).", hy:true},
+  {q:"Two vaccines are tested in parallel trials of the same disease. Vaccine A: 30 cases in 10,000 vaccinated, 300 cases in 10,000 unvaccinated. Vaccine B: 20 cases in 2,000 vaccinated, 100 cases in 2,000 unvaccinated. (a) Calculate VE for both. (b) Which vaccine is more efficacious? (c) If the disease has R<sub>0</sub> = 10, what is the herd immunity threshold, and would either vaccine alone (at 100% coverage) achieve it?", a:"(a) <strong>Vaccine A:</strong> R<sub>V</sub> = 30/10000 = 0.003, R<sub>U</sub> = 300/10000 = 0.03. VE = (1 &minus; 0.003/0.03) &times; 100 = (1 &minus; 0.10) &times; 100 = <strong>90%</strong>. <strong>Vaccine B:</strong> R<sub>V</sub> = 20/2000 = 0.01, R<sub>U</sub> = 100/2000 = 0.05. VE = (1 &minus; 0.01/0.05) &times; 100 = (1 &minus; 0.20) &times; 100 = <strong>80%</strong>. (b) <strong>Vaccine A is more efficacious</strong> (90% vs 80%). (c) HIT = (1 &minus; 1/10) &times; 100% = <strong>90%</strong>. At 100% coverage: Vaccine A's effective immune fraction = 100% &times; 90% = 90% &mdash; <strong>just barely meets the threshold</strong> (very fragile). Vaccine B's effective immune fraction = 100% &times; 80% = 80% &mdash; <strong>below the 90% threshold</strong>; it cannot achieve sterilizing herd immunity alone.", hy:true},
+  {q:"A student claims: 'Snow's two-water-company comparison is descriptive epidemiology because it just describes which company had more deaths.' Critique this claim and explain whether it is descriptive or analytic.", a:"The claim is <strong>incorrect</strong>. Although the comparison reports counts and rates, what makes a study analytic is not whether it has numbers but whether it <strong>tests a hypothesis by comparing groups with different exposures</strong>. Snow had a <strong>specific prior hypothesis</strong> &mdash; that contaminated water from downstream of London caused cholera &mdash; based on his spot map. The two-company comparison was set up to <strong>test that hypothesis</strong> by comparing the cholera death rate in districts served by Lambeth (upstream/clean) versus Southwark &amp; Vauxhall (downstream/contaminated). The dramatic difference (~5.0 vs 0.9 per 1,000) provided evidence supporting the water hypothesis. This is the textbook structure of <strong>analytical epidemiology</strong>: define exposure groups, compare outcome rates, infer causation. The <strong>spot map</strong> was the descriptive step (where do cases cluster?). The <strong>company comparison</strong> was the analytic step (why?).", hy:true},
+  {q:"COVID-19 evolved through several variants with different R<sub>0</sub> values: original (3), Delta (8), BA.5 (18.6). (a) Calculate the herd immunity threshold for each. (b) Explain why the rising R<sub>0</sub> made it progressively harder to control COVID-19 even as vaccination expanded. (c) What does this tell us about the relationship between pathogen evolution and public health strategy?", a:"(a) <strong>Original (R<sub>0</sub>=3):</strong> HIT = (1 &minus; 1/3) &times; 100% &asymp; <strong>66.7%</strong>. <strong>Delta (R<sub>0</sub>=8):</strong> HIT = (1 &minus; 1/8) &times; 100% = <strong>87.5%</strong>. <strong>BA.5 (R<sub>0</sub>=18.6):</strong> HIT = (1 &minus; 1/18.6) &times; 100% &asymp; <strong>94.6%</strong>. (b) Each new variant required a higher fraction of immunes to interrupt transmission. The original strain's 66.7% threshold was achievable with strong vaccination campaigns. Delta pushed the bar above ~87% &mdash; very difficult given vaccine hesitancy and waning immunity. BA.5's ~95% threshold is essentially <strong>unachievable</strong> when factoring in vaccine efficacy &lt; 100%, immunity waning, and unvaccinated children. So even though absolute vaccine coverage was rising, the <strong>moving target</strong> of variant R<sub>0</sub> kept us below the herd immunity threshold. (c) Pathogens can <strong>evolve to higher R<sub>0</sub></strong> (more transmissible variants), and when they do, the math of (1 &minus; 1/R<sub>0</sub>) demands a higher fraction immune. Public health strategy must therefore be <strong>dynamic</strong> &mdash; it cannot rely on a one-time herd-immunity calculation. We need to combine vaccination with non-pharmaceutical interventions (masks, distancing, ventilation) to lower <em>effective</em> R, and continually monitor circulating R<sub>0</sub> values via surveillance.", hy:true},
+  {q:"You are designing a vaccine trial for a new pathogen. Without simulation, you don't know R<sub>V</sub> or R<sub>U</sub> in advance &mdash; you measure them. Walk through how you would: (a) compute attack rates from raw counts, (b) compute VE from those attack rates, and (c) translate that VE plus an estimate of R<sub>0</sub> into a vaccination coverage target for the public health rollout.", a:"(a) <strong>Attack rate = (number who got the disease) / (number at risk in that group)</strong>. So R<sub>V</sub> = (cases in vaccinated arm) / (total vaccinated participants), and R<sub>U</sub> = (cases in unvaccinated/placebo arm) / (total unvaccinated participants). (b) <strong>VE (%) = (1 &minus; R<sub>V</sub>/R<sub>U</sub>) &times; 100</strong>. Plug the two attack rates in directly. (c) Compute the herd immunity threshold from the field-estimated R<sub>0</sub>: <strong>HIT = (1 &minus; 1/R<sub>0</sub>) &times; 100%</strong>. Because the vaccine isn't 100% effective, you have to over-vaccinate to compensate. Each vaccinated person counts only as VE/100 of an immune person on average. So required <strong>coverage C must satisfy C &times; (VE/100) &ge; HIT/100</strong>, i.e., <strong>C &ge; HIT / VE</strong>. Example: if R<sub>0</sub> = 5 (HIT = 80%) and VE = 80%, you need C &ge; 80/80 = <strong>100% coverage</strong> &mdash; theoretically achievable, but extremely fragile. If VE = 90%, you need C &ge; 80/90 &asymp; <strong>89% coverage</strong> &mdash; more realistic. If VE = 50%, you need C &ge; 80/50 = <strong>160%</strong> &mdash; impossible &mdash; meaning the vaccine alone cannot achieve herd immunity for this pathogen.", hy:true},
+];
+
+function buildFRQ(container, questions, prefix) {
+  const el = document.getElementById(container);
+  el.innerHTML = '';
+  questions.forEach((q,i) => {
+    const hy = q.hy ? 'hy-frq' : '';
+    el.innerHTML += `
+    <div class="frq-card ${hy}">
+      <div class="frq-prompt"><span class="q-num">${i+1}</span>${q.q}${q.hy?'<span class="hy-badge">HIGH YIELD</span>':''}</div>
+      <textarea placeholder="Write your answer..." id="${prefix}-ta-${i}"></textarea>
+      <button class="frq-reveal-btn" onclick="revealFRQ('${prefix}',${i})">Reveal Answer</button>
+      <div class="frq-answer" id="${prefix}-ans-${i}">${q.a}</div>
+      <div class="frq-self-grade" id="${prefix}-grade-${i}">
+        <button class="grade-btn got-it" onclick="gradeFRQ('${prefix}',${i},'got-it')">Got it</button>
+        <button class="grade-btn partial" onclick="gradeFRQ('${prefix}',${i},'partial')">Partial</button>
+        <button class="grade-btn missed" onclick="gradeFRQ('${prefix}',${i},'missed')">Missed</button>
+      </div>
+    </div>`;
+  });
+}
+
+const frqGrades = {};
+const hardGrades = {};
+
+function revealFRQ(prefix, i) {
+  document.getElementById(prefix+'-ans-'+i).classList.add('show');
+  document.getElementById(prefix+'-grade-'+i).classList.add('show');
+}
+function gradeFRQ(prefix, i, grade) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  grades[i] = grade;
+  const btns = document.getElementById(prefix+'-grade-'+i).querySelectorAll('.grade-btn');
+  btns.forEach(b => b.classList.remove('selected-grade'));
+  event.target.classList.add('selected-grade');
+  updateFRQScore(prefix);
+}
+function updateFRQScore(prefix) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  const total = prefix === 'frq' ? frqs.length : hardFrqs.length;
+  let pts = 0;
+  Object.values(grades).forEach(g => { if(g==='got-it') pts+=1; else if(g==='partial') pts+=0.5; });
+  document.getElementById(prefix+'-score').textContent = Math.round((pts/total)*100)+'%';
+}
+function resetFRQ() {
+  Object.keys(frqGrades).forEach(k => delete frqGrades[k]);
+  buildFRQ('frq-container', frqs, 'frq');
+  document.getElementById('frq-score').textContent = '0%';
+}
+function resetHard() {
+  Object.keys(hardGrades).forEach(k => delete hardGrades[k]);
+  buildFRQ('hard-container', hardFrqs, 'hard');
+  document.getElementById('hard-score').textContent = '0%';
+}
+
+buildFRQ('frq-container', frqs, 'frq');
+buildFRQ('hard-container', hardFrqs, 'hard');
+
+// ====== MATCHING ======
+const matchPairs = [
+  {term:"Epidemiology", def:"Study of distribution and determinants of health-related events in populations, applied to disease control"},
+  {term:"Frequency", def:"Number of health events relative to the size of the population (a rate)"},
+  {term:"Pattern", def:"Occurrence of health events by time, place, and person"},
+  {term:"John Snow", def:"Father of modern epidemiology; investigated 1854 Golden Square cholera outbreak in London"},
+  {term:"Spot map", def:"Geographic plot of disease cases; descriptive epidemiology tool used by Snow"},
+  {term:"Descriptive epidemiology", def:"Describes who/what/where/when; generates hypotheses (e.g., Snow's spot map)"},
+  {term:"Analytical epidemiology", def:"Tests hypotheses by comparing exposed vs unexposed groups (e.g., Snow's two water companies)"},
+  {term:"R<sub>0</sub>", def:"Basic reproduction number: average secondary cases per primary case in a susceptible population"},
+  {term:"Herd immunity", def:"State where enough of a population is immune that transmission stops"},
+  {term:"Herd immunity threshold formula", def:"(1 &minus; 1/R<sub>0</sub>) &times; 100%"},
+  {term:"Vaccine efficacy formula", def:"(1 &minus; R<sub>V</sub>/R<sub>U</sub>) &times; 100, comparing attack rate in vaccinated vs unvaccinated"},
+  {term:"Lambeth vs Southwark &amp; Vauxhall", def:"Snow's analytic comparison: upstream (clean) vs downstream (contaminated) Thames water suppliers"},
+];
+
+let matchLeft = null, matchRight = null, matchedCount = 0;
+function initMatching() {
+  matchLeft = null; matchRight = null; matchedCount = 0;
+  const lDiv = document.getElementById('match-left');
+  const rDiv = document.getElementById('match-right');
+  const sL = [...matchPairs].sort(() => Math.random()-0.5);
+  const sR = [...matchPairs].sort(() => Math.random()-0.5);
+  lDiv.innerHTML = sL.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('left',this)">${p.term}</div>`).join('');
+  rDiv.innerHTML = sR.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('right',this)">${p.def}</div>`).join('');
+  document.getElementById('match-score').textContent = '0 / '+matchPairs.length;
+}
+function selectMatch(side, el) {
+  if(el.classList.contains('matched')) return;
+  el.parentElement.querySelectorAll('.match-item').forEach(i => { if(!i.classList.contains('matched')) i.classList.remove('selected'); });
+  el.classList.add('selected');
+  if(side==='left') matchLeft = el; else matchRight = el;
+  if(matchLeft && matchRight) checkMatch();
+}
+function checkMatch() {
+  if(matchLeft.dataset.term === matchRight.dataset.term) {
+    matchLeft.classList.add('matched'); matchLeft.classList.remove('selected');
+    matchRight.classList.add('matched'); matchRight.classList.remove('selected');
+    matchedCount++;
+    document.getElementById('match-score').textContent = matchedCount+' / '+matchPairs.length;
+  } else {
+    matchLeft.classList.add('wrong-match'); matchRight.classList.add('wrong-match');
+    const l=matchLeft, r=matchRight;
+    setTimeout(() => { l.classList.remove('wrong-match','selected'); r.classList.remove('wrong-match','selected'); }, 700);
+  }
+  matchLeft = null; matchRight = null;
+}
+initMatching();
+</script>
+</body>
+</html>

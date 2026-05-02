@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intracellular Infections - BIOL 3303 Study Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232733;
+    --border: #2e3344;
+    --text: #e2e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --green: #00cec9;
+    --green-dim: #00cec920;
+    --red: #fd7272;
+    --red-dim: #fd727220;
+    --orange: #ffa94d;
+    --orange-dim: #ffa94d20;
+    --blue: #74b9ff;
+    --yellow: #ffd43b;
+    --yellow-dim: #ffd43b18;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 8px;
+    overflow-x: auto;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent-light);
+    white-space: nowrap;
+    margin-right: 16px;
+    letter-spacing: -0.3px;
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .nav-btn:hover { color: var(--text); background: var(--surface2); }
+  .nav-btn.active {
+    color: var(--accent-light);
+    background: #6c5ce715;
+    border-color: #6c5ce740;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 84px 24px 60px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+    color: var(--accent-light);
+  }
+  .card p, .card li {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 6px; }
+  .card li::marker { color: var(--accent); }
+
+  .highlight { color: var(--green); font-weight: 600; }
+  .organism { color: var(--orange); font-weight: 600; }
+  .warn { color: var(--red); font-weight: 600; }
+  .key {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+
+  /* HIGH YIELD */
+  .hy-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin-left: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    animation: hyPulse 2s ease-in-out infinite;
+  }
+  @keyframes hyPulse {
+    0%, 100% { box-shadow: 0 0 0 0 #ffd43b40; }
+    50% { box-shadow: 0 0 12px 4px #ffd43b30; }
+  }
+  .hy-card {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .hy-card h2 { color: var(--yellow); }
+
+  .hy-legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: var(--yellow-dim);
+    border: 1px solid #ffd43b40;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--yellow);
+    font-weight: 600;
+  }
+
+  .exam-topics {
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: var(--surface2);
+    border: 1px solid #ffd43b30;
+    border-radius: 10px;
+  }
+  .exam-topics p {
+    font-size: 12px;
+    color: var(--yellow);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .exam-topics ul { padding-left: 18px; }
+  .exam-topics li {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .exam-topics li::marker { color: var(--yellow); }
+
+  /* HERO */
+  .hero-card {
+    background: linear-gradient(135deg, #6c5ce730, #00cec915);
+    border-color: #6c5ce740;
+    text-align: center;
+    padding: 48px 28px;
+  }
+  .hero-card h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .hero-card p { color: var(--text-dim); font-size: 15px; }
+  .hero-stats {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat-num { font-size: 24px; font-weight: 800; color: var(--accent-light); }
+  .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+  /* TABS */
+  .tab-row { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .tab-btn.hy-tab { border-color: #ffd43b60; }
+  .tab-btn.hy-tab.active { background: linear-gradient(135deg, #ffd43b, #f59f00); color: #1a1d27; border-color: #ffd43b; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* TABLES */
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .data-table th, .data-table td { padding: 8px 12px; border: 1px solid var(--border); text-align: left; font-size: 13.5px; }
+  .data-table th { background: var(--surface2); color: var(--accent-light); font-weight: 600; }
+  .data-table td { color: var(--text-dim); }
+  .data-table.hy-table th { color: var(--yellow); }
+
+  /* DIAGRAM */
+  .diagram-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 14px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .diagram-box .arr { color: var(--accent-light); }
+  .diagram-box .mol { color: var(--green); font-weight: 700; }
+  .diagram-box .label { color: var(--text-dim); font-style: italic; }
+
+  .callout {
+    background: #00cec920;
+    border: 1px solid #00cec940;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    font-size: 13.5px;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* SCORE BAR */
+  .score-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .score-text { font-size: 15px; font-weight: 600; }
+  .score-pct { font-size: 28px; font-weight: 800; color: var(--accent-light); }
+  .reset-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { background: var(--accent-light); color: var(--bg); }
+
+  /* FLASHCARD */
+  .fc-container { perspective: 1000px; margin-bottom: 16px; }
+  .flashcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    cursor: pointer;
+    transition: transform 0.5s, box-shadow 0.3s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .flashcard:hover { box-shadow: 0 4px 24px #6c5ce720; }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .fc-front, .fc-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    backface-visibility: hidden;
+    border-radius: 14px;
+  }
+  .fc-front { font-size: 16px; font-weight: 600; color: var(--text); }
+  .fc-back {
+    transform: rotateY(180deg);
+    font-size: 15px;
+    color: var(--green);
+    background: var(--surface);
+    line-height: 1.6;
+  }
+  .fc-nav { display: flex; gap: 10px; justify-content: center; align-items: center; }
+  .fc-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .fc-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .fc-counter { font-size: 13px; color: var(--text-dim); font-weight: 600; min-width: 60px; text-align: center; }
+  .fc-hint { text-align: center; color: var(--text-dim); font-size: 12px; margin-top: 10px; }
+
+  /* MATCHING */
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .match-col-header {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+  .match-item {
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .match-item:hover { border-color: var(--accent); color: var(--text); }
+  .match-item.selected { border-color: var(--accent); background: #6c5ce715; color: var(--accent-light); }
+  .match-item.matched { border-color: var(--green); background: var(--green-dim); color: var(--green); pointer-events: none; opacity: 0.7; }
+  .match-item.wrong-match { border-color: var(--red); background: var(--red-dim); color: var(--red); }
+
+  /* FRQ */
+  .frq-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .frq-card.hy-frq {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .frq-card .q-num {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .frq-card.hy-frq .q-num {
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+  }
+  .frq-card .frq-prompt { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+  .frq-card .frq-hint { font-size: 12px; color: var(--text-dim); margin-bottom: 12px; font-style: italic; }
+  .frq-card textarea {
+    width: 100%;
+    min-height: 100px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    padding: 14px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+  .frq-card textarea:focus { outline: none; border-color: var(--accent); }
+  .frq-card textarea::placeholder { color: #4a4e63; }
+  .frq-reveal-btn {
+    display: inline-block;
+    margin-top: 12px;
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent-light);
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .frq-reveal-btn:hover { background: #6c5ce715; }
+  .frq-answer {
+    display: none;
+    margin-top: 14px;
+    padding: 16px;
+    background: var(--surface2);
+    border-radius: 10px;
+    border-left: 3px solid var(--green);
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .frq-answer.show { display: block; }
+  .frq-answer strong { color: var(--green); }
+  .frq-self-grade { display: none; margin-top: 12px; gap: 8px; }
+  .frq-self-grade.show { display: flex; }
+  .grade-btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .grade-btn.got-it { color: var(--green); border-color: var(--green); }
+  .grade-btn.got-it:hover { background: var(--green-dim); }
+  .grade-btn.partial { color: var(--orange); border-color: var(--orange); }
+  .grade-btn.partial:hover { background: var(--orange-dim); }
+  .grade-btn.missed { color: var(--red); border-color: var(--red); }
+  .grade-btn.missed:hover { background: var(--red-dim); }
+  .grade-btn.selected-grade { font-weight: 800; }
+  .grade-btn.got-it.selected-grade { background: var(--green-dim); }
+  .grade-btn.partial.selected-grade { background: var(--orange-dim); }
+  .grade-btn.missed.selected-grade { background: var(--red-dim); }
+
+  @media (max-width: 600px) {
+    .nav-brand { display: none; }
+    main { padding: 76px 14px 40px; }
+    .card { padding: 20px; }
+    .hero-card { padding: 32px 20px; }
+    .hero-card h1 { font-size: 22px; }
+    .match-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">IntraInfStudy</span>
+    <button class="nav-btn active" onclick="showSection('home')">Home</button>
+    <button class="nav-btn" onclick="showSection('learn')">Learn</button>
+    <button class="nav-btn" onclick="showSection('flashcards')">Flashcards</button>
+    <button class="nav-btn" onclick="showSection('frq')">FRQ</button>
+    <button class="nav-btn" onclick="showSection('matching')">Matching</button>
+    <button class="nav-btn" onclick="showSection('hard')">Hard FRQ</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ==================== HOME ==================== -->
+<div class="section active" id="sec-home">
+  <div class="card hero-card">
+    <h1>Intracellular Infections</h1>
+    <p>BIOL 3303 &middot; Lecture 22 &mdash; <em>Listeria monocytogenes</em> &amp; <em>Salmonella</em> Typhi</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Topics</div></div>
+      <div class="stat"><div class="stat-num">34</div><div class="stat-label">Flashcards</div></div>
+      <div class="stat"><div class="stat-num">20</div><div class="stat-label">FRQs</div></div>
+    </div>
+    <div class="hy-legend">HIGH YIELD = Confirmed exam topics from your professor. Prioritize these.</div>
+    <div class="exam-topics">
+      <p>Your Professor's Exam Topics</p>
+      <ul>
+        <li><strong>Extracellular vs Intracellular pathogens</strong> &mdash; the conceptual divide</li>
+        <li><strong><em>Listeria</em></strong> &mdash; host cell entry (internalins), LLO, intracellular spread (actin rockets via ActA)</li>
+        <li><strong><em>Salmonella</em></strong> &mdash; disease manifestations, Typhoid Mary, mode of entry, SCV survival, escape from host cells</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LEARN ==================== -->
+<div class="section" id="sec-learn">
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="showTab(this,'overview')">Overview</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'extravsintra')">Extra vs Intra</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'listeria')"><em>Listeria</em></button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'salmonella')"><em>Salmonella</em></button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'mary')">Typhoid Mary</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'compare')">Compare Both</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-content active" id="tab-overview">
+    <div class="card">
+      <h2>The Big Picture</h2>
+      <p>Lecture 22 contrasts <span class="highlight">extracellular pathogens</span> (kill host cells from outside, replicate in the lumen) with <span class="highlight">intracellular pathogens</span> (invade and replicate <em>inside</em> host cells). Two example intracellular pathogens, with very different lifestyles:</p>
+      <ul>
+        <li><span class="organism"><em>Listeria monocytogenes</em></span> &mdash; replicates in the <span class="highlight">cytoplasm</span>; escapes the phagosome with LLO; spreads cell-to-cell using actin rockets driven by ActA</li>
+        <li><span class="organism"><em>Salmonella</em> Typhi</span> &mdash; stays inside a <span class="highlight">vacuole (SCV)</span>; resists acidification and immune killing; escapes when nutrients run out by inducing host apoptosis</li>
+      </ul>
+
+      <h3>Connection Map</h3>
+      <table class="data-table">
+        <tr><th>Pathogen</th><th>Type</th><th>Replication site</th><th>Key virulence trick</th></tr>
+        <tr><td><em>L. monocytogenes</em></td><td>Gram&#8209;positive bacillus</td><td><span class="highlight">Cytoplasm</span> (escapes phagosome)</td><td>Internalins, LLO, ActA actin rockets</td></tr>
+        <tr><td><em>S.</em> Typhi</td><td>Gram&#8209;negative rod</td><td><span class="highlight">Vacuole (SCV)</span> &mdash; late endosome</td><td>SPI1 entry, SCV survival, induced apoptosis</td></tr>
+      </table>
+
+      <div class="callout">Both pathogens go inside cells, but for opposite reasons: <em>Listeria</em> uses the cytoplasm as a free buffet of nutrients hidden from antibodies; <em>Salmonella</em> uses the vacuole as a hideout from host antimicrobial systems. The fork is: cytoplasm vs vacuole.</div>
+    </div>
+  </div>
+
+  <!-- EXTRA VS INTRA -->
+  <div class="tab-content" id="tab-extravsintra">
+    <div class="card hy-card">
+      <h2>Extracellular vs Intracellular Pathogens <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p><span class="key">DEF</span> <strong>Extracellular pathogens</strong> kill host cells <span class="highlight">from the outside</span> and replicate <span class="highlight">outside of host cells</span>.</p>
+      <ul>
+        <li>Example: <span class="organism">Enterohemorrhagic <em>E. coli</em></span> kills intestinal epithelial cells by <span class="highlight">secreting toxins</span> &mdash; never invades cells; replicates in the lumen of the intestine</li>
+      </ul>
+
+      <p><span class="key">DEF</span> <strong>Intracellular pathogens</strong> can <span class="highlight">invade and replicate within host cells</span>. The ability to do this is often <span class="highlight">crucial for their pathogenesis</span>.</p>
+      <ul>
+        <li>Two examples covered in this lecture: <em>Listeria monocytogenes</em> and <em>Salmonella</em> Typhi</li>
+        <li>But there are many more &mdash; classified by <span class="highlight">where in the host cell they replicate</span></li>
+      </ul>
+
+      <h3>Replication Site Determines the Strategy</h3>
+      <table class="data-table hy-table">
+        <tr><th>Replication site</th><th>Example species</th><th>Type</th></tr>
+        <tr><td rowspan="3"><strong>Cytoplasm</strong></td><td><em>Listeria monocytogenes</em></td><td>Gram&#8209;positive bacterium</td></tr>
+        <tr><td><em>Shigella flexneri</em>, <em>Rickettsia rickettsii</em></td><td>Gram&#8209;negative bacteria</td></tr>
+        <tr><td><em>Mycobacterium marinum</em></td><td>Acid&#8209;fast</td></tr>
+        <tr><td rowspan="3"><strong>Vacuole</strong></td><td><em>Salmonella typhimurium</em> &mdash; late endosome</td><td>Gram&#8209;negative bacterium</td></tr>
+        <tr><td><em>Mycobacterium tuberculosis</em> &mdash; recycling endosome</td><td>Acid&#8209;fast</td></tr>
+        <tr><td><em>Chlamydia trachomatis</em>, <em>Coxiella burnetii</em></td><td>Gram&#8209;negative bacteria</td></tr>
+      </table>
+
+      <h3>Survival Strategies of Intracellular Pathogens</h3>
+      <p>Lecture flagged <span class="highlight">two strategies in particular</span>:</p>
+      <ul>
+        <li><span class="highlight">Actin-based protrusion</span> (<em>L. monocytogenes</em>, <em>Shigella flexneri</em>, <em>Rickettsia</em>) &mdash; a single bacterium uses force from <span class="highlight">actin polymerization</span> to protrude from the cell membrane and force engulfment into a neighboring cell</li>
+        <li><span class="highlight">Apoptosis</span> (<em>Salmonella</em>, <em>L. monocytogenes</em>, <em>Shigella</em>) &mdash; the pathogen <span class="highlight">induces programmed cell death</span> via virulence factors to release itself</li>
+      </ul>
+      <p>Other strategies on the diagram: cytolysis, budding (<em>Orientia</em>), extrusion (<em>Chlamydia</em>), phagosomal expulsion (<em>Cryptococcus</em>), pyroptosis (sensing flagellin &rarr; lytic cell death).</p>
+
+      <div class="callout">The cytoplasm vs vacuole distinction matters because each location demands a different toolkit. Cytoplasm-dwellers need to <strong>break out of the phagosome</strong> first; vacuole-dwellers need to <strong>resist what the phagosome would normally do</strong> (acidify, fuse with lysosomes).</div>
+    </div>
+  </div>
+
+  <!-- LISTERIA -->
+  <div class="tab-content" id="tab-listeria">
+    <div class="card hy-card">
+      <h2><em>Listeria monocytogenes</em>: Entry, LLO, ActA <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3><em>L. monocytogenes</em> Basics</h3>
+      <ul>
+        <li><span class="organism">Gram-positive bacillus</span> (rod)</li>
+        <li>Usually found in the <span class="highlight">soil</span>; eats decaying matter (a <span class="highlight">saprophyte</span>)</li>
+        <li>Infects diverse organisms: protists, arthropods, mammals</li>
+        <li>Named after Joseph Lister, the microbiologist who pioneered <span class="highlight">sterility</span> in surgery</li>
+        <li>"<em>monocytogenes</em>" = the dramatic <span class="highlight">accumulation of monocytes</span> seen during infection</li>
+        <li>Humans most often exposed via <span class="warn">contaminated food</span> (processed meat, milk products)</li>
+        <li>Tolerates <span class="highlight">cold, high salt, and low moisture</span> &mdash; survives refrigeration!</li>
+      </ul>
+
+      <h3>Disease: How <em>Listeria</em> Makes Us Sick</h3>
+      <ul>
+        <li>Ingested &rarr; colonizes digestive tract</li>
+        <li>In <span class="highlight">healthy people</span>: shed without incident (maybe mild diarrhea)</li>
+        <li>In <span class="warn">immunocompromised</span> people: crosses the <span class="highlight">intestinal barrier</span>, travels through the lymphatic system, gains access to other tissues. Symptoms develop <span class="highlight">3&ndash;4 weeks</span> after exposure</li>
+        <li>If it enters the bloodstream &rarr; <span class="warn">septicemia</span></li>
+        <li>If it crosses the <span class="highlight">blood&ndash;brain barrier</span> &rarr; <span class="warn">meningitis and encephalitis</span></li>
+        <li>If ingested during pregnancy &rarr; can cross the <span class="highlight">placental barrier</span> &rarr; <span class="warn">miscarriage</span></li>
+      </ul>
+
+      <h3>Step 1 &mdash; Host Cell Entry: Internalins A &amp; B <span class="hy-badge">HIGH YIELD</span></h3>
+      <ul>
+        <li><em>Listeria</em> displays <span class="highlight">two surface proteins, Internalin A and Internalin B (InlA, InlB)</span></li>
+        <li>The internalins <span class="highlight">bind a receptor on the surface of the epithelial cell</span></li>
+        <li>This triggers a <span class="highlight">signal transduction cascade</span> that <span class="highlight">reorganizes the host's cytoskeleton</span>, causing the membrane to <span class="highlight">ruffle</span></li>
+        <li>The ruffling allows <span class="highlight">phagocytosis of <em>Listeria</em></span> &mdash; important because <span class="warn">epithelial cells are NOT normally phagocytic</span></li>
+        <li>This is sometimes called the <span class="highlight">"zipper" mechanism</span> &mdash; the cell membrane wraps closely around the bacterium during uptake</li>
+        <li>Once inside, instead of being trafficked to the <span class="highlight">lysosome</span>, <em>Listeria</em> <span class="warn">escapes the phagosome</span> and enters the <span class="highlight">cytoplasm</span></li>
+      </ul>
+
+      <div class="diagram-box"><span class="label">Step 1: Internalin-driven entry (the "zipper")</span>
+   <span class="mol">InlA / InlB</span> on Listeria  &rarr;  receptor on epithelial cell
+                            &darr;
+                  signal transduction cascade
+                            &darr;
+                cytoskeleton reorganization
+                            &darr;
+                <span class="warn">membrane ruffling</span>  &rarr;  phagocytosis</div>
+
+      <h3>Step 2 &mdash; Phagosome Escape: Listeriolysin O (LLO) <span class="hy-badge">HIGH YIELD</span></h3>
+      <ul>
+        <li>Once engulfed, <em>Listeria</em> secretes <span class="highlight">listeriolysin O (LLO)</span>, a <span class="highlight">pore-forming toxin</span></li>
+        <li>LLO is assembled from <span class="highlight">dozens of monomers</span></li>
+        <li>It <span class="highlight">assembles only in acidic pH</span> &mdash; this is critical: the phagosome acidifies, but the cytoplasm is neutral, so LLO won't accidentally punch holes in the host cell after escape</li>
+        <li>Each monomer binds <span class="highlight">cholesterol-rich membranes</span> of the phagosome (a "cholesterol-dependent cytolysin")</li>
+        <li>Linear oligomers form, then drive themselves into the membrane to create <span class="warn">pores</span></li>
+        <li>Ions pass freely &rarr; the <span class="warn">phagosome ruptures</span> &rarr; <em>Listeria</em> released into the cytoplasm</li>
+      </ul>
+
+      <p>LLO belongs to a wider family &mdash; many bacteria use <span class="highlight">cholesterol-dependent cytolysins</span>:</p>
+      <table class="data-table hy-table">
+        <tr><th>Species</th><th>Toxin</th><th>Effect</th></tr>
+        <tr><td><em>Bacillus anthracis</em></td><td>Anthrolysin O</td><td>Disrupts epithelial barriers</td></tr>
+        <tr><td><em>Clostridium perfringens</em></td><td>Perfringolysin O</td><td>Inhibits leukocyte migration</td></tr>
+        <tr><td><em>Listeria monocytogenes</em></td><td><strong>Listeriolysin O</strong></td><td><strong>Lyses phagosome</strong></td></tr>
+        <tr><td><em>Streptococcus pneumoniae</em></td><td>Pneumolysin</td><td>Induces inflammation and apoptosis</td></tr>
+        <tr><td><em>Streptococcus pyogenes</em></td><td>Streptolysin O</td><td>Apoptosis of phagocytes &amp; epithelial cells</td></tr>
+      </table>
+
+      <h3>Step 3 &mdash; Cytoplasmic Replication</h3>
+      <ul>
+        <li>Once liberated, <em>Listeria</em> <span class="highlight">multiplies</span> in the cytoplasm</li>
+        <li>The cytoplasm is a buffet: bacteria scavenge host nutrients freely</li>
+        <li>And, critically, they are <span class="warn">protected from phagocytes, complement, and antibodies</span> &mdash; all of which act in the extracellular space</li>
+        <li>But one host cell only has so many nutrients</li>
+      </ul>
+
+      <h3>Step 4 &mdash; Cell-to-Cell Spread: ActA &amp; Actin Rockets <span class="hy-badge">HIGH YIELD</span></h3>
+      <ul>
+        <li>To keep replicating, <em>Listeria</em> <span class="highlight">hijacks host machinery to move into a new cell</span> instead of leaving the cytoplasm</li>
+        <li>It manipulates host <span class="highlight">actin</span> and induces it to <span class="highlight">polymerize at one pole</span>, propelling the bacterium forward as actin filaments assemble behind it</li>
+      </ul>
+
+      <h3>The ActA Mechanism (step by step)</h3>
+      <ol style="padding-left: 20px;">
+        <li style="margin-bottom: 8px;"><em>Listeria</em> displays the protein <span class="highlight">ActA</span> on its surface <span class="highlight">at one pole</span> (asymmetric)</li>
+        <li style="margin-bottom: 8px;">ActA <span class="highlight">stimulates host actin polymerization</span> at that pole</li>
+        <li style="margin-bottom: 8px;">Short actin filaments form at the ActA pole</li>
+        <li style="margin-bottom: 8px;">As the bacillus jiggles in <span class="highlight">Brownian motion</span>, gaps behind it are immediately stuffed with actin filaments &mdash; this <span class="warn">drives the bacterium forward</span></li>
+        <li style="margin-bottom: 8px;">At random, some bacteria are <span class="warn">propelled out of the cell into a neighboring cell</span></li>
+        <li style="margin-bottom: 8px;">In the new cell, <em>Listeria</em> is wrapped in a <span class="warn">double membrane</span> (one from each cell) that it uses <span class="highlight">LLO</span> to break out of (LLO appears twice in the lifecycle!)</li>
+      </ol>
+
+      <div class="diagram-box"><span class="label">Cell-to-cell spread (actin rocket model):</span>
+
+  Cell A:                                Cell B:
+   [<span class="mol">Listeria</span>]<span class="warn">==<span class="arr">&gt;</span></span>          [Listeria in
+   actin tail              double membrane]
+                                      &darr;
+                                <span class="mol">LLO</span> escape
+                                      &darr;
+                              new cytoplasmic cycle</div>
+
+      <p><strong>Why this matters:</strong> spread by actin rockets means <em>Listeria</em> <span class="warn">never enters the extracellular space</span>. So antibodies, complement, and most phagocytes <span class="highlight">never get a shot at it</span>. This is how <em>Listeria</em> spreads to many body sites (gut &rarr; liver &rarr; CNS &rarr; placenta).</p>
+
+      <div class="callout">Three-protein <em>Listeria</em> story: <strong>InlA/InlB</strong> trick the epithelial cell into eating the bacterium &rarr; <strong>LLO</strong> (acidic-pH activated, cholesterol-dependent) lyses the phagosome &rarr; <strong>ActA</strong> co-opts host actin to make a "rocket tail" that drives cell-to-cell spread without exposing <em>Listeria</em> to the extracellular immune system.</div>
+    </div>
+  </div>
+
+  <!-- SALMONELLA -->
+  <div class="tab-content" id="tab-salmonella">
+    <div class="card hy-card">
+      <h2><em>Salmonella</em>: Disease, Entry, SCV Survival, Escape <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3><em>Salmonella</em> Basics</h3>
+      <ul>
+        <li><span class="organism">Gram-negative, rod-shaped, mostly motile, non-spore-forming</span></li>
+        <li>Often have <span class="highlight">peritrichous flagella</span> (covered in flagella all over)</li>
+        <li><span class="highlight">Facultative anaerobe</span></li>
+        <li>Two species: <em>S. bongori</em> and <em>S. enterica</em>; <em>S. enterica</em> has 6 subspecies</li>
+        <li><em>S. enterica</em> subsp. <em>enterica</em> is responsible for <span class="warn">~99% of human disease</span></li>
+        <li>Further classified by <span class="highlight">serotype</span> (using antigens) &mdash; over <span class="highlight">2,500 serotypes</span></li>
+        <li><span class="highlight">Typhi</span> is one such serotype: full name <em>Salmonella enterica</em> subsp. <em>enterica</em> serotype Typhi &mdash; usually shortened to <em>Salmonella</em> Typhi (note: Typhi is roman, not italic)</li>
+      </ul>
+
+      <h3>Disease Manifestations <span class="hy-badge">HIGH YIELD</span></h3>
+      <p><em>Salmonella</em> can cause <span class="highlight">four distinct disease manifestations</span> in humans:</p>
+      <table class="data-table hy-table">
+        <tr><th>Manifestation</th><th>Burden</th></tr>
+        <tr><td><strong>1. Enteric fever (typhoid)</strong></td><td>11&ndash;21 million cases/year, <span class="warn">~200K deaths</span></td></tr>
+        <tr><td><strong>2. Gastroenteritis (diarrhea)</strong></td><td>200 million&ndash;1.3 billion cases/year, up to <span class="warn">3 million deaths</span></td></tr>
+        <tr><td><strong>3. Bacteremia</strong></td><td><span class="warn">268K deaths</span> worldwide in 2015</td></tr>
+        <tr><td><strong>4. Chronic asymptomatic carriage</strong></td><td>2&ndash;5% of typhoid survivors; reservoir for outbreaks</td></tr>
+      </table>
+
+      <h3>Typhoid Fever</h3>
+      <ul>
+        <li>Begins with ingestion of a <em>S.</em> Typhi strain &mdash; usually from <span class="highlight">contaminated water, animal products, or close contact</span> with an infected person</li>
+        <li>Symptoms begin <span class="highlight">1&ndash;2 weeks</span> after exposure</li>
+        <li>Generalized fever, malaise, abdominal pain &plusmn; headache, myalgias, nausea, anorexia, constipation &mdash; sometimes diarrhea</li>
+        <li>Fever begins mild and progressively worsens (up to <span class="warn">104&deg;F</span>)</li>
+        <li>If untreated, patients can enter the <span class="warn">"typhoid state"</span>: delirious, lying motionless with eyes half open</li>
+        <li>Mortality (typhoid state, untreated): <span class="warn">10&ndash;30%</span></li>
+        <li>Mortality (typhoid state, treated): 1&ndash;4%</li>
+        <li>Mortality (treated earlier): 0.2%</li>
+      </ul>
+
+      <h3>Chronic Asymptomatic Carriage</h3>
+      <ul>
+        <li><span class="highlight">2&ndash;5%</span> of typhoid survivors don't fully clear the infection &mdash; they become asymptomatic carriers</li>
+        <li>Three things must happen: (1) successful <span class="highlight">breach of the intestinal epithelial barrier</span>; (2) <span class="highlight">evasion of early innate immune killing</span>; (3) <span class="highlight">localization to a permissive niche</span> &mdash; the <span class="warn">biliary tract and gallbladder</span> (often forming <span class="highlight">biofilms on gallstones</span>)</li>
+        <li>Carriers <span class="warn">intermittently shed the bacteria</span> for prolonged, ill-defined periods &mdash; spreading the disease and maintaining a reservoir of infection</li>
+        <li>Most famous chronic asymptomatic carrier: <span class="warn">Typhoid Mary</span></li>
+      </ul>
+
+      <h3>Mode of Entry: How <em>Salmonella</em> Crosses the Gut Epithelium <span class="hy-badge">HIGH YIELD</span></h3>
+      <p>The mode of entry <span class="highlight">depends on the cell type</span> <em>Salmonella</em> encounters in the gut epithelium. Three routes:</p>
+      <table class="data-table hy-table">
+        <tr><th>Cell type</th><th>Entry mechanism</th></tr>
+        <tr><td><strong>M cells</strong> (specialized epithelial cells of mucosa-associated lymphoid tissue that present antigens to immune cells)</td><td><span class="highlight">Receptor-mediated endocytosis</span></td></tr>
+        <tr><td><strong>Dendritic cells</strong></td><td><span class="highlight">Phagocytosis</span></td></tr>
+        <tr><td><strong>Epithelial cells</strong></td><td>Membranes are modified by <span class="highlight">SPI1</span> (<em>Salmonella</em> Pathogenicity Island 1) to <span class="warn">force entry</span> &mdash; SPI1 induces membrane ruffling and cytoskeletal rearrangements</td></tr>
+      </table>
+
+      <p>Once across the epithelium and inside the gut lumen tissues, <em>Salmonella</em> is taken up by <span class="highlight">macrophages, T cells, B cells, neutrophils</span> and other immune cells &mdash; rather than being destroyed there, it survives and uses these as travel vehicles.</p>
+
+      <h3>Survival Inside Cells: The Salmonella-Containing Vacuole (SCV) <span class="hy-badge">HIGH YIELD</span></h3>
+      <p><span class="key">DEF</span> The <strong>Salmonella-Containing Vacuole (SCV)</strong> is the membrane-bound compartment <em>Salmonella</em> establishes inside host cells &mdash; unlike <em>Listeria</em>, <em>Salmonella</em> <span class="warn">stays inside a vacuole</span> rather than escaping to the cytoplasm.</p>
+      <ul>
+        <li>The SCV <span class="highlight">acidifies</span> &mdash; pH drops from <span class="highlight">6.5 to 5.5</span></li>
+        <li><em>Salmonella</em> has <span class="highlight">virulence factors that resist acidification</span> (encoded by SPI2 and others)</li>
+      </ul>
+
+      <p>Other virulence factors that maintain the SCV niche:</p>
+      <ul>
+        <li><span class="highlight">Degrade lysosomes</span> &mdash; prevent fusion of the SCV with lysosomes that would deliver hydrolases</li>
+        <li><span class="highlight">Block nitrosative and oxidative stress</span> (e.g., <em>nirC</em>, arginase, Hmp; <em>katE</em>, <em>katG</em>, <em>sod</em>, <em>rpoS</em>, <em>slyA</em>) &mdash; counters the macrophage's reactive nitrogen and oxygen species</li>
+        <li><span class="highlight">Impair inflammation</span> (<em>sipB</em>, AvrA, SspH1)</li>
+        <li><span class="highlight">Block host antimicrobial peptides</span> (<em>sapABCDF</em>, <em>yejABEF</em>)</li>
+      </ul>
+
+      <h3>Escape from the Host Cell <span class="hy-badge">HIGH YIELD</span></h3>
+      <ul>
+        <li><em>Salmonella</em> <span class="highlight">lives protected within SCVs until the cell's nutrients are depleted</span></li>
+        <li>When nutrients run out, <em>Salmonella</em> <span class="warn">induces macrophage programmed death (apoptosis)</span> via SPI1 effectors</li>
+        <li>The dying macrophage <span class="warn">releases the bacteria</span> &mdash; they search for a new cell to infect</li>
+      </ul>
+
+      <div class="diagram-box"><span class="label">Salmonella intracellular life-cycle:</span>
+
+  Entry &rarr; <span class="mol">SCV</span> forms (pH 6.5)
+            &darr;
+        <span class="warn">acidifies (pH 5.5)</span>
+            &darr;
+   resist acid + block ROS/RNS + block lysosome
+            &darr;
+       replicate inside SCV
+            &darr;
+   <span class="warn">nutrients depleted</span>  &rarr;  induce <span class="mol">apoptosis</span>
+            &darr;
+       released &rarr; new host cell</div>
+
+      <h3>Drug Resistance &mdash; A Growing Threat</h3>
+      <ul>
+        <li><strong>Drug-resistant nontyphoidal <em>Salmonella</em></strong>: ~212,500 infections/year, ~70 deaths/year &mdash; CDC threat level <span class="warn">SERIOUS</span></li>
+        <li><strong>Drug-resistant <em>Salmonella</em> serotype Typhi</strong>: ~4,100 infections/year, &lt;5 deaths/year &mdash; CDC threat level <span class="warn">SERIOUS</span> (typhoid fever can lead to bowel rupture, shock, and death)</li>
+      </ul>
+
+      <div class="callout">The <em>Salmonella</em> story has three pillars: <strong>cell-type-specific entry</strong> (M cells via receptor-mediated endocytosis, dendritic cells via phagocytosis, epithelial cells via SPI1-induced ruffling), <strong>survival in the SCV</strong> (resists acidification, blocks lysosome fusion, neutralizes ROS/RNS), and <strong>nutrient-triggered escape</strong> (induced macrophage apoptosis). Compare to <em>Listeria</em>: cytoplasm vs vacuole, actin rockets vs apoptosis-mediated escape.</div>
+    </div>
+  </div>
+
+  <!-- TYPHOID MARY -->
+  <div class="tab-content" id="tab-mary">
+    <div class="card hy-card">
+      <h2>Typhoid Mary: The First Documented Healthy Carrier <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3>Mary Mallon, 1869&ndash;1938</h3>
+      <ul>
+        <li>Mary Mallon moved to the US from Ireland in <span class="highlight">1883 at age 14</span></li>
+        <li>Literate but had no family; struggled to survive</li>
+        <li>Eventually became a <span class="highlight">cook to wealthy families</span> in New York</li>
+      </ul>
+
+      <h3>The Investigation</h3>
+      <ul>
+        <li>In <span class="highlight">1906</span>, <span class="warn">6 of 11 people</span> in one household where Mary worked got typhoid fever</li>
+        <li>Engineer <span class="highlight">George Soper</span> initially blamed freshwater clams &mdash; but realized that not everyone who ate the clams got sick, and turned his suspicion to Mary</li>
+        <li>Soper checked her work history: <span class="warn">7 of 8 families</span> she had worked for had typhoid cases &mdash; <span class="warn">22 people infected</span>, some died</li>
+        <li>In <span class="highlight">1907</span>, Soper published the <span class="highlight">first paper describing a "healthy carrier" of <em>S.</em> Typhi in the US</span></li>
+        <li>1907 also saw <span class="warn">3,000 New Yorkers infected</span> with typhoid &mdash; likely linked to Mary</li>
+      </ul>
+
+      <h3>First Quarantine (1907&ndash;1910)</h3>
+      <ul>
+        <li>Mary ran from authorities, but was caught and forced to give a stool sample &mdash; positive for <em>S.</em> Typhi</li>
+        <li>Quarantined for <span class="highlight">2 years</span> at Riverside Hospital in a cottage on <span class="highlight">North Brother Island</span></li>
+        <li>Released in <span class="highlight">1910</span> with the order: <span class="warn">never cook again</span></li>
+      </ul>
+
+      <h3>Return to Cooking</h3>
+      <ul>
+        <li>Other jobs didn't pay enough; she got injured and couldn't work</li>
+        <li>Used the fake name <span class="highlight">"Mary Brown"</span> to get cooking jobs at multiple places &mdash; changed jobs faster than Soper could find her</li>
+        <li>Eventually got a job as a cook at <span class="warn">Sloane Maternity in Manhattan</span></li>
+        <li>Within <span class="warn">3 months, 25 people were infected and 2 died</span></li>
+        <li>When she was found out, <span class="warn">nearly all the places she had worked had <em>Salmonella</em> outbreaks</span></li>
+      </ul>
+
+      <h3>Second Quarantine (1915&ndash;1938)</h3>
+      <ul>
+        <li>Re-quarantined on North Brother Island in <span class="warn">1915</span></li>
+        <li>There until she died in <span class="highlight">1938</span></li>
+        <li>Many treatments were tested on her in quarantine &mdash; <span class="warn">none worked</span> (she likely had a gallbladder biofilm reservoir)</li>
+        <li>In total, Mary directly infected <span class="warn">at least 122 people</span> and caused <span class="warn">at least 5 deaths</span></li>
+        <li>Officials later identified <span class="highlight">over 400 other asymptomatic carriers</span> in New York &mdash; <span class="warn">none of them received the same treatment as Mary</span></li>
+      </ul>
+
+      <h3>Why Mary Could Be a Lifelong Carrier (the biology)</h3>
+      <p>Chronic asymptomatic carriage of <em>Salmonella</em> requires:</p>
+      <ol style="padding-left: 20px;">
+        <li style="margin-bottom: 8px;">Successful breach of the intestinal epithelial barrier</li>
+        <li style="margin-bottom: 8px;">Evasion of early innate immune-mediated killing</li>
+        <li style="margin-bottom: 8px;"><span class="highlight">Localization to a permissive niche</span> &mdash; the <span class="warn">biliary tract and gallbladder</span>, where <em>S.</em> Typhi forms <span class="highlight">biofilms on gallstones</span></li>
+      </ol>
+      <p>Carriers shed the bacteria intermittently and unpredictably &mdash; which is exactly why a cook with no symptoms could repeatedly seed outbreaks and why treatments tried on Mary failed (the gallbladder biofilm is hard to clear).</p>
+
+      <div class="callout">Typhoid Mary is the textbook case for <strong>chronic asymptomatic carriage</strong>: it shows that intracellular pathogens can establish lifelong, symptom-free reservoirs (biofilms on gallstones) and that public health responses to identical biology have always been shaped by class, gender, and prejudice &mdash; ~400 other carriers were never quarantined.</div>
+    </div>
+  </div>
+
+  <!-- COMPARE -->
+  <div class="tab-content" id="tab-compare">
+    <div class="card hy-card">
+      <h2>Compare <em>Listeria</em> and <em>Salmonella</em> <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <table class="data-table hy-table">
+        <tr><th></th><th><em>L. monocytogenes</em></th><th><em>S.</em> Typhi</th></tr>
+        <tr><td><strong>Type</strong></td><td>Gram&#8209;positive bacillus</td><td>Gram&#8209;negative rod (peritrichous flagella)</td></tr>
+        <tr><td><strong>Source</strong></td><td>Soil; contaminated processed meat &amp; milk products</td><td>Contaminated water, animal products, infected human contact</td></tr>
+        <tr><td><strong>Replication site</strong></td><td><span class="highlight">Cytoplasm</span> (escapes phagosome)</td><td><span class="highlight">Vacuole (SCV)</span> &mdash; late endosome</td></tr>
+        <tr><td><strong>Entry mechanism</strong></td><td><span class="highlight">Internalins A &amp; B</span> &rarr; receptor &rarr; ruffling &rarr; zipper phagocytosis</td><td><span class="highlight">SPI1</span> ruffling (epithelial), receptor-mediated endocytosis (M cells), phagocytosis (DCs)</td></tr>
+        <tr><td><strong>Phagosome strategy</strong></td><td><span class="warn">Escape</span> via <span class="highlight">LLO</span> (cholesterol-dependent, acidic-pH activated)</td><td><span class="warn">Stay inside</span>, modify into SCV (resist acidification)</td></tr>
+        <tr><td><strong>Cell-to-cell spread</strong></td><td><span class="highlight">ActA</span> &rarr; actin polymerization at one pole &rarr; <span class="highlight">actin rocket</span> propels into next cell</td><td>Released by <span class="highlight">induced macrophage apoptosis</span>; carried via lymphatic system</td></tr>
+        <tr><td><strong>Disease in healthy host</strong></td><td>Often asymptomatic / mild diarrhea</td><td>Typhoid fever (1&ndash;2 weeks incubation)</td></tr>
+        <tr><td><strong>Severe presentations</strong></td><td>Septicemia, meningitis, encephalitis, miscarriage</td><td>Typhoid state (delirious, motionless), bacteremia, bowel rupture</td></tr>
+        <tr><td><strong>Famous case</strong></td><td>2015 Blue Bell Creameries ice cream outbreak (10 sick, 3 dead)</td><td>Typhoid Mary (122+ infected, 5+ dead)</td></tr>
+      </table>
+
+      <h3>Common Themes</h3>
+      <ul>
+        <li>Both are <span class="highlight">food/water-borne</span> intracellular pathogens that breach the gut epithelium</li>
+        <li>Both have <span class="highlight">cell-type-specific entry</span> mechanisms involving cytoskeletal rearrangement</li>
+        <li>Both are far more dangerous in <span class="highlight">immunocompromised</span> hosts</li>
+        <li>Both pathogens use <span class="highlight">long-distance dissemination</span> through the body to reach severe sites (CNS for <em>Listeria</em>, gallbladder/blood for <em>Salmonella</em>)</li>
+      </ul>
+
+      <h3>The Cytoplasm vs Vacuole Mnemonic</h3>
+      <ul>
+        <li><strong><em>Listeria</em> = "Liberty"</strong> &mdash; lyses out of the phagosome (LLO) and lives FREE in the cytoplasm; spreads via actin rockets (ActA)</li>
+        <li><strong><em>Salmonella</em> = "Stays in"</strong> &mdash; Stays in the vacuole (SCV), Survives by modifying it, eScapes by inducing apoptosis</li>
+      </ul>
+
+      <h3>Three-Letter Memory for Each Pathogen</h3>
+      <ul>
+        <li><strong><em>Listeria</em></strong>: <span class="highlight">InlA/InlB</span> (entry) &rarr; <span class="highlight">LLO</span> (escape phagosome) &rarr; <span class="highlight">ActA</span> (rocket spread)</li>
+        <li><strong><em>Salmonella</em></strong>: <span class="highlight">SPI1</span> (entry) &rarr; <span class="highlight">SCV</span> (vacuole survival) &rarr; <span class="highlight">apoptosis induction</span> (escape when nutrients run out)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FLASHCARDS ==================== -->
+<div class="section" id="sec-flashcards">
+  <div class="score-bar">
+    <div><span class="score-text">Flashcard Progress</span></div>
+    <div><span class="score-pct" id="fc-score">0 / 34</span></div>
+  </div>
+  <div class="fc-container">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="fc-front" id="fc-front"></div>
+      <div class="fc-back" id="fc-back"></div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button class="fc-btn" onclick="prevCard()">&larr;</button>
+    <span class="fc-counter" id="fc-counter">1 / 34</span>
+    <button class="fc-btn" onclick="nextCard()">&rarr;</button>
+  </div>
+  <div class="fc-hint">Click to flip &middot; Arrow keys to navigate</div>
+</div>
+
+<!-- ==================== FRQ ==================== -->
+<div class="section" id="sec-frq">
+  <div class="score-bar">
+    <div><span class="score-text">FRQ Self-Assessment</span></div>
+    <div><span class="score-pct" id="frq-score">0%</span></div>
+    <button class="reset-btn" onclick="resetFRQ()">Reset All</button>
+  </div>
+  <div id="frq-container"></div>
+</div>
+
+<!-- ==================== MATCHING ==================== -->
+<div class="section" id="sec-matching">
+  <div class="score-bar">
+    <div><span class="score-text">Matching</span></div>
+    <div><span class="score-pct" id="match-score">0 / 12</span></div>
+    <button class="reset-btn" onclick="initMatching()">Reset</button>
+  </div>
+  <div class="match-grid">
+    <div>
+      <div class="match-col-header">Term</div>
+      <div id="match-left"></div>
+    </div>
+    <div>
+      <div class="match-col-header">Definition</div>
+      <div id="match-right"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HARD FRQ ==================== -->
+<div class="section" id="sec-hard">
+  <div class="score-bar">
+    <div><span class="score-text">Hard FRQ (Exam-Level)</span></div>
+    <div><span class="score-pct" id="hard-score">0%</span></div>
+    <button class="reset-btn" onclick="resetHard()">Reset All</button>
+  </div>
+  <div id="hard-container"></div>
+</div>
+
+</main>
+
+<script>
+// ====== NAVIGATION ======
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+function showTab(btn, id) {
+  btn.closest('.section').querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.closest('.section').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ====== FLASHCARDS ======
+const flashcards = [
+  {q:"What is the key difference between extracellular and intracellular pathogens?", a:"<strong>Extracellular pathogens</strong> kill host cells from the OUTSIDE and replicate OUTSIDE host cells (e.g., Enterohemorrhagic <em>E. coli</em> secretes toxins, never invades, replicates in the gut lumen). <strong>Intracellular pathogens</strong> can <strong>invade and replicate WITHIN host cells</strong> &mdash; this ability is often crucial for their pathogenesis."},
+  {q:"Where in a host cell do <em>Listeria</em> vs <em>Salmonella</em> replicate?", a:"<strong><em>Listeria monocytogenes</em></strong> replicates in the <strong>cytoplasm</strong> (escapes the phagosome). <strong><em>Salmonella</em> typhimurium / Typhi</strong> replicates in a <strong>vacuole (SCV) &mdash; specifically a late-endosome-derived compartment</strong>."},
+  {q:"What kind of bacterium is <em>Listeria monocytogenes</em>?", a:"A <strong>Gram-positive bacillus</strong> (rod). Found in the soil; eats decaying matter (a <strong>saprophyte</strong>). Tolerates cold, high salt, and low moisture &mdash; survives refrigeration. Most human exposure is from contaminated food, especially processed meats and milk products."},
+  {q:"What does the species name '<em>monocytogenes</em>' refer to?", a:"The dramatic <strong>accumulation of monocytes</strong> seen in patients during infection. The genus '<em>Listeria</em>' is named after Joseph Lister, the microbiologist who pioneered <strong>sterility</strong> in surgery."},
+  {q:"What disease manifestations does <em>Listeria</em> cause and in whom?", a:"In <strong>healthy people</strong>: usually shed without incident, maybe mild diarrhea. In <strong>immunocompromised</strong> people, the bacteria cross the intestinal barrier and travel via lymphatics; symptoms appear 3&ndash;4 weeks later. Severe forms: <strong>septicemia</strong> (bloodstream), <strong>meningitis &amp; encephalitis</strong> (crosses blood&ndash;brain barrier), <strong>miscarriage</strong> (crosses placental barrier in pregnancy)."},
+  {q:"What are Internalin A and Internalin B (InlA, InlB)?", a:"<strong>Two surface proteins of <em>Listeria</em></strong> that mediate host cell entry. They <strong>bind a receptor on the surface of an epithelial cell</strong>, triggering a signal-transduction cascade that <strong>reorganizes the cell's cytoskeleton, causing membrane ruffling</strong>. The ruffling allows phagocytosis of <em>Listeria</em> &mdash; important because epithelial cells are NOT normally phagocytic."},
+  {q:"How does <em>Listeria</em> get an epithelial cell &mdash; which is normally not phagocytic &mdash; to engulf it?", a:"Via the <strong>'zipper' mechanism</strong>: surface internalins (InlA/InlB) bind a receptor on the epithelial cell, triggering a signaling cascade that reorganizes the host cytoskeleton. The membrane <strong>ruffles closely around the bacterium</strong> and zippers shut, internalizing <em>Listeria</em> in a phagosome."},
+  {q:"What is Listeriolysin O (LLO) and what does it do?", a:"A <strong>pore-forming toxin</strong> secreted by <em>Listeria</em>. It is a <strong>cholesterol-dependent cytolysin</strong>: assembles only at <strong>acidic pH</strong>, monomers bind cholesterol-rich phagosome membranes, then dozens of monomers form linear oligomers that drive into the membrane to form <strong>pores</strong>. The phagosome ruptures, releasing <em>Listeria</em> into the cytoplasm."},
+  {q:"Why is it important that LLO assembles only at acidic pH?", a:"The <strong>phagosome is acidic, but the cytoplasm is neutral</strong>. By only assembling pores at acidic pH, LLO <strong>only damages the phagosome</strong> &mdash; once <em>Listeria</em> is in the (neutral) cytoplasm, LLO won't accidentally lyse the host cell, which would expose <em>Listeria</em> to extracellular immune defenses prematurely."},
+  {q:"Why is LLO classified as a 'cholesterol-dependent cytolysin'?", a:"Because each LLO monomer <strong>binds cholesterol</strong> in the target membrane &mdash; cholesterol is required for assembly into pores. Many bacteria use cholesterol-dependent cytolysins: anthrolysin O (<em>Bacillus anthracis</em>), perfringolysin O (<em>C. perfringens</em>), pneumolysin (<em>Strep. pneumoniae</em>), streptolysin O (<em>Strep. pyogenes</em>) &mdash; LLO is the <em>Listeria</em> example."},
+  {q:"Why is the cytoplasm a great place for <em>Listeria</em> to live?", a:"Because <em>Listeria</em> can <strong>scavenge host nutrients freely</strong> there, AND it is <strong>protected from phagocytes, complement, and antibodies</strong> &mdash; all of which act in the extracellular space. The downside: a single host cell only has so many nutrients, so <em>Listeria</em> needs a way to spread to new cells."},
+  {q:"What is ActA and what does it do?", a:"A <strong>surface protein displayed at one pole of <em>Listeria</em></strong>. ActA <strong>stimulates host actin polymerization</strong> at that pole. Short actin filaments form behind the bacterium; as the bacillus jiggles in Brownian motion, gaps fill with new actin filaments, <strong>propelling <em>Listeria</em> forward</strong>. This drives the bacterium across the cytoplasm and, at random, out into a neighboring cell."},
+  {q:"Walk through the actin rocket cell-to-cell spread mechanism.", a:"<strong>(1)</strong> ActA on one pole of <em>Listeria</em> stimulates actin polymerization. <strong>(2)</strong> Short actin filaments form at that pole. <strong>(3)</strong> Brownian motion of the bacillus creates gaps that are immediately stuffed with new actin filaments &mdash; this drives <em>Listeria</em> forward. <strong>(4)</strong> At random, some bacteria are propelled out of the cell into a neighbor. <strong>(5)</strong> In the new cell, <em>Listeria</em> is wrapped in a <strong>double membrane</strong> (one from each cell) that it uses <strong>LLO</strong> to escape from."},
+  {q:"Why does <em>Listeria</em> use actin rockets instead of just bursting out of the cell?", a:"Because actin rockets keep <em>Listeria</em> <strong>intracellular the entire time</strong> &mdash; it never enters the extracellular space, so <strong>antibodies, complement, and phagocytes never get a shot at it</strong>. This stealth mode is how <em>Listeria</em> reaches distant sites like the CNS and placenta without being cleared."},
+  {q:"What kind of bacterium is <em>Salmonella</em>?", a:"<strong>Gram-negative, rod-shaped, mostly motile, non-spore-forming.</strong> Often has <strong>peritrichous flagella</strong> (covered in flagella all over). <strong>Facultative anaerobe</strong>. The genus has two species: <em>S. bongori</em> and <em>S. enterica</em>; <em>S. enterica</em> subsp. <em>enterica</em> is responsible for ~99% of human disease."},
+  {q:"What is the full name of <em>Salmonella</em> Typhi?", a:"<em>Salmonella enterica</em> subspecies <em>enterica</em> serotype Typhi. Usually shortened to <strong><em>Salmonella</em> Typhi</strong>. Note that 'Typhi' is the serotype name; serotypes are written in roman (not italic). There are over <strong>2,500 <em>Salmonella</em> serotypes</strong> defined by antigens."},
+  {q:"Name the four major disease manifestations <em>Salmonella</em> can cause in humans.", a:"<strong>(1) Enteric fever (typhoid)</strong> &mdash; 11&ndash;21 million cases/year, ~200K deaths. <strong>(2) Gastroenteritis (diarrhea)</strong> &mdash; 200 million&ndash;1.3 billion cases/year, up to 3 million deaths. <strong>(3) Bacteremia</strong> &mdash; 268K deaths in 2015. <strong>(4) Chronic asymptomatic carriage</strong> (2&ndash;5% of typhoid survivors)."},
+  {q:"Describe the clinical course of typhoid fever.", a:"Begins with ingestion of <em>S.</em> Typhi (contaminated water, animal products, or close human contact). <strong>1&ndash;2 weeks</strong> later: generalized fever, malaise, abdominal pain, headache, myalgias, nausea, anorexia, constipation; occasional diarrhea. Fever begins mild and progressively worsens up to <strong>104&deg;F</strong>. Untreated patients enter the <strong>typhoid state</strong>: delirious, motionless, eyes half open. Mortality if untreated in this state: <strong>10&ndash;30%</strong>. Treated: 1&ndash;4%; 0.2% if treated early."},
+  {q:"What is chronic asymptomatic carriage of <em>Salmonella</em>?", a:"After surviving typhoid fever, <strong>2&ndash;5% of patients</strong> don't fully clear the infection and become <strong>asymptomatic carriers</strong>. Three things happen: (1) successful breach of the <strong>intestinal epithelial barrier</strong>, (2) <strong>evasion of innate immune killing</strong>, (3) <strong>localization to a permissive niche</strong> &mdash; the <strong>biliary tract and gallbladder</strong>, where <em>S.</em> Typhi forms <strong>biofilms on gallstones</strong>. Carriers shed bacteria intermittently, maintaining a community reservoir."},
+  {q:"Who was Typhoid Mary?", a:"Mary Mallon (1869&ndash;1938), an Irish-American cook in New York City. She was the <strong>first documented healthy carrier of <em>S.</em> Typhi in the US</strong>, identified by engineer George Soper in 1907. Mary directly infected <strong>at least 122 people</strong> and caused <strong>at least 5 deaths</strong>. She was twice quarantined on North Brother Island; the second quarantine (1915&ndash;1938) lasted until her death."},
+  {q:"What did George Soper realize that led to identifying Mary?", a:"In 1906, 6 of 11 people in a household where Mary cooked got typhoid. The outbreak was initially blamed on freshwater clams. Soper realized that <strong>not everyone who ate the clams got sick</strong> &mdash; so the clams couldn't be the source. He turned to Mary, checked her work history, and found that <strong>7 of 8 families she had worked for had typhoid cases</strong> with at least 22 people infected. He published the first paper describing a healthy <em>S.</em> Typhi carrier in 1907."},
+  {q:"Why did treatments tested on Mary in quarantine fail?", a:"Mary likely had a <strong>chronic biofilm reservoir on her gallstones</strong> &mdash; the gallbladder is a permissive niche for <em>S.</em> Typhi, and <strong>biofilms shield bacteria</strong> from the immune system and from drugs that can't penetrate the matrix. Combined with intermittent shedding, this made her infection nearly impossible to clear with the treatments available at the time."},
+  {q:"How does <em>Salmonella</em> enter epithelial cells in the gut?", a:"Epithelial cell membranes are <strong>modified by the action of SPI1</strong> (<em>Salmonella</em> Pathogenicity Island 1) to facilitate the entry of bacteria. SPI1 effectors induce <strong>membrane ruffling and cytoskeletal rearrangements</strong> that force the epithelial cell to engulf <em>Salmonella</em> &mdash; this is sometimes called the 'trigger' mechanism (in contrast to <em>Listeria</em>'s zipper)."},
+  {q:"How does <em>Salmonella</em> enter M cells vs dendritic cells?", a:"<strong>M cells</strong> (specialized epithelial cells of mucosa-associated lymphoid tissues that present antigens to immune cells) take up <em>Salmonella</em> by <strong>receptor-mediated endocytosis</strong>. <strong>Dendritic cells</strong> engulf the bacteria by <strong>phagocytosis</strong>. Different cell types &rarr; different entry mechanisms; <em>Salmonella</em> exploits all of them."},
+  {q:"What is the SCV?", a:"The <strong>Salmonella-Containing Vacuole</strong> &mdash; the membrane-bound compartment <em>Salmonella</em> establishes inside host cells. Unlike <em>Listeria</em>, <em>Salmonella</em> <strong>stays inside this vacuole</strong> rather than escaping to the cytoplasm. The SCV acidifies (pH drops from <strong>6.5 to 5.5</strong>); <em>Salmonella</em> has virulence factors to resist acidification and to modify the SCV into a survivable niche."},
+  {q:"List the four main classes of virulence factors that maintain the SCV niche.", a:"<strong>(1) Resist acidification</strong>; <strong>(2) Degrade lysosomes</strong> &mdash; prevent fusion with the SCV; <strong>(3) Block nitrosative and oxidative stress</strong> (e.g., <em>nirC</em>, arginase, Hmp, <em>katE</em>, <em>katG</em>, <em>sod</em>, <em>rpoS</em>, <em>slyA</em>); <strong>(4) Block host antimicrobial peptides</strong> (<em>sapABCDF</em>, <em>yejABEF</em>); also impair inflammation (<em>sipB</em>, AvrA, SspH1)."},
+  {q:"How does <em>Salmonella</em> escape the host cell?", a:"<em>Salmonella</em> lives protected within the SCV <strong>until the cell's nutrients are depleted</strong>. When nutrients run out, <em>Salmonella</em> <strong>induces macrophage programmed cell death (apoptosis)</strong> via virulence factors. The dying macrophage releases the bacteria, which then search for a new cell to infect."},
+  {q:"How does <em>Listeria</em> escape its phagosome vs how does <em>Salmonella</em> 'escape' its host cell?", a:"<strong><em>Listeria</em></strong>: secretes <strong>LLO</strong>, a cholesterol-dependent pore-forming toxin that punches holes in the phagosome at acidic pH &mdash; phagosome ruptures, <em>Listeria</em> enters the cytoplasm. <strong><em>Salmonella</em></strong>: stays in the SCV; when nutrients are depleted, it <strong>induces apoptosis</strong> of the host macrophage to release itself. So <em>Listeria</em> escapes the vacuole; <em>Salmonella</em> escapes the cell."},
+  {q:"What does SPI1 do?", a:"<strong>SPI1 = <em>Salmonella</em> Pathogenicity Island 1</strong>. A genomic island encoding a <strong>type III secretion system (T3SS)</strong> and effector proteins that <strong>induce membrane ruffling and cytoskeletal rearrangements</strong> in epithelial cells, forcing entry. SPI1 effectors are also involved in <strong>inducing apoptosis</strong> in macrophages later in the infection."},
+  {q:"What's the difference in spread strategy between <em>Listeria</em> and <em>Salmonella</em>?", a:"<strong><em>Listeria</em></strong>: cell-to-cell spread via <strong>actin rockets (ActA)</strong> &mdash; never enters the extracellular space; evades antibodies and phagocytes entirely. <strong><em>Salmonella</em></strong>: spread via <strong>induced apoptosis &rarr; release &rarr; uptake by new cells</strong>; carried through the lymphatic system to deeper tissues. <em>Salmonella</em> does spend time extracellularly, but is quickly taken up by macrophages, T cells, B cells, neutrophils &mdash; which it then survives inside."},
+  {q:"Where does <em>S.</em> Typhi establish a chronic reservoir in carriers?", a:"In the <strong>biliary tract and gallbladder</strong>, especially as <strong>biofilms on gallstones</strong>. This is a 'permissive niche' &mdash; the immune system has limited access, and the biofilm matrix shields the bacteria. Carriers shed bacteria intermittently into the gut, where they exit in stool, allowing the cycle of infection to continue."},
+  {q:"How is intracellular pathogen 'actin-based protrusion' strategy described in lecture?", a:"A single bacterium uses the force generated by <strong>actin polymerization</strong> to <strong>protrude from the host cell membrane and force engulfment into a neighboring cell</strong>. Used by <em>L. monocytogenes</em>, <em>Shigella flexneri</em>, <em>Rickettsia</em>, <em>Burkholderia pseudomallei</em>, <em>Mycobacterium marinum</em>. <em>Listeria</em>'s actin-rocket spread is the classic example."},
+  {q:"What is the 'apoptosis-induction' strategy in lecture?", a:"<strong>Apoptosis is induced by virulence factors to lead to programmed cell death</strong>. The dying host cell releases the pathogen, which can then go infect a new cell. <em>Salmonella</em> induces macrophage apoptosis when nutrients run out; <em>Listeria</em> and <em>Shigella</em> can also induce apoptosis (the lecture diagram highlighted apoptosis as a survival strategy)."},
+  {q:"Why is the cytoplasm-vs-vacuole distinction useful for predicting virulence factors?", a:"<strong>Cytoplasm-dwellers</strong> (<em>Listeria</em>, <em>Shigella</em>, <em>Rickettsia</em>) need a way to <strong>break out of the phagosome</strong> &mdash; usually a pore-forming toxin (LLO). They also tend to use actin-based motility to spread without exposure. <strong>Vacuole-dwellers</strong> (<em>Salmonella</em>, <em>M. tuberculosis</em>, <em>Chlamydia</em>) need ways to <strong>resist what the phagosome would normally do</strong> &mdash; resist acidification, prevent lysosome fusion, neutralize ROS/RNS. Their escape mechanisms involve killing the host cell (apoptosis or extrusion) rather than membrane lysis."},
+];
+
+let fcIdx = 0;
+function renderCard() {
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('fc-front').innerHTML = flashcards[fcIdx].q;
+  document.getElementById('fc-back').innerHTML = flashcards[fcIdx].a.replace(/\n/g,'<br>');
+  document.getElementById('fc-counter').textContent = (fcIdx+1)+' / '+flashcards.length;
+  document.getElementById('fc-score').textContent = (fcIdx+1)+' / '+flashcards.length;
+}
+function flipCard() { document.getElementById('flashcard').classList.toggle('flipped'); }
+function nextCard() { fcIdx = (fcIdx+1) % flashcards.length; renderCard(); }
+function prevCard() { fcIdx = (fcIdx-1+flashcards.length) % flashcards.length; renderCard(); }
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight') nextCard();
+  if(e.key==='ArrowLeft') prevCard();
+  if(e.key===' '||e.key==='Enter') { e.preventDefault(); flipCard(); }
+});
+renderCard();
+
+// ====== FRQ ======
+const frqs = [
+  {q:"Define extracellular vs intracellular pathogens, and give one example of each from lecture.", a:"<strong>Extracellular pathogens</strong> kill host cells from the OUTSIDE and replicate OUTSIDE host cells. Example from lecture: <strong>Enterohemorrhagic <em>E. coli</em></strong>, which kills intestinal epithelial cells by secreting toxins but never invades cells; it replicates in the lumen of the intestine. <strong>Intracellular pathogens</strong> can <strong>invade and replicate within host cells</strong>; this ability is often crucial for their pathogenesis. Examples from lecture: <strong><em>Listeria monocytogenes</em></strong> (replicates in the cytoplasm) and <strong><em>Salmonella</em> Typhi</strong> (replicates in a vacuole, the SCV).", hy:true},
+  {q:"Describe how the replication site (cytoplasm vs vacuole) influences the virulence factors required by intracellular pathogens.", a:"Each location demands a different toolkit. <strong>Cytoplasmic pathogens</strong> like <em>Listeria</em> must <strong>escape the phagosome</strong> &mdash; usually with a pore-forming toxin (e.g., LLO, a cholesterol-dependent cytolysin that assembles at acidic pH). They often need <strong>actin-based motility</strong> (e.g., ActA) to spread cell-to-cell while staying intracellular. <strong>Vacuolar pathogens</strong> like <em>Salmonella</em> must <strong>resist what the phagosome normally does</strong>: acidification, fusion with lysosomes, generation of reactive nitrogen and oxygen species, and antimicrobial peptide attack. They modify the vacuole (the SCV) into a stable replication compartment and escape only later, often by inducing host cell apoptosis.", hy:true},
+  {q:"Describe the basic biology of <em>Listeria monocytogenes</em>: cell wall type, environment, and how humans get exposed.", a:"<em>L. monocytogenes</em> is a <strong>Gram-positive bacillus</strong> (rod). It is usually found in the <strong>soil</strong> and eats decaying matter (a <strong>saprophyte</strong>). It infects diverse organisms: protists, arthropods, mammals. It tolerates <strong>cold, high salt, and low moisture</strong> &mdash; meaning it can survive refrigeration. Humans are most commonly exposed by <strong>ingesting contaminated food</strong>, especially processed meats and milk products. The 2015 Blue Bell Creameries ice cream outbreak (10 listeriosis cases, 3 deaths) is the canonical example.", hy:false},
+  {q:"What disease manifestations does <em>Listeria</em> cause, and why does it disproportionately affect immunocompromised people and pregnant women?", a:"In <strong>healthy people</strong>, ingested <em>Listeria</em> usually colonizes the digestive tract briefly and is shed without incident, sometimes causing mild diarrhea. In <strong>immunocompromised people</strong>, the bacterium can <strong>cross the intestinal barrier</strong> and disseminate via the lymphatic system; symptoms appear 3&ndash;4 weeks later. Severe forms include <strong>septicemia</strong> (bloodstream invasion), <strong>meningitis and encephalitis</strong> (from crossing the blood-brain barrier), and <strong>miscarriage</strong> (from crossing the placental barrier in pregnancy). Pregnant women and immunocompromised hosts are especially vulnerable because <em>Listeria</em>'s intracellular lifestyle relies on host cell-mediated immunity to clear it; impaired T-cell or phagocyte function lets the infection escape control.", hy:true},
+  {q:"Walk through the role of Internalin A and Internalin B in <em>Listeria</em> entering an epithelial cell.", a:"<em>Listeria</em> displays two surface proteins, <strong>Internalin A and Internalin B (InlA, InlB)</strong>. These proteins <strong>bind a receptor on the surface of the epithelial cell</strong>. Binding triggers a <strong>signal-transduction cascade</strong> in the host that <strong>reorganizes the cell's cytoskeleton</strong>, causing the host membrane to <strong>ruffle</strong> closely around the bacterium &mdash; the 'zipper' mechanism. This ruffling drives <strong>phagocytosis</strong> of <em>Listeria</em>, which is critical because <strong>epithelial cells are NOT normally phagocytic</strong>. The internalins essentially trick a non-phagocytic cell into eating the bacterium, putting it inside a phagosome. From there, <em>Listeria</em> escapes the phagosome rather than being trafficked to a lysosome.", hy:true},
+  {q:"Describe the molecular mechanism by which Listeriolysin O (LLO) lets <em>Listeria</em> escape the phagosome. Why is the pH-dependence biologically important?", a:"Once engulfed, <em>Listeria</em> secretes <strong>LLO</strong>, a pore-forming toxin assembled from <strong>dozens of monomers</strong>. LLO assembles only at <strong>acidic pH</strong>. Each monomer binds <strong>cholesterol-rich phagosome membranes</strong> (LLO is a 'cholesterol-dependent cytolysin'). Linear oligomers form, then drive themselves into the phagosome membrane to form <strong>pores</strong>. Ions pass freely; the phagosome <strong>ruptures</strong>; <em>Listeria</em> enters the cytoplasm. The pH-dependence matters because the <strong>phagosome is acidic but the cytoplasm is neutral</strong> &mdash; once <em>Listeria</em> is in the cytoplasm, LLO will NOT assemble pores there. This prevents accidental lysis of the host cell, which would expose <em>Listeria</em> to extracellular immunity (antibodies, complement, phagocytes) prematurely.", hy:true},
+  {q:"How does <em>Listeria</em> survive and replicate in the cytoplasm, and why does it eventually need to spread to a new cell?", a:"Once liberated to the cytoplasm, <em>Listeria</em> <strong>multiplies</strong>. The cytoplasm is ideal: bacteria can <strong>scavenge host nutrients</strong> freely, AND they are <strong>protected from phagocytes, complement, and antibodies</strong> &mdash; all of which act in the extracellular space. However, <strong>one host cell only has so many nutrients</strong>; eventually the supply is exhausted. To keep replicating, <em>Listeria</em> hijacks host machinery to move into a new cell rather than leaving the cytoplasm.", hy:false},
+  {q:"Describe the actin-rocket mechanism. Walk through ActA and the cell-to-cell spread step by step.", a:"<strong>(1)</strong> <em>Listeria</em> displays the protein <strong>ActA</strong> on its surface <strong>at one pole</strong> &mdash; the orientation is asymmetric, which is essential. <strong>(2)</strong> ActA <strong>stimulates host actin polymerization</strong> at that pole. <strong>(3)</strong> Short actin filaments form behind the bacterium. <strong>(4)</strong> As the bacillus jiggles in <strong>Brownian motion</strong>, gaps behind it are immediately filled with new actin filaments, which prevents backward movement and <strong>drives the bacterium forward</strong>. <strong>(5)</strong> At random, some bacteria are propelled out of the cell into a neighboring cell. <strong>(6)</strong> In the new cell, <em>Listeria</em> is wrapped in a <strong>double membrane</strong> (one membrane from each cell). <strong>(7)</strong> <em>Listeria</em> uses <strong>LLO</strong> again to break out of the double membrane and enter the new cytoplasm, restarting the cycle.", hy:true},
+  {q:"Why is actin-rocket cell-to-cell spread a particularly effective immune evasion strategy?", a:"Because <em>Listeria</em> <strong>never enters the extracellular space</strong> during spread. Antibodies, complement, and most phagocytes act in the extracellular space &mdash; so they <strong>never get a chance to bind, opsonize, or eat <em>Listeria</em></strong>. The bacterium goes directly from one cytoplasm to the next via the actin tail and the brief double-membrane intermediate. This stealth mode lets <em>Listeria</em> spread to many tissues (gut &rarr; liver &rarr; CNS &rarr; placenta) without being neutralized by humoral immunity, explaining why severe listeriosis (meningitis, encephalitis, miscarriage) occurs primarily in hosts with impaired cell-mediated (intracellular) immunity rather than humoral immunity.", hy:true},
+  {q:"What kind of bacterium is <em>Salmonella</em>, and how is its taxonomy organized?", a:"<em>Salmonella</em> is a <strong>Gram-negative, rod-shaped, mostly motile, non-spore-forming</strong> bacterium. It often has <strong>peritrichous flagella</strong> (covered all over with flagella) and is a <strong>facultative anaerobe</strong>. The genus has two species: <em>S. bongori</em> and <em>S. enterica</em>. <em>S. enterica</em> has 6 subspecies; subsp. <em>enterica</em> causes <strong>~99% of human disease</strong>. <em>Salmonella</em> are further classified by <strong>serotype</strong> (using their surface antigens) &mdash; over <strong>2,500 serotypes</strong>. Typhi is one serotype, classified as <em>Salmonella enterica</em> subsp. <em>enterica</em> serotype Typhi (shortened: <em>Salmonella</em> Typhi).", hy:false},
+  {q:"List and briefly describe the four disease manifestations <em>Salmonella</em> can cause in humans.", a:"<strong>(1) Enteric fever (typhoid)</strong> &mdash; severe systemic illness with progressive fever, malaise, and possible delirium ('typhoid state'); 11&ndash;21 million cases/year, ~200K deaths. <strong>(2) Gastroenteritis (diarrhea)</strong> &mdash; the classic 'food poisoning' illness with nontyphoidal serotypes; 200 million&ndash;1.3 billion cases/year, up to 3 million deaths in high estimates. <strong>(3) Bacteremia</strong> &mdash; bloodstream infection; 268K deaths worldwide in 2015. <strong>(4) Chronic asymptomatic carriage</strong> &mdash; ~2&ndash;5% of typhoid survivors fail to clear the infection and become long-term silent carriers, often with biofilms on gallstones in the gallbladder.", hy:true},
+  {q:"Describe the clinical course of typhoid fever, including untreated mortality.", a:"Typhoid fever begins with ingestion of <em>S.</em> Typhi (typically from contaminated water, animal products, or close human contact). Symptoms appear <strong>1&ndash;2 weeks</strong> later: generalized fever, malaise, abdominal pain, with or without headache, myalgias, nausea, anorexia, and constipation; occasional diarrhea. Fever begins mild and progressively worsens, sometimes reaching <strong>104&deg;F</strong>. If untreated, patients become delirious and enter the <strong>'typhoid state'</strong>: lying motionless and exhausted with eyes half open. Mortality in the typhoid state if <strong>untreated is 10&ndash;30%</strong>; <strong>treated is 1&ndash;4%</strong>; if treated <strong>earlier in the course, only 0.2%</strong>. Drug-resistant <em>S.</em> Typhi is now an emerging concern.", hy:true},
+  {q:"What conditions allow chronic asymptomatic carriage of <em>Salmonella</em>, and where in the body does the reservoir form?", a:"After surviving typhoid fever, <strong>2&ndash;5%</strong> of patients fail to fully clear the infection and become chronic asymptomatic carriers. Three biological events must occur: <strong>(1)</strong> successful breach of the <strong>intestinal epithelial barrier</strong>; <strong>(2)</strong> <strong>evasion of early innate immune-mediated killing</strong>; and <strong>(3)</strong> <strong>localization to a permissive niche</strong> &mdash; the <strong>biliary tract and gallbladder</strong>. There, <em>S.</em> Typhi can form <strong>biofilms on gallstones</strong>, which shield the bacteria from immune cells and antibiotics. Carriers <strong>intermittently shed the bacteria</strong> into the gut and out via stool for prolonged, ill-defined periods, allowing them to seed outbreaks in the community.", hy:true},
+  {q:"Tell the story of Typhoid Mary and explain why her case is the textbook example of chronic <em>Salmonella</em> carriage.", a:"<strong>Mary Mallon</strong> emigrated from Ireland to the US in 1883 at age 14 and became a cook to wealthy New York families. In 1906, 6 of 11 people in a household where she worked got typhoid; engineer <strong>George Soper</strong> initially blamed clams but realized that not everyone who ate them got sick, and turned to Mary. Investigating her work history, he found that <strong>7 of 8 prior families</strong> had typhoid cases, with 22 people infected. In 1907, Soper published <strong>the first paper describing a 'healthy carrier' of <em>S.</em> Typhi in the US</strong>. Mary was forced to give a stool sample (positive), then quarantined on North Brother Island for 2 years. Released in 1910, she was forbidden to cook but eventually returned to cooking under the alias 'Mary Brown.' At Sloane Maternity in Manhattan she infected 25 people in 3 months, killing 2. Re-quarantined in 1915, she lived on the island until her death in 1938. <strong>Total: 122+ direct infections, 5+ deaths.</strong> Mary is the textbook example because her decades-long shedding (likely from a gallbladder biofilm reservoir) shows how chronic, asymptomatic carriers can sustain outbreaks without being symptomatic themselves &mdash; treatments tested on her in quarantine all failed, consistent with a biofilm-protected niche. Officials later identified <strong>over 400 other asymptomatic carriers</strong> in NYC, none treated as harshly as Mary &mdash; a reminder that public health responses are also shaped by class, gender, and prejudice.", hy:true},
+  {q:"How does <em>Salmonella</em> enter the gut epithelium? Compare the three cell-type-specific mechanisms.", a:"The mode of entry depends on the cell type encountered. <strong>(1) M cells</strong> &mdash; specialized epithelial cells of mucosa-associated lymphoid tissues that present antigens to immune cells &mdash; take up <em>Salmonella</em> by <strong>receptor-mediated endocytosis</strong>. <strong>(2) Dendritic cells</strong> engulf bacteria by <strong>phagocytosis</strong>. <strong>(3) Epithelial cells</strong> are forced to internalize <em>Salmonella</em> through the action of <strong>SPI1 (<em>Salmonella</em> Pathogenicity Island 1)</strong>: SPI1 effectors (delivered by a type III secretion system) <strong>induce membrane ruffling and cytoskeletal rearrangements</strong> that drive engulfment. Once across the epithelium, <em>Salmonella</em> is taken up by <strong>macrophages, T cells, B cells, and neutrophils</strong> &mdash; which it then survives inside, using these cells as transport.", hy:true},
+  {q:"What is the SCV? Describe how it forms and how <em>Salmonella</em> survives inside it.", a:"The <strong>Salmonella-Containing Vacuole (SCV)</strong> is the membrane-bound compartment that <em>Salmonella</em> establishes after entering a host cell. Unlike <em>Listeria</em>, <em>Salmonella</em> does NOT escape into the cytoplasm; it remains in the SCV. After uptake, the SCV <strong>acidifies (pH drops from 6.5 to 5.5)</strong>; <em>Salmonella</em> has virulence factors to <strong>resist acidification</strong>. Other virulence factors that maintain the SCV niche: (a) <strong>degrade lysosomes</strong> &mdash; prevent fusion of the SCV with lysosomes that would deliver hydrolytic enzymes; (b) <strong>block nitrosative and oxidative stress</strong> (effectors and enzymes including <em>nirC</em>, arginase, Hmp, <em>katE</em>, <em>katG</em>, <em>sod</em>, <em>rpoS</em>, <em>slyA</em>) &mdash; counters macrophage ROS/RNS; (c) <strong>impair inflammation</strong> (<em>sipB</em>, AvrA, SspH1); (d) <strong>block host antimicrobial peptides</strong> (<em>sapABCDF</em>, <em>yejABEF</em>). Together these convert the SCV from a hostile phagosome-like compartment into a replication-permissive niche.", hy:true},
+  {q:"How does <em>Salmonella</em> escape the host cell to spread to new cells?", a:"<em>Salmonella</em> lives protected within SCVs <strong>until the host cell's nutrients are depleted</strong>. When nutrients run out, <em>Salmonella</em> <strong>induces the macrophage to undergo programmed cell death (apoptosis)</strong> via virulence factors (SPI1 effectors and others). The dying macrophage <strong>releases <em>Salmonella</em> into the extracellular space</strong>, where the bacteria can be taken up by new macrophages or other cells, restarting the intracellular cycle. This contrasts sharply with <em>Listeria</em>, which spreads cell-to-cell via actin rockets and never enters the extracellular space.", hy:true},
+  {q:"Compare and contrast the intracellular life cycles of <em>Listeria</em> and <em>Salmonella</em>. Use entry, replication site, and escape as your three pillars.", a:"<strong>Entry.</strong> <em>Listeria</em>: surface internalins (InlA/InlB) bind an epithelial cell receptor &rarr; signal cascade &rarr; cytoskeletal rearrangement &rarr; ruffling &rarr; <strong>'zipper' phagocytosis</strong>. <em>Salmonella</em>: cell-type specific &mdash; <strong>receptor-mediated endocytosis</strong> in M cells, <strong>phagocytosis</strong> in dendritic cells, <strong>SPI1-induced 'trigger' ruffling</strong> in epithelial cells. <strong>Replication site.</strong> <em>Listeria</em>: <strong>cytoplasm</strong> &mdash; escapes the phagosome via <strong>LLO</strong>, a cholesterol-dependent pore-forming toxin that activates only at acidic pH (so it doesn't lyse the host after escape). <em>Salmonella</em>: <strong>vacuole (SCV)</strong> &mdash; stays inside, resists acidification, blocks lysosome fusion, neutralizes ROS/RNS, blocks antimicrobial peptides. <strong>Escape and spread.</strong> <em>Listeria</em>: <strong>ActA-driven actin rockets</strong> propel the bacterium across the cytoplasm and into a neighbor; in the new cell <em>Listeria</em> uses LLO to lyse the double membrane &mdash; <strong>never enters the extracellular space</strong>. <em>Salmonella</em>: when nutrients run out, <strong>induces macrophage apoptosis</strong> to release itself; spreads via the lymphatic system to the next host cell. The fundamental contrast: <em>Listeria</em> 'liberates' itself to the cytoplasm and stays intracellular forever; <em>Salmonella</em> 'stays in' the vacuole and escapes only when forced to.", hy:true},
+  {q:"Why is drug resistance in <em>Salmonella</em> a particular concern?", a:"Drug-resistant <em>Salmonella</em> is now classified by the CDC as a <strong>SERIOUS threat</strong>. <strong>Drug-resistant nontyphoidal <em>Salmonella</em></strong> causes ~212,500 infections and ~70 deaths/year in the US. <strong>Drug-resistant <em>S.</em> Typhi</strong> causes ~4,100 infections/year; though deaths are still &lt;5/year, untreated typhoid has 10&ndash;30% mortality, so resistance directly translates to risk of bowel rupture, shock, and death if first-line antibiotics fail. The combination of (a) intracellular survival (drugs must penetrate the host cell AND the SCV), (b) chronic gallbladder biofilms in carriers (drugs penetrate biofilm matrices poorly), and (c) increasing horizontal acquisition of resistance genes makes <em>Salmonella</em> a growing threat &mdash; especially in regions with poor sanitation and limited drug access.", hy:false},
+  {q:"Explain why <em>Listeria</em>'s ability to grow at low temperatures matters epidemiologically, using the Blue Bell ice cream outbreak as an example.", a:"<em>Listeria monocytogenes</em> is unusual among foodborne pathogens because it <strong>tolerates cold, high salt, and low moisture</strong> &mdash; meaning it can grow at <strong>refrigeration temperatures</strong>. This is why <em>Listeria</em> contaminates products that we usually think of as 'safe' because they are cold (deli meats, soft cheeses, ice cream). The <strong>2015 Blue Bell Creameries outbreak</strong> illustrates this: <em>Listeria</em> persisted in production facilities in Texas and Oklahoma despite refrigeration, contaminating ice cream products distributed widely. Routine screening at a South Carolina distribution center detected the contamination; epidemiologists at <strong>PulseNet</strong> matched <strong>genome profiles</strong> from contaminated products to clinical isolates, identifying 10 patients hospitalized over 5 years across AZ, KS, OK, and TX (3 deaths). The outbreak shows how cold-tolerance, environmental persistence in food facilities, and modern genomic epidemiology together shape <em>Listeria</em> outbreak detection. Outbreaks continue: in late 2025, a multistate listeriosis outbreak linked to recalled prepared pasta meals (Albertsons, Kroger, Sprouts, Trader Joe's) sickened &gt;27 in 18 states and caused 6 deaths.", hy:false},
+];
+
+const hardFrqs = [
+  {q:"A 28-year-old pregnant woman eats a soft-cheese plate at a friend's wedding. Three weeks later she presents with fever, headache, and malaise; over the next several days she becomes increasingly disoriented. CSF cultures grow a Gram-positive bacillus. (a) What organism do you suspect, and why does the 3-week incubation make sense biologically? (b) Walk through the cellular events from ingestion to the clinical presentation, naming the three key virulence proteins. (c) Why is this infection particularly dangerous in pregnancy, and what is the dual risk?", a:"(a) <strong><em>Listeria monocytogenes</em></strong>. Soft cheeses (especially unpasteurized) are a classic source &mdash; <em>Listeria</em> tolerates cold, salt, and low moisture and survives in refrigerated dairy. The 3&ndash;4 week incubation reflects the fact that in even mildly immunocompromised hosts (pregnancy is mildly T-cell suppressive), <em>Listeria</em> requires time to <strong>cross the intestinal barrier, traverse the lymphatic system, disseminate, and finally cross either the blood-brain barrier or placental barrier</strong> before causing organ-level disease. (b) Cellular events: <strong>(1) Entry &mdash; InlA/InlB</strong>: <em>Listeria</em>'s surface internalins bind a receptor on intestinal epithelial cells, triggering signaling that ruffles the membrane and forces a normally non-phagocytic epithelial cell to engulf the bacterium ('zipper' mechanism). <strong>(2) Phagosome escape &mdash; LLO</strong>: <em>Listeria</em> secretes listeriolysin O, a cholesterol-dependent pore-forming toxin that assembles in the acidic phagosome (but not in the neutral cytoplasm), lysing the phagosome and releasing the bacterium. <strong>(3) Cell-to-cell spread &mdash; ActA</strong>: surface ActA at one pole induces actin polymerization, generating a 'rocket tail' that propels <em>Listeria</em> through the cytoplasm and into neighboring cells, wrapped in a double membrane that LLO again breaches. By staying intracellular, <em>Listeria</em> avoids antibodies, complement, and phagocytes, and reaches deep tissues including the CNS and placenta. The CNS invasion explains meningitis/encephalitis (fever, headache, altered mental state). (c) Pregnancy is particularly dangerous because (i) pregnancy involves modest <strong>T-cell suppression</strong> to tolerate the fetus, weakening cell-mediated immunity that normally controls intracellular pathogens, AND (ii) <em>Listeria</em> can <strong>cross the placental barrier</strong>, infecting the fetus directly &mdash; this can cause <strong>miscarriage, stillbirth, or neonatal listeriosis</strong>. Dual risk: severe maternal disease (sepsis, meningitis, encephalitis) AND fetal/neonatal disease.", hy:true},
+  {q:"<em>Listeria</em> uses the same protein, LLO, to do two distinct things in its lifecycle. Identify both events, explain why one toxin can serve both, and explain why the pH-dependence of LLO is critical to <em>Listeria</em>'s strategy.", a:"<strong>The two LLO-mediated events:</strong> <strong>(1) Phagosome escape</strong> shortly after entry &mdash; LLO punches pores in the original phagosome to release <em>Listeria</em> into the cytoplasm. <strong>(2) Double-membrane escape during cell-to-cell spread</strong> &mdash; when <em>Listeria</em>'s actin rocket protrudes into a neighboring cell, it ends up wrapped in a double membrane (one from each cell). <em>Listeria</em> uses LLO again to lyse this double membrane and re-enter a fresh cytoplasm. <strong>Why the same toxin works for both:</strong> in both cases, the target compartment is membrane-bounded, contains cholesterol (to which LLO binds), and is acidified (the original phagosome by host action; the double-membrane vacuole because the bacteria become trapped in a similar compartment). LLO is a cholesterol-dependent cytolysin: monomers bind cholesterol-rich membranes, oligomerize, and form ring-shaped pores. <strong>Why pH-dependence is critical:</strong> LLO assembles into pores ONLY at acidic pH (~5). The phagosome and the double-membrane vacuole are acidic, so LLO lyses them. The cytoplasm is neutral (pH ~7.2), so LLO does NOT assemble there &mdash; this prevents <em>Listeria</em> from accidentally lysing the host cell after escape. If LLO worked at neutral pH, it would punch holes in the host plasma membrane and rupture the host cell, exposing <em>Listeria</em> to extracellular antibodies, complement, and phagocytes &mdash; all of which it normally hides from. The acidic-pH switch is therefore essential to <em>Listeria</em>'s 'stay intracellular always' strategy.", hy:true},
+  {q:"Compare the entry mechanisms of <em>Listeria</em> (zipper) and <em>Salmonella</em> (trigger) into epithelial cells. Why are these called different mechanisms even though both involve cytoskeletal rearrangement?", a:"<strong>Zipper mechanism (<em>Listeria</em>):</strong> driven by surface adhesion. <em>Listeria</em>'s surface proteins <strong>InlA and InlB</strong> bind a host receptor (e.g., E-cadherin, c-Met). The bacterium is in <strong>direct, intimate contact</strong> with the host membrane, and the membrane <strong>wraps closely around the bacterium</strong> as it engulfs it &mdash; like closing a zipper. The cytoskeletal rearrangement is <strong>localized to the contact site</strong> and the resulting phagosome tightly contours the bacterium. <strong>Trigger mechanism (<em>Salmonella</em>):</strong> driven by injected effectors. <em>Salmonella</em> uses its <strong>SPI1 type III secretion system</strong> to inject effector proteins into the host cytoplasm <strong>without requiring intimate contact</strong>. These effectors trigger <strong>massive, broad membrane ruffling and cytoskeletal upheaval</strong>; the cell membrane buckles upward into large folds that engulf the bacterium in a <strong>spacious vacuole</strong> &mdash; loosely fitting, with bulk fluid included. <strong>Why both are 'cytoskeletal rearrangement' but different mechanisms:</strong> the <strong>signal source</strong> differs (surface ligand-receptor binding vs injected bacterial effectors), the <strong>scale of host response</strong> differs (localized zipper vs broad trigger), and the <strong>resulting phagosome morphology</strong> differs (tight vs spacious). These differences also predict the next steps: <em>Listeria</em>'s tight phagosome is rapidly acidified and lysed by LLO; <em>Salmonella</em>'s spacious vacuole is remodeled into the SCV and maintained as a long-term niche.", hy:true},
+  {q:"A patient is hospitalized with severe typhoid fever from <em>S.</em> Typhi. Five years after recovering, an elderly resident in his city is hospitalized with typhoid &mdash; whole-genome sequencing shows the same strain. Investigation traces it to the original patient, who had no symptoms but had been a cook at a community kitchen the elderly resident visited. (a) What biological state is the original patient in, and what is its prevalence among typhoid survivors? (b) Where in his body is the reservoir, and why is this site permissive? (c) Why did standard antibiotic treatment for his typhoid years ago fail to clear this reservoir? (d) How does this case mirror Typhoid Mary?", a:"(a) The original patient is a <strong>chronic asymptomatic carrier</strong> of <em>S.</em> Typhi. After surviving typhoid fever, <strong>2&ndash;5%</strong> of patients fail to fully clear the infection and become asymptomatic carriers. They <strong>intermittently shed the bacteria</strong> for prolonged, ill-defined periods, maintaining a community reservoir of infection. (b) The reservoir is in the <strong>biliary tract and gallbladder</strong>, where <em>S.</em> Typhi often forms <strong>biofilms on gallstones</strong>. The site is permissive because: (i) the immune system has limited access to the gallbladder lumen; (ii) the bile environment is one <em>S.</em> Typhi has evolved to tolerate; and (iii) <strong>biofilms physically shield bacteria</strong> from immune cells, antibodies, and antimicrobial molecules. The bacteria intermittently exit the gallbladder via the bile duct into the gut, where they exit in stool &mdash; allowing the carrier to seed outbreaks. (c) Standard antibiotic therapy treats acute typhoid (the bacteremic, intracellular phase) but <strong>poorly penetrates gallbladder biofilms</strong>: antibiotics cannot diffuse effectively through the EPS-like matrix of the biofilm, and the bacteria within can be in slow-growing or persister states that many antibiotics target poorly. So the acute infection clears, the patient feels well, but the gallbladder reservoir survives and continues shedding. (d) This case mirrors <strong>Typhoid Mary</strong> almost exactly: Mary Mallon was an Irish-American cook in NYC; investigation showed that <strong>7 of 8 families she'd worked for had typhoid</strong>; she infected at least 122 people over years, killing at least 5. Treatments tested on her in quarantine all failed (consistent with a gallbladder biofilm reservoir). The biological lesson she taught &mdash; that intracellular pathogens can establish lifelong, biofilm-protected reservoirs in asymptomatic hosts &mdash; remains directly relevant: this contemporary patient is doing the same thing, with the same biology, just in a different decade. Officials in 1907 also identified over 400 other asymptomatic carriers in NYC who were never quarantined; the modern equivalent is rapid genomic identification + curative antibiotics or cholecystectomy when appropriate, rather than lifetime confinement.", hy:true},
+  {q:"Critically compare the survival strategies of <em>Listeria</em> (cytoplasmic) and <em>Salmonella</em> (vacuolar). For each, explain (i) the immune defenses they avoid, (ii) the immune defenses they must counter, and (iii) the trade-offs of their chosen niche. Conclude with how each pathogen's choice predicts its severe disease presentations.", a:"<strong><em>Listeria</em> &mdash; cytoplasmic strategy.</strong> (i) <em>Defenses avoided:</em> antibodies, complement, neutrophils &mdash; all act in the extracellular space, but <em>Listeria</em> spreads cell-to-cell via actin rockets and never re-enters the extracellular space after initial entry. (ii) <em>Defenses faced:</em> intracellular sensors of cytoplasmic bacteria (e.g., NLRs, autophagy machinery, type I IFN responses, and CD8+ T cells via MHC-I antigen presentation). Cell-mediated immunity (T cells) is the main host defense; this is why T-cell suppression (HIV, immunosuppressants) and reduced T-cell function (pregnancy) dramatically worsen listeriosis. (iii) <em>Trade-offs:</em> the cytoplasm offers nutrients and shielding from antibodies, but cytoplasmic bacteria are rapidly visible to cell-intrinsic sensors; <em>Listeria</em> must continuously spread to fresh cells before host defenses catch up. (iv) <em>Severe presentations:</em> dissemination to sites where cell-mediated immunity is weaker or anatomically constrained &mdash; <strong>CNS (meningitis, encephalitis)</strong> and <strong>placenta (miscarriage, neonatal listeriosis)</strong>. <strong><em>Salmonella</em> &mdash; vacuolar strategy.</strong> (i) <em>Defenses avoided:</em> direct cytoplasmic sensors and CD8+ T-cell-mediated MHC-I presentation are partially avoided by staying in the vacuole. (ii) <em>Defenses faced:</em> the entire phagosomal antimicrobial arsenal &mdash; acidification, lysosomal hydrolases, ROS, RNS, antimicrobial peptides. <em>Salmonella</em> counters all of these: SPI2 effectors block acidification &amp; lysosome fusion; <em>katE</em>, <em>katG</em>, <em>sod</em>, <em>rpoS</em>, <em>slyA</em> handle ROS; <em>nirC</em>, arginase, Hmp handle RNS; <em>sapABCDF</em> and <em>yejABEF</em> block antimicrobial peptides. (iii) <em>Trade-offs:</em> the SCV is a stable niche but a metabolically constrained one &mdash; <em>Salmonella</em> must extract nutrients from the vacuole; eventually the host cell runs out, so <em>Salmonella</em> must induce apoptosis to escape. The vacuolar strategy also exposes the bacteria briefly to extracellular space during inter-cell spread. (iv) <em>Severe presentations:</em> the SCV niche allows <em>Salmonella</em> to be carried inside macrophages through the lymphatic system to deep tissues (Peyer's patches, mesenteric lymph nodes, liver, spleen, gallbladder), explaining <strong>typhoid fever</strong> (systemic disease), <strong>bacteremia</strong> (escape into the bloodstream), and <strong>chronic gallbladder carriage</strong> (long-term biofilm reservoir). <strong>Conclusion:</strong> the cytoplasm vs vacuole choice predicts both the immune defense each pathogen primarily evades and the anatomical sites where severe disease occurs. <em>Listeria</em>'s 'CNS + placenta' clinical pattern is a direct consequence of antibody-evasion via cell-to-cell spread; <em>Salmonella</em>'s 'gallbladder + lymphatic + chronic carriage' pattern is a direct consequence of macrophage-vacuole survival.", hy:true},
+  {q:"You're an exam writer. Construct a single integrative question that requires the student to (a) define both extracellular and intracellular pathogens, (b) place <em>Listeria</em> and <em>Salmonella</em> on the cytoplasm-vs-vacuole axis, (c) name at least three virulence factors per pathogen with their roles, and (d) explain why immunocompromised patients suffer disproportionately. Then provide the complete answer.", a:"<strong>Question:</strong> '<em>Listeria monocytogenes</em> and <em>Salmonella</em> Typhi are both intracellular bacterial pathogens, but they take fundamentally different approaches to surviving inside host cells. (a) Define what makes a pathogen intracellular vs extracellular. (b) Identify where each pathogen replicates within the host cell, and explain how this site shapes its virulence strategy. (c) For each pathogen, name three virulence proteins or systems and describe what each contributes to the lifecycle. (d) Explain why both pathogens cause disproportionately severe disease in immunocompromised patients (and pregnant women, in <em>Listeria</em>'s case).' <strong>Answer:</strong> <strong>(a)</strong> An <strong>extracellular pathogen</strong> kills host cells from the outside and replicates outside cells (e.g., enterohemorrhagic <em>E. coli</em> secreting toxins in the gut lumen). An <strong>intracellular pathogen</strong> invades and replicates inside host cells; this ability is often crucial for its pathogenesis. <strong>(b)</strong> <em>Listeria</em> replicates in the <strong>cytoplasm</strong>; <em>Salmonella</em> replicates in a <strong>vacuole (the Salmonella-Containing Vacuole, SCV)</strong>. The cytoplasmic strategy means <em>Listeria</em> must escape the phagosome and use cell-to-cell spread to avoid the extracellular space; the vacuolar strategy means <em>Salmonella</em> must withstand the antimicrobial functions of the phagosome and escape only by killing the host cell. <strong>(c)</strong> <strong><em>Listeria</em>:</strong> <strong>(1) Internalins A &amp; B (InlA, InlB)</strong> &mdash; surface proteins that bind epithelial cell receptors and force a non-phagocytic cell to ruffle and engulf the bacterium ('zipper'); <strong>(2) Listeriolysin O (LLO)</strong> &mdash; a cholesterol-dependent, acidic-pH-activated pore-forming toxin that lyses the phagosome to release <em>Listeria</em> into the cytoplasm and later lyses the double membrane during cell-to-cell spread; <strong>(3) ActA</strong> &mdash; a polar surface protein that stimulates host actin polymerization, generating an 'actin rocket' that propels <em>Listeria</em> through the cytoplasm and into neighboring cells without entering the extracellular space. <strong><em>Salmonella</em>:</strong> <strong>(1) SPI1</strong> (<em>Salmonella</em> Pathogenicity Island 1) &mdash; a type III secretion system whose effectors induce membrane ruffling and cytoskeletal rearrangement in epithelial cells, forcing entry ('trigger'); also involved in inducing apoptosis later; <strong>(2) SCV maintenance machinery</strong> &mdash; SPI2 effectors and antioxidant enzymes (<em>katE</em>, <em>katG</em>, <em>sod</em>, <em>rpoS</em>, <em>slyA</em>; <em>nirC</em>, arginase, Hmp) and antimicrobial peptide blockers (<em>sapABCDF</em>, <em>yejABEF</em>) that resist phagosomal acidification, prevent lysosome fusion, and neutralize ROS/RNS/AMPs; <strong>(3) Apoptosis-inducing effectors (e.g., SipB)</strong> &mdash; trigger macrophage apoptosis when nutrients are depleted, releasing <em>Salmonella</em> for further spread. <strong>(d)</strong> Both pathogens primarily evade humoral immunity (antibodies, complement) by hiding inside cells; they are controlled mainly by <strong>cell-mediated immunity</strong> (T cells, activated macrophages, intracellular killing). Patients with <strong>impaired T-cell function</strong> (HIV, transplant immunosuppression, chemotherapy) cannot mount the cell-mediated response needed to kill infected cells &mdash; so both <em>Listeria</em> and <em>Salmonella</em> are far more dangerous in them. <strong>Pregnancy</strong> involves modest T-cell suppression to maintain fetal tolerance, leaving pregnant women vulnerable to <em>Listeria</em>; in addition, <em>Listeria</em>'s ability to cross the placental barrier means the fetus &mdash; whose immune system is undeveloped &mdash; can be infected directly, causing miscarriage, stillbirth, or neonatal listeriosis. The combined effect: a pathogen lifestyle that avoids antibodies + a host with weakened cell-mediated immunity = severe, disseminated disease.", hy:true},
+];
+
+function buildFRQ(container, questions, prefix) {
+  const el = document.getElementById(container);
+  el.innerHTML = '';
+  questions.forEach((q,i) => {
+    const hy = q.hy ? 'hy-frq' : '';
+    el.innerHTML += `
+    <div class="frq-card ${hy}">
+      <div class="frq-prompt"><span class="q-num">${i+1}</span>${q.q}${q.hy?'<span class="hy-badge">HIGH YIELD</span>':''}</div>
+      <textarea placeholder="Write your answer..." id="${prefix}-ta-${i}"></textarea>
+      <button class="frq-reveal-btn" onclick="revealFRQ('${prefix}',${i})">Reveal Answer</button>
+      <div class="frq-answer" id="${prefix}-ans-${i}">${q.a}</div>
+      <div class="frq-self-grade" id="${prefix}-grade-${i}">
+        <button class="grade-btn got-it" onclick="gradeFRQ('${prefix}',${i},'got-it')">Got it</button>
+        <button class="grade-btn partial" onclick="gradeFRQ('${prefix}',${i},'partial')">Partial</button>
+        <button class="grade-btn missed" onclick="gradeFRQ('${prefix}',${i},'missed')">Missed</button>
+      </div>
+    </div>`;
+  });
+}
+
+const frqGrades = {};
+const hardGrades = {};
+
+function revealFRQ(prefix, i) {
+  document.getElementById(prefix+'-ans-'+i).classList.add('show');
+  document.getElementById(prefix+'-grade-'+i).classList.add('show');
+}
+function gradeFRQ(prefix, i, grade) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  grades[i] = grade;
+  const btns = document.getElementById(prefix+'-grade-'+i).querySelectorAll('.grade-btn');
+  btns.forEach(b => b.classList.remove('selected-grade'));
+  event.target.classList.add('selected-grade');
+  updateFRQScore(prefix);
+}
+function updateFRQScore(prefix) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  const total = prefix === 'frq' ? frqs.length : hardFrqs.length;
+  let pts = 0;
+  Object.values(grades).forEach(g => { if(g==='got-it') pts+=1; else if(g==='partial') pts+=0.5; });
+  document.getElementById(prefix+'-score').textContent = Math.round((pts/total)*100)+'%';
+}
+function resetFRQ() {
+  Object.keys(frqGrades).forEach(k => delete frqGrades[k]);
+  buildFRQ('frq-container', frqs, 'frq');
+  document.getElementById('frq-score').textContent = '0%';
+}
+function resetHard() {
+  Object.keys(hardGrades).forEach(k => delete hardGrades[k]);
+  buildFRQ('hard-container', hardFrqs, 'hard');
+  document.getElementById('hard-score').textContent = '0%';
+}
+
+buildFRQ('frq-container', frqs, 'frq');
+buildFRQ('hard-container', hardFrqs, 'hard');
+
+// ====== MATCHING ======
+const matchPairs = [
+  {term:"Extracellular pathogen", def:"Kills host cells from the outside and replicates OUTSIDE host cells (e.g., enterohemorrhagic <em>E. coli</em>)"},
+  {term:"Intracellular pathogen", def:"Invades and replicates WITHIN host cells; this ability is often crucial for pathogenesis"},
+  {term:"Internalin A &amp; B (InlA, InlB)", def:"<em>Listeria</em> surface proteins that bind epithelial cell receptors, induce ruffling and zipper-phagocytosis"},
+  {term:"Listeriolysin O (LLO)", def:"<em>Listeria</em> cholesterol-dependent pore-forming toxin; assembles only at acidic pH; lyses the phagosome"},
+  {term:"ActA", def:"Polar <em>Listeria</em> surface protein that stimulates host actin polymerization &rarr; actin rocket cell-to-cell spread"},
+  {term:"Cytoplasmic replication", def:"Where <em>Listeria</em> replicates after escaping the phagosome &mdash; nutrient-rich, hidden from antibodies/complement"},
+  {term:"SPI1", def:"<em>Salmonella</em> Pathogenicity Island 1 &mdash; T3SS effectors that induce ruffling-driven 'trigger' entry into epithelial cells"},
+  {term:"SCV", def:"<em>Salmonella</em>-Containing Vacuole &mdash; modified late-endosome niche; acidifies pH 6.5 &rarr; 5.5; resists lysosome fusion"},
+  {term:"Apoptosis induction", def:"<em>Salmonella</em>'s escape strategy &mdash; kills the macrophage when nutrients deplete, releasing bacteria"},
+  {term:"Chronic asymptomatic carriage", def:"2&ndash;5% of typhoid survivors; <em>S.</em> Typhi forms biofilms on gallstones in the gallbladder"},
+  {term:"M cells", def:"Specialized antigen-presenting epithelial cells; take up <em>Salmonella</em> by receptor-mediated endocytosis"},
+  {term:"Typhoid Mary", def:"Mary Mallon (1869&ndash;1938); first documented healthy <em>S.</em> Typhi carrier in the US; infected 122+, killed 5+"},
+];
+
+let matchLeft = null, matchRight = null, matchedCount = 0;
+function initMatching() {
+  matchLeft = null; matchRight = null; matchedCount = 0;
+  const lDiv = document.getElementById('match-left');
+  const rDiv = document.getElementById('match-right');
+  const sL = [...matchPairs].sort(() => Math.random()-0.5);
+  const sR = [...matchPairs].sort(() => Math.random()-0.5);
+  lDiv.innerHTML = sL.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('left',this)">${p.term}</div>`).join('');
+  rDiv.innerHTML = sR.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('right',this)">${p.def}</div>`).join('');
+  document.getElementById('match-score').textContent = '0 / '+matchPairs.length;
+}
+function selectMatch(side, el) {
+  if(el.classList.contains('matched')) return;
+  el.parentElement.querySelectorAll('.match-item').forEach(i => { if(!i.classList.contains('matched')) i.classList.remove('selected'); });
+  el.classList.add('selected');
+  if(side==='left') matchLeft = el; else matchRight = el;
+  if(matchLeft && matchRight) checkMatch();
+}
+function checkMatch() {
+  if(matchLeft.dataset.term === matchRight.dataset.term) {
+    matchLeft.classList.add('matched'); matchLeft.classList.remove('selected');
+    matchRight.classList.add('matched'); matchRight.classList.remove('selected');
+    matchedCount++;
+    document.getElementById('match-score').textContent = matchedCount+' / '+matchPairs.length;
+  } else {
+    matchLeft.classList.add('wrong-match'); matchRight.classList.add('wrong-match');
+    const l=matchLeft, r=matchRight;
+    setTimeout(() => { l.classList.remove('wrong-match','selected'); r.classList.remove('wrong-match','selected'); }, 700);
+  }
+  matchLeft = null; matchRight = null;
+}
+initMatching();
+</script>
+</body>
+</html>

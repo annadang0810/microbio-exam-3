@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opportunistic Infections - BIOL 3303 Study Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232733;
+    --border: #2e3344;
+    --text: #e2e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --green: #00cec9;
+    --green-dim: #00cec920;
+    --red: #fd7272;
+    --red-dim: #fd727220;
+    --orange: #ffa94d;
+    --orange-dim: #ffa94d20;
+    --blue: #74b9ff;
+    --yellow: #ffd43b;
+    --yellow-dim: #ffd43b18;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 8px;
+    overflow-x: auto;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent-light);
+    white-space: nowrap;
+    margin-right: 16px;
+    letter-spacing: -0.3px;
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .nav-btn:hover { color: var(--text); background: var(--surface2); }
+  .nav-btn.active {
+    color: var(--accent-light);
+    background: #6c5ce715;
+    border-color: #6c5ce740;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 84px 24px 60px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+    color: var(--accent-light);
+  }
+  .card p, .card li {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 6px; }
+  .card li::marker { color: var(--accent); }
+
+  .highlight { color: var(--green); font-weight: 600; }
+  .organism { color: var(--orange); font-weight: 600; }
+  .warn { color: var(--red); font-weight: 600; }
+  .key {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+
+  /* HIGH YIELD */
+  .hy-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin-left: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    animation: hyPulse 2s ease-in-out infinite;
+  }
+  @keyframes hyPulse {
+    0%, 100% { box-shadow: 0 0 0 0 #ffd43b40; }
+    50% { box-shadow: 0 0 12px 4px #ffd43b30; }
+  }
+  .hy-card {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .hy-card h2 { color: var(--yellow); }
+
+  .hy-legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: var(--yellow-dim);
+    border: 1px solid #ffd43b40;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--yellow);
+    font-weight: 600;
+  }
+
+  .exam-topics {
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: var(--surface2);
+    border: 1px solid #ffd43b30;
+    border-radius: 10px;
+  }
+  .exam-topics p {
+    font-size: 12px;
+    color: var(--yellow);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .exam-topics ul { padding-left: 18px; }
+  .exam-topics li {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .exam-topics li::marker { color: var(--yellow); }
+
+  /* HERO */
+  .hero-card {
+    background: linear-gradient(135deg, #6c5ce730, #00cec915);
+    border-color: #6c5ce740;
+    text-align: center;
+    padding: 48px 28px;
+  }
+  .hero-card h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .hero-card p { color: var(--text-dim); font-size: 15px; }
+  .hero-stats {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat-num { font-size: 24px; font-weight: 800; color: var(--accent-light); }
+  .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+  /* TABS */
+  .tab-row { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .tab-btn.hy-tab { border-color: #ffd43b60; }
+  .tab-btn.hy-tab.active { background: linear-gradient(135deg, #ffd43b, #f59f00); color: #1a1d27; border-color: #ffd43b; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* TABLES */
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .data-table th, .data-table td { padding: 8px 12px; border: 1px solid var(--border); text-align: left; font-size: 13.5px; }
+  .data-table th { background: var(--surface2); color: var(--accent-light); font-weight: 600; }
+  .data-table td { color: var(--text-dim); }
+  .data-table.hy-table th { color: var(--yellow); }
+
+  /* DIAGRAM */
+  .diagram-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 14px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .diagram-box .arr { color: var(--accent-light); }
+  .diagram-box .mol { color: var(--green); font-weight: 700; }
+  .diagram-box .label { color: var(--text-dim); font-style: italic; }
+
+  .callout {
+    background: #00cec920;
+    border: 1px solid #00cec940;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    font-size: 13.5px;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* SCORE BAR */
+  .score-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .score-text { font-size: 15px; font-weight: 600; }
+  .score-pct { font-size: 28px; font-weight: 800; color: var(--accent-light); }
+  .reset-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { background: var(--accent-light); color: var(--bg); }
+
+  /* FLASHCARD */
+  .fc-container { perspective: 1000px; margin-bottom: 16px; }
+  .flashcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    cursor: pointer;
+    transition: transform 0.5s, box-shadow 0.3s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .flashcard:hover { box-shadow: 0 4px 24px #6c5ce720; }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .fc-front, .fc-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    backface-visibility: hidden;
+    border-radius: 14px;
+  }
+  .fc-front { font-size: 16px; font-weight: 600; color: var(--text); }
+  .fc-back {
+    transform: rotateY(180deg);
+    font-size: 15px;
+    color: var(--green);
+    background: var(--surface);
+    line-height: 1.6;
+  }
+  .fc-nav { display: flex; gap: 10px; justify-content: center; align-items: center; }
+  .fc-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .fc-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .fc-counter { font-size: 13px; color: var(--text-dim); font-weight: 600; min-width: 60px; text-align: center; }
+  .fc-hint { text-align: center; color: var(--text-dim); font-size: 12px; margin-top: 10px; }
+
+  /* MATCHING */
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .match-col-header {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+  .match-item {
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .match-item:hover { border-color: var(--accent); color: var(--text); }
+  .match-item.selected { border-color: var(--accent); background: #6c5ce715; color: var(--accent-light); }
+  .match-item.matched { border-color: var(--green); background: var(--green-dim); color: var(--green); pointer-events: none; opacity: 0.7; }
+  .match-item.wrong-match { border-color: var(--red); background: var(--red-dim); color: var(--red); }
+
+  /* FRQ */
+  .frq-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .frq-card.hy-frq {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .frq-card .q-num {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .frq-card.hy-frq .q-num {
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+  }
+  .frq-card .frq-prompt { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+  .frq-card .frq-hint { font-size: 12px; color: var(--text-dim); margin-bottom: 12px; font-style: italic; }
+  .frq-card textarea {
+    width: 100%;
+    min-height: 100px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    padding: 14px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+  .frq-card textarea:focus { outline: none; border-color: var(--accent); }
+  .frq-card textarea::placeholder { color: #4a4e63; }
+  .frq-reveal-btn {
+    display: inline-block;
+    margin-top: 12px;
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent-light);
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .frq-reveal-btn:hover { background: #6c5ce715; }
+  .frq-answer {
+    display: none;
+    margin-top: 14px;
+    padding: 16px;
+    background: var(--surface2);
+    border-radius: 10px;
+    border-left: 3px solid var(--green);
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .frq-answer.show { display: block; }
+  .frq-answer strong { color: var(--green); }
+  .frq-self-grade { display: none; margin-top: 12px; gap: 8px; }
+  .frq-self-grade.show { display: flex; }
+  .grade-btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .grade-btn.got-it { color: var(--green); border-color: var(--green); }
+  .grade-btn.got-it:hover { background: var(--green-dim); }
+  .grade-btn.partial { color: var(--orange); border-color: var(--orange); }
+  .grade-btn.partial:hover { background: var(--orange-dim); }
+  .grade-btn.missed { color: var(--red); border-color: var(--red); }
+  .grade-btn.missed:hover { background: var(--red-dim); }
+  .grade-btn.selected-grade { font-weight: 800; }
+  .grade-btn.got-it.selected-grade { background: var(--green-dim); }
+  .grade-btn.partial.selected-grade { background: var(--orange-dim); }
+  .grade-btn.missed.selected-grade { background: var(--red-dim); }
+
+  @media (max-width: 600px) {
+    .nav-brand { display: none; }
+    main { padding: 76px 14px 40px; }
+    .card { padding: 20px; }
+    .hero-card { padding: 32px 20px; }
+    .hero-card h1 { font-size: 22px; }
+    .match-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">OppInfStudy</span>
+    <button class="nav-btn active" onclick="showSection('home')">Home</button>
+    <button class="nav-btn" onclick="showSection('learn')">Learn</button>
+    <button class="nav-btn" onclick="showSection('flashcards')">Flashcards</button>
+    <button class="nav-btn" onclick="showSection('frq')">FRQ</button>
+    <button class="nav-btn" onclick="showSection('matching')">Matching</button>
+    <button class="nav-btn" onclick="showSection('hard')">Hard FRQ</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ==================== HOME ==================== -->
+<div class="section active" id="sec-home">
+  <div class="card hero-card">
+    <h1>Opportunistic Infections</h1>
+    <p>BIOL 3303 &middot; Lectures 20 &amp; 21 &mdash; Immunodeficiency, MRSA, <em>P. aeruginosa</em>, <em>C. auris</em></p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Topics</div></div>
+      <div class="stat"><div class="stat-num">32</div><div class="stat-label">Flashcards</div></div>
+      <div class="stat"><div class="stat-num">22</div><div class="stat-label">FRQs</div></div>
+    </div>
+    <div class="hy-legend">HIGH YIELD = Confirmed exam topics from your professor. Prioritize these.</div>
+    <div class="exam-topics">
+      <p>Your Professor's Exam Topics</p>
+      <ul>
+        <li><strong>Immunodeficiency &amp; opportunistic infections</strong> &mdash; what they are; the four immune-system components</li>
+        <li><strong>MRSA</strong> &mdash; Protein A, Luk S + Luk F (PVL), abscess formation</li>
+        <li><strong><em>Pseudomonas aeruginosa</em></strong> &mdash; biofilm, quorum sensing</li>
+        <li><strong><em>Candida auris</em></strong> &mdash; differences from other Candida, colony phenotype switching, filamentation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LEARN ==================== -->
+<div class="section" id="sec-learn">
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="showTab(this,'overview')">Overview</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'immuno')">Immunodeficiency</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'opp')">Opportunistic Infection</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'mrsa')">MRSA</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'pa')"><em>P. aeruginosa</em></button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'ca')"><em>C. auris</em></button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'compare')">Compare All</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-content active" id="tab-overview">
+    <div class="card">
+      <h2>The Big Picture</h2>
+      <p>This material connects two ideas: <span class="highlight">why some people are vulnerable to infection</span> (immunodeficiency) and <span class="highlight">which microbes exploit that vulnerability</span> (opportunistic pathogens). The professor wants you to know:</p>
+      <ul>
+        <li>What is immunodeficiency &mdash; and which immune components can fail</li>
+        <li>What an opportunistic pathogen is &mdash; the three defining traits</li>
+        <li>Three example pathogens with specific virulence factors:</li>
+        <li style="margin-left: 20px"><span class="organism">MRSA</span> &mdash; Protein A, Luk S/Luk F, abscess</li>
+        <li style="margin-left: 20px"><span class="organism">Pseudomonas aeruginosa</span> &mdash; biofilm, quorum sensing</li>
+        <li style="margin-left: 20px"><span class="organism">Candida auris</span> &mdash; thermotolerance, phenotype switching, filamentation</li>
+      </ul>
+
+      <h3>Connection Map</h3>
+      <table class="data-table">
+        <tr><th>Pathogen</th><th>Type</th><th>Why it's opportunistic</th><th>Key virulence trick</th></tr>
+        <tr><td>MRSA</td><td>Gram&#8209;positive bacterium</td><td>Common nasal commensal in 1/3 of people; invades through skin breaches</td><td>Protein A, PVL (LukS+LukF), abscess</td></tr>
+        <tr><td><em>P. aeruginosa</em></td><td>Gram&#8209;negative bacterium</td><td>Ubiquitous environmental; main killer in CF lungs</td><td>Biofilm, quorum sensing, MDR</td></tr>
+        <tr><td><em>C. auris</em></td><td>Yeast (fungus)</td><td>Thermotolerant, persists on surfaces; exploits hospitalized patients</td><td>Phenotype switching + filamentation</td></tr>
+      </table>
+
+      <div class="callout">All three pathogens share two features: they exploit weakened hosts, AND they can survive outside the body (environment, skin, surfaces). That dual lifestyle is what makes them "opportunistic."</div>
+    </div>
+  </div>
+
+  <!-- IMMUNODEFICIENCY -->
+  <div class="tab-content" id="tab-immuno">
+    <div class="card hy-card">
+      <h2>Immunodeficiency <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p><span class="key">DEF</span> <strong>Immunodeficiency</strong> = a state in which the immune system's <span class="highlight">ability to fight infectious disease is compromised or entirely absent</span>. A person who has an immunodeficiency is said to be <span class="highlight">immunocompromised</span>.</p>
+
+      <p>Immunodeficiencies can result in autoimmune disorders AND <span class="highlight">predispose patients to infections</span> &mdash; especially opportunistic ones.</p>
+
+      <h3>The Four Major Components of the Immune System (any can fail)</h3>
+      <ul>
+        <li><span class="highlight">B cells</span> &mdash; antibody production</li>
+        <li><span class="highlight">T cells</span></li>
+        <li><span class="highlight">Complement</span></li>
+        <li><span class="highlight">Phagocytes</span></li>
+      </ul>
+
+      <h3>Two Categories of Immunodeficiency</h3>
+      <table class="data-table hy-table">
+        <tr><th>Type</th><th>Definition</th></tr>
+        <tr><td><span class="highlight">Congenital</span></td><td>Conditions present from birth</td></tr>
+        <tr><td><span class="highlight">Acquired</span></td><td>Conditions acquired during lifetime, NOT present at birth</td></tr>
+      </table>
+
+      <h3>Type of Deficiency &rarr; Type of Infection</h3>
+      <p>Different immune components defend against different microbes &mdash; so the type of deficiency predicts the infection risk:</p>
+      <table class="data-table hy-table">
+        <tr><th>Deficiency</th><th>Increased risk of</th></tr>
+        <tr><td><span class="highlight">B-cell</span> deficiency</td><td><span class="warn">Pyogenic bacteria</span> (e.g., staphylococci &mdash; like <em>S. aureus</em>!)</td></tr>
+        <tr><td><span class="highlight">T-cell</span> deficiency</td><td><span class="warn">Certain fungi, viruses, or protozoa</span></td></tr>
+      </table>
+
+      <h3>Receptor Deficiency Examples (lecture)</h3>
+      <ul>
+        <li><span class="highlight">TLR-5 deficiency</span> &mdash; can't recognize bacterial flagellin &rarr; susceptibility to <em>Legionella</em></li>
+        <li><span class="highlight">MBL (mannose-binding ligand) deficiency</span> &mdash; failure to activate complement &rarr; severe gram-negative infections (e.g., <em>Neisseria</em>)</li>
+        <li><span class="highlight">NOD-2 deficiency</span> (cytoplasmic peptidoglycan sensor) &rarr; gut immunity defect; involved in pathogenesis of Crohn's disease</li>
+        <li><span class="highlight">RIG helicase deficiency</span> &mdash; reduced interferon response to dsRNA viruses (e.g., influenza)</li>
+      </ul>
+
+      <h3>Key Concept: SCID Mice</h3>
+      <p>Failures in adaptive immunity (T or B cells) are a primary cause of immunodeficiencies. <span class="highlight">RAG protein complexes</span> are responsible for antibody and T-cell receptor diversity. Mutations in RAG proteins are how researchers generate <span class="highlight">SCID (severe combined immunodeficiency) mice</span> for research.</p>
+
+      <div class="callout">The two-line summary: <strong>immunodeficiency = something in the four-component immune system (B, T, complement, phagocytes) is broken</strong>. Whether congenital or acquired determines the timeline; which component is broken determines what gets through.</div>
+    </div>
+  </div>
+
+  <!-- OPPORTUNISTIC INFECTIONS -->
+  <div class="tab-content" id="tab-opp">
+    <div class="card hy-card">
+      <h2>What is an Opportunistic Infection? <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p><span class="key">DEF</span> An <strong>opportunistic pathogen</strong> = a microorganism that does <span class="highlight">NOT usually infect healthy hosts</span> but produces infections in:</p>
+      <ul>
+        <li><span class="highlight">Hospitals</span> (nosocomial infections)</li>
+        <li><span class="highlight">Immunosuppressed persons</span></li>
+        <li><span class="highlight">Patients presenting underlying diseases</span> that favor infection</li>
+      </ul>
+
+      <h3>The 3 Defining Characteristics</h3>
+      <ol style="padding-left: 20px;">
+        <li style="margin-bottom: 8px;"><span class="highlight">Usually organisms of LOW pathogenicity</span> &mdash; they wouldn't normally make a healthy person sick</li>
+        <li style="margin-bottom: 8px;">They cause <span class="highlight">serious infections mainly when the host's defense mechanisms are impaired</span></li>
+        <li style="margin-bottom: 8px;">They <span class="highlight">can behave as conventional pathogens</span> &mdash; but under opportunistic conditions, may cause <span class="warn">atypical clinical presentations or disseminated lesions</span></li>
+      </ol>
+
+      <h3>Why They Need a Dual Lifestyle</h3>
+      <p>Because opportunistic pathogens <span class="warn">don't always have a host to infect</span>, they must be able to <span class="highlight">survive outside of an infection</span>. Two strategies:</p>
+      <ul>
+        <li><span class="highlight">Live in the environment</span> (soil, surfaces, water) &mdash; e.g., <em>P. aeruginosa</em>, <em>C. auris</em></li>
+        <li><span class="highlight">Live as commensals</span> &mdash; benefit from colonizing the host but typically don't harm it &mdash; e.g., <em>S. aureus</em> in the nose</li>
+      </ul>
+
+      <h3>Hospital Procedures = Opportunity</h3>
+      <p>Hospital procedures (surgery, catheters, breathing tubes, central lines) <span class="highlight">breach normal host defenses</span>, giving opportunistic pathogens a route in. This is why <span class="highlight">nosocomial</span> opportunistic infections are so common.</p>
+
+      <div class="callout">The "opportunity" in opportunistic = a breach (skin wound, surgical site, IV line) or a weakened immune system. Healthy people walk past these microbes every day with no problem.</div>
+    </div>
+  </div>
+
+  <!-- MRSA -->
+  <div class="tab-content" id="tab-mrsa">
+    <div class="card hy-card">
+      <h2>MRSA: Protein A, Luk S/Luk F, Abscess Formation <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p><span class="key">DEF</span> <strong>MRSA</strong> = <span class="highlight">Methicillin-Resistant <em>Staphylococcus aureus</em></span>. A lineage of <em>S. aureus</em> that has developed resistance to several &beta;-lactams including methicillin, acquired through <span class="highlight">horizontal gene transfer</span>.</p>
+
+      <h3><em>S. aureus</em> Basics</h3>
+      <ul>
+        <li><span class="organism">Gram-positive coccoid</span> bacterium that readily clusters &mdash; resembles a bunch of grapes ("staphyle" in Greek)</li>
+        <li>Forms colonies with a <span class="highlight">golden hue</span> on agar &mdash; hence "aureus" (Latin for gold)</li>
+        <li><span class="highlight">Resides in the nose of 1 in 3 people</span> &mdash; harmless there; an opportunistic commensal</li>
+        <li>Causes trouble when moved from its niche (nose/skin) to deeper tissues, e.g., through a skin wound</li>
+        <li>Long co-evolution with humans = <span class="warn">impressive immune-evasion toolkit</span></li>
+      </ul>
+
+      <h3>Virulence Factor 1 &mdash; Protein A (immune evasion / anti-phagocytosis)</h3>
+      <ul>
+        <li><span class="highlight">Surface protein</span> on <em>S. aureus</em></li>
+        <li>Binds the <span class="highlight">conserved Fc region of immunoglobulins (antibodies)</span></li>
+        <li>Forces opsonizing antibodies to bind <span class="warn">"the wrong way around"</span> &mdash; their <span class="highlight">variable region SHOULD bind the pathogen</span>, but Protein A traps them by their <span class="highlight">constant (Fc) region</span> instead</li>
+        <li>Result: phagocytes <span class="warn">cannot recognize the antibodies properly</span> and <span class="warn">don't eat <em>S. aureus</em></span></li>
+      </ul>
+
+      <div class="diagram-box"><span class="label">Normal opsonization (works):</span>
+   antibody Fc &larr;<span class="arr">[phagocyte]</span> ... antibody Fab &rarr; <span class="mol">pathogen</span>
+
+<span class="label">With Protein A (broken):</span>
+   antibody Fab &larr;FREE     <span class="warn">antibody Fc</span> &larr;<span class="arr">[Protein A on S. aureus]</span>
+                           &uarr; phagocyte can't bind it correctly</div>
+
+      <h3>Virulence Factor 2 &mdash; Panton-Valentine Leukocidin (PVL): LukS + LukF <span class="hy-badge">HIGH YIELD</span></h3>
+      <p>PVL is a pore-forming toxin that <span class="warn">directly kills neutrophils</span>. Two-step mechanism:</p>
+      <ol style="padding-left: 20px;">
+        <li style="margin-bottom: 8px;"><em>S. aureus</em> secretes <span class="highlight">two proteins, LukS and LukF</span>, that associate with the neutrophil's plasma membrane</li>
+        <li style="margin-bottom: 8px;"><span class="highlight">Eight subunits</span> of LukS and LukF self-assemble into a <span class="highlight">ring-like structure</span> that forms <span class="warn">pores in the host membrane</span></li>
+      </ol>
+      <p>When several pores form on the same cell, the <span class="warn">neutrophil lyses</span>, triggering <span class="highlight">inflammation and tissue damage</span>.</p>
+
+      <h3>Where do MRSA's PVL genes come from?</h3>
+      <ul>
+        <li>A <span class="highlight">phage</span> carrying <em>lukS</em> and <em>lukF</em> infected an <em>S. aureus</em> strain &mdash; PVL is encoded on a mobile genetic element, NOT in the core genome</li>
+        <li>Combined with another virulence factor (ACME), this produced an <span class="warn">epidemic clone</span></li>
+        <li><em>S. aureus</em> from the noses of <span class="highlight">healthy people typically do NOT encode PVL</span></li>
+        <li>However, <span class="warn">~85% of MRSA strains DO encode PVL</span></li>
+      </ul>
+
+      <h3>Virulence Factor 3 &mdash; Abscess Formation <span class="hy-badge">HIGH YIELD</span></h3>
+      <p>The host releases <span class="highlight">fibrin</span> (a tough, fiber-like protein) that self-assembles into a <span class="highlight">protective web</span> as a reaction to the immune-pathogen battle. <em>S. aureus</em> then <span class="warn">hijacks this defense</span>:</p>
+      <ul>
+        <li><em>S. aureus</em> secretes <span class="highlight">coagulase</span> &mdash; an enzyme that <span class="highlight">induces production of MORE fibrin</span></li>
+        <li>This creates a <span class="warn">shell of fibrin around the bacteria</span> &mdash; the <span class="highlight">abscess</span></li>
+      </ul>
+
+      <h3>Who is really protected?</h3>
+      <ul>
+        <li>Supposed to be a host defense, but now <span class="warn"><em>S. aureus</em> is shielded</span> from:</li>
+        <li style="margin-left: 20px;">Complement</li>
+        <li style="margin-left: 20px;">Antibodies</li>
+        <li style="margin-left: 20px;">Neutrophils</li>
+        <li style="margin-left: 20px;"><span class="warn">Antibiotics</span></li>
+        <li><em>S. aureus</em> can survive and replicate inside the abscess; some escape to seed new infections elsewhere</li>
+        <li>Abscesses can form on <span class="warn">bone, heart, and other tissues</span></li>
+      </ul>
+
+      <h3>Why MRSA Is Resistant to Methicillin</h3>
+      <ul>
+        <li>Methicillin is a &beta;-lactam developed after penicillin resistance arose</li>
+        <li>Within a year, <em>S. aureus</em> evolved a <span class="highlight">novel penicillin-binding protein, PBP2</span> (encoded by the <em>mecA</em> gene)</li>
+        <li>PBP2 is an alternative peptidase that <span class="warn">cannot be targeted by &beta;-lactams</span></li>
+        <li><em>mecA</em> sits on a <span class="highlight">highly mobile genetic element</span> &mdash; transmits rapidly across <em>S. aureus</em></li>
+      </ul>
+
+      <h3>Bonus: How MRSA spread to skin (ACME)</h3>
+      <p>Normally, <em>S. aureus</em> lives in the warm/moist nose; <em>S. epidermidis</em> lives on the dry/acidic skin. MRSA acquired the <span class="highlight">arginine catabolic mobile element (ACME)</span> from <em>S. epidermidis</em>:</p>
+      <ul>
+        <li><span class="highlight">Arc (arginine deaminase system)</span> &mdash; counteracts skin acid by generating ammonia</li>
+        <li><span class="highlight">SpeG enzyme</span> &mdash; inactivates antimicrobial polyamines from skin cells</li>
+        <li>Result: MRSA can colonize the <span class="warn">skin</span> &mdash; enabling its spread (e.g., the 2003 St. Louis Rams outbreak)</li>
+      </ul>
+
+      <div class="callout">3-part MRSA virulence: <strong>Protein A</strong> (binds antibody Fc the wrong way around &rarr; blocks phagocytosis); <strong>LukS+LukF / PVL</strong> (8-subunit pore-forming toxin &rarr; lyses neutrophils, from a phage, in 85% of MRSA); <strong>abscess</strong> (coagulase induces fibrin shell &rarr; protects from immune cells AND antibiotics).</div>
+    </div>
+  </div>
+
+  <!-- PSEUDOMONAS -->
+  <div class="tab-content" id="tab-pa">
+    <div class="card hy-card">
+      <h2><em>Pseudomonas aeruginosa</em>: Biofilm &amp; Quorum Sensing <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3><em>P. aeruginosa</em> Basics</h3>
+      <ul>
+        <li><span class="organism">Gram-negative rod-shaped</span> bacterium</li>
+        <li><span class="highlight">Ubiquitous</span> in the environment (soils, surfaces) &mdash; the classic environmental opportunist</li>
+        <li>Large genomes (~5&ndash;7 Mbp) with one of the <span class="highlight">highest proportions of regulatory genes</span> in known bacteria &mdash; can adapt to diverse environments</li>
+        <li>Leading <span class="highlight">nosocomial pathogen</span> (hospital-acquired)</li>
+        <li><span class="warn">Intrinsically resistant</span> to a wide range of antibiotics; some MDR strains resistant to nearly all, including <span class="warn">carbapenems</span></li>
+        <li>Causes: <span class="highlight">pneumonia, bloodstream infections, UTIs, surgical site infections</span></li>
+        <li>Particularly dangerous for chronic lung disease patients</li>
+        <li><span class="warn">Main cause of morbidity and mortality in cystic fibrosis (CF) patients</span></li>
+      </ul>
+
+      <h3>Virulence Factor 1 &mdash; Biofilm</h3>
+      <p><span class="key">DEF</span> A <strong>biofilm</strong> = an <span class="highlight">assemblage of surface-associated microbial cells enclosed in a matrix</span>.</p>
+      <ul>
+        <li>The matrix is made of <span class="highlight">Extracellular Polymeric Secretions (EPS)</span> that surround and protect cells</li>
+        <li>EPS is composed of: <span class="highlight">polysaccharides, proteins, lipids, and extracellular DNA (eDNA)</span></li>
+      </ul>
+
+      <h3>The 4 Stages of Biofilm Formation</h3>
+      <table class="data-table hy-table">
+        <tr><th>Stage</th><th>What happens</th></tr>
+        <tr><td><strong>1. Attachment</strong></td><td>Free-swimming (planktonic) cells attach to a surface</td></tr>
+        <tr><td><strong>2. Growth</strong></td><td>Cells multiply and begin producing EPS matrix</td></tr>
+        <tr><td><strong>3. Maturation</strong></td><td>3D structured biofilm forms with channels, layers</td></tr>
+        <tr><td><strong>4. Detachment</strong></td><td>Cells slough off / disperse to colonize new sites</td></tr>
+      </table>
+
+      <h3>What Biofilms Protect Against</h3>
+      <p>Within a biofilm, cells are protected from:</p>
+      <ul>
+        <li><span class="highlight">Immune factors</span> (e.g., complement, antimicrobial peptides)</li>
+        <li><span class="highlight">Immune cells</span> (phagocytes can't reach embedded cells)</li>
+        <li><span class="highlight">Predation</span></li>
+        <li><span class="warn">Antibiotics</span></li>
+      </ul>
+
+      <h3>Biofilms in the CF Lung</h3>
+      <ul>
+        <li>CF causes thick, sticky mucus &mdash; lungs can't clear infections</li>
+        <li><em>P. aeruginosa</em> establishes biofilms in the CF lung &mdash; <span class="warn">persists for the patient's lifetime</span></li>
+        <li>Host responds with chronic inflammation (recruits leukocytes) but cannot clear the biofilm</li>
+        <li>Chronic inflammation &rarr; tissue damage &rarr; lung function loss &rarr; worsening infection &rarr; <span class="warn">eventual mortality</span></li>
+        <li>Predominance of MDR <em>P. aeruginosa</em> in the lung is associated with mortality in CF patients</li>
+      </ul>
+
+      <h3>Virulence Factor 2 &mdash; Quorum Sensing</h3>
+      <p><span class="key">DEF</span> <strong>Quorum sensing</strong> = the way bacteria <span class="highlight">communicate with each other</span>. They use a <span class="highlight">language of chemicals</span> for both inter- and intra-species conversations.</p>
+
+      <p>Crucial for regulating <span class="highlight">group activities</span>:</p>
+      <ul>
+        <li>Activating virulence programs</li>
+        <li>Reprogramming metabolic programs</li>
+        <li>Living as a community within a <span class="highlight">biofilm</span></li>
+      </ul>
+
+      <h3>The Classic System: <em>V. fischeri</em> / Bonnie Bassler</h3>
+      <p>Quorum sensing was discovered in <span class="organism"><em>Vibrio fischeri</em></span>, the squid light organ symbiont. The mechanism is the textbook example:</p>
+      <div class="diagram-box"><span class="label">At LOW cell density:</span>
+   <span class="mol">LuxI</span> enzyme makes autoinducer (<span class="mol">AHL</span>, a homoserine lactone)
+   AHL stays diffuse in the extracellular space
+   <span class="warn">Not enough AHL to do anything yet</span>
+
+<span class="label">At HIGH cell density:</span>
+   AHL concentration rises &rarr; diffuses BACK INTO the cell
+   <span class="mol">LuxR</span> binds AHL &rarr; activates <span class="mol">lux operon</span>
+   lux operon &rarr; <span class="mol">luciferase</span> &rarr; light
+   Light helps hide the squid from predators at night</div>
+
+      <h3>Quorum Sensing in <em>P. aeruginosa</em></h3>
+      <ul>
+        <li><em>P. aeruginosa</em> has <span class="warn">FOUR different quorum sensing systems</span> (more complex than <em>V. fischeri</em>'s one)</li>
+        <li>Uses these systems to control its actions, including <span class="highlight">biofilm formation</span></li>
+        <li>This integration of QS with biofilm regulation is critical for its survival in CF lungs</li>
+      </ul>
+
+      <div class="callout">The link is everything: <em>P. aeruginosa</em> uses <strong>quorum sensing</strong> to coordinate when to switch on <strong>biofilm</strong> formation. Single cells can't usefully build a biofilm; only when they sense (via AHL-like autoinducers) that there are enough of them, they cooperatively build the EPS matrix.</div>
+    </div>
+  </div>
+
+  <!-- CANDIDA AURIS -->
+  <div class="tab-content" id="tab-ca">
+    <div class="card hy-card">
+      <h2><em>Candida auris</em>: Differences, Phenotype Switching, Filamentation <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3><em>C. auris</em> Basics</h3>
+      <ul>
+        <li>An <span class="highlight">emerging multidrug-resistant yeast</span> (a fungus)</li>
+        <li><span class="highlight">First identified in 2009</span> in Asia &mdash; isolated from the <span class="highlight">ear canal</span> of a Japanese patient (auris = Latin for ear)</li>
+        <li>Earliest known strain dates to 1996, South Korea (retrospective review)</li>
+        <li>Spreads easily between hospitalized patients and nursing home residents</li>
+        <li>Can be carried on patients' <span class="warn">skin without causing infection</span> &mdash; allowing silent spread</li>
+      </ul>
+
+      <h3>Why CDC Is Concerned (3 reasons)</h3>
+      <ol style="padding-left: 20px;">
+        <li style="margin-bottom: 8px;"><span class="highlight">Often multidrug-resistant</span> &mdash; resistant to multiple antifungal drug classes; some strains resistant to ALL available antifungals</li>
+        <li style="margin-bottom: 8px;"><span class="highlight">Difficult to identify</span> with standard laboratory methods &mdash; can be misidentified (e.g., as <em>C. haemulonii</em>); needs special tests</li>
+        <li style="margin-bottom: 8px;"><span class="highlight">Causes outbreaks</span> in healthcare settings</li>
+      </ol>
+
+      <h3>What Makes <em>C. auris</em> DIFFERENT From Other <em>Candida</em> <span class="hy-badge">HIGH YIELD</span></h3>
+      <table class="data-table hy-table">
+        <tr><th>Trait</th><th>Most fungi / other <em>Candida</em></th><th><em>C. auris</em></th></tr>
+        <tr><td><strong>Thermotolerance</strong></td><td>Can't survive at human physiological temps (36.5&ndash;37.5&deg;C, up to 40&deg;C in fever)</td><td><span class="warn">Grows at &gt;40&deg;C</span></td></tr>
+        <tr><td><strong>Osmotolerance</strong></td><td>Cannot tolerate high salt</td><td><span class="warn">Tolerates &gt;10% NaCl (wt/vol)</span> &mdash; survives in hypersaline environments</td></tr>
+        <tr><td><strong>Surface persistence</strong></td><td>Days at most</td><td><span class="warn">Several WEEKS</span> on human skin and environmental surfaces</td></tr>
+        <tr><td><strong>Disinfectant tolerance</strong></td><td>Killed by standard disinfectants</td><td><span class="warn">Tolerates some commonly used disinfectants</span></td></tr>
+        <tr><td><strong>Filamentation triggers</strong></td><td><em>C. albicans</em>: serum, GlcNAc, high CO<sub>2</sub>, 37&deg;C induce hyphae</td><td><span class="warn">Those triggers do NOT work</span>; <em>C. auris</em> filaments at LOW temp (&lt;25&deg;C)</td></tr>
+        <tr><td><strong>Phenotype switching</strong></td><td><em>C. albicans</em>: 2-way (yeast &harr; hyphae) and white-opaque switching</td><td><span class="warn">3-way</span>: typical yeast, filamentation-competent yeast, filamentous form</td></tr>
+      </table>
+
+      <h3>Why Thermotolerance Matters &mdash; Climate Change Hypothesis</h3>
+      <p>Most fungi can't infect humans because they can't grow at body temp. <em>C. auris</em>'s ability to grow at &gt;40&deg;C is hypothesized to be a result of <span class="warn">climate change / human-induced global warming</span>. This makes <em>C. auris</em> potentially the <span class="highlight">first example of a new pathogenic fungus emerging from human-induced global warming</span>.</p>
+
+      <h3>Phenotypic Plasticity</h3>
+      <p><span class="key">DEF</span> <strong>Phenotypic plasticity</strong> = the <span class="highlight">ability of an organism to change in response to stimuli or inputs from the environment</span>.</p>
+      <ul>
+        <li>A common strategy used by microbial pathogens to adapt to diverse host environments</li>
+        <li>Transitions between phenotypic forms allow cells to <span class="highlight">rapidly respond to environmental fluctuations</span></li>
+        <li>In <em>C. auris</em>, this includes <span class="highlight">colony phenotype (white/opaque) switching</span> and <span class="highlight">filamentation</span></li>
+      </ul>
+
+      <h3>Colony Phenotype Switching (White and Opaque)</h3>
+      <ul>
+        <li>A type of phenotypic plasticity where colonies switch between distinct forms</li>
+        <li>Each form has different gene expression and behavior</li>
+        <li>Allows the population to <span class="highlight">hedge against changing conditions</span> &mdash; some cells of one type, some of another</li>
+      </ul>
+
+      <h3>Filamentation in <em>C. auris</em></h3>
+      <p>Filamentous (hyphal/pseudohyphal) cell growth is normally <span class="highlight">critical for fungal invasion of host tissues</span> in pathogenic <em>Candida</em>. But <em>C. auris</em> filamentation is unusual:</p>
+
+      <h3>The 3 Cellular Phenotypes (3-way switching)</h3>
+      <ol style="padding-left: 20px;">
+        <li style="margin-bottom: 8px;"><span class="highlight">Typical yeast cells</span> &mdash; locked in the yeast form, <span class="warn">UNABLE to filament</span> in vitro even with filament-inducing stimuli</li>
+        <li style="margin-bottom: 8px;"><span class="highlight">Filamentation-competent yeast cells</span> &mdash; appeared in a small proportion <span class="warn">after passage through a mouse</span> (systemic infection model). They can be triggered to form filaments later.</li>
+        <li style="margin-bottom: 8px;"><span class="highlight">Filamentous-form cells</span> &mdash; once recovered from the mouse and grown at <span class="warn">low temperature (&le;25&deg;C)</span>, they undergo <span class="warn">robust filamentation</span></li>
+      </ol>
+
+      <h3>Heritable vs Non-heritable Switching</h3>
+      <ul>
+        <li><span class="highlight">Typical yeast &harr; filamentation-competent yeast</span>: <span class="warn">RARE event but HERITABLE</span> (a stable epigenetic/genetic switch)</li>
+        <li><span class="highlight">Filamentation-competent yeast &harr; filamentous-form cells</span>: <span class="warn">NON-heritable, environment-dependent</span> (a reversible response to temperature)</li>
+      </ul>
+
+      <h3>Temperature Switch &mdash; Opposite of <em>C. albicans</em>!</h3>
+      <table class="data-table hy-table">
+        <tr><th></th><th>Form at 25&deg;C (low)</th><th>Form at 37&deg;C (body temp)</th></tr>
+        <tr><td><em>C. albicans</em></td><td>Yeast form</td><td><span class="highlight">Filamentous form</span> (used for invasion)</td></tr>
+        <tr><td><em>C. auris</em></td><td><span class="warn">Filamentous form (robust)</span></td><td>Yeast form &mdash; <span class="warn">37&deg;C represses filamentation</span></td></tr>
+      </table>
+      <p>This suggests <em>C. auris</em> filamentous forms exist <span class="highlight">in the environment / on host skin (cooler than inside the host)</span> &mdash; <span class="warn">NOT used for host tissue invasion</span> like in <em>C. albicans</em>.</p>
+
+      <h3>Metabolic Difference</h3>
+      <ul>
+        <li>Genes for <span class="highlight">sugar transport, glycolysis, and the Krebs cycle are UP-regulated in filamentous cells</span></li>
+        <li>Suggests filamentous forms have more active general metabolism</li>
+        <li>Supports conclusion: filaments are more important for <span class="highlight">environmental survival</span>, not infection</li>
+      </ul>
+
+      <h3>Why a 3-way System?</h3>
+      <p>The answer is unknown, but one hypothesis: the <span class="highlight">3-way switching system in <em>C. auris</em></span> (typical yeast, filamentation-competent yeast, filamentous) is more <span class="highlight">complex and versatile than the 2-way system in <em>C. albicans</em></span>. The added phenotypic plasticity may help <em>C. auris</em> adapt more efficiently to changing environments.</p>
+
+      <div class="callout">Don't memorize the 5 differences as a list &mdash; build the story: <em>C. auris</em> is unusual because it can <strong>survive outside the body</strong> (high temp tolerance, salt tolerance, skin/surface persistence) AND <strong>switch phenotypes flexibly</strong> (3-way). Both adaptations together explain why it spreads so well in healthcare settings.</div>
+    </div>
+  </div>
+
+  <!-- COMPARE -->
+  <div class="tab-content" id="tab-compare">
+    <div class="card hy-card">
+      <h2>Compare All Three Pathogens <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <table class="data-table hy-table">
+        <tr><th></th><th>MRSA</th><th><em>P. aeruginosa</em></th><th><em>C. auris</em></th></tr>
+        <tr><td><strong>Type</strong></td><td>Gram&#8209;positive bacterium</td><td>Gram&#8209;negative bacterium</td><td>Yeast (fungus)</td></tr>
+        <tr><td><strong>Where it lives</strong></td><td>Nose (1/3 of people); skin</td><td>Soil, water, surfaces</td><td>Surfaces, skin, hospitals (weeks)</td></tr>
+        <tr><td><strong>Drug resistance</strong></td><td>Methicillin / &beta;-lactams (mecA / PBP2)</td><td>Intrinsic to many drugs; some MDR resist carbapenems</td><td>Multidrug; some resist all antifungal classes</td></tr>
+        <tr><td><strong>Anti-immune trick</strong></td><td><span class="highlight">Protein A</span> binds antibody Fc; <span class="highlight">PVL (LukS+LukF)</span> lyses neutrophils; <span class="highlight">abscess</span></td><td><span class="highlight">Biofilm</span> shields cells; <span class="highlight">quorum sensing</span> coordinates virulence</td><td><span class="highlight">Biofilm</span>; phenotype switching to evade conditions</td></tr>
+        <tr><td><strong>Special trait</strong></td><td>Resists complement, antibodies, neutrophils, ABs in abscess</td><td>Persists for life in CF lung biofilm</td><td>Thermotolerance &gt;40&deg;C; osmotolerance; 3-way switching</td></tr>
+        <tr><td><strong>Why "opportunistic"</strong></td><td>Skin breach + immunocompromised host</td><td>Hospital exposure / CF lung damage</td><td>Hospitalized / catheter / immunocompromised host</td></tr>
+      </table>
+
+      <h3>Common Themes</h3>
+      <ul>
+        <li>All three <span class="highlight">survive outside the host</span> (commensal, environment, or surfaces)</li>
+        <li>All three exploit a <span class="highlight">breach in host defenses</span> (skin wound, mucus clearance failure, indwelling device)</li>
+        <li>Two of three (<em>P. aeruginosa</em>, <em>C. auris</em>) use <span class="highlight">biofilms</span> to shield themselves</li>
+        <li>All three are major <span class="highlight">healthcare-associated</span> threats (CDC priority pathogens)</li>
+      </ul>
+
+      <h3>Mnemonic for the Three Virulence Trios</h3>
+      <ul>
+        <li><strong>MRSA</strong>: <span class="highlight">3 weapons</span> &mdash; Protein A (block antibodies), LukS+LukF (kill neutrophils), abscess (hide from everything)</li>
+        <li><strong><em>P. aeruginosa</em></strong>: <span class="highlight">2 weapons</span> &mdash; biofilm (shield), quorum sensing (coordination)</li>
+        <li><strong><em>C. auris</em></strong>: <span class="highlight">2 weapons</span> &mdash; phenotype switching (white/opaque), filamentation (3-way switching, environmental form)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FLASHCARDS ==================== -->
+<div class="section" id="sec-flashcards">
+  <div class="score-bar">
+    <div><span class="score-text">Flashcard Progress</span></div>
+    <div><span class="score-pct" id="fc-score">0 / 32</span></div>
+  </div>
+  <div class="fc-container">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="fc-front" id="fc-front"></div>
+      <div class="fc-back" id="fc-back"></div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button class="fc-btn" onclick="prevCard()">&larr;</button>
+    <span class="fc-counter" id="fc-counter">1 / 32</span>
+    <button class="fc-btn" onclick="nextCard()">&rarr;</button>
+  </div>
+  <div class="fc-hint">Click to flip &middot; Arrow keys to navigate</div>
+</div>
+
+<!-- ==================== FRQ ==================== -->
+<div class="section" id="sec-frq">
+  <div class="score-bar">
+    <div><span class="score-text">FRQ Self-Assessment</span></div>
+    <div><span class="score-pct" id="frq-score">0%</span></div>
+    <button class="reset-btn" onclick="resetFRQ()">Reset All</button>
+  </div>
+  <div id="frq-container"></div>
+</div>
+
+<!-- ==================== MATCHING ==================== -->
+<div class="section" id="sec-matching">
+  <div class="score-bar">
+    <div><span class="score-text">Matching</span></div>
+    <div><span class="score-pct" id="match-score">0 / 12</span></div>
+    <button class="reset-btn" onclick="initMatching()">Reset</button>
+  </div>
+  <div class="match-grid">
+    <div>
+      <div class="match-col-header">Term</div>
+      <div id="match-left"></div>
+    </div>
+    <div>
+      <div class="match-col-header">Definition</div>
+      <div id="match-right"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HARD FRQ ==================== -->
+<div class="section" id="sec-hard">
+  <div class="score-bar">
+    <div><span class="score-text">Hard FRQ (Exam-Level)</span></div>
+    <div><span class="score-pct" id="hard-score">0%</span></div>
+    <button class="reset-btn" onclick="resetHard()">Reset All</button>
+  </div>
+  <div id="hard-container"></div>
+</div>
+
+</main>
+
+<script>
+// ====== NAVIGATION ======
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+function showTab(btn, id) {
+  btn.closest('.section').querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.closest('.section').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ====== FLASHCARDS ======
+const flashcards = [
+  {q:"What is immunodeficiency?", a:"A state in which the immune system's ability to fight infectious disease is <strong>compromised or entirely absent</strong>. A person with immunodeficiency is said to be immunocompromised. It can result in autoimmune disorders and predispose patients to infections."},
+  {q:"What are the four major components of the immune system that can fail?", a:"<strong>(1) B cells</strong> (antibody), <strong>(2) T cells</strong>, <strong>(3) Complement</strong>, <strong>(4) Phagocytes</strong>."},
+  {q:"What is the difference between congenital and acquired immunodeficiency?", a:"<strong>Congenital</strong> = present from birth. <strong>Acquired</strong> = developed during the lifetime, NOT present at birth."},
+  {q:"What infections is a B-cell deficient patient most at risk for? T-cell deficient?", a:"<strong>B-cell deficiency</strong>: pyogenic bacteria (e.g., staphylococci like <em>S. aureus</em>). <strong>T-cell deficiency</strong>: certain fungi, viruses, or protozoa."},
+  {q:"Define an opportunistic pathogen.", a:"A microorganism that does NOT usually infect healthy hosts but produces infections in <strong>hospitals</strong>, <strong>immunosuppressed persons</strong>, or patients with underlying diseases that favor infection."},
+  {q:"List the 3 defining characteristics of opportunistic pathogens.", a:"(1) Usually organisms of <strong>low pathogenicity</strong>. (2) Cause serious infections mainly when the <strong>host's defense mechanisms are impaired</strong>. (3) Can behave as conventional pathogens, but under opportunistic conditions may cause atypical clinical presentations or disseminated lesions."},
+  {q:"Why must opportunistic pathogens survive outside an infection?", a:"They don't always have a host to infect, so they need to live in the <strong>environment</strong> (soil, water, surfaces) or as <strong>commensals</strong> (colonize the host without harming it). Examples: <em>P. aeruginosa</em> (environment), <em>S. aureus</em> (commensal in nose)."},
+  {q:"What does MRSA stand for and what is it resistant to?", a:"<strong>Methicillin-Resistant <em>Staphylococcus aureus</em></strong>. Resistant to several &beta;-lactams including methicillin. Resistance was acquired through <strong>horizontal gene transfer</strong>."},
+  {q:"What kind of bacterium is <em>S. aureus</em>?", a:"A <strong>Gram-positive coccoid</strong> bacterium that readily clusters &mdash; resembles a bunch of grapes ('staphyle' in Greek). Forms <strong>golden colonies</strong> on agar (aureus = golden)."},
+  {q:"Where is <em>S. aureus</em> normally found in humans?", a:"In the <strong>nose</strong> of <strong>1 in 3 people</strong>. Harmless there as a commensal &mdash; only causes trouble when moved to deeper tissues, e.g., through a skin wound."},
+  {q:"What is Protein A and what does it do?", a:"A <strong>surface protein on <em>S. aureus</em></strong> that binds the <strong>conserved Fc region of immunoglobulins (antibodies)</strong>. This forces opsonizing antibodies to bind 'the wrong way around' &mdash; their variable region SHOULD bind the pathogen, but Protein A traps them by their Fc instead. <strong>Phagocytes can't recognize the antibodies properly and fail to phagocytose <em>S. aureus</em></strong>."},
+  {q:"How does Protein A inhibit phagocytosis?", a:"By binding antibodies by their constant (Fc) region instead of letting them bind the pathogen with their variable (Fab) region. Phagocytes look for the Fc region pointing OUTWARD; Protein A flips the orientation so the antibody coating is essentially invisible to phagocyte Fc receptors."},
+  {q:"What are LukS and LukF?", a:"<strong>Two proteins of Panton-Valentine Leukocidin (PVL)</strong>, secreted by <em>S. aureus</em>. They associate with the neutrophil's plasma membrane, then <strong>8 subunits</strong> of LukS and LukF self-assemble into a <strong>ring-like pore</strong> in the host membrane. Multiple pores cause the neutrophil to <strong>lyse</strong>."},
+  {q:"Walk through the two-step PVL mechanism.", a:"<strong>Step 1</strong>: <em>S. aureus</em> secretes LukS and LukF, which associate with the neutrophil's plasma membrane. <strong>Step 2</strong>: 8 subunits of LukS and LukF self-assemble into a ring-like structure that forms pores in the host membrane. When several pores form on the same neutrophil, it lyses, triggering inflammation and tissue damage."},
+  {q:"How did MRSA acquire the PVL genes?", a:"From a <strong>phage</strong> &mdash; the bacteriophage carrying <em>lukS</em> and <em>lukF</em> infected an <em>S. aureus</em> strain. PVL is <strong>not in the core genome</strong>; it is on a mobile element. Healthy nasal <em>S. aureus</em> typically don't encode PVL, but <strong>~85% of MRSA strains DO</strong>."},
+  {q:"Describe abscess formation by <em>S. aureus</em>.", a:"The host releases <strong>fibrin</strong> as a defense, which self-assembles into a tough fiber web. <em>S. aureus</em> hijacks this by secreting <strong>coagulase</strong>, an enzyme that <strong>induces production of MORE fibrin</strong>. The result is a <strong>fibrin shell around the bacteria</strong> &mdash; the abscess."},
+  {q:"What does the abscess actually protect, and from what?", a:"The abscess <strong>protects <em>S. aureus</em></strong> (despite being a host defense). It shields the bacteria from <strong>complement, antibodies, neutrophils, and antibiotics</strong>. <em>S. aureus</em> can survive and replicate inside, with some escaping to seed new infections elsewhere (bone, heart, etc.)."},
+  {q:"What is PBP2 and the mecA gene?", a:"<strong>PBP2</strong> is a novel penicillin-binding protein that <strong>cannot be targeted by &beta;-lactams</strong>. It is encoded by the <strong><em>mecA</em> gene</strong>, carried on a highly mobile genetic element. This is how MRSA evolved methicillin/&beta;-lactam resistance &mdash; <em>mecA</em> spreads rapidly between strains."},
+  {q:"What is <em>P. aeruginosa</em>?", a:"A <strong>Gram-negative rod-shaped bacterium</strong>, ubiquitous in the environment. Has a large genome (~5&ndash;7 Mbp) with one of the highest proportions of regulatory genes &mdash; very adaptable. Leading <strong>nosocomial pathogen</strong>; intrinsically resistant to many antibiotics. Main cause of morbidity/mortality in cystic fibrosis (CF) patients."},
+  {q:"What is a biofilm?", a:"An <strong>assemblage of surface-associated microbial cells enclosed in a matrix</strong>. The matrix is made of <strong>EPS (Extracellular Polymeric Secretions)</strong>: polysaccharides, proteins, lipids, and extracellular DNA (eDNA)."},
+  {q:"List the 4 stages of biofilm formation.", a:"<strong>(1) Attachment</strong>, <strong>(2) Growth</strong>, <strong>(3) Maturation</strong>, <strong>(4) Detachment</strong>."},
+  {q:"What does a biofilm protect cells from?", a:"<strong>Immune factors, immune cells, predation, and antibiotics</strong> &mdash; cells embedded in the EPS matrix are physically shielded."},
+  {q:"How does <em>P. aeruginosa</em> cause mortality in CF patients?", a:"It establishes a <strong>biofilm in the CF lung</strong>, which the host cannot clear. Chronic inflammation results, leading to progressive tissue damage, loss of lung function, and eventual mortality. A predominance of MDR <em>P. aeruginosa</em> in the CF lung is associated with mortality."},
+  {q:"What is quorum sensing?", a:"The way bacteria <strong>communicate with each other</strong> using a <strong>language of chemical signals</strong>. Allows both inter- and intra-species 'conversations.' Crucial for regulating group activities like activating virulence programs, switching metabolism, and forming biofilms."},
+  {q:"How does quorum sensing work in <em>V. fischeri</em> (the discovery system)?", a:"<strong>LuxI</strong> makes the autoinducer <strong>AHL (a homoserine lactone)</strong>. At LOW cell density, AHL diffuses away. At HIGH cell density, AHL accumulates and diffuses back into the cell, where <strong>LuxR binds AHL</strong> and activates the <strong>lux operon</strong> &rarr; <strong>luciferase</strong> &rarr; light. The light hides the squid host from predators at night."},
+  {q:"How many quorum sensing systems does <em>P. aeruginosa</em> have?", a:"<strong>FOUR</strong>. It uses these systems to control its actions, including <strong>biofilm formation</strong>."},
+  {q:"What is <em>C. auris</em>?", a:"An <strong>emerging multidrug-resistant yeast</strong> (a fungus). First identified in 2009 in Asia, isolated from the <strong>ear canal</strong> of a Japanese patient (auris = ear). Causes severe infections; spreads easily in hospitals and nursing homes."},
+  {q:"What 3 reasons does the CDC give for being concerned about <em>C. auris</em>?", a:"(1) Often <strong>multidrug-resistant</strong> (some strains resistant to ALL antifungals). (2) <strong>Difficult to identify</strong> with standard lab methods &mdash; can be misidentified. (3) <strong>Causes outbreaks</strong> in healthcare settings."},
+  {q:"How is <em>C. auris</em> different from other <em>Candida</em> species?", a:"(1) <strong>Thermotolerant</strong> &mdash; grows at &gt;40&deg;C while most fungi/Candida cannot. (2) <strong>Osmotolerant</strong> &mdash; tolerates &gt;10% NaCl. (3) <strong>Persists for weeks</strong> on skin and surfaces (vs. days). (4) Tolerates some <strong>disinfectants</strong>. (5) <strong>Filamentation triggers are different</strong> (low temp instead of body temp). (6) <strong>3-way phenotypic switching</strong> instead of 2-way."},
+  {q:"What is phenotypic plasticity?", a:"The <strong>ability of an organism to change in response to stimuli or inputs from the environment</strong>. A common strategy used by microbial pathogens to adapt to diverse host environments. Includes phenomena like colony phenotype switching and filamentation."},
+  {q:"What are the three cellular phenotypes of <em>C. auris</em>?", a:"(1) <strong>Typical yeast cells</strong> &mdash; locked in yeast form, cannot filament. (2) <strong>Filamentation-competent yeast cells</strong> &mdash; arise rarely after passage through a mouse; HERITABLE switch. (3) <strong>Filamentous-form cells</strong> &mdash; arise from filamentation-competent yeast at low temperature (&le;25&deg;C); NON-heritable, environment-dependent."},
+  {q:"How is <em>C. auris</em> filamentation different from <em>C. albicans</em> filamentation?", a:"<strong><em>C. albicans</em></strong>: filaments at 37&deg;C (body temp), induced by serum, GlcNAc, high CO<sub>2</sub>; filaments are used for <strong>host tissue invasion</strong>. <strong><em>C. auris</em></strong>: filaments at &lt;25&deg;C (low temp); 37&deg;C REPRESSES filamentation; filaments likely exist in the <strong>environment / on host skin (cooler areas)</strong> and are NOT used for invasion."},
+];
+
+let fcIdx = 0;
+function renderCard() {
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('fc-front').innerHTML = flashcards[fcIdx].q;
+  document.getElementById('fc-back').innerHTML = flashcards[fcIdx].a.replace(/\n/g,'<br>');
+  document.getElementById('fc-counter').textContent = (fcIdx+1)+' / '+flashcards.length;
+  document.getElementById('fc-score').textContent = (fcIdx+1)+' / '+flashcards.length;
+}
+function flipCard() { document.getElementById('flashcard').classList.toggle('flipped'); }
+function nextCard() { fcIdx = (fcIdx+1) % flashcards.length; renderCard(); }
+function prevCard() { fcIdx = (fcIdx-1+flashcards.length) % flashcards.length; renderCard(); }
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight') nextCard();
+  if(e.key==='ArrowLeft') prevCard();
+  if(e.key===' '||e.key==='Enter') { e.preventDefault(); flipCard(); }
+});
+renderCard();
+
+// ====== FRQ ======
+const frqs = [
+  {q:"Define immunodeficiency and list the four major components of the immune system that can fail.", a:"<strong>Immunodeficiency</strong> is a state in which the immune system's ability to fight infectious disease is <strong>compromised or entirely absent</strong>. A person with immunodeficiency is said to be immunocompromised. It can predispose patients to infections (especially opportunistic ones) and to autoimmune disorders. The four major components that can fail are: <strong>(1) B cells</strong> (antibody production), <strong>(2) T cells</strong>, <strong>(3) Complement</strong>, and <strong>(4) Phagocytes</strong>.", hy:true},
+  {q:"Distinguish congenital from acquired immunodeficiency, and explain why a B-cell deficient patient is at risk for staphylococcal infections.", a:"<strong>Congenital</strong> immunodeficiency is present from birth (e.g., SCID due to RAG mutations). <strong>Acquired</strong> immunodeficiency develops during the lifetime and is not present at birth (e.g., chemotherapy-induced, HIV-induced). A B-cell deficient patient cannot make antibodies properly, which compromises opsonization of <strong>pyogenic (pus-forming) bacteria</strong> like <strong>staphylococci</strong>. Without antibody-mediated phagocytosis tagging the bacteria for engulfment, the patient cannot effectively clear <em>S. aureus</em> and similar species, putting them at high risk for staphylococcal infections.", hy:true},
+  {q:"Define opportunistic pathogen and list the three defining characteristics.", a:"An <strong>opportunistic pathogen</strong> is a microorganism that does NOT usually infect healthy hosts but produces infections in <strong>hospitals, immunosuppressed persons, or patients with underlying diseases</strong>. Three characteristics: (1) usually <strong>low pathogenicity</strong>; (2) cause serious infection mainly when <strong>host defenses are impaired</strong>; (3) can behave as conventional pathogens but under opportunistic conditions may cause <strong>atypical clinical presentations or disseminated lesions</strong>.", hy:true},
+  {q:"Why must opportunistic pathogens survive outside the host? Give two strategies and an example of each.", a:"Because they don't always have a host available, opportunistic pathogens must have a <strong>'reservoir' lifestyle outside infection</strong>. Two strategies: (1) <strong>Live in the environment</strong> &mdash; in soil, water, or on surfaces. Example: <strong><em>Pseudomonas aeruginosa</em></strong> (ubiquitous in soils and surfaces) or <strong><em>C. auris</em></strong> (persists for weeks on healthcare surfaces). (2) <strong>Live as a commensal</strong> &mdash; benefit from colonizing the host but typically don't harm it. Example: <strong><em>S. aureus</em></strong> in the nasal passages of 1 in 3 healthy people.", hy:true},
+  {q:"What is MRSA, what is it resistant to, and how did it get its resistance?", a:"<strong>MRSA = Methicillin-Resistant <em>Staphylococcus aureus</em></strong>. It is resistant to several <strong>&beta;-lactam antibiotics</strong>, including methicillin (and by extension penicillins, cephalosporins, etc.). MRSA acquired this resistance through <strong>horizontal gene transfer</strong> &mdash; specifically, the <strong><em>mecA</em> gene</strong> on a highly mobile genetic element. <em>mecA</em> encodes a novel penicillin-binding protein, <strong>PBP2</strong>, an alternative peptidase that cannot be targeted by &beta;-lactams. The mobile element allowed <em>mecA</em> to spread rapidly among <em>S. aureus</em> lineages.", hy:true},
+  {q:"Explain how Protein A protects <em>S. aureus</em> from phagocytosis.", a:"<strong>Protein A</strong> is a surface component of <em>S. aureus</em> that binds the <strong>conserved Fc region of immunoglobulins (antibodies)</strong>. Normally, antibodies opsonize a pathogen by binding it with their <strong>variable (Fab) region</strong>, while their <strong>constant (Fc) region points outward</strong> for recognition by phagocyte Fc receptors. Protein A flips this orientation: it traps antibodies by their Fc region, leaving the variable region facing away from the bacterial surface. As a result, <strong>opsonizing antibodies are bound 'the wrong way around'</strong>, phagocytes cannot recognize them, and they fail to phagocytose <em>S. aureus</em>.", hy:true},
+  {q:"Walk through the two-step mechanism by which LukS and LukF (PVL) kill neutrophils.", a:"<strong>PVL (Panton-Valentine Leukocidin)</strong> is a pore-forming toxin made of two proteins, LukS and LukF, that directly kills neutrophils. <strong>Step 1</strong>: <em>S. aureus</em> secretes LukS and LukF, which <strong>associate with the neutrophil's plasma membrane</strong>. <strong>Step 2</strong>: <strong>Eight subunits</strong> of LukS and LukF together <strong>self-assemble into a ring-like structure</strong> that forms <strong>pores in the host membrane</strong>. When several pores form on the same neutrophil, the cell <strong>lyses</strong>, releasing intracellular contents and triggering inflammation and tissue damage.", hy:true},
+  {q:"Where do MRSA's PVL genes come from? What does this tell you about MRSA evolution?", a:"PVL genes (<em>lukS</em>, <em>lukF</em>) come from a <strong>bacteriophage</strong> that infected <em>S. aureus</em>. PVL is <strong>not part of the core <em>S. aureus</em> genome</strong> &mdash; healthy nasal <em>S. aureus</em> isolates typically don't encode PVL. However, <strong>~85% of MRSA strains DO carry PVL</strong>, along with another acquired virulence factor (ACME). This shows that MRSA's epidemic clones evolved through <strong>horizontal gene transfer</strong> &mdash; combining methicillin resistance (mecA) with phage-acquired toxins (PVL) and skin-colonization genes (ACME) into a uniquely virulent and transmissible lineage.", hy:true},
+  {q:"Describe how <em>S. aureus</em> forms an abscess and explain why this 'host defense' actually benefits the bacterium.", a:"In response to the immune-pathogen battle, the host releases <strong>fibrin</strong>, a tough fiber-like protein that self-assembles into a protective web. <em>S. aureus</em> hijacks this defense by secreting <strong>coagulase</strong>, an enzyme that <strong>induces production of MORE fibrin</strong>, building a thick fibrin shell around the bacteria &mdash; the abscess. Although the abscess is supposed to wall off the infection for the host, in practice it <strong>protects <em>S. aureus</em></strong>: the bacteria are shielded from <strong>complement, antibodies, neutrophils, and antibiotics</strong>, and can survive and replicate inside. Some bacteria escape later to seed new infections in places like bone or heart valves.", hy:true},
+  {q:"What is <em>P. aeruginosa</em>, where does it live, and why is it especially dangerous in cystic fibrosis (CF) patients?", a:"<em>P. aeruginosa</em> is a <strong>Gram-negative rod-shaped bacterium</strong>, ubiquitous in soils and surfaces. It has a large genome (~5&ndash;7 Mbp) with one of the highest proportions of regulatory genes of any bacterium, allowing it to adapt to diverse environments. It is a <strong>leading nosocomial pathogen</strong>, intrinsically resistant to many antibiotics. In CF patients, defective CFTR causes thick, sticky mucus in the lungs that cannot be cleared. <em>P. aeruginosa</em> <strong>establishes biofilms in the CF lung</strong> that the host cannot eliminate. Chronic infection leads to chronic inflammation, progressive tissue damage, loss of lung function, and ultimately mortality. <em>P. aeruginosa</em> is the <strong>main cause of morbidity and mortality in CF patients</strong>.", hy:true},
+  {q:"Define a biofilm. List the components of EPS and the four stages of biofilm formation.", a:"A <strong>biofilm</strong> is an <strong>assemblage of surface-associated microbial cells enclosed in a matrix</strong>. The matrix is made of <strong>Extracellular Polymeric Secretions (EPS)</strong>, composed of: <strong>polysaccharides, proteins, lipids, and extracellular DNA (eDNA)</strong>. The four stages of biofilm formation are: <strong>(1) Attachment</strong> &mdash; planktonic cells attach to a surface; <strong>(2) Growth</strong> &mdash; cells divide and start producing EPS; <strong>(3) Maturation</strong> &mdash; 3D structured biofilm forms with channels and layers; <strong>(4) Detachment</strong> &mdash; cells slough off to colonize new sites.", hy:true},
+  {q:"What does a biofilm protect cells from, and why is this important for opportunistic infections?", a:"Within a biofilm, cells are protected from <strong>immune factors</strong> (e.g., complement, antimicrobial peptides), <strong>immune cells</strong> (phagocytes can't reach embedded cells through EPS), <strong>predation</strong>, and <strong>antibiotics</strong>. This is critical for opportunistic infections because the host's defenses and pharmacological treatments &mdash; both of which would normally clear a low-pathogenicity microbe &mdash; are largely neutralized. The biofilm allows the pathogen to <strong>persist for months or years</strong> in a site like the CF lung or on a medical device, causing chronic infection.", hy:true},
+  {q:"Define quorum sensing and explain why it matters for biofilm formation.", a:"<strong>Quorum sensing</strong> is bacterial cell-to-cell <strong>communication using chemical signals</strong> (instead of words). Bacteria release autoinducer molecules; when cell density is high, the autoinducer concentration becomes high enough to bind regulatory proteins inside cells, activating sets of group-coordinated genes. Quorum sensing matters for biofilm formation because <strong>building a biofilm is a group activity</strong> &mdash; a single cell on a surface can't produce a useful EPS matrix alone. By using quorum sensing, the bacteria <strong>wait until enough of them are present</strong> before committing to biofilm gene programs. <em>P. aeruginosa</em> uses <strong>FOUR different quorum sensing systems</strong> to integrate environmental cues with its biofilm and virulence programs.", hy:true},
+  {q:"Explain how quorum sensing works in <em>V. fischeri</em>, the system in which it was discovered.", a:"<em>V. fischeri</em> lives in the light organ of squids and produces light at high cell density. The system: <strong>LuxI</strong> is an enzyme that synthesizes the autoinducer <strong>AHL (a homoserine lactone)</strong>. At <strong>low cell density</strong>, little AHL is made and it diffuses away from cells. At <strong>high cell density</strong>, AHL accumulates extracellularly and <strong>diffuses back into cells</strong> to maintain chemical equilibrium. Inside the cell, <strong>LuxR binds AHL</strong> and the LuxR&ndash;AHL complex <strong>activates transcription of the lux operon</strong>, which encodes <strong>luciferase</strong>. The bacteria produce light, which helps hide the squid from predators by counter-illumination at night.", hy:true},
+  {q:"What is <em>C. auris</em>, and what 3 reasons does the CDC give for being concerned about it?", a:"<em>C. auris</em> is an <strong>emerging multidrug-resistant yeast</strong> (fungus), first identified in 2009 in Asia from the ear canal of a Japanese patient (auris = ear). The CDC's three concerns: (1) it is <strong>often multidrug-resistant</strong> &mdash; resistant to multiple antifungal drug classes; some strains are resistant to <strong>all available classes</strong> of antifungals; (2) it is <strong>difficult to identify</strong> with standard laboratory methods and can be misidentified (e.g., as <em>C. haemulonii</em>) &mdash; misidentification leads to inappropriate management; (3) it has caused <strong>outbreaks in healthcare settings</strong>, spreading easily between hospitalized patients and nursing home residents.", hy:true},
+  {q:"List three traits that distinguish <em>C. auris</em> from other <em>Candida</em> species, and explain why each contributes to its danger as a pathogen.", a:"(1) <strong>Thermotolerance</strong> &mdash; <em>C. auris</em> can grow at &gt;40&deg;C, while most fungi (including most other <em>Candida</em>) cannot survive at human physiological temperatures. This allows it to colonize humans (most fungi can't). It is hypothesized that thermotolerance evolved in response to climate change, making <em>C. auris</em> potentially the first pathogenic fungus emerging from human-induced global warming. (2) <strong>Osmotolerance</strong> &mdash; tolerates &gt;10% NaCl, allowing survival in harsh hypersaline environments and on dry/salty surfaces. (3) <strong>Persistence on surfaces</strong> &mdash; survives for several weeks on human skin and environmental surfaces, and tolerates some commonly used disinfectants. Together, these traits explain why <em>C. auris</em> spreads so effectively in healthcare settings: it tolerates body temp, survives outside the body, and resists cleaning.", hy:true},
+  {q:"Define phenotypic plasticity and explain why it is a useful strategy for microbial pathogens.", a:"<strong>Phenotypic plasticity</strong> is the <strong>ability of an organism to change in response to stimuli or inputs from the environment</strong> &mdash; without changing its genome. It is a common strategy among microbial pathogens because they encounter <strong>diverse host environments</strong> (different temperatures, oxygen levels, nutrient availability, immune pressure) as they spread between hosts and tissues. By switching phenotypes (e.g., yeast vs filamentous form, or white vs opaque colony), pathogens can <strong>rapidly respond to environmental fluctuations</strong> without waiting for genetic mutations &mdash; some cells of the population are pre-adapted to whatever new niche they encounter.", hy:true},
+  {q:"Describe the 3-way phenotypic switching system of <em>C. auris</em>. Distinguish heritable from non-heritable transitions.", a:"<em>C. auris</em> has three cellular phenotypes: <strong>(1) typical yeast cells</strong> &mdash; locked in yeast form, cannot filament under in vitro conditions; <strong>(2) filamentation-competent yeast cells</strong> &mdash; arise rarely from typical yeast after passage through a mouse; have the ability to filament when triggered; <strong>(3) filamentous-form cells</strong> &mdash; arise from filamentation-competent yeast cells when grown at low temperature (&le;25&deg;C). The <strong>typical yeast &harr; filamentation-competent yeast</strong> switch is <strong>RARE but HERITABLE</strong> &mdash; once acquired, the competence is passed to daughter cells. The <strong>filamentation-competent yeast &harr; filamentous-form</strong> switch is <strong>NON-heritable and environment-dependent</strong> &mdash; cells can switch back if returned to higher temperature.", hy:true},
+  {q:"How is <em>C. auris</em> filamentation different from <em>C. albicans</em>, and what does this difference suggest about <em>C. auris</em> filaments?", a:"<strong><em>C. albicans</em></strong>: filamentation is <strong>induced at 37&deg;C (body temp)</strong> by serum, GlcNAc, and high CO<sub>2</sub>; filaments are critical for <strong>host tissue invasion</strong>. <strong><em>C. auris</em></strong>: those triggers DON'T work; filamentation is induced only at <strong>low temperature (&le;25&deg;C)</strong>, while <strong>37&deg;C REPRESSES</strong> it. This suggests <em>C. auris</em> filaments do <strong>NOT serve a tissue-invasion role inside the host</strong>. Instead, they likely exist in the <strong>environment or on the host skin surface</strong>, where temperatures are lower than the body core. Up-regulation of metabolism genes (sugar transport, glycolysis, Krebs) in filamentous cells supports the idea that filaments are an <strong>environmental survival form</strong>, not a virulence form.", hy:true},
+  {q:"Compare MRSA, <em>P. aeruginosa</em>, and <em>C. auris</em> in terms of pathogen type, drug resistance mechanism, and main virulence strategies.", a:"<strong>MRSA</strong>: Gram-positive bacterium; methicillin/&beta;-lactam resistance via PBP2 (mecA); virulence via <strong>Protein A</strong> (blocks antibody opsonization), <strong>PVL/LukS+LukF</strong> (8-subunit pore lyses neutrophils), and <strong>abscess formation</strong> (coagulase-induced fibrin shell). <strong><em>P. aeruginosa</em></strong>: Gram-negative bacterium; intrinsic multi-drug resistance, including some carbapenem resistance; virulence via <strong>biofilm</strong> (EPS-shielded community) and <strong>quorum sensing</strong> (4 systems coordinate biofilm and virulence). <strong><em>C. auris</em></strong>: yeast (fungus); multidrug resistance to antifungals (some pan-resistant); virulence via <strong>thermotolerance</strong>, <strong>biofilm</strong>, <strong>3-way phenotype switching</strong>, and <strong>filamentation</strong> (likely environmental survival, not invasion).", hy:true},
+  {q:"How does <em>S. aureus</em> overcome nutritional immunity (briefly)?", a:"<strong>Nutritional immunity</strong> is the host strategy of limiting key nutrients (especially iron) to pathogens &mdash; macrophages pump Fe<sup>2+</sup> away via NRAMP1, RBCs sequester Fe<sup>2+</sup> in heme, and lactoferrin/transferrin bind free Fe<sup>2+</sup>. <em>S. aureus</em> counteracts this by: (1) <strong>lysing red blood cells with hemolysins</strong> to liberate Fe<sup>2+</sup>; (2) secreting <strong>siderophores</strong> that bind Fe<sup>2+</sup> more tightly than lactoferrin/transferrin; and (3) using <strong>special transporters dedicated to importing iron-bound siderophores</strong>.", hy:false},
+  {q:"What is ACME, and why was it important for MRSA's spread?", a:"<strong>ACME (arginine catabolic mobile element)</strong> is a genetic element that MRSA acquired from <em>Staphylococcus epidermidis</em>. Normally, <em>S. aureus</em> lives in the warm/moist nose, while <em>S. epidermidis</em> lives on the dry/acidic skin. ACME contains the <strong>Arc (arginine deaminase) system</strong>, which generates <strong>ammonia</strong> to neutralize skin acid, plus <strong>SpeG</strong>, an enzyme that <strong>inactivates polyamines</strong> (antimicrobial molecules made by skin cells). Together, these enabled MRSA to colonize the SKIN (not just the nose), dramatically expanding its niche and enabling rapid person-to-person spread &mdash; e.g., the 2003 St. Louis Rams outbreak.", hy:false},
+];
+
+const hardFrqs = [
+  {q:"A 22-year-old college football player with no known medical conditions develops a turf-burn that becomes a swollen, pus-filled abscess. Cultures grow MRSA encoding PVL. (a) Why did <em>S. aureus</em> become invasive in this otherwise healthy patient? (b) Identify three specific virulence factors at play and how each contributes to abscess pathology. (c) Why are some patients with abscesses treated 'inadequately' even with antibiotics?", a:"(a) Even healthy people carry <em>S. aureus</em> in the nose (~1 in 3) and can transfer it to skin. The <strong>turf burn breached the skin barrier</strong>, giving the commensal bacterium an opportunity to invade deeper tissue &mdash; this is the classic 'opportunistic' pathway. The patient didn't need underlying immunodeficiency; he just needed a wound. (b) Three virulence factors: <strong>(1) Protein A</strong> &mdash; binds antibody Fc regions, so opsonizing antibodies are bound 'backward'; phagocytes can't recognize them, blocking phagocytosis. <strong>(2) PVL (LukS + LukF)</strong> &mdash; secreted as two proteins; 8 subunits self-assemble into a ring-like pore in the neutrophil plasma membrane, lysing neutrophils that arrive to fight the infection. <strong>(3) Coagulase / abscess</strong> &mdash; <em>S. aureus</em> secretes coagulase to induce fibrin polymerization around itself, building a fibrin shell (the abscess) that walls the bacteria off from immune cells. (c) Inside the abscess, <em>S. aureus</em> is shielded from <strong>complement, antibodies, neutrophils, and antibiotics</strong> &mdash; antibiotics can't penetrate the fibrin shell well, and many of the bacteria inside are in slow-growing or non-replicating states that &beta;-lactams can't easily target. This is also why the lecture's case (St. Louis Rams) needed multiple oral antibiotics plus IV antibiotics, plus surgical lancing/draining of abscesses to physically remove the protected pocket.", hy:true},
+  {q:"A CF patient's lung culture grows MDR <em>P. aeruginosa</em> in a biofilm. Explain (a) why biofilms make this infection chronic and unkillable, (b) how quorum sensing coordinates biofilm formation, and (c) why <em>P. aeruginosa</em>'s 4-system QS network is more powerful than <em>V. fischeri</em>'s single system.", a:"(a) Biofilms are <strong>structured, surface-associated communities embedded in an EPS matrix</strong> (polysaccharides, proteins, lipids, eDNA). The EPS physically shields the cells from <strong>immune factors, immune cells, predation, AND antibiotics</strong>. Even if the host recruits leukocytes, they cannot reach embedded cells; antibiotics struggle to penetrate the matrix. The result: a <strong>persistent, lifelong infection</strong> that the host can only respond to with chronic inflammation, which itself damages the lung. (b) Building a useful biofilm is a group activity &mdash; a lone cell can't make a productive matrix. <strong>Quorum sensing</strong> lets cells <strong>'count' how many of them are around</strong> via secreted autoinducers (AHLs in <em>P. aeruginosa</em>'s case). At low density, autoinducer is diffuse; at high density, it accumulates and binds intracellular regulators, switching ON sets of genes &mdash; including those for EPS production, virulence factors, and biofilm matrix proteins. So the bacteria <strong>only commit to biofilm when there are enough of them</strong> for the investment to pay off. (c) <em>V. fischeri</em>'s single LuxI/LuxR system controls one decision (light on/off). <em>P. aeruginosa</em>'s <strong>FOUR systems</strong> can: (i) integrate multiple environmental signals; (ii) control overlapping but non-identical gene sets, allowing combinatorial regulation (e.g., 'biofilm yes if condition A AND condition B'); (iii) provide redundancy so loss of one system doesn't break virulence; (iv) coordinate at different cell densities (some systems trigger early, others late), enabling a multi-stage virulence program. This is why <em>P. aeruginosa</em> is so adaptable across niches like soil, surfaces, wounds, and the CF lung.", hy:true},
+  {q:"You are an infection-control officer. <em>C. auris</em> appears in your hospital. Using the lecture's evidence on what distinguishes <em>C. auris</em> from other <em>Candida</em>, design a control strategy. Justify each measure with a specific biological feature of <em>C. auris</em>.", a:"<strong>Strategy 1: Aggressive surface decontamination using sporicidal/special disinfectants (not standard ones).</strong> <em>C. auris</em> tolerates some <strong>commonly used disinfectants</strong> &mdash; standard cleaning isn't enough. Use bleach-based or EPA List P disinfectants that have been validated against <em>C. auris</em>. <strong>Strategy 2: Repeat decontamination over a long horizon (weeks).</strong> <em>C. auris</em> persists on environmental surfaces and skin for <strong>several weeks</strong> &mdash; one cleaning won't eliminate it. <strong>Strategy 3: Single-room isolation + contact precautions for colonized patients.</strong> <em>C. auris</em> is <strong>carried on patients' skin without causing infection</strong>, allowing silent spread to staff and other patients via touch. <strong>Strategy 4: Aggressive lab identification (don't trust standard biochem panels).</strong> <em>C. auris</em> is <strong>difficult to identify with standard methods</strong> and can be misidentified as <em>C. haemulonii</em> &mdash; use MALDI-TOF or molecular identification to catch it. <strong>Strategy 5: Treatment based on susceptibility testing, not empiric antifungal choice.</strong> <em>C. auris</em> is often <strong>multidrug-resistant</strong>; some strains resist all antifungal classes. Empirically choosing fluconazole could fail; tailor therapy to the specific isolate. <strong>Strategy 6: Surveillance of high-risk patients.</strong> Hospitalized patients with breathing tubes, feeding tubes, or central venous catheters; recent surgery; broad-spectrum antibiotic/antifungal use; or recent stays in facilities known to have <em>C. auris</em>. The thermotolerance &gt;40&deg;C means a febrile state doesn't slow it down, so febrile patients on multiple devices are at the highest risk.", hy:true},
+  {q:"Explain why <em>C. auris</em>'s filamentation is biologically interesting compared to <em>C. albicans</em>'s &mdash; in particular, what does the temperature-inverted filamentation pattern tell us about the role filaments play in each species' lifecycle?", a:"In <em>C. albicans</em>, <strong>filamentation is induced at 37&deg;C (body temp)</strong> by host-associated cues (serum, GlcNAc, CO<sub>2</sub>), and <strong>filaments are used to invade host tissue</strong> &mdash; they punch through epithelial cell layers and disseminate. The temperature trigger makes biological sense: filaments form when the yeast meets a warm host. In <em>C. auris</em>, the same host triggers <strong>do NOT</strong> induce filaments. Instead, filaments form only at <strong>low temperature (&le;25&deg;C)</strong>, while <strong>37&deg;C REPRESSES filamentation</strong>. This temperature inversion strongly suggests <em>C. auris</em> filaments are <strong>NOT for host tissue invasion</strong>. The candidate role: <strong>environmental and skin-surface persistence</strong> &mdash; the cooler outer surfaces of the host body, hospital surfaces, and external environments are where filaments are likely to form. This is supported by <strong>up-regulation of sugar transport, glycolysis, and Krebs cycle genes in filamentous cells</strong> (consistent with active environmental metabolism) and by the <strong>3-way phenotypic switching system</strong> (typical yeast &rarr; filamentation-competent yeast &rarr; filamentous form), which adds an extra layer of plasticity not seen in <em>C. albicans</em>'s 2-way system. So while <em>C. albicans</em> uses filaments as an invasion weapon, <em>C. auris</em> appears to use them as a <strong>survival/persistence mode</strong> in the cool external environment between hosts &mdash; consistent with its hallmark feature of multi-week environmental survival.", hy:true},
+  {q:"A patient on a hematology ward (chemotherapy-induced neutropenia) develops a bloodstream infection. The clinical microbiology lab grows a yeast that is misidentified as <em>C. haemulonii</em> on standard biochem testing. Empiric fluconazole is started; the patient continues to spike fevers. (a) What organism should you suspect? (b) Why might empiric fluconazole fail? (c) Beyond drug therapy, what infection-control failures would you investigate? (d) How does the patient's immune status connect this case to the concept of an opportunistic pathogen?", a:"(a) Suspect <strong><em>Candida auris</em></strong>. <em>C. auris</em> is famously <strong>misidentified as <em>C. haemulonii</em> on standard biochemical panels</strong> &mdash; the lecture flagged this exact pitfall. (b) Empiric fluconazole may fail because <em>C. auris</em> is <strong>multidrug-resistant</strong> &mdash; resistant to multiple antifungal drug classes, and some strains resist <strong>all available antifungal classes</strong> (including fluconazole, echinocandins, and amphotericin B). Without susceptibility testing, the empiric choice is a gamble. The patient should be switched to <strong>antifungal therapy guided by MIC testing of the actual isolate</strong>; an echinocandin is often a reasonable first switch while waiting for results. (c) Infection-control failures to investigate: (i) was standard <strong>terminal cleaning of the room insufficient</strong>? <em>C. auris</em> tolerates some common disinfectants and survives on surfaces for weeks &mdash; if a previously colonized patient was in this room, <em>C. auris</em> could persist. (ii) Did <strong>healthcare workers transmit the organism on hands or equipment</strong>? <em>C. auris</em> is carried silently on patients' skin. (iii) Were <strong>indwelling devices (central lines, feeding tubes)</strong> introduced under inadequate sterile precautions? These devices are major risk factors. (iv) Was the lab's identification process insufficient? Initiate MALDI-TOF or molecular ID for any 'unusual' yeast going forward. (d) The patient is a textbook opportunistic-infection scenario: chemotherapy has caused <strong>acquired immunodeficiency</strong> (specifically, neutropenia &mdash; failure of the phagocyte arm of the four-component immune system). <em>C. auris</em> is a <strong>low-pathogenicity organism that produces serious infection mainly when host defenses are impaired</strong>, fitting the textbook definition of an opportunistic pathogen. The combination of an immune defect (neutropenia) + a breach (central venous catheter) + an environmental reservoir (the room/ward) + a thermotolerant, multidrug-resistant pathogen is exactly the cocktail that makes <em>C. auris</em> bloodstream infection so dangerous in modern hospitals.", hy:true},
+  {q:"Critically evaluate this claim: 'MRSA, <em>P. aeruginosa</em>, and <em>C. auris</em> are essentially the same problem &mdash; all three are just antibiotic-resistant hospital germs.' Where is the claim partly right, where is it wrong, and how do their distinct biology lessons (Protein A/PVL/abscess vs biofilm/QS vs phenotype switching/filamentation) actually inform different control and treatment strategies?", a:"<strong>Partly right:</strong> all three are healthcare-associated, opportunistic, drug-resistant pathogens that exploit immunocompromised or device-bearing patients, and all three are CDC priority threats. They share the lifestyle of surviving outside the host (in the environment or as commensals) and the strategy of striking when defenses are breached. <strong>Wrong:</strong> the claim collapses three biologically distinct organisms with very different virulence strategies and therefore different counter-measures. <strong>MRSA's lesson</strong> is about <strong>direct anti-immune attack</strong> &mdash; Protein A blocks opsonization, PVL (LukS+LukF, 8-subunit pore) lyses neutrophils, and the coagulase-induced fibrin abscess physically walls the bacteria off from antibodies, complement, neutrophils, and antibiotics. <strong>Treatment implication</strong>: drugs alone often fail; many MRSA abscesses must be <strong>physically lanced and drained</strong> to expose the pathogen to drugs and immune cells. <strong><em>P. aeruginosa</em>'s lesson</strong> is about <strong>community-level coordination</strong> &mdash; biofilm + 4 quorum-sensing systems. The bacteria use chemical signaling to switch on biofilm and virulence genes only when there are enough of them. <strong>Treatment implication</strong>: in CF, biofilm-disruptors and quorum-sensing inhibitors are an active research area precisely because once a biofilm forms, normal antibiotics can't reach the embedded cells. <strong><em>C. auris</em>'s lesson</strong> is about <strong>environmental persistence + phenotypic plasticity</strong> &mdash; thermotolerance &gt;40&deg;C, salt tolerance, weeks-long surface persistence, and 3-way switching including filamentation that's likely environmental rather than invasive. <strong>Control implication</strong>: standard cleaning won't work; you need bleach-based disinfectants, repeated decontamination, single-room isolation, and high-quality lab identification. So the claim flattens three different problems with three different counter-strategies. A hospital that treats all three identically &mdash; e.g., empiric vancomycin without lancing an abscess, or standard wipe-down for <em>C. auris</em> rooms &mdash; will fail in distinct ways for each.", hy:true},
+];
+
+function buildFRQ(container, questions, prefix) {
+  const el = document.getElementById(container);
+  el.innerHTML = '';
+  questions.forEach((q,i) => {
+    const hy = q.hy ? 'hy-frq' : '';
+    el.innerHTML += `
+    <div class="frq-card ${hy}">
+      <div class="frq-prompt"><span class="q-num">${i+1}</span>${q.q}${q.hy?'<span class="hy-badge">HIGH YIELD</span>':''}</div>
+      <textarea placeholder="Write your answer..." id="${prefix}-ta-${i}"></textarea>
+      <button class="frq-reveal-btn" onclick="revealFRQ('${prefix}',${i})">Reveal Answer</button>
+      <div class="frq-answer" id="${prefix}-ans-${i}">${q.a}</div>
+      <div class="frq-self-grade" id="${prefix}-grade-${i}">
+        <button class="grade-btn got-it" onclick="gradeFRQ('${prefix}',${i},'got-it')">Got it</button>
+        <button class="grade-btn partial" onclick="gradeFRQ('${prefix}',${i},'partial')">Partial</button>
+        <button class="grade-btn missed" onclick="gradeFRQ('${prefix}',${i},'missed')">Missed</button>
+      </div>
+    </div>`;
+  });
+}
+
+const frqGrades = {};
+const hardGrades = {};
+
+function revealFRQ(prefix, i) {
+  document.getElementById(prefix+'-ans-'+i).classList.add('show');
+  document.getElementById(prefix+'-grade-'+i).classList.add('show');
+}
+function gradeFRQ(prefix, i, grade) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  grades[i] = grade;
+  const btns = document.getElementById(prefix+'-grade-'+i).querySelectorAll('.grade-btn');
+  btns.forEach(b => b.classList.remove('selected-grade'));
+  event.target.classList.add('selected-grade');
+  updateFRQScore(prefix);
+}
+function updateFRQScore(prefix) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  const total = prefix === 'frq' ? frqs.length : hardFrqs.length;
+  let pts = 0;
+  Object.values(grades).forEach(g => { if(g==='got-it') pts+=1; else if(g==='partial') pts+=0.5; });
+  document.getElementById(prefix+'-score').textContent = Math.round((pts/total)*100)+'%';
+}
+function resetFRQ() {
+  Object.keys(frqGrades).forEach(k => delete frqGrades[k]);
+  buildFRQ('frq-container', frqs, 'frq');
+  document.getElementById('frq-score').textContent = '0%';
+}
+function resetHard() {
+  Object.keys(hardGrades).forEach(k => delete hardGrades[k]);
+  buildFRQ('hard-container', hardFrqs, 'hard');
+  document.getElementById('hard-score').textContent = '0%';
+}
+
+buildFRQ('frq-container', frqs, 'frq');
+buildFRQ('hard-container', hardFrqs, 'hard');
+
+// ====== MATCHING ======
+const matchPairs = [
+  {term:"Immunodeficiency", def:"State where immune system's ability to fight infection is compromised or absent"},
+  {term:"Opportunistic pathogen", def:"Microbe that doesn't usually infect healthy hosts but does so in immunocompromised / hospitalized patients"},
+  {term:"Protein A", def:"<em>S. aureus</em> surface protein that binds antibody Fc; blocks phagocyte recognition"},
+  {term:"LukS + LukF (PVL)", def:"Two-protein toxin; 8 subunits self-assemble into a ring-like pore that lyses neutrophils"},
+  {term:"Coagulase / abscess", def:"<em>S. aureus</em> enzyme that induces fibrin shell, shielding bacteria from immune cells &amp; antibiotics"},
+  {term:"PBP2 / mecA", def:"Novel penicillin-binding protein on a mobile element; gives MRSA &beta;-lactam resistance"},
+  {term:"Biofilm", def:"Surface-associated cells in EPS matrix (polysaccharides, proteins, lipids, eDNA); 4 stages: attach, grow, mature, detach"},
+  {term:"Quorum sensing", def:"Cell-to-cell chemical communication; coordinates biofilm formation &amp; virulence"},
+  {term:"AHL / LuxI / LuxR", def:"Autoinducer + synthase + receptor in <em>V. fischeri</em>'s classic quorum sensing system"},
+  {term:"<em>C. auris</em> thermotolerance", def:"Grows at &gt;40&deg;C; possibly first pathogenic fungus emerging from climate change"},
+  {term:"Phenotypic plasticity", def:"Ability of an organism to change phenotype in response to environment without changing genome"},
+  {term:"<em>C. auris</em> 3-way switching", def:"Typical yeast &harr; filamentation-competent yeast (heritable) &harr; filamentous-form (env-dependent, &le;25&deg;C)"},
+];
+
+let matchLeft = null, matchRight = null, matchedCount = 0;
+function initMatching() {
+  matchLeft = null; matchRight = null; matchedCount = 0;
+  const lDiv = document.getElementById('match-left');
+  const rDiv = document.getElementById('match-right');
+  const sL = [...matchPairs].sort(() => Math.random()-0.5);
+  const sR = [...matchPairs].sort(() => Math.random()-0.5);
+  lDiv.innerHTML = sL.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('left',this)">${p.term}</div>`).join('');
+  rDiv.innerHTML = sR.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('right',this)">${p.def}</div>`).join('');
+  document.getElementById('match-score').textContent = '0 / '+matchPairs.length;
+}
+function selectMatch(side, el) {
+  if(el.classList.contains('matched')) return;
+  el.parentElement.querySelectorAll('.match-item').forEach(i => { if(!i.classList.contains('matched')) i.classList.remove('selected'); });
+  el.classList.add('selected');
+  if(side==='left') matchLeft = el; else matchRight = el;
+  if(matchLeft && matchRight) checkMatch();
+}
+function checkMatch() {
+  if(matchLeft.dataset.term === matchRight.dataset.term) {
+    matchLeft.classList.add('matched'); matchLeft.classList.remove('selected');
+    matchRight.classList.add('matched'); matchRight.classList.remove('selected');
+    matchedCount++;
+    document.getElementById('match-score').textContent = matchedCount+' / '+matchPairs.length;
+  } else {
+    matchLeft.classList.add('wrong-match'); matchRight.classList.add('wrong-match');
+    const l=matchLeft, r=matchRight;
+    setTimeout(() => { l.classList.remove('wrong-match','selected'); r.classList.remove('wrong-match','selected'); }, 700);
+  }
+  matchLeft = null; matchRight = null;
+}
+initMatching();
+</script>
+</body>
+</html>

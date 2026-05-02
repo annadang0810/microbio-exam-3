@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toxoplasma &amp; Tuberculosis - BIOL 3303 Study Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232733;
+    --border: #2e3344;
+    --text: #e2e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --green: #00cec9;
+    --green-dim: #00cec920;
+    --red: #fd7272;
+    --red-dim: #fd727220;
+    --orange: #ffa94d;
+    --orange-dim: #ffa94d20;
+    --blue: #74b9ff;
+    --yellow: #ffd43b;
+    --yellow-dim: #ffd43b18;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 8px;
+    overflow-x: auto;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent-light);
+    white-space: nowrap;
+    margin-right: 16px;
+    letter-spacing: -0.3px;
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .nav-btn:hover { color: var(--text); background: var(--surface2); }
+  .nav-btn.active {
+    color: var(--accent-light);
+    background: #6c5ce715;
+    border-color: #6c5ce740;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 84px 24px 60px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+    color: var(--accent-light);
+  }
+  .card p, .card li {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 6px; }
+  .card li::marker { color: var(--accent); }
+
+  .highlight { color: var(--green); font-weight: 600; }
+  .organism { color: var(--orange); font-weight: 600; }
+  .warn { color: var(--red); font-weight: 600; }
+  .key {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+
+  /* HIGH YIELD */
+  .hy-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin-left: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    animation: hyPulse 2s ease-in-out infinite;
+  }
+  @keyframes hyPulse {
+    0%, 100% { box-shadow: 0 0 0 0 #ffd43b40; }
+    50% { box-shadow: 0 0 12px 4px #ffd43b30; }
+  }
+  .hy-card {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .hy-card h2 { color: var(--yellow); }
+
+  .hy-legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: var(--yellow-dim);
+    border: 1px solid #ffd43b40;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--yellow);
+    font-weight: 600;
+  }
+
+  .exam-topics {
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: var(--surface2);
+    border: 1px solid #ffd43b30;
+    border-radius: 10px;
+  }
+  .exam-topics p {
+    font-size: 12px;
+    color: var(--yellow);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .exam-topics ul { padding-left: 18px; }
+  .exam-topics li {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .exam-topics li::marker { color: var(--yellow); }
+
+  /* HERO */
+  .hero-card {
+    background: linear-gradient(135deg, #6c5ce730, #00cec915);
+    border-color: #6c5ce740;
+    text-align: center;
+    padding: 48px 28px;
+  }
+  .hero-card h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .hero-card p { color: var(--text-dim); font-size: 15px; }
+  .hero-stats {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat-num { font-size: 24px; font-weight: 800; color: var(--accent-light); }
+  .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+  /* TABS */
+  .tab-row { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .tab-btn.hy-tab { border-color: #ffd43b60; }
+  .tab-btn.hy-tab.active { background: linear-gradient(135deg, #ffd43b, #f59f00); color: #1a1d27; border-color: #ffd43b; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* TABLES */
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .data-table th, .data-table td { padding: 8px 12px; border: 1px solid var(--border); text-align: left; font-size: 13.5px; }
+  .data-table th { background: var(--surface2); color: var(--accent-light); font-weight: 600; }
+  .data-table td { color: var(--text-dim); }
+  .data-table.hy-table th { color: var(--yellow); }
+
+  /* DIAGRAM */
+  .diagram-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 14px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .diagram-box .arr { color: var(--accent-light); }
+  .diagram-box .mol { color: var(--green); font-weight: 700; }
+  .diagram-box .label { color: var(--text-dim); font-style: italic; }
+
+  .callout {
+    background: #00cec920;
+    border: 1px solid #00cec940;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    font-size: 13.5px;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* SCORE BAR */
+  .score-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .score-text { font-size: 15px; font-weight: 600; }
+  .score-pct { font-size: 28px; font-weight: 800; color: var(--accent-light); }
+  .reset-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { background: var(--accent-light); color: var(--bg); }
+
+  /* FLASHCARD */
+  .fc-container { perspective: 1000px; margin-bottom: 16px; }
+  .flashcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    cursor: pointer;
+    transition: transform 0.5s, box-shadow 0.3s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .flashcard:hover { box-shadow: 0 4px 24px #6c5ce720; }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .fc-front, .fc-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    backface-visibility: hidden;
+    border-radius: 14px;
+  }
+  .fc-front { font-size: 16px; font-weight: 600; color: var(--text); }
+  .fc-back {
+    transform: rotateY(180deg);
+    font-size: 15px;
+    color: var(--green);
+    background: var(--surface);
+    line-height: 1.6;
+  }
+  .fc-nav { display: flex; gap: 10px; justify-content: center; align-items: center; }
+  .fc-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .fc-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .fc-counter { font-size: 13px; color: var(--text-dim); font-weight: 600; min-width: 60px; text-align: center; }
+  .fc-hint { text-align: center; color: var(--text-dim); font-size: 12px; margin-top: 10px; }
+
+  /* MATCHING */
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .match-col-header {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+  .match-item {
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .match-item:hover { border-color: var(--accent); color: var(--text); }
+  .match-item.selected { border-color: var(--accent); background: #6c5ce715; color: var(--accent-light); }
+  .match-item.matched { border-color: var(--green); background: var(--green-dim); color: var(--green); pointer-events: none; opacity: 0.7; }
+  .match-item.wrong-match { border-color: var(--red); background: var(--red-dim); color: var(--red); }
+
+  /* FRQ */
+  .frq-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .frq-card.hy-frq {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .frq-card .q-num {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .frq-card.hy-frq .q-num {
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+  }
+  .frq-card .frq-prompt { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+  .frq-card .frq-hint { font-size: 12px; color: var(--text-dim); margin-bottom: 12px; font-style: italic; }
+  .frq-card textarea {
+    width: 100%;
+    min-height: 100px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    padding: 14px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+  .frq-card textarea:focus { outline: none; border-color: var(--accent); }
+  .frq-card textarea::placeholder { color: #4a4e63; }
+  .frq-reveal-btn {
+    display: inline-block;
+    margin-top: 12px;
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent-light);
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .frq-reveal-btn:hover { background: #6c5ce715; }
+  .frq-answer {
+    display: none;
+    margin-top: 14px;
+    padding: 16px;
+    background: var(--surface2);
+    border-radius: 10px;
+    border-left: 3px solid var(--green);
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .frq-answer.show { display: block; }
+  .frq-answer strong { color: var(--green); }
+  .frq-self-grade { display: none; margin-top: 12px; gap: 8px; }
+  .frq-self-grade.show { display: flex; }
+  .grade-btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .grade-btn.got-it { color: var(--green); border-color: var(--green); }
+  .grade-btn.got-it:hover { background: var(--green-dim); }
+  .grade-btn.partial { color: var(--orange); border-color: var(--orange); }
+  .grade-btn.partial:hover { background: var(--orange-dim); }
+  .grade-btn.missed { color: var(--red); border-color: var(--red); }
+  .grade-btn.missed:hover { background: var(--red-dim); }
+  .grade-btn.selected-grade { font-weight: 800; }
+  .grade-btn.got-it.selected-grade { background: var(--green-dim); }
+  .grade-btn.partial.selected-grade { background: var(--orange-dim); }
+  .grade-btn.missed.selected-grade { background: var(--red-dim); }
+
+  @media (max-width: 600px) {
+    .nav-brand { display: none; }
+    main { padding: 76px 14px 40px; }
+    .card { padding: 20px; }
+    .hero-card { padding: 32px 20px; }
+    .hero-card h1 { font-size: 22px; }
+    .match-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">ToxoTBStudy</span>
+    <button class="nav-btn active" onclick="showSection('home')">Home</button>
+    <button class="nav-btn" onclick="showSection('learn')">Learn</button>
+    <button class="nav-btn" onclick="showSection('flashcards')">Flashcards</button>
+    <button class="nav-btn" onclick="showSection('frq')">FRQ</button>
+    <button class="nav-btn" onclick="showSection('matching')">Matching</button>
+    <button class="nav-btn" onclick="showSection('hard')">Hard FRQ</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ==================== HOME ==================== -->
+<div class="section active" id="sec-home">
+  <div class="card hero-card">
+    <h1>Toxoplasma &amp; Tuberculosis</h1>
+    <p>BIOL 3303 &middot; Lecture 23 &mdash; <em>Toxoplasma gondii</em> &amp; <em>Mycobacterium tuberculosis</em></p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Topics</div></div>
+      <div class="stat"><div class="stat-num">36</div><div class="stat-label">Flashcards</div></div>
+      <div class="stat"><div class="stat-num">20</div><div class="stat-label">FRQs</div></div>
+    </div>
+    <div class="hy-legend">HIGH YIELD = Confirmed exam topics from your professor. Prioritize these.</div>
+    <div class="exam-topics">
+      <p>Your Professor's Exam Topics</p>
+      <ul>
+        <li><strong><em>Toxoplasma gondii</em></strong> &mdash; stages in life cycle (tachyzoite, bradyzoite, sporozoite), sexual vs asexual reproduction, cysts and oocysts</li>
+        <li><strong><em>Mycobacterium tuberculosis</em></strong> &mdash; primary vs latent infection, intracellular survival, delay of adaptive immunity, granulomas</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LEARN ==================== -->
+<div class="section" id="sec-learn">
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="showTab(this,'overview')">Overview</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'toxo-bio')"><em>T. gondii</em> Bio</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'toxo-life')"><em>T. gondii</em> Life Cycle</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'tb-bio')"><em>M. tb</em> Bio</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'tb-disease')"><em>M. tb</em> Disease</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'compare')">Compare Both</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-content active" id="tab-overview">
+    <div class="card">
+      <h2>The Big Picture</h2>
+      <p>Lecture 23 expands the intracellular pathogen story with two organisms that share one trait &mdash; both <span class="highlight">live inside host cells</span> &mdash; but otherwise sit at biological extremes:</p>
+      <ul>
+        <li><span class="organism"><em>Toxoplasma gondii</em></span>: a <span class="highlight">single-celled eukaryotic parasite</span> (a protist/apicomplexan) with a complex life cycle that requires <span class="highlight">cats for sexual reproduction</span> but multiplies asexually in nearly any warm-blooded animal. Forms <span class="highlight">cysts</span> in tissues and <span class="highlight">oocysts</span> in cat feces.</li>
+        <li><span class="organism"><em>Mycobacterium tuberculosis</em></span>: an <span class="highlight">acid-fast bacterium</span> (mycolic-acid-coated, neither Gram positive nor negative) that lives inside <span class="highlight">alveolar macrophages</span>, blocks phagosome-lysosome fusion, delays adaptive immunity, and triggers <span class="highlight">granuloma</span> formation during latency.</li>
+      </ul>
+
+      <h3>Connection Map</h3>
+      <table class="data-table">
+        <tr><th>Organism</th><th>Type</th><th>Replication site</th><th>Persistence form</th></tr>
+        <tr><td><em>T. gondii</em></td><td>Eukaryotic protozoan parasite</td><td><span class="highlight">Parasitophorous vacuole (PV)</span> in any nucleated cell</td><td><span class="highlight">Tissue cysts (bradyzoites)</span> in muscle/brain; <span class="highlight">oocysts</span> in environment</td></tr>
+        <tr><td><em>M. tuberculosis</em></td><td>Acid-fast bacterium</td><td><span class="highlight">Phagosome</span> in alveolar macrophages</td><td><span class="highlight">Granuloma</span> in lung; latent for life</td></tr>
+      </table>
+
+      <div class="callout">Both pathogens establish <strong>lifelong infection</strong> in immunocompetent hosts and reactivate when immunity wanes &mdash; one of the major reasons HIV/AIDS, chemotherapy, and immune suppression unmask these "quiet" infections in dramatic ways.</div>
+
+      <h3>Why these matter together</h3>
+      <ul>
+        <li><strong>Both use a vacuole</strong> &mdash; <em>T. gondii</em> in the parasitophorous vacuole (PV); <em>M. tb</em> in the phagosome (which it prevents from maturing into a phagolysosome)</li>
+        <li><strong>Both infect macrophages</strong> &mdash; key innate immune cells that should be killing them</li>
+        <li><strong>Both manipulate host cell death</strong> &mdash; <em>T. gondii</em> tachyzoites lyse the cell to spread; <em>M. tb</em> exploits macrophage apoptosis for cell-to-cell transfer inside the granuloma</li>
+        <li><strong>Both have huge global prevalence</strong> &mdash; ~11% of Americans / 60% of Brazilians latently infected with <em>T. gondii</em>; ~1/3 of the global population (~2.7 billion) latently infected with <em>M. tb</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TOXO BIOLOGY -->
+  <div class="tab-content" id="tab-toxo-bio">
+    <div class="card hy-card">
+      <h2><em>Toxoplasma gondii</em>: The Organism <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3><em>T. gondii</em> Basics</h3>
+      <ul>
+        <li><span class="organism">Single-celled eukaryotic parasite</span> (protozoan, phylum Apicomplexa)</li>
+        <li>Can infect <span class="highlight">almost any cell type</span> in mammals and birds</li>
+        <li>Causes the disease <span class="highlight">Toxoplasmosis</span> in humans</li>
+        <li>The genus <em>Toxoplasma</em> contains <span class="highlight">only one species</span> &mdash; <em>T. gondii</em> &mdash; with multiple genotypes and haplotypes</li>
+        <li><span class="warn">Over 40 million Americans</span> may be infected (~11%)</li>
+        <li>Worldwide: up to <span class="warn">60% in Brazil</span></li>
+        <li>Transmission: <span class="highlight">consumption of raw or undercooked meat</span> (containing tissue cysts), <span class="highlight">contaminated water/soil/produce</span> (sporulated oocysts), or <span class="highlight">cat feces</span></li>
+        <li>Infections can <span class="warn">persist for life</span></li>
+        <li>Risk groups: <span class="warn">immunocompromised individuals and pregnant women</span></li>
+      </ul>
+
+      <h3>Toxoplasmosis &mdash; Disease Spectrum</h3>
+      <table class="data-table hy-table">
+        <tr><th>Host status</th><th>Presentation</th></tr>
+        <tr><td><strong>Most healthy people</strong></td><td><span class="highlight">Asymptomatic</span></td></tr>
+        <tr><td><strong>Immunocompetent (10&ndash;20%)</strong></td><td>Flu-like: body aches, swollen lymph nodes, headache, fever, fatigue</td></tr>
+        <tr><td><strong>Immunocompromised</strong></td><td><span class="warn">Severe</span>: headache, confusion, poor coordination, seizures; lung problems resembling TB; <strong>ocular toxoplasmosis</strong> (severe retinal inflammation, blurred vision)</td></tr>
+        <tr><td><strong>Pregnancy (first infection)</strong></td><td><span class="warn">Most end in stillbirth</span>; surviving infants: seizures, hepato/splenomegaly, jaundice, severe eye infections</td></tr>
+      </table>
+
+      <h3>Tachyzoite Cell Architecture <span class="hy-badge">HIGH YIELD</span></h3>
+      <p>The tachyzoite is the <span class="highlight">most well characterized stage</span>. It has multiple <span class="highlight">apical secretory organelles</span> &mdash; specialized structures clustered at the front of the cell that mediate host cell invasion:</p>
+
+      <table class="data-table hy-table">
+        <tr><th>Organelle</th><th>What it does</th></tr>
+        <tr><td><strong>Micronemes</strong></td><td>Secrete proteins with <strong>perforin-like properties</strong>, <strong>adhesins</strong>, and <strong>serine proteases</strong>; important for <strong>parasite motility</strong> and <strong>association with the host cell membrane</strong>. <em>Higher in sporozoites, intermediate in tachyzoites, lower in bradyzoites.</em></td></tr>
+        <tr><td><strong>Rhoptries</strong></td><td>Concentrate proteins associated with <strong>host cell invasion</strong>. Essential role in forming the <strong>moving junction</strong> for invasion and the <strong>parasitophorous vacuole (PV) membrane</strong>.</td></tr>
+        <tr><td><strong>Dense granules</strong></td><td>Secreted proteins released when the parasite is <strong>localized within the PV</strong>; involved in assembling a <strong>network of tubules and filamentous structures</strong> within the PV. Higher in sporozoites.</td></tr>
+      </table>
+
+      <h3>What is the Parasitophorous Vacuole (PV)?</h3>
+      <ul>
+        <li>A <span class="highlight">membrane-bounded compartment</span> inside the host cell where <em>T. gondii</em> lives and replicates</li>
+        <li>The PV membrane is shaped largely by <span class="highlight">rhoptry proteins</span></li>
+        <li>The PV does NOT fuse with host lysosomes &mdash; that's how the parasite avoids destruction</li>
+        <li>Inside the PV, <span class="highlight">dense granule proteins</span> build a tubule-and-filament network that serves as a parasite-controlled "pantry" for nutrient uptake</li>
+        <li>This is functionally similar to <em>Salmonella</em>'s SCV but evolved independently in a eukaryotic parasite</li>
+      </ul>
+
+      <div class="callout">Three secretory organelles, three jobs. <strong>Micronemes</strong> = motility + adhesion (get to the cell, stick to it). <strong>Rhoptries</strong> = invasion + PV (get inside, build the home). <strong>Dense granules</strong> = post-invasion remodeling (decorate the home).</div>
+    </div>
+  </div>
+
+  <!-- TOXO LIFE CYCLE -->
+  <div class="tab-content" id="tab-toxo-life">
+    <div class="card hy-card">
+      <h2><em>T. gondii</em> Life Cycle: Stages, Sexual vs Asexual, Cysts vs Oocysts <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3>The Three Stages <span class="hy-badge">HIGH YIELD</span></h3>
+      <table class="data-table hy-table">
+        <tr><th>Stage</th><th>Definition</th><th>Found in</th></tr>
+        <tr><td><strong>A. Tachyzoite</strong> (<em>tachy-</em> = fast)</td><td>Form of <span class="highlight">RAPID multiplication</span></td><td>Characteristic of <span class="highlight">acute infections</span></td></tr>
+        <tr><td><strong>B. Bradyzoite</strong> (<em>brady-</em> = slow)</td><td>Form of <span class="highlight">SLOW multiplication</span> &mdash; <span class="highlight">originates the tissue cysts</span></td><td>Characteristic of <span class="highlight">chronic infection</span> (lifelong)</td></tr>
+        <tr><td><strong>C. Sporozoite</strong></td><td>Produced ONLY in the <span class="highlight">definitive host (cat)</span> during <span class="highlight">sexual reproduction</span></td><td>Released in <span class="highlight">oocysts via felid feces</span></td></tr>
+      </table>
+      <p><em>T. gondii</em> uses these three stages to <span class="highlight">survive, multiply, and spread</span> throughout its life cycle.</p>
+
+      <h3>Definitive Host vs Intermediate Host <span class="hy-badge">HIGH YIELD</span></h3>
+      <ul>
+        <li><span class="highlight">Definitive host</span> = where <span class="warn">sexual reproduction</span> occurs &rarr; <span class="warn">FELINES (cats and other felids) ONLY</span></li>
+        <li><span class="highlight">Intermediate host</span> = where <span class="warn">asexual reproduction</span> occurs &rarr; almost any mammal or bird &mdash; including <span class="warn">humans</span>, sheep, pigs, deer, mice, etc.</li>
+      </ul>
+
+      <h3>Cysts vs Oocysts &mdash; Don't Confuse These! <span class="hy-badge">HIGH YIELD</span></h3>
+      <table class="data-table hy-table">
+        <tr><th></th><th>Tissue Cysts</th><th>Oocysts</th></tr>
+        <tr><td><strong>Contents</strong></td><td><span class="highlight">Bradyzoites</span> (slow-growing form)</td><td><span class="highlight">Sporozoites</span> (after sporulation)</td></tr>
+        <tr><td><strong>Where formed</strong></td><td>Inside intermediate host tissues &mdash; <span class="highlight">neural and muscle tissue</span></td><td>In the <span class="highlight">cat (felid) intestine</span> after sexual reproduction</td></tr>
+        <tr><td><strong>Where shed</strong></td><td>NOT shed &mdash; consumed when a predator eats infected meat</td><td>Shed in <span class="highlight">cat feces</span></td></tr>
+        <tr><td><strong>Form transmitted</strong></td><td>Eaten in raw/undercooked meat</td><td>Ingested from contaminated water/soil/produce</td></tr>
+        <tr><td><strong>Initial infectivity</strong></td><td>Infective to next host</td><td><span class="warn">UNSPORULATED oocyst is NONinfective</span> when shed; must mature outside the cat (1&ndash;5 days) into a <span class="highlight">SPORULATED oocyst</span> to become infective</td></tr>
+        <tr><td><strong>Toughness</strong></td><td>Persist in tissue for the host's lifetime</td><td>Hardy <span class="highlight">thick-walled</span> environmental form &mdash; survives in soil/water for a long time</td></tr>
+      </table>
+
+      <h3>Sexual Reproduction in the Cat (the Definitive Host)</h3>
+      <p>The full felid life cycle, step by step:</p>
+      <ol style="padding-left: 20px;">
+        <li style="margin-bottom: 8px;"><strong>A.</strong> Cat <span class="highlight">ingests prey containing tissue cysts</span> (e.g., eats an infected mouse)</li>
+        <li style="margin-bottom: 8px;"><strong>B.</strong> The <span class="highlight">cyst wall is digested</span> in the stomach and intestines, liberating <span class="highlight">bradyzoites</span> (slow form)</li>
+        <li style="margin-bottom: 8px;"><strong>C.</strong> Bradyzoites <span class="highlight">invade the epithelial cells of the intestine</span> (enterocytes)</li>
+        <li style="margin-bottom: 8px;"><strong>D.</strong> Inside enterocytes, bradyzoites divide by <span class="highlight">schizogony</span> (a type of multiple fission), giving rise to <span class="highlight">merozoites</span></li>
+        <li style="margin-bottom: 8px;"><strong>E.</strong> Merozoites differentiate into <span class="highlight">microgamonts (male gametes)</span> or <span class="highlight">macrogametes (female gametes)</span></li>
+        <li style="margin-bottom: 8px;"><strong>F.</strong> <span class="highlight">Fertilization</span> gives rise to an <span class="warn">unsporulated oocyst</span>, which is excreted in cat feces</li>
+        <li style="margin-bottom: 8px;"><strong>G.</strong> <span class="highlight">Sporulation</span> occurs in the environment over <span class="highlight">1&ndash;5 days</span>, generating <strong>two sporocysts</strong>, each containing <strong>four sporozoites</strong> (8 sporozoites total per sporulated oocyst)</li>
+      </ol>
+
+      <h3>Asexual Reproduction in Intermediate Hosts (animals, including humans)</h3>
+      <ol style="padding-left: 20px;">
+        <li style="margin-bottom: 8px;">Animal consumes a <span class="highlight">sporulated oocyst</span> (from cat feces, water, or soil)</li>
+        <li style="margin-bottom: 8px;">Sporozoites are released and <span class="highlight">transform into tachyzoites</span> shortly after ingestion</li>
+        <li style="margin-bottom: 8px;">Tachyzoites <span class="highlight">disseminate</span> &mdash; they go everywhere via the bloodstream and can infect almost any nucleated cell. They use micronemes/rhoptries/dense granules to invade and form a PV.</li>
+        <li style="margin-bottom: 8px;">Tachyzoites localize in <span class="highlight">neural and muscle tissue</span> and develop into <span class="highlight">tissue cyst bradyzoites</span> &mdash; the slow-growing chronic form. The cyst wall protects them indefinitely.</li>
+        <li style="margin-bottom: 8px;">A predator (cat) eats the infected animal &rarr; cycle restarts in the cat with the sexual phase</li>
+      </ol>
+
+      <p><span class="warn">Key:</span> in intermediate hosts <em>T. gondii</em> reproduces <strong>asexually only</strong> (tachyzoite &harr; bradyzoite). In felids it reproduces <strong>sexually</strong> (gametes &rarr; oocyst &rarr; sporozoite). Sporozoites are <span class="warn">never produced in intermediate hosts</span> &mdash; only in cats.</p>
+
+      <h3>Stage Conversion &mdash; the Switch That Defines Acute vs Chronic Disease</h3>
+      <ul>
+        <li><span class="highlight">Tachyzoite &rarr; bradyzoite</span> conversion happens when the <span class="highlight">host immune response activates</span>; tachyzoites slow down, encyst, and hide in muscle/CNS tissue. This is what creates lifelong <strong>chronic infection</strong>.</li>
+        <li><span class="highlight">Bradyzoite &rarr; tachyzoite</span> conversion can happen if the <span class="warn">host becomes immunocompromised</span> (HIV/AIDS, chemotherapy) &mdash; bradyzoites burst out of cysts, transform into rapidly dividing tachyzoites, and cause <span class="warn">reactivated toxoplasmosis</span> (encephalitis, ocular toxoplasmosis).</li>
+      </ul>
+
+      <h3>Routes of Human Infection</h3>
+      <ul>
+        <li><span class="highlight">Eating raw/undercooked meat</span> with tissue cysts (bradyzoites) &mdash; pork, lamb, venison most common</li>
+        <li><span class="highlight">Ingesting sporulated oocysts</span> from contaminated water, soil, or produce (often via cat feces in gardens/sandboxes)</li>
+        <li><span class="highlight">Vertical (transplacental) transmission</span> &mdash; tachyzoites cross the placenta in a first-time-pregnant infected mother</li>
+      </ul>
+
+      <div class="callout">Three stages, two reproductive modes, two host types. <strong>Tachyzoite</strong> (fast, acute, intermediate host) &rarr; <strong>Bradyzoite</strong> (slow, chronic, in tissue cysts in intermediate host) &rarr; cat eats infected meat &rarr; <strong>Sexual reproduction in cat gut</strong> (microgamont + macrogamete &rarr; oocyst) &rarr; oocyst sheds in feces, sporulates over 1&ndash;5 days &rarr; <strong>Sporozoite</strong> (in sporulated oocyst, infective again).</div>
+    </div>
+  </div>
+
+  <!-- TB BIOLOGY -->
+  <div class="tab-content" id="tab-tb-bio">
+    <div class="card hy-card">
+      <h2><em>Mycobacterium tuberculosis</em>: The Organism <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3>TB Is an Ancient Disease</h3>
+      <ul>
+        <li><span class="organism"><em>M. tuberculosis</em></span> is the causative agent of TB</li>
+        <li>An <span class="highlight">acid-fast bacterium</span> &mdash; <span class="warn">NEITHER Gram-positive nor Gram-negative</span></li>
+        <li>Early humans carried <em>M. tuberculosis</em> with them when they migrated <span class="highlight">out of Africa ~70,000 years ago</span></li>
+        <li>17th&ndash;18th century Europe: caused the <span class="warn">"White Plague"</span> &mdash; virtually <span class="warn">everyone in Europe was infected</span>; <span class="warn">25% of all deaths were from TB</span></li>
+        <li>Today: <span class="warn">2nd leading cause of death from infectious disease worldwide</span></li>
+        <li>Global burden: <span class="warn">9&ndash;10 million new active cases/year</span>, <span class="warn">1.3&ndash;1.5 million deaths/year</span></li>
+        <li>Unusual age distribution: <span class="warn">80% of active cases are 15&ndash;49 years old</span> (not just very young/old)</li>
+        <li><em>M. tuberculosis</em> is an <span class="warn">obligate pathogen</span> &mdash; <span class="warn">no environmental reservoir</span></li>
+      </ul>
+
+      <h3>Cell Biology Features That Allow Spread <span class="hy-badge">HIGH YIELD</span></h3>
+      <ul>
+        <li><span class="highlight">Non-motile rod-shaped bacilli</span></li>
+        <li><span class="highlight">Slow growth</span>: doubles every <span class="warn">20&ndash;24 hours</span> (compare <em>E. coli</em>'s ~20 minutes!) &mdash; this slowness:
+          <ul>
+            <li>Helps <em>M. tb</em> stay <span class="warn">under the radar of the immune system</span></li>
+            <li><span class="warn">Limits effectiveness of antibiotics that target dividing bacteria</span> (most cell-wall-active drugs only kill replicating cells)</li>
+          </ul>
+        </li>
+        <li><span class="highlight">Acid-fast</span> due to <span class="warn">long-chain mycolic acids</span> coating its surface
+          <ul>
+            <li>Gives colonies a <span class="highlight">waxy appearance</span></li>
+            <li>Confers <span class="warn">incredible chemical resistance</span> to common sanitizers</li>
+            <li>Confers <span class="warn">resistance to drying</span> &mdash; persists in air as aerosols / on dust particles when coughed</li>
+            <li><span class="highlight">Mycolic acids are unique to <em>M. tuberculosis</em></span> (and other mycobacteria); they form an extra protective outer layer</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Cell Envelope Architecture (innermost &rarr; outermost)</h3>
+      <div class="diagram-box">  <span class="label">M. tuberculosis cell wall layers:</span>
+
+  <span class="mol">Phospholipid lipid bilayer</span>     (inner plasma membrane)
+        &darr;
+  <span class="mol">Peptidoglycan</span>                  (thin layer)
+        &darr;
+  <span class="mol">Arabinogalactan</span>                (linker polysaccharide)
+        &darr;
+  <span class="mol">Mycolic acid</span> + outer membrane  (waxy, hydrophobic, unique)
+        &darr;
+  Membrane proteins, lipoarabinomannan (LAM)</div>
+
+      <h3>Why <em>M. tb</em> Is BSL-3 (Working With It Is Hard)</h3>
+      <ul>
+        <li>Most bacteria covered in this course are <span class="highlight">BSL-2</span> (lab coat, gloves, eye protection)</li>
+        <li><em>M. tuberculosis</em> is <span class="warn">BSL-3</span>:
+          <ul>
+            <li>Full medical gown + scrubs</li>
+            <li><span class="highlight">Specially built negative-airflow facility</span></li>
+            <li><span class="highlight">N95 respirator or PAPR (powered air purifying respirator)</span></li>
+            <li>Sterile biosafety cabinet with constant decontamination</li>
+            <li>Researchers require significant training before access</li>
+          </ul>
+        </li>
+        <li>The reason: <em>M. tb</em> aerosolizes, the infectious dose is low, mycolic acid resists sanitizers, and TB is serious</li>
+      </ul>
+
+      <h3>U.S. TB Epidemiology &mdash; the 1980s/90s Spike</h3>
+      <ul>
+        <li>U.S. TB cases <span class="highlight">declined almost every year</span> since records were kept &mdash; mostly due to improved sanitation, housing, and nutrition</li>
+        <li>Notable <span class="warn">spike in late 1980s / early 1990s</span> &mdash; coincided with the <span class="warn">HIV/AIDS epidemic</span>: HIV patients with damaged CD4+ T cells reactivated latent TB en masse</li>
+        <li>This is the canonical example of <em>M. tb</em>'s reactivation behavior in immunocompromised hosts</li>
+      </ul>
+
+      <div class="callout">Three structural facts to remember: <strong>(1) acid-fast (mycolic acids)</strong> &mdash; not Gram +/−, hardy in air and against sanitizers; <strong>(2) slow grower (20&ndash;24 hr doubling)</strong> &mdash; evades innate immune detection and shrugs off antibiotics that target dividing bacteria; <strong>(3) obligate pathogen (no environmental reservoir)</strong> &mdash; humans with latent TB ARE the reservoir.</div>
+    </div>
+  </div>
+
+  <!-- TB DISEASE / PATHOGENESIS -->
+  <div class="tab-content" id="tab-tb-disease">
+    <div class="card hy-card">
+      <h2>TB Disease: Primary, Latent, Reactivation <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3>The Three Disease States</h3>
+      <table class="data-table hy-table">
+        <tr><th>State</th><th>What's happening</th></tr>
+        <tr><td><strong>1. Primary infection</strong></td><td>First exposure leads to an <span class="highlight">active infection</span>; <span class="warn">highly infectious</span> &mdash; spread by persistent cough</td></tr>
+        <tr><td><strong>2. Latency</strong></td><td><em>M. tuberculosis</em> remains <span class="highlight">dormant</span> in the host inside <span class="highlight">granulomas</span>; can persist for a <span class="warn">lifetime</span></td></tr>
+        <tr><td><strong>3. Reactivated infection</strong></td><td>If the immune system is <span class="warn">compromised</span>, the granuloma ruptures and a more serious infection develops &mdash; persistent cough, fever, emaciation</td></tr>
+      </table>
+
+      <p>Spread is via <span class="highlight">airborne respiratory droplets</span>; the <span class="warn">infectious dose is low</span>; <span class="highlight">crowded conditions</span> dramatically increase transmission.</p>
+
+      <h3>Primary Infection: Intracellular Survival in Macrophages <span class="hy-badge">HIGH YIELD</span></h3>
+      <ol style="padding-left: 20px;">
+        <li style="margin-bottom: 8px;"><em>M. tuberculosis</em> is <span class="highlight">inhaled</span> and reaches the alveoli</li>
+        <li style="margin-bottom: 8px;">It is <span class="highlight">phagocytosed by alveolar macrophages</span> &mdash; the lung's resident sentinel phagocytes</li>
+        <li style="margin-bottom: 8px;">In a normal infection, the phagosome would fuse with a lysosome to form a <span class="highlight">phagolysosome</span> that destroys the pathogen</li>
+        <li style="margin-bottom: 8px;"><em>M. tuberculosis</em> <span class="warn">BLOCKS phagosome&ndash;lysosome fusion</span> by releasing <span class="highlight">cell wall lipids</span> (e.g., LAM &mdash; lipoarabinomannan) that interfere with the maturation machinery</li>
+        <li style="margin-bottom: 8px;"><em>M. tuberculosis</em> <span class="warn">does NOT escape the phagosome</span> &mdash; it lives in it</li>
+        <li style="margin-bottom: 8px;">Inside the phagosome, the bacterium is <span class="highlight">protected from other immune cells</span> until adaptive immunity kicks in</li>
+      </ol>
+
+      <h3>Compare to <em>Listeria</em> and <em>Salmonella</em></h3>
+      <ul>
+        <li><span class="organism"><em>Listeria</em></span>: escapes the phagosome via LLO &rarr; cytoplasm</li>
+        <li><span class="organism"><em>Salmonella</em></span>: stays in the SCV (modified late endosome) &rarr; resists acidification + lysosome fusion</li>
+        <li><span class="organism"><em>M. tuberculosis</em></span>: stays in the early phagosome &rarr; <span class="highlight">prevents lysosome fusion entirely</span> via mycolic acid wall lipids</li>
+      </ul>
+
+      <h3>Delay of Adaptive Immunity <span class="hy-badge">HIGH YIELD</span></h3>
+      <p>Adaptive immunity normally ramps up <span class="highlight">7&ndash;10 days</span> after infection. In <em>M. tuberculosis</em> infection, adaptive immunity is delayed to <span class="warn">16&ndash;17 days</span> &mdash; <span class="warn">about 2&times; longer than normal</span>.</p>
+
+      <p><strong>How <em>M. tb</em> delays adaptive immunity:</strong></p>
+      <ul>
+        <li><em>M. tb</em> <span class="warn">infects dendritic cells (DCs)</span> &mdash; the professional antigen-presenting cells responsible for activating naive T cells in lymph nodes</li>
+        <li>It <span class="highlight">impairs MHC-II antigen presentation</span> on the DCs</li>
+        <li>Without proper MHC-II presentation, <span class="highlight">naive CD4+ T cells are not activated on schedule</span> &mdash; the adaptive response is stalled</li>
+        <li>This buys <em>M. tb</em> roughly <span class="warn">a week of extra unrestricted growth</span></li>
+        <li>Once T cells DO activate, they produce <span class="highlight">IFN-&gamma;</span>, which dramatically <span class="highlight">increases macrophage killing power</span> (boosts ROS/RNS production, phagolysosome maturation), and the active infection is <span class="highlight">controlled (not eliminated)</span></li>
+      </ul>
+
+      <div class="diagram-box">  <span class="label">Why the delay matters:</span>
+
+  Normal infection:    Day 0 [exposure] ---------- Day 7-10 <span class="mol">T cells activated</span>
+  M. tuberculosis:     Day 0 [exposure] ----------------- Day 16-17 <span class="mol">T cells activated</span>
+                                                     <span class="warn">~7 extra days</span>
+                                          of unrestricted bacterial growth</div>
+
+      <h3>Latency: Why TB Doesn't Just Get Cleared <span class="hy-badge">HIGH YIELD</span></h3>
+      <ul>
+        <li>Macrophages <span class="warn">cannot fully kill <em>M. tb</em></span>, even when activated</li>
+        <li><em>M. tb</em> consumes the macrophage's nutrients</li>
+        <li>The infected macrophage eventually dies via <span class="highlight">apoptosis</span></li>
+        <li><span class="highlight">New macrophages</span> arrive to clean up the apoptotic cell &mdash; and <span class="warn">they get infected too</span></li>
+        <li>This cycle continues, recruiting more and more macrophages and other immune cells</li>
+        <li>The infected cells become surrounded by a halo of other immune cells &mdash; the <span class="highlight">granuloma</span> begins to form</li>
+      </ul>
+
+      <h3>The Granuloma: Walling Off the Infection <span class="hy-badge">HIGH YIELD</span></h3>
+      <p><span class="key">DEF</span> A <strong>granuloma</strong> is an organized cluster of immune cells that <span class="highlight">walls off the invading pathogen</span>. The TB granuloma has a stereotyped layered structure:</p>
+
+      <table class="data-table hy-table">
+        <tr><th>Layer</th><th>What's there</th></tr>
+        <tr><td><strong>Core</strong></td><td><span class="warn">Infected macrophages</span> with <em>M. tb</em> inside; epithelioid macrophages, <span class="highlight">giant cells</span> (fused macrophages), <span class="highlight">foam cells</span> (lipid-laden macrophages); apoptotic infected cells; necrotic tissue</td></tr>
+        <tr><td><strong>Inner ring</strong></td><td>Newly arriving macrophages, dendritic cells, neutrophils, NK cells</td></tr>
+        <tr><td><strong>Outer ring</strong></td><td>T cells (CD4+, CD8+) and B cells maintain the wall</td></tr>
+      </table>
+
+      <h3>What the Granuloma Does (and Doesn't Do)</h3>
+      <ul>
+        <li><span class="highlight">Does</span>: prevents <em>M. tb</em> from spreading further in the body &mdash; the bacteria are essentially trapped</li>
+        <li><span class="warn">Doesn't</span>: kill <em>M. tb</em>. Inside the granuloma is a <span class="warn">continual cycle of <em>M. tb</em> destroying and eating macrophages</span> &mdash; the bacteria persist for the host's lifetime</li>
+        <li>This is why TB is described as a <span class="highlight">chronic, contained, but not cleared</span> infection</li>
+      </ul>
+
+      <h3>Reactivation</h3>
+      <ul>
+        <li>If immunity weakens (HIV, malnutrition, aging, diabetes, immunosuppressive drugs), <em>M. tb</em> can <span class="warn">overpower</span> the granuloma's containment</li>
+        <li>The <span class="warn">granuloma ruptures</span>, releasing bacteria into the airways</li>
+        <li>A new <span class="warn">secondary active infection</span> begins; the patient is again contagious</li>
+        <li>Latent TB carries a <span class="warn">~10% lifetime reactivation risk</span></li>
+        <li>HIV co-infection raises this to ~10% per <em>year</em></li>
+      </ul>
+
+      <h3>The Reservoir Question &mdash; Why Latency Matters Globally</h3>
+      <ul>
+        <li><span class="warn">~1/3 of the global population (~2.7 billion people)</span> are estimated to be latently infected with <em>M. tb</em> &mdash; primarily in Asia, then Africa</li>
+        <li><em>M. tuberculosis</em> has <span class="warn">no environmental reservoir</span></li>
+        <li><span class="warn">Humans with latent infections ARE the reservoir</span></li>
+        <li>This is why TB cannot be eradicated by sanitation alone &mdash; you cannot clean the soil and eliminate it. Eradicating TB requires identifying and treating latent infections in billions of people.</li>
+      </ul>
+
+      <div class="callout">The TB story in five beats: <strong>(1) inhaled &rarr; alveolar macrophage</strong>, <strong>(2) blocks phagosome-lysosome fusion (mycolic acid wall lipids)</strong>, <strong>(3) delays adaptive immunity 16&ndash;17 days by impairing dendritic cell MHC-II presentation</strong>, <strong>(4) granuloma forms &mdash; contained but not cleared</strong>, <strong>(5) reactivates when immunity drops (HIV is the classic trigger)</strong>. The latent infection in 2.7 billion people IS the reservoir.</div>
+    </div>
+  </div>
+
+  <!-- COMPARE -->
+  <div class="tab-content" id="tab-compare">
+    <div class="card hy-card">
+      <h2>Compare <em>T. gondii</em> and <em>M. tuberculosis</em> <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <table class="data-table hy-table">
+        <tr><th></th><th><em>T. gondii</em></th><th><em>M. tuberculosis</em></th></tr>
+        <tr><td><strong>Type</strong></td><td>Eukaryotic protozoan parasite (Apicomplexan)</td><td>Acid-fast bacterium (neither Gram +/&minus;)</td></tr>
+        <tr><td><strong>Cell wall feature</strong></td><td>Apical complex (micronemes, rhoptries, dense granules)</td><td>Mycolic acid waxy outer envelope</td></tr>
+        <tr><td><strong>Definitive host</strong></td><td><span class="highlight">Felines (cats)</span> &mdash; only place sexual reproduction occurs</td><td>Humans (the only natural host)</td></tr>
+        <tr><td><strong>Replication site in cell</strong></td><td><span class="highlight">Parasitophorous vacuole (PV)</span></td><td><span class="highlight">Phagosome (prevented from fusing with lysosome)</span></td></tr>
+        <tr><td><strong>Stages</strong></td><td>Tachyzoite (fast/acute), Bradyzoite (slow/cyst), Sporozoite (sexual/oocyst)</td><td>Single stage, but slow growth (20&ndash;24 hr doubling)</td></tr>
+        <tr><td><strong>Reproduction</strong></td><td><span class="highlight">Asexual</span> in intermediate hosts (incl. humans); <span class="highlight">sexual</span> in felids</td><td>Binary fission (asexual)</td></tr>
+        <tr><td><strong>Persistence form</strong></td><td><span class="highlight">Tissue cysts</span> (bradyzoites in muscle/CNS); <span class="highlight">oocysts</span> in environment</td><td><span class="highlight">Granuloma</span> walling off bacteria in lungs</td></tr>
+        <tr><td><strong>How avoids killing</strong></td><td>PV doesn't fuse with lysosomes; rhoptry/dense granule proteins remodel the vacuole</td><td>Cell wall lipids block phagosome&ndash;lysosome fusion; impairs DC MHC-II</td></tr>
+        <tr><td><strong>Severe disease in...</strong></td><td>Immunocompromised, pregnant women (vertical transmission)</td><td>Immunocompromised (esp. HIV); reactivation</td></tr>
+        <tr><td><strong>Reservoir</strong></td><td>Cats (sexual cycle), wildlife &amp; livestock (cysts), environment (oocysts)</td><td><span class="highlight">Humans with latent infection</span> &mdash; ~2.7 billion people; no environmental reservoir</td></tr>
+        <tr><td><strong>Transmission</strong></td><td>Ingesting tissue cysts (raw meat) or sporulated oocysts (cat feces, contaminated water)</td><td>Inhalation of respiratory droplets / aerosols</td></tr>
+      </table>
+
+      <h3>Common Themes</h3>
+      <ul>
+        <li>Both establish <span class="highlight">lifelong infection</span> in immunocompetent hosts</li>
+        <li>Both <span class="highlight">reactivate when immunity wanes</span> &mdash; HIV is a major reactivation trigger for both</li>
+        <li>Both live in a <span class="highlight">vacuole</span> rather than cytoplasm (contrast with <em>Listeria</em>)</li>
+        <li>Both <span class="highlight">infect macrophages</span> as a key part of their strategy</li>
+        <li>Both have <span class="warn">huge global prevalence</span> in latent form</li>
+        <li>Both can cause <span class="warn">severe CNS disease</span> in immunocompromised hosts (toxoplasmic encephalitis; TB meningitis)</li>
+      </ul>
+
+      <h3>Mnemonic for the Two Systems</h3>
+      <ul>
+        <li><strong><em>T. gondii</em></strong> &mdash; <span class="highlight">three stages, two reproductive modes, two host types</span>: Tachyzoite (fast/acute) &harr; Bradyzoite (slow/cyst) in intermediate host; Sporozoite (in oocyst) only after sex in cats</li>
+        <li><strong><em>M. tuberculosis</em></strong> &mdash; <span class="highlight">three disease states, three immune-evasion tricks</span>: Primary &rarr; Latent (granuloma) &rarr; Reactivation; blocks phagolysosome fusion, delays adaptive immunity, persists in granuloma</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FLASHCARDS ==================== -->
+<div class="section" id="sec-flashcards">
+  <div class="score-bar">
+    <div><span class="score-text">Flashcard Progress</span></div>
+    <div><span class="score-pct" id="fc-score">0 / 36</span></div>
+  </div>
+  <div class="fc-container">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="fc-front" id="fc-front"></div>
+      <div class="fc-back" id="fc-back"></div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button class="fc-btn" onclick="prevCard()">&larr;</button>
+    <span class="fc-counter" id="fc-counter">1 / 36</span>
+    <button class="fc-btn" onclick="nextCard()">&rarr;</button>
+  </div>
+  <div class="fc-hint">Click to flip &middot; Arrow keys to navigate</div>
+</div>
+
+<!-- ==================== FRQ ==================== -->
+<div class="section" id="sec-frq">
+  <div class="score-bar">
+    <div><span class="score-text">FRQ Self-Assessment</span></div>
+    <div><span class="score-pct" id="frq-score">0%</span></div>
+    <button class="reset-btn" onclick="resetFRQ()">Reset All</button>
+  </div>
+  <div id="frq-container"></div>
+</div>
+
+<!-- ==================== MATCHING ==================== -->
+<div class="section" id="sec-matching">
+  <div class="score-bar">
+    <div><span class="score-text">Matching</span></div>
+    <div><span class="score-pct" id="match-score">0 / 12</span></div>
+    <button class="reset-btn" onclick="initMatching()">Reset</button>
+  </div>
+  <div class="match-grid">
+    <div>
+      <div class="match-col-header">Term</div>
+      <div id="match-left"></div>
+    </div>
+    <div>
+      <div class="match-col-header">Definition</div>
+      <div id="match-right"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HARD FRQ ==================== -->
+<div class="section" id="sec-hard">
+  <div class="score-bar">
+    <div><span class="score-text">Hard FRQ (Exam-Level)</span></div>
+    <div><span class="score-pct" id="hard-score">0%</span></div>
+    <button class="reset-btn" onclick="resetHard()">Reset All</button>
+  </div>
+  <div id="hard-container"></div>
+</div>
+
+</main>
+
+<script>
+// ====== NAVIGATION ======
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+function showTab(btn, id) {
+  btn.closest('.section').querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.closest('.section').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ====== FLASHCARDS ======
+const flashcards = [
+  {q:"What kind of organism is <em>Toxoplasma gondii</em>?", a:"A <strong>single-celled eukaryotic parasite</strong> (a protozoan / apicomplexan). It can infect almost any cell type in mammals and birds. Causes <strong>toxoplasmosis</strong> in humans. The genus contains only one species, <em>T. gondii</em>, with multiple genotypes/haplotypes."},
+  {q:"How prevalent is <em>T. gondii</em> infection?", a:"Over <strong>40 million Americans</strong> may be infected (~11%). Worldwide it's much more common &mdash; up to <strong>60% of the population in Brazil</strong>. Infections can persist for a patient's <strong>entire lifetime</strong>."},
+  {q:"How is <em>T. gondii</em> transmitted to humans?", a:"<strong>(1) Eating raw or undercooked meat</strong> containing tissue cysts (bradyzoites). <strong>(2) Ingesting sporulated oocysts</strong> from cat feces, contaminated water, soil, or unwashed produce. <strong>(3) Vertical transmission</strong> &mdash; tachyzoites cross the placenta from a first-time-infected pregnant mother to the fetus."},
+  {q:"What does toxoplasmosis look like in different patient groups?", a:"<strong>Most healthy people</strong>: asymptomatic. <strong>Immunocompetent (10&ndash;20%)</strong>: flu-like &mdash; body aches, swollen lymph nodes, headache, fever, fatigue. <strong>Immunocompromised</strong>: severe &mdash; headache, confusion, poor coordination, seizures; lung problems resembling TB; <strong>ocular toxoplasmosis</strong> with retinal inflammation. <strong>First infection in pregnancy</strong>: most end in stillbirth; survivors may have seizures, hepato/splenomegaly, jaundice, severe eye infections."},
+  {q:"What are the three life cycle stages of <em>T. gondii</em>?", a:"<strong>(A) Tachyzoite</strong> &mdash; rapid multiplication, characteristic of <strong>acute infection</strong>. <strong>(B) Bradyzoite</strong> &mdash; slow multiplication, characteristic of <strong>chronic infection</strong>; originates the tissue cysts. <strong>(C) Sporozoite</strong> &mdash; produced ONLY in the definitive host (cat) during sexual reproduction; released in oocysts via felid feces."},
+  {q:"What does 'tachyzoite' vs 'bradyzoite' mean etymologically?", a:"<strong>Tachy-</strong> = fast (rapidly multiplying form, acute infection). <strong>Brady-</strong> = slow (slowly multiplying form, chronic infection inside tissue cysts). The pair captures the key behavioral difference: tachyzoites grow fast and disseminate during acute infection; bradyzoites lie dormant in cysts for life."},
+  {q:"Who is the definitive host of <em>T. gondii</em> and why does it matter?", a:"<strong>Felines (cats and other felids)</strong> are the definitive host. The definitive host is where <strong>sexual reproduction</strong> occurs &mdash; gametes form, fertilization happens, and oocysts are produced and shed in feces. Sexual reproduction is required to make new <strong>sporozoites</strong>. Without cats in the lifecycle, <em>T. gondii</em> cannot complete its sexual phase and cannot generate sporulated oocysts that contaminate the environment."},
+  {q:"Who are the intermediate hosts of <em>T. gondii</em>?", a:"<strong>Almost any warm-blooded animal</strong> &mdash; mammals and birds, including <strong>humans, sheep, pigs, deer, and rodents</strong>. In intermediate hosts, <em>T. gondii</em> reproduces <strong>asexually only</strong> (tachyzoite &harr; bradyzoite). Sporozoites are NEVER produced in intermediate hosts."},
+  {q:"What is the difference between a tissue cyst and an oocyst?", a:"<strong>Tissue cysts</strong> contain <strong>bradyzoites</strong> and are found in the <strong>neural and muscle tissue of intermediate hosts</strong>; transmitted by eating raw/undercooked meat. <strong>Oocysts</strong> are <strong>thick-walled environmental structures</strong> produced in the <strong>cat intestine</strong> after sexual reproduction; shed in cat feces. Unsporulated oocysts are NOT infective when shed; sporulation in the environment over <strong>1&ndash;5 days</strong> generates infective sporulated oocysts containing sporozoites."},
+  {q:"What's inside a sporulated oocyst?", a:"<strong>Two sporocysts</strong>, each containing <strong>four sporozoites</strong> &mdash; for a total of <strong>8 sporozoites per sporulated oocyst</strong>. Sporozoites are the infective form ingested from environmental contamination."},
+  {q:"Walk through the cat (felid) life cycle of <em>T. gondii</em>.", a:"<strong>(A)</strong> Cat ingests prey containing tissue cysts. <strong>(B)</strong> Cyst wall digested in stomach/intestines, liberating bradyzoites. <strong>(C)</strong> Bradyzoites invade intestinal epithelial cells (enterocytes). <strong>(D)</strong> Bradyzoites divide by <strong>schizogony</strong>, producing merozoites. <strong>(E)</strong> Merozoites differentiate into <strong>microgamonts (male)</strong> or <strong>macrogametes (female)</strong>. <strong>(F)</strong> Fertilization &rarr; <strong>unsporulated oocyst</strong> excreted in cat feces. <strong>(G)</strong> Sporulation (1&ndash;5 days) &rarr; <strong>sporulated oocyst</strong> with 2 sporocysts &times; 4 sporozoites = 8 sporozoites total."},
+  {q:"What happens when an animal (intermediate host) ingests a sporulated oocyst?", a:"<strong>(1)</strong> Animal consumes the sporulated oocyst (from contaminated water/soil/produce). <strong>(2)</strong> Sporozoites are released and <strong>transform into tachyzoites</strong> shortly after ingestion. <strong>(3)</strong> Tachyzoites disseminate via the bloodstream and infect cells throughout the body. <strong>(4)</strong> Tachyzoites localize in <strong>neural and muscle tissue</strong> and develop into <strong>tissue cyst bradyzoites</strong>. <strong>(5)</strong> A predator (cat) eats this animal &rarr; cycle restarts in the cat with the sexual phase."},
+  {q:"What is the parasitophorous vacuole (PV)?", a:"The <strong>membrane-bounded compartment</strong> inside a host cell where <em>T. gondii</em> lives and replicates. Built largely from <strong>rhoptry-derived proteins</strong>. The PV does NOT fuse with host lysosomes &mdash; that's how the parasite avoids destruction. <strong>Dense granule proteins</strong> remodel the PV with a network of tubules and filaments to create a parasite-controlled niche."},
+  {q:"What are micronemes and what do they do?", a:"Apical secretory organelles in <em>T. gondii</em> that secrete <strong>perforin-like proteins, adhesins, and serine proteases</strong>. They are important for <strong>parasite motility</strong> and <strong>association with the host cell membrane</strong> (initial attachment). Microneme number is <strong>highest in sporozoites, intermediate in tachyzoites, lowest in bradyzoites</strong>."},
+  {q:"What are rhoptries and what do they do?", a:"Apical secretory organelles in <em>T. gondii</em> that concentrate proteins associated with <strong>host cell invasion</strong>. Essential for forming the <strong>moving junction</strong> (the structure that pulls the parasite into the cell) and for constructing the <strong>parasitophorous vacuole (PV) membrane</strong> in which the parasite resides."},
+  {q:"What are dense granules and what do they do?", a:"Apical secretory organelles whose proteins are <strong>secreted after the parasite is inside the PV</strong>. They build a <strong>network of tubules and filamentous structures within the PV</strong>, remodeling it into a stable, parasite-controlled niche for nutrient uptake and immune evasion. Their number is higher in sporozoites."},
+  {q:"How does <em>T. gondii</em> establish chronic, lifelong infection?", a:"During acute infection, host immunity activates, which triggers <strong>tachyzoite-to-bradyzoite stage conversion</strong>. Bradyzoites multiply slowly and are encysted in <strong>tissue cysts</strong>, primarily in <strong>neural and muscle tissue</strong>. The cyst wall protects them from immune attack. They can persist there for the host's entire lifetime &mdash; this IS chronic toxoplasmosis."},
+  {q:"How does immunocompromise lead to reactivated toxoplasmosis?", a:"In immunocompromised patients (HIV/AIDS, chemotherapy), <strong>bradyzoites convert back to tachyzoites</strong>, burst out of tissue cysts, and resume rapid multiplication and dissemination. Common reactivation manifestations: <strong>toxoplasmic encephalitis</strong> (brain involvement), <strong>ocular toxoplasmosis</strong> (retinal disease, blurred vision), and lung disease that can resemble TB."},
+  {q:"What kind of bacterium is <em>Mycobacterium tuberculosis</em>?", a:"An <strong>acid-fast bacterium</strong> &mdash; <strong>NEITHER Gram-positive nor Gram-negative</strong>. Non-motile rod-shaped bacillus. Acid-fast staining picks it up because of its unique <strong>mycolic acid</strong>-rich cell envelope, which traps the carbol fuchsin dye despite acid washes. It is an <strong>obligate pathogen</strong> &mdash; humans are the only natural host; no environmental reservoir."},
+  {q:"How fast does <em>M. tuberculosis</em> grow, and why does that matter?", a:"<strong>Very slowly &mdash; doubling time of 20&ndash;24 hours</strong> (compare <em>E. coli</em>'s ~20 minutes). Two consequences: <strong>(1)</strong> stays under the radar of the innate immune system because the bacterial population doesn't expand fast enough to trigger inflammation right away; <strong>(2)</strong> limits effectiveness of antibiotics that target dividing cells &mdash; if most bacteria aren't replicating, drugs that depend on cell-wall synthesis or DNA replication can't kill them efficiently."},
+  {q:"What are mycolic acids and why do they matter?", a:"<strong>Long-chain fatty acids</strong> that coat the surface of <em>M. tuberculosis</em>, forming a waxy outer envelope unique to mycobacteria. Effects: <strong>(1)</strong> waxy colony appearance; <strong>(2)</strong> incredible chemical resistance to common sanitizers; <strong>(3)</strong> resistance to drying &mdash; <em>M. tb</em> persists in air as aerosols and on dust particles when coughed; <strong>(4)</strong> contributes to the acid-fast staining property; <strong>(5)</strong> blocks phagosome&ndash;lysosome fusion when shed inside macrophages."},
+  {q:"What is the global burden of TB?", a:"<strong>9&ndash;10 million</strong> new active cases annually; <strong>1.3&ndash;1.5 million deaths</strong> annually. <strong>2nd leading cause of death due to infectious disease worldwide</strong>. Unlike many infections, <em>M. tb</em> doesn't preferentially target the very young or very old &mdash; <strong>80% of active cases are aged 15&ndash;49</strong>. About <strong>1/3 of the global population (~2.7 billion people)</strong> are estimated to be latently infected, primarily in Asia and Africa."},
+  {q:"Why was there a TB spike in the U.S. in the late 1980s/early 1990s?", a:"The <strong>HIV/AIDS epidemic</strong>. HIV destroys CD4+ T cells, removing the cell-mediated immunity needed to keep latent <em>M. tb</em> contained inside granulomas. As HIV spread in the 1980s/90s, <strong>massive numbers of people with latent TB reactivated</strong>, driving an obvious uptick in TB cases. Once antiretroviral therapy and aggressive TB-control programs scaled up, the curve resumed its decline."},
+  {q:"List the three disease states of TB.", a:"<strong>(1) Primary infection</strong> &mdash; first exposure leads to active infection; highly infectious; spread by persistent cough. <strong>(2) Latency</strong> &mdash; <em>M. tb</em> dormant inside granulomas; can persist for a lifetime. <strong>(3) Reactivated infection</strong> &mdash; if immunity is compromised, granuloma ruptures and a more serious infection develops with persistent cough, fever, and emaciation."},
+  {q:"What cell does <em>M. tuberculosis</em> infect first, and why?", a:"<strong>Alveolar macrophages</strong> &mdash; the resident sentinel phagocytes of the lungs. <em>M. tb</em> is inhaled in respiratory aerosols, deposits in the alveoli, and is phagocytosed by alveolar macrophages. Instead of being destroyed, the bacterium uses these macrophages as its primary intracellular niche."},
+  {q:"How does <em>M. tuberculosis</em> survive inside a macrophage?", a:"It <strong>blocks phagosome&ndash;lysosome fusion</strong> by releasing <strong>cell wall lipids</strong> (e.g., LAM &mdash; lipoarabinomannan, and others) that interfere with the maturation of the phagosome. Without lysosome fusion, the phagosome can't form a phagolysosome, so the antimicrobial enzymes and acidic pH that would normally destroy bacteria are never delivered. <em>M. tb</em> does NOT escape the phagosome &mdash; it lives inside it, hidden from other immune cells."},
+  {q:"How long is adaptive immunity normally delayed in TB infection, and how does <em>M. tb</em> achieve this delay?", a:"Adaptive immunity normally activates <strong>7&ndash;10 days</strong> after infection. In <em>M. tb</em> infection it is delayed until <strong>16&ndash;17 days</strong>. <em>M. tb</em> achieves this by <strong>infecting dendritic cells</strong> (the professional antigen-presenting cells) and <strong>impairing their MHC-II antigen presentation</strong>. Without proper MHC-II presentation in lymph nodes, naive CD4+ T cells aren't activated on schedule, buying <em>M. tb</em> roughly an extra week of unrestricted growth."},
+  {q:"What does IFN-&gamma; do once T cells finally activate?", a:"<strong>IFN-&gamma;</strong> (interferon gamma) is produced by activated CD4+ T cells and dramatically <strong>increases the killing power of macrophages</strong> &mdash; boosts ROS/RNS production, promotes phagolysosome maturation, and activates antimicrobial gene programs. This is enough to <strong>control</strong> the active infection, but typically NOT enough to <strong>eliminate</strong> <em>M. tb</em> &mdash; the surviving bacteria persist inside granulomas as a latent infection."},
+  {q:"How does a granuloma form in TB?", a:"Macrophages can't fully kill <em>M. tb</em>, and infected macrophages eventually die by <strong>apoptosis</strong>. New macrophages arrive to phagocytose the apoptotic cells &mdash; and <strong>they get infected too</strong>. This recruitment cycle continues, layering immune cells around the infected core. The result is the <strong>granuloma</strong>: a structured cluster with infected macrophages, giant cells, and foam cells in the core; newly arriving phagocytes around them; and a T-cell + B-cell wall on the outside."},
+  {q:"What does the granuloma do for the host, and what does it fail to do?", a:"<strong>Does</strong>: walls off the infection &mdash; <em>M. tb</em> is contained and not spreading in the body. <strong>Fails to do</strong>: actually kill <em>M. tb</em>. Inside the granuloma there is a continual cycle of <em>M. tb</em> destroying and being eaten by macrophages, with the bacteria persisting indefinitely. So the granuloma is the structural basis of <strong>latent TB</strong> &mdash; a contained, lifelong infection."},
+  {q:"What is the lifetime reactivation risk for latent TB?", a:"About <strong>10% lifetime reactivation risk</strong> for an immunocompetent host. HIV co-infection raises the reactivation risk dramatically &mdash; from ~10% per lifetime to about <strong>10% per year</strong>. This is why TB is one of the leading killers in untreated HIV/AIDS."},
+  {q:"What is the reservoir for <em>M. tuberculosis</em>?", a:"<strong>Humans with latent TB infections.</strong> <em>M. tb</em> is an <strong>obligate pathogen</strong> with NO environmental reservoir &mdash; you can't sterilize soil or water and eliminate it. Approximately <strong>2.7 billion people (1/3 of humanity)</strong> are estimated to be latently infected, primarily in Asia and Africa. This is why TB cannot be eradicated by sanitation alone &mdash; you have to identify and treat latent infections."},
+  {q:"Why is <em>M. tuberculosis</em> classified as BSL-3 instead of BSL-2 like most bacteria covered in this course?", a:"Because <em>M. tb</em> is dangerous and aerosol-transmissible. BSL-3 requires: <strong>full medical gown + scrubs</strong>, a <strong>specially built negative-airflow facility</strong>, an <strong>N95 respirator or PAPR</strong>, work in a <strong>sterile biosafety cabinet</strong> with constant decontamination, and <strong>significant pre-work training</strong>. BSL-2 (most pathogens covered) requires only lab coat, gloves, and eye protection. The reason is that <em>M. tb</em> aerosolizes, mycolic acid resists sanitizers, the infectious dose is low, and active TB is serious."},
+  {q:"Compare where <em>Listeria</em>, <em>Salmonella</em>, and <em>M. tuberculosis</em> live inside cells.", a:"<strong><em>Listeria</em></strong>: escapes the phagosome via LLO, lives in the <strong>cytoplasm</strong>. <strong><em>Salmonella</em></strong>: stays in the <strong>SCV</strong> (modified late endosome); resists acidification AND lysosome fusion. <strong><em>M. tuberculosis</em></strong>: stays in the <strong>early phagosome</strong>; <strong>blocks lysosome fusion</strong> entirely via mycolic acid wall lipids. Three distinct intracellular niches, three distinct evasion strategies."},
+  {q:"Compare <em>T. gondii</em> and <em>M. tuberculosis</em> at a high level.", a:"<strong>Type</strong>: <em>T. gondii</em> = eukaryotic protozoan parasite; <em>M. tb</em> = acid-fast bacterium. <strong>Definitive host</strong>: <em>T. gondii</em> = cats (sexual cycle); <em>M. tb</em> = humans only. <strong>Replication site</strong>: <em>T. gondii</em> = parasitophorous vacuole; <em>M. tb</em> = phagosome (lysosome-fusion blocked). <strong>Persistence form</strong>: <em>T. gondii</em> = bradyzoite tissue cysts (in muscle/CNS); <em>M. tb</em> = granuloma. <strong>Reservoir</strong>: <em>T. gondii</em> = environment (oocysts), wildlife/livestock (cysts), cats (sexual cycle); <em>M. tb</em> = ~2.7 billion humans with latent infection. <strong>Common</strong>: both establish lifelong infection, both reactivate when immunity wanes (HIV is the classic trigger for both), both can cause severe CNS disease in immunocompromised hosts."},
+  {q:"Why is a first-time <em>T. gondii</em> infection during pregnancy especially dangerous?", a:"During acute primary infection, <strong>tachyzoites disseminate via the bloodstream</strong> and can <strong>cross the placental barrier</strong> to infect the fetus. The fetus has an undeveloped immune system and cannot control the infection. Most primary maternal infections during pregnancy <strong>end in stillbirth</strong>; surviving infants may have <strong>seizures, hepatomegaly/splenomegaly, jaundice, severe eye infections</strong>, and lifelong neurological complications. Mothers who were already infected before pregnancy generally have bradyzoites encysted in tissues and DON'T transmit to the fetus &mdash; the danger is specifically a NEW (primary) infection acquired during pregnancy."},
+];
+
+let fcIdx = 0;
+function renderCard() {
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('fc-front').innerHTML = flashcards[fcIdx].q;
+  document.getElementById('fc-back').innerHTML = flashcards[fcIdx].a.replace(/\n/g,'<br>');
+  document.getElementById('fc-counter').textContent = (fcIdx+1)+' / '+flashcards.length;
+  document.getElementById('fc-score').textContent = (fcIdx+1)+' / '+flashcards.length;
+}
+function flipCard() { document.getElementById('flashcard').classList.toggle('flipped'); }
+function nextCard() { fcIdx = (fcIdx+1) % flashcards.length; renderCard(); }
+function prevCard() { fcIdx = (fcIdx-1+flashcards.length) % flashcards.length; renderCard(); }
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight') nextCard();
+  if(e.key==='ArrowLeft') prevCard();
+  if(e.key===' '||e.key==='Enter') { e.preventDefault(); flipCard(); }
+});
+renderCard();
+
+// ====== FRQ ======
+const frqs = [
+  {q:"What is <em>Toxoplasma gondii</em>, what disease does it cause, and how prevalent is it?", a:"<em>Toxoplasma gondii</em> is a <strong>single-celled eukaryotic parasite</strong> (a protozoan / apicomplexan) that can infect almost any cell type in mammals and birds. It causes the disease <strong>toxoplasmosis</strong> in humans. Globally it is one of the most common parasitic infections: estimates suggest <strong>over 40 million Americans</strong> may be infected (~11%), and prevalence reaches up to <strong>60% in Brazil</strong>. The genus contains a single species, <em>T. gondii</em>, with multiple genotypes and haplotypes. Infections can persist for the host's <strong>entire lifetime</strong>; severe disease is concentrated in <strong>immunocompromised individuals and pregnant women</strong>.", hy:false},
+  {q:"Describe the clinical spectrum of toxoplasmosis across host groups.", a:"<strong>Most healthy people</strong>: <strong>asymptomatic</strong>. <strong>Immunocompetent symptomatic (10&ndash;20%)</strong>: flu-like illness &mdash; body aches, swollen lymph nodes, headache, fever, fatigue. <strong>Immunocompromised</strong>: severe disease &mdash; headache, confusion, poor coordination, seizures (toxoplasmic encephalitis); lung problems that may resemble tuberculosis; <strong>ocular toxoplasmosis</strong> (severe retinal inflammation, blurred vision). <strong>First infection during pregnancy</strong>: vertical transmission via tachyzoites crossing the placenta &mdash; <strong>most pregnancies end in stillbirth</strong>; surviving infants may have seizures, enlarged liver and spleen, jaundice, and severe eye infections.", hy:true},
+  {q:"Name and define the three life cycle stages of <em>T. gondii</em>.", a:"<strong>(A) Tachyzoite</strong> &mdash; a form of <strong>RAPID multiplication</strong> characteristic of <strong>acute infection</strong>. Disseminates via bloodstream, infects nearly any nucleated cell, replicates inside the parasitophorous vacuole. <strong>(B) Bradyzoite</strong> &mdash; a form of <strong>SLOW multiplication</strong> characteristic of <strong>chronic infection</strong>; this stage <strong>originates the tissue cysts</strong> in muscle and neural tissue. Persists for the host's lifetime. <strong>(C) Sporozoite</strong> &mdash; produced ONLY in the <strong>definitive host (cat)</strong> during sexual reproduction; released in <strong>oocysts via felid feces</strong>. Sporulated oocysts contain 2 sporocysts &times; 4 sporozoites = 8 sporozoites total.", hy:true},
+  {q:"What is the difference between definitive and intermediate hosts for <em>T. gondii</em>?", a:"The <strong>definitive host</strong> is the host in which <strong>sexual reproduction</strong> occurs &mdash; for <em>T. gondii</em>, this is <strong>felines (cats and other felids) ONLY</strong>. The cat is the only place where merozoites differentiate into microgamonts and macrogametes, fertilization occurs, and oocysts are produced and shed in feces. Sporozoites are also only produced in the cat (during sporulation of the oocyst). The <strong>intermediate host</strong> is the host in which <strong>asexual reproduction</strong> occurs &mdash; almost any warm-blooded animal: <strong>humans, sheep, pigs, deer, mice</strong>, and many others. In intermediate hosts, the parasite cycles between tachyzoites and bradyzoites only; sporozoites are NEVER produced in intermediate hosts. This dual-host life cycle is what makes <em>T. gondii</em> 'unique' among the apicomplexans the lecture covered.", hy:true},
+  {q:"Distinguish a tissue cyst from an oocyst &mdash; what's inside each, where each forms, and how each is transmitted.", a:"<strong>Tissue cysts</strong>: contain <strong>bradyzoites</strong>; form in the <strong>neural and muscle tissue of intermediate hosts</strong>; transmitted when a predator <strong>eats raw or undercooked meat</strong> from an infected intermediate host (humans typically get them from undercooked pork, lamb, or venison). They are NOT shed into the environment. <strong>Oocysts</strong>: contain <strong>sporozoites</strong> (after sporulation); form in the <strong>cat intestine</strong> after sexual reproduction; <strong>shed in cat feces</strong>; transmitted from contaminated water, soil, or unwashed produce. Importantly, <strong>unsporulated oocysts are NOT infective when shed</strong> &mdash; they must <strong>sporulate in the environment over 1&ndash;5 days</strong> to mature into infective <strong>sporulated oocysts</strong> (containing 2 sporocysts each with 4 sporozoites). Oocysts are extremely hardy thanks to their thick wall; they can persist in soil and water for long periods.", hy:true},
+  {q:"Walk through the sexual reproduction cycle of <em>T. gondii</em> in the cat (from tissue cyst ingestion to sporulated oocyst).", a:"<strong>(A)</strong> Cat ingests prey containing <strong>tissue cysts</strong>. <strong>(B)</strong> The cyst wall is digested in the stomach and intestines, liberating <strong>bradyzoites</strong>. <strong>(C)</strong> Bradyzoites <strong>invade the epithelial cells of the intestine</strong> (enterocytes). <strong>(D)</strong> Inside enterocytes, bradyzoites divide by <strong>schizogony</strong> (a multiple-fission asexual division) giving rise to <strong>merozoites</strong>. <strong>(E)</strong> Merozoites differentiate into <strong>microgamonts (male gametes)</strong> or <strong>macrogametes (female gametes)</strong>. <strong>(F)</strong> Fertilization gives rise to an <strong>unsporulated oocyst</strong> that is excreted in cat feces. <strong>(G)</strong> Outside the cat, over <strong>1&ndash;5 days</strong>, sporulation generates a <strong>sporulated oocyst</strong> containing <strong>two sporocysts, each with four sporozoites</strong> (8 sporozoites total). The sporulated oocyst is now infective and will start the asexual cycle in any warm-blooded animal that ingests it.", hy:true},
+  {q:"Describe the asexual cycle of <em>T. gondii</em> in an intermediate host (e.g., a human).", a:"<strong>(1)</strong> Animal ingests a <strong>sporulated oocyst</strong> (or, in the case of humans, often a tissue cyst from undercooked meat instead). <strong>(2)</strong> Sporozoites are released and quickly <strong>transform into tachyzoites</strong>. <strong>(3)</strong> Tachyzoites <strong>disseminate via the bloodstream</strong> &mdash; they can infect almost any nucleated cell. They use micronemes (motility/adhesion), rhoptries (invasion + parasitophorous vacuole formation), and dense granules (PV remodeling) to invade and establish replication. <strong>(4)</strong> When the host immune response activates, tachyzoites <strong>convert to bradyzoites</strong> and become encysted in <strong>tissue cysts</strong>, primarily in <strong>neural and muscle tissue</strong>. This is the chronic phase, and tissue cysts can persist for the host's entire lifetime. <strong>(5)</strong> If a predator (cat) eats this animal, the cycle restarts in the cat with the sexual phase. In humans, the cycle is essentially a dead end &mdash; we don't get eaten by cats, so our bradyzoites just sit there for life.", hy:true},
+  {q:"What roles do micronemes, rhoptries, and dense granules play in <em>T. gondii</em> invasion?", a:"<strong>Micronemes</strong>: secrete proteins with <strong>perforin-like properties, adhesins, and serine proteases</strong>. They are responsible for <strong>parasite motility</strong> (gliding) and the <strong>initial association with the host cell membrane</strong> &mdash; getting to the cell and sticking to it. <strong>Rhoptries</strong>: concentrate proteins associated with <strong>host cell invasion</strong>. They form the <strong>moving junction</strong> &mdash; a tight ring through which the parasite squeezes itself into the host cell &mdash; and contribute proteins that build the <strong>parasitophorous vacuole (PV) membrane</strong> in which the parasite resides. <strong>Dense granules</strong>: their proteins are released after the parasite is <strong>localized inside the PV</strong>. They build a <strong>network of tubules and filamentous structures</strong> within the PV, remodeling it into a stable parasite-controlled niche for nutrient uptake. Their numbers are higher in sporozoites. The clean way to remember: micronemes get you there, rhoptries get you in, dense granules make you at home.", hy:true},
+  {q:"What is <em>Mycobacterium tuberculosis</em>, what is unique about its cell envelope, and why is it BSL-3?", a:"<em>M. tuberculosis</em> is the causative agent of tuberculosis. It is an <strong>acid-fast bacterium</strong>, <strong>NEITHER Gram-positive nor Gram-negative</strong> &mdash; the standard Gram stain doesn't reliably classify it. Its cell envelope is unique because of <strong>long-chain mycolic acids</strong> that coat the surface, forming a waxy hydrophobic outer layer. The mycolic acid envelope: gives colonies a waxy appearance, confers extreme <strong>chemical resistance</strong> to standard sanitizers, allows <strong>resistance to drying</strong> so that coughed bacteria persist as aerosols and on dust particles, and produces the acid-fast staining property. <em>M. tb</em> is also a <strong>very slow grower (20&ndash;24 hr doubling time)</strong>, which keeps it under the radar of innate immunity AND limits the effectiveness of antibiotics that target dividing cells. <em>M. tb</em> is BSL-3 because its airborne transmissibility, low infectious dose, sanitizer-resistant envelope, and serious disease together require <strong>special negative-airflow facilities, full medical gowns, N95 respirators or PAPRs, sterile biosafety cabinets</strong>, and significant operator training before lab work.", hy:true},
+  {q:"Distinguish primary, latent, and reactivated TB infection.", a:"<strong>Primary infection</strong>: the first exposure to <em>M. tb</em>. Bacteria are inhaled, phagocytosed by alveolar macrophages, and establish active intracellular infection. The patient is <strong>highly infectious</strong>, with persistent cough that aerosolizes <em>M. tb</em>. Adaptive immunity is delayed (16&ndash;17 days vs the normal 7&ndash;10), but eventually IFN-&gamma;-activated macrophages contain the infection. <strong>Latency</strong>: <em>M. tb</em> remains <strong>dormant inside granulomas</strong>; the infection is contained but not cleared. The patient is asymptomatic and <strong>NOT contagious</strong>, but harbors live bacteria. Latency can persist for the host's lifetime; ~1/3 of humanity is in this state. <strong>Reactivated infection</strong>: when host immunity weakens (HIV, immunosuppressive drugs, malnutrition, aging, diabetes), the granuloma <strong>ruptures</strong>, <em>M. tb</em> escapes, and a new active infection develops with persistent cough, fever, and emaciation. The patient becomes contagious again. Lifetime reactivation risk is ~10% (much higher in HIV co-infection).", hy:true},
+  {q:"Describe how <em>M. tuberculosis</em> survives intracellularly in alveolar macrophages.", a:"After inhalation, <em>M. tb</em> deposits in the alveoli and is <strong>phagocytosed by alveolar macrophages</strong> (the resident sentinel phagocytes of the lungs). In a normal phagocytic event, the phagosome would mature by fusing with a lysosome, forming a phagolysosome with acidic pH and antimicrobial enzymes that destroy the contents. <em>M. tb</em> blocks this: it <strong>releases cell wall lipids</strong> (notably lipoarabinomannan, LAM, and other mycolic-acid-derived molecules) that <strong>interfere with phagosome maturation and prevent phagosome&ndash;lysosome fusion</strong>. The phagosome stays in an early, immature state. <em>M. tb</em> does NOT escape into the cytoplasm &mdash; it lives inside the unfused phagosome, where it is also <strong>protected from other immune cells</strong> until adaptive immunity activates. Compare to <em>Listeria</em> (escapes phagosome via LLO &rarr; cytoplasm) and <em>Salmonella</em> (modifies phagosome into the SCV). <em>M. tb</em>'s strategy is the simplest: just stop the phagosome from maturing.", hy:true},
+  {q:"How and why does <em>M. tuberculosis</em> delay adaptive immunity, and what's the consequence?", a:"Adaptive immunity normally activates <strong>7&ndash;10 days</strong> after infection. With <em>M. tb</em>, it is delayed to <strong>16&ndash;17 days</strong> &mdash; nearly twice as long. <strong>How:</strong> <em>M. tb</em> infects <strong>dendritic cells (DCs)</strong>, the professional antigen-presenting cells responsible for trafficking to lymph nodes and activating naive CD4+ T cells. <em>M. tb</em> <strong>impairs MHC-II antigen presentation</strong> on infected DCs, so naive T cells in lymph nodes are not properly activated on the normal schedule. <strong>Consequence:</strong> <em>M. tb</em> gets roughly <strong>an extra week of unrestricted intracellular growth</strong> before the adaptive response kicks in. Once T cells DO activate, they produce <strong>IFN-&gamma;</strong>, which dramatically boosts macrophage killing power (ROS/RNS, phagolysosome maturation) and <strong>controls but does not eliminate</strong> the infection. The surviving bacteria are walled off in granulomas. The delay is therefore the foothold that makes lifelong latency possible.", hy:true},
+  {q:"What is a granuloma? How does it form, and what does it accomplish?", a:"A <strong>granuloma</strong> is an organized cluster of immune cells that <strong>walls off an invading pathogen</strong> the immune system can't fully eliminate. <strong>Formation:</strong> macrophages can't fully kill <em>M. tb</em>. Infected macrophages eventually die by <strong>apoptosis</strong>. New macrophages arrive to clean up the apoptotic cells &mdash; and they too become infected. The cycle recruits more and more immune cells. Around the infected core, additional immune cells layer up: epithelioid macrophages, multinucleated <strong>giant cells</strong> (fused macrophages), <strong>foam cells</strong> (lipid-laden macrophages), neutrophils, dendritic cells, NK cells in the inner ring; CD4+ and CD8+ T cells and B cells in the outer ring. <strong>What it accomplishes:</strong> the granuloma <strong>contains <em>M. tb</em></strong> &mdash; the bacteria stop spreading in the body. <strong>What it does NOT accomplish:</strong> killing <em>M. tb</em>. Inside, the cycle of macrophage destruction continues; the bacteria persist for the host's lifetime. Latent TB is essentially the steady state of this contained-but-not-cleared granuloma.", hy:true},
+  {q:"What is the global reservoir for <em>M. tuberculosis</em>, and why does this make eradication so hard?", a:"The reservoir is <strong>humans with latent TB infection</strong>. <em>M. tuberculosis</em> is an <strong>obligate human pathogen</strong>: there is <strong>no environmental reservoir</strong> &mdash; you cannot find it persisting in soil, water, or animals as you can with many other pathogens. About <strong>1/3 of the global population (~2.7 billion people)</strong> are estimated to be latently infected, primarily in <strong>Asia followed by Africa</strong>. Each latent infection has roughly a <strong>10% lifetime reactivation risk</strong>; HIV co-infection raises this to ~10% per year. The reservoir nature of latent infection makes eradication extremely difficult: improvements in sanitation, housing, and nutrition (which eliminated many other infections) reduce primary spread but cannot reach latent bacteria sitting inside granulomas in 2.7 billion people. Eradication would require <strong>identifying and treating latent infections</strong> at scale &mdash; expensive, logistically difficult, and dependent on long courses of multiple antibiotics.", hy:true},
+  {q:"How does the U.S. TB epidemic curve in the late 1980s/early 1990s illustrate the role of cell-mediated immunity in TB control?", a:"In the U.S., TB cases declined almost every year as living conditions improved (better sanitation, housing, nutrition). However, a <strong>notable spike in TB cases occurred in the late 1980s and early 1990s</strong>. This coincided with the early <strong>HIV/AIDS epidemic</strong>. HIV infection destroys <strong>CD4+ T cells</strong>, the central cells of cell-mediated immunity. Cell-mediated immunity (CD4+ T cells producing IFN-&gamma; to activate macrophages) is precisely what is needed to <strong>maintain granulomas</strong> and keep latent <em>M. tb</em> contained. As HIV depleted CD4+ T cells in millions of patients, latent TB infections began <strong>reactivating en masse</strong>, driving the visible spike in active TB cases. Once antiretroviral therapy and aggressive TB-control programs scaled up in the mid-1990s, the curve resumed its decline. This illustrates: <em>M. tb</em>'s lifelong containment in granulomas is conditional on intact T-cell immunity; remove that, and the contained becomes the contagious. It also explains why HIV/TB co-infection remains a public health priority globally.", hy:true},
+  {q:"Compare the intracellular niche strategies of <em>Listeria monocytogenes</em>, <em>Salmonella</em> Typhi, and <em>Mycobacterium tuberculosis</em>.", a:"<strong><em>Listeria</em></strong>: <em>escapes</em> the phagosome via <strong>listeriolysin O (LLO)</strong>, a cholesterol-dependent pore-forming toxin that activates only at acidic pH. Lives in the <strong>cytoplasm</strong>; spreads cell-to-cell via ActA-driven actin rockets to avoid extracellular space. <strong><em>Salmonella</em></strong>: stays inside a <strong>modified phagosome (the SCV)</strong>; resists acidification and prevents lysosome fusion through SPI2 effectors; eventually induces macrophage apoptosis to escape. <strong><em>M. tuberculosis</em></strong>: stays inside the <strong>early phagosome</strong>; <strong>blocks phagosome&ndash;lysosome fusion</strong> via mycolic acid wall lipids (LAM and others) so the antimicrobial program never starts. Lives inside macrophages indefinitely as part of the granuloma. <strong>Common theme</strong>: all three are intracellular pathogens that solve the phagosome problem differently &mdash; <em>Listeria</em> escapes it, <em>Salmonella</em> remodels it, <em>M. tb</em> arrests it. The chosen strategy predicts each pathogen's spread mode (<em>Listeria</em>: actin rockets; <em>Salmonella</em>: induced apoptosis; <em>M. tb</em>: macrophage-to-macrophage transfer within granulomas + airborne droplets after granuloma rupture).", hy:true},
+  {q:"Compare <em>T. gondii</em> and <em>M. tuberculosis</em> as systems of chronic intracellular infection.", a:"<strong>Type</strong>: <em>T. gondii</em> is a eukaryotic parasite (apicomplexan); <em>M. tb</em> is an acid-fast bacterium &mdash; very different cell biology, but converging strategies. <strong>Replication compartment</strong>: both live in vacuoles &mdash; <em>T. gondii</em> in the parasitophorous vacuole (PV) it builds with rhoptry/dense granule proteins; <em>M. tb</em> in the early phagosome it prevents from maturing. <strong>Persistence form</strong>: <em>T. gondii</em> &rarr; bradyzoite tissue cysts in muscle and brain; <em>M. tb</em> &rarr; granuloma in lung. Both can persist for the host's entire lifetime. <strong>Reactivation</strong>: both reactivate when cell-mediated immunity drops &mdash; HIV/AIDS is a major trigger for both. Reactivated <em>T. gondii</em> &rarr; toxoplasmic encephalitis, ocular toxoplasmosis; reactivated <em>M. tb</em> &rarr; secondary active TB. <strong>Cell-mediated immunity dependence</strong>: both depend on CD4+ T cells / IFN-&gamma;-activated macrophages for control. <strong>Reservoir</strong>: differs &mdash; <em>T. gondii</em> uses cats, environment (oocysts), and wildlife/livestock; <em>M. tb</em> has only humans (latent reservoir = ~2.7 billion people). <strong>CNS involvement</strong>: both can cause severe CNS disease in immunocompromised hosts. The parallel makes a clinical point: any patient with newly diagnosed HIV should be screened for both latent <em>T. gondii</em> and latent <em>M. tb</em>.", hy:true},
+  {q:"Why is a slow doubling time (20&ndash;24 hours) a virulence advantage for <em>M. tuberculosis</em>?", a:"In most bacteria, fast growth is an advantage &mdash; you outcompete others and overwhelm immune responses by sheer biomass. <em>M. tb</em> is an obligate intracellular survivor in macrophages, where the rules are different. <strong>(1) Stays under the radar of innate immunity:</strong> innate sensors (PAMPs, TLRs, inflammasome) are tuned to fast bacterial replication. A slow population growth doesn't generate the signal load that triggers an aggressive early inflammatory response. <strong>(2) Resists antibiotics that target replication:</strong> &beta;-lactams disrupt cell wall synthesis during division; fluoroquinolones target DNA replication. If most bacteria aren't dividing, those drugs can't kill them. This is part of why TB treatment requires <strong>multiple drugs for many months</strong> &mdash; you have to outlast the slow growers. <strong>(3) Compatible with chronic intracellular life:</strong> rapid replication would consume the host macrophage too fast; slow growth is sustainable inside a cell. <strong>(4) Compatible with granuloma persistence:</strong> latent bacteria in granulomas grow extremely slowly or are nearly dormant; antibiotics that need replication for activity barely touch them. Slow growth is therefore a feature, not a bug, for <em>M. tb</em>'s strategy.", hy:false},
+  {q:"What does it mean that <em>M. tuberculosis</em> is an obligate pathogen, and how does this differ from environmental pathogens like <em>P. aeruginosa</em>?", a:"An <strong>obligate pathogen</strong> is one that <strong>requires a host to survive and replicate</strong> &mdash; it cannot live indefinitely in soil, water, or other environmental niches. <em>M. tuberculosis</em> is the canonical bacterial example: humans are the only natural host, and there is <strong>no environmental reservoir</strong>. The reservoir for <em>M. tb</em> is <strong>~2.7 billion humans with latent infection</strong>. Compare to <em>P. aeruginosa</em>, which is ubiquitous in soil and water and is an opportunistic pathogen of humans &mdash; it doesn't need us; it just exploits us when conditions allow. Implications: (i) eradicating <em>M. tb</em> is conceivable in principle (treat all latent infections) but logistically near-impossible; eradicating <em>P. aeruginosa</em> is impossible because it lives outside humans entirely. (ii) Public-health control of <em>M. tb</em> focuses on identifying and treating infected humans (DOTS, contact tracing, latent TB treatment); control of <em>P. aeruginosa</em> focuses on hospital sanitation, antibiotic stewardship, and protecting vulnerable hosts. (iii) Vaccination strategies differ: BCG against <em>M. tb</em> targets a single pathogen; an environmental opportunist would need different approaches.", hy:false},
+  {q:"What is the role of cats in human <em>T. gondii</em> infection &mdash; and is owning a cat actually a major risk factor?", a:"Cats are the <strong>definitive host</strong> of <em>T. gondii</em>: only in cats does sexual reproduction occur, and only cats shed <strong>oocysts</strong> in feces. So cats are biologically essential for completing the parasite's life cycle and seeding environmental contamination. However, the practical risk of acquiring <em>T. gondii</em> from a pet cat is more nuanced: (i) Indoor cats fed only commercial food (no raw prey, no raw meat) rarely encounter the parasite, so they rarely shed oocysts. (ii) Cats only shed oocysts during a brief window after a primary infection &mdash; usually a couple of weeks &mdash; not continuously. (iii) Oocysts shed in cat feces are <strong>unsporulated and noninfective for 1&ndash;5 days</strong>; daily litter box cleaning eliminates them before they can sporulate. The most common human routes of infection are actually <strong>eating raw or undercooked meat</strong> (containing tissue cyst bradyzoites, especially pork, lamb, and venison) and <strong>ingesting sporulated oocysts from contaminated water/soil/produce</strong>. The lecture's note about dogs eating cat litter is also relevant: dogs can carry sporulated oocysts on their fur after such adventures, which they then transfer when they lick people. Cat ownership is a risk factor, but a smaller one than people imagine; food handling and produce washing matter at least as much.", hy:false},
+];
+
+const hardFrqs = [
+  {q:"A 32-year-old woman 18 weeks pregnant adopts a stray kitten and starts gardening for the first time. Six weeks later she develops fevers, fatigue, and lymphadenopathy; serology shows acute <em>T. gondii</em> seroconversion. The fetus is found to have intracranial calcifications. (a) Walk through how she could have become infected, naming the parasite stage involved at each step. (b) Explain why first-time infection during pregnancy carries severe fetal risk while a chronic carrier mother typically does not. (c) Why is the kitten not necessarily the culprit, and what other sources should be investigated?", a:"<strong>(a) Possible routes of infection (multiple, named by parasite stage involved):</strong> <strong>(i) Sporulated oocysts from contaminated soil during gardening.</strong> If a neighbor's outdoor cat or her own outdoor cat defecated in the garden, oocysts shed in those feces would have <strong>sporulated over 1&ndash;5 days</strong> into infective sporulated oocysts containing <strong>2 sporocysts &times; 4 sporozoites = 8 sporozoites</strong>. Inhaling/ingesting soil during gardening (e.g., contaminated dust, unwashed hands while eating, eating produce that contacted the soil) would deliver sporulated oocysts. <strong>(ii) Tissue cysts in undercooked meat.</strong> Eating raw or undercooked pork/lamb/venison would deliver <strong>bradyzoites</strong> contained in tissue cysts. <strong>(iii) The kitten</strong> if it was actively shedding oocysts from a primary infection. Cats typically shed only briefly after primary infection, so this is possible but less likely than gardening or food. Once any of these enter her gut, sporozoites or bradyzoites are released and <strong>transform into tachyzoites</strong>, which disseminate via her bloodstream. <strong>Tachyzoites cross the placenta</strong> &mdash; this is why a primary maternal infection can infect the fetus. <strong>(b)</strong> Severity in primary maternal infection vs chronic carrier: in a primary infection, tachyzoites are actively disseminating in maternal blood at the time the fetus is forming and forming a placental connection &mdash; tachyzoites cross the placental barrier and infect fetal tissues with no fetal immune defense. Most such infections end in stillbirth; survivors have intracranial calcifications, seizures, jaundice, hepato/splenomegaly, and severe eye disease (this case's intracranial calcifications fit exactly). In contrast, a <strong>chronic carrier mother</strong> has <strong>bradyzoites encysted in tissue</strong> with no circulating tachyzoites; her established immunity prevents reactivation, and the bradyzoites in tissue cysts are not in the blood. So a previously infected mother almost never transmits; the catastrophic case is specifically a NEW infection during pregnancy. <strong>(c)</strong> The kitten is a possible but not exclusive source. Cats only shed oocysts during a brief window after primary infection, and shed oocysts are unsporulated and noninfective for 1&ndash;5 days &mdash; daily litter cleaning eliminates risk. Other sources to investigate: <strong>did she eat any undercooked meat?</strong> (raw pork, lamb, venison are classic sources of tissue cysts); <strong>did she wash garden produce thoroughly?</strong> (soil-contaminated greens harbor sporulated oocysts); <strong>was she exposed to other outdoor cat-frequented areas (sandboxes, neighbors' yards)?</strong> Counseling for future pregnancies: avoid raw/undercooked meat, wash produce well, wear gloves while gardening, have someone else clean the litter box (or clean it daily so oocysts don't sporulate), and avoid handling stray cats during pregnancy.", hy:true},
+  {q:"Compare and contrast the parasitophorous vacuole of <em>T. gondii</em> with the <em>Salmonella</em>-containing vacuole (SCV) and the <em>M. tuberculosis</em> phagosome. For each, explain how the host membrane compartment is established, what the pathogen does to make it survivable, and why the cytoplasm is NOT the chosen niche.", a:"All three pathogens live in a host-derived membrane compartment instead of the cytoplasm, but for different reasons and via different mechanisms. <strong><em>T. gondii</em> &mdash; parasitophorous vacuole (PV).</strong> <em>Establishment</em>: tachyzoite <strong>actively invades</strong> a host cell using a moving junction formed by <strong>rhoptry proteins</strong>. The PV membrane is largely composed of <strong>rhoptry-secreted lipids and proteins</strong>, plus selected host membrane components, but is shaped from the start to exclude host membrane markers that would normally direct fusion with lysosomes. <em>Survival modifications</em>: <strong>dense granules</strong> secrete proteins that build a tubule-and-filament network inside the PV, enabling nutrient acquisition and host pathway hijacking. The PV does not fuse with lysosomes. <em>Why not cytoplasm</em>: <em>T. gondii</em> as an actively invading apicomplexan needs a stable membrane envelope it can build and shape; the cytoplasm would expose it to cytosolic immune sensors and disrupt the apical organelle-driven invasion machinery. <strong><em>Salmonella</em> &mdash; SCV.</strong> <em>Establishment</em>: SPI1 effectors trigger massive 'trigger' membrane ruffling, engulfing the bacterium in a spacious phagosome. <em>Survival modifications</em>: SPI2 effectors and antioxidant systems <strong>resist acidification</strong>, <strong>prevent lysosome fusion</strong>, and <strong>neutralize ROS/RNS and antimicrobial peptides</strong>. <em>Why not cytoplasm</em>: <em>Salmonella</em> requires the SCV to ride macrophages through the lymphatic system to deeper tissues (Peyer's patches, gallbladder); cytosolic life would not allow this trafficking. Also, the cytoplasm contains cytosolic sensors (NLRs) that would aggressively detect Gram-negatives. <strong><em>M. tuberculosis</em> &mdash; arrested phagosome.</strong> <em>Establishment</em>: alveolar macrophages phagocytose <em>M. tb</em> normally; the bacterium is in a standard early phagosome. <em>Survival modifications</em>: <em>M. tb</em> sheds <strong>cell wall lipids (LAM and others derived from mycolic acid metabolism)</strong> that <strong>block phagosome maturation</strong> &mdash; specifically prevent fusion with lysosomes. The phagosome stays in an immature, non-acidified, non-degradative state. <em>Why not cytoplasm</em>: <em>M. tb</em>'s mycolic acid envelope is exquisitely suited to surviving inside a macrophage phagosome; the bacterium is also extremely slow-growing, making a stable, low-stress phagosome niche ideal. Cytoplasmic exposure would activate cytosolic sensors and conflict with the granuloma containment strategy that favors macrophage-internal life. <strong>Common thread</strong>: all three exploit a vacuole because (i) it shields them from cytoplasmic sensors, (ii) it provides a controlled microenvironment they can manipulate, and (iii) it integrates with the macrophage transport system the pathogens want to ride. The differences in mechanism (rhoptry-built de novo vs SPI1-induced ruffling vs LAM-arrested early phagosome) reflect each organism's unique cell biology and lifestyle.", hy:true},
+  {q:"Critically compare <em>Toxoplasma</em> and <em>M. tuberculosis</em> as 'lifelong infections that reactivate in HIV.' Explain (i) the persistence form and biology of each, (ii) why HIV specifically reactivates both, (iii) what reactivation looks like clinically for each, and (iv) the public-health implications for an HIV-positive patient newly diagnosed.", a:"<strong>(i) Persistence forms.</strong> <em>T. gondii</em>: persists as <strong>bradyzoites encysted in tissue cysts</strong>, primarily in <strong>neural and muscle tissue</strong>. Bradyzoites are slow-replicating and metabolically quiet, hidden from immune surveillance by the cyst wall. <em>M. tuberculosis</em>: persists inside <strong>granulomas</strong>, primarily in the lungs but possibly elsewhere (lymph nodes, bone). The bacteria are contained inside a structured cluster of macrophages, giant cells, foam cells, T cells, and B cells &mdash; a 'walled-off' niche where the bacteria are alive but not spreading. <strong>(ii) Why HIV specifically reactivates both.</strong> Both rely on <strong>cell-mediated immunity</strong> &mdash; specifically CD4+ T-cell-driven IFN-&gamma; activation of macrophages &mdash; for ongoing containment. <em>T. gondii</em> bradyzoites would resume tachyzoite growth without CD4+ T-cell control; granulomas similarly depend on continuous T-cell help to maintain macrophage activation. HIV destroys CD4+ T cells. As CD4+ counts fall, both containment systems collapse. The classic 'AIDS-defining' threshold is CD4+ count below 200/&micro;L for severe opportunistic reactivation. The U.S. TB curve in the late 1980s/early 1990s spiked precisely because of mass reactivation in HIV patients. <strong>(iii) Clinical reactivation.</strong> <em>T. gondii</em>: most commonly <strong>toxoplasmic encephalitis</strong> &mdash; multiple ring-enhancing brain lesions on MRI, presenting with headache, confusion, focal neurologic deficits, seizures. Also <strong>ocular toxoplasmosis</strong> (severe retinal inflammation, blurred vision) and pulmonary toxoplasmosis that can resemble TB. <em>M. tb</em>: <strong>secondary active TB</strong> &mdash; persistent productive cough, hemoptysis, fever, night sweats, weight loss/emaciation, cavitary lung disease on imaging. Disseminated/extrapulmonary TB (TB meningitis, spinal Pott's disease, miliary TB) is more common in HIV co-infection. <strong>(iv) Public-health implications for a newly diagnosed HIV-positive patient.</strong> Both should be <strong>screened immediately</strong> regardless of symptoms: latent TB testing (interferon-gamma release assay or tuberculin skin test) and <em>Toxoplasma</em> IgG serology. Patients with positive screening should receive <strong>prophylaxis or treatment</strong>: trimethoprim-sulfamethoxazole (TMP-SMX) for <em>Toxoplasma</em> (and <em>Pneumocystis</em>) prophylaxis when CD4+ falls below 100; isoniazid (INH) preventive therapy for latent TB. <strong>Antiretroviral therapy (ART)</strong> is the single most important intervention &mdash; restoring CD4+ counts shrinks the reactivation risk for both. Patients should be educated about food handling (cook meat, wash produce) for <em>Toxoplasma</em> and respiratory hygiene for TB. Finally, contact tracing for active TB is critical because reactivated patients are infectious; <em>Toxoplasma</em> reactivation is not airborne and doesn't require contact tracing. The parallel teaching point: HIV is the modern 'lens' through which intracellular pathogens that depend on cell-mediated immunity reveal their dependence &mdash; both <em>Toxoplasma</em> and <em>M. tb</em> illustrate that asymptomatic lifelong infection is not 'cured' infection.", hy:true},
+  {q:"You are designing an experiment to test a candidate <em>M. tuberculosis</em> drug. The drug works only on actively dividing bacterial cells. (a) Predict its likely effect against active primary infection vs latent infection within granulomas, and explain in mechanistic terms. (b) How does <em>M. tb</em>'s 20&ndash;24 hour doubling time complicate even active-infection treatment? (c) Why are TB regimens 6+ months long and use multiple drugs? (d) How would you redesign the screen to find drugs effective against latent <em>M. tb</em>?", a:"<strong>(a) Active vs latent.</strong> Against <strong>active primary infection</strong>, the drug is likely to be effective: bacteria are actively replicating in alveolar macrophages and at the leading edge of the infection, so a replication-targeting drug (e.g., a &beta;-lactam, a fluoroquinolone, or a translation inhibitor in elongation phase) can reach and kill them. Against <strong>latent infection inside granulomas</strong>, the drug will likely <strong>fail or work very poorly</strong>: bacteria inside granulomas are <strong>extremely slow-growing or essentially dormant</strong> &mdash; they aren't synthesizing peptidoglycan, replicating DNA, or translating proteins at rates that the drug can disrupt. There is also a <strong>physical barrier</strong>: the granuloma's necrotic core, fibrosis, and lipid content limit drug penetration. So even active bacteria deep inside a granuloma get sub-therapeutic drug exposure. <strong>(b) Doubling time consequence for active treatment.</strong> <em>M. tb</em>'s 20&ndash;24 hour doubling time means: (i) bacterial populations decline slowly even when the drug is killing dividing cells &mdash; you can't sterilize the lung in days; (ii) at any given moment a smaller fraction of the population is actively replicating compared with fast-growing bacteria, so a smaller fraction is drug-susceptible; (iii) persister cells in non-replicating states form a large reservoir that survives any single drug. So even 'active' TB doesn't respond like a typical bacterial infection. <strong>(c) Why 6+ months and multiple drugs.</strong> Long duration: you have to outlast not just the actively dividing population but the slow-growing/dormant subpopulations that progressively re-enter replication and become drug-susceptible. Six months is the empirically-derived minimum for sterilization in drug-susceptible TB; multidrug-resistant TB needs much longer. Multiple drugs: (i) hits multiple targets simultaneously, lowering the probability that a single mutation produces resistance to the whole regimen; (ii) different drugs work better on different bacterial subpopulations &mdash; isoniazid on actively replicating, rifampin on slowly replicating, pyrazinamide on persisters in acidic environments inside granulomas; (iii) penetrance into different anatomical compartments differs by drug; combining ensures that no compartment is undertreated. The classic regimen is 4 drugs (HRZE: isoniazid, rifampin, pyrazinamide, ethambutol) for the first 2 months, then 2 drugs (HR) for 4 more months. <strong>(d) Redesigning the screen for latent TB drugs.</strong> Don't screen against actively dividing log-phase cultures. Screen against: (i) <strong>non-replicating persister models</strong> &mdash; e.g., <em>M. tb</em> in hypoxic culture (Wayne model) or in nutrient-starved stationary phase, where most cells are not dividing; (ii) <strong>intracellular models</strong> &mdash; <em>M. tb</em> inside macrophages, with infection at low MOI and incubation long enough to mimic latent-like states; (iii) <strong>granuloma-mimic models</strong> &mdash; <em>in vitro</em> granuloma systems with macrophages, T cells, fibrosis-mimicking matrices; (iv) <strong>drug penetration assays</strong> against necrotic-core mimics with high lipid content. Mechanistically, look for drugs that hit targets active in dormancy: ATP synthase (bedaquiline, the prototype), respiratory chain components, lipid metabolism enzymes (e.g., mycolic acid synthesis is still ongoing in dormant cells), DNA repair pathways (since dormant cells must repair damage to resume growth). Also: targets that don't depend on cell division for activity, such as bacterial membrane disruption. The clinical relevance: bedaquiline, the first new TB drug in 40+ years, was discovered using such 'beyond-log-phase' screens.", hy:false},
+  {q:"Construct an exam question that requires the student to integrate the <em>T. gondii</em> life cycle (definitive host, sexual reproduction, sporozoite, oocyst) with public health practice. Then provide a model answer.", a:"<strong>Question:</strong> 'Public health authorities want to reduce <em>Toxoplasma gondii</em> transmission in a community. (a) Identify the only host in which <em>T. gondii</em> reproduces sexually and explain why this is the bottleneck the parasite cannot bypass. (b) Trace what happens to a tissue cyst eaten by this host, naming each parasite stage and the type of cell division involved. (c) Distinguish an unsporulated oocyst from a sporulated oocyst, and explain which one is environmentally infectious and how long sporulation takes. (d) Based on the biology, propose three public-health interventions and justify each in terms of which life-cycle step it disrupts.' <strong>Model answer.</strong> <strong>(a)</strong> The only host in which <em>T. gondii</em> reproduces sexually is the <strong>FELID (cat)</strong>. Felines are the <strong>definitive host</strong>: they are the only place where merozoites differentiate into <strong>microgamonts (male gametes)</strong> and <strong>macrogametes (female gametes)</strong>, where fertilization occurs, and where <strong>oocysts</strong> are produced and shed in feces. Sporozoites are also produced only here (during sporulation). Without cats, <em>T. gondii</em> can persist in intermediate hosts but cannot complete the sexual phase or produce sporulated oocysts that contaminate the environment. The parasite literally cannot 'reset' its sexual genetic recombination without a cat in the cycle. <strong>(b)</strong> When a cat eats a tissue cyst: <strong>(B) cyst wall is digested in the stomach/intestines, liberating bradyzoites (slow form)</strong>; <strong>(C) bradyzoites invade intestinal epithelial cells (enterocytes)</strong>; <strong>(D) inside enterocytes, bradyzoites divide by SCHIZOGONY</strong>, an asexual multiple-fission division producing <strong>merozoites</strong>; <strong>(E) merozoites differentiate into microgamonts or macrogametes</strong>; <strong>(F) fertilization &rarr; UNSPORULATED OOCYST excreted in cat feces</strong>; <strong>(G) sporulation</strong> outside the cat &rarr; <strong>SPORULATED OOCYST containing 2 sporocysts &times; 4 sporozoites</strong>. <strong>(c) Unsporulated vs sporulated oocyst.</strong> <strong>Unsporulated oocyst</strong>: the form just shed in cat feces. <strong>NOT infective</strong>. <strong>Sporulated oocyst</strong>: the matured, environmentally weathered form. <strong>INFECTIVE</strong>. Sporulation occurs <strong>outside the cat over 1&ndash;5 days</strong>, depending on environmental conditions (warm, moist, oxygenated environments speed sporulation; cold/dry slow it). The 1&ndash;5 day window is the critical public-health interval. <strong>(d) Three public-health interventions.</strong> <strong>(1) Daily litter box cleaning + safe disposal.</strong> Justification: removes unsporulated oocysts BEFORE they sporulate &mdash; turns the cat into a non-shedder for environmental purposes. Disrupts step F&rarr;G (sporulation in environment). Especially important for households with pregnant women. <strong>(2) Cook meat thoroughly + freeze meat (≥−20°C for 24 hr) before eating.</strong> Justification: kills <strong>tissue cyst bradyzoites</strong> in pork, lamb, and venison. Disrupts the food-borne tissue-cyst transmission route &mdash; one of the most common ways humans get infected. Reduces cases independently of cat-ownership status. <strong>(3) Wash garden produce thoroughly + wear gloves while gardening + cover sandboxes/playgrounds.</strong> Justification: reduces ingestion of <strong>sporulated oocysts</strong> from soil contaminated by outdoor cat feces. Disrupts the environmental-oocyst route, which is especially important for pregnant women (highest stakes) and for children playing in sandboxes. Also: keep outdoor cats from defecating in vegetable gardens. <strong>Bonus interventions.</strong> Public education for pregnant women specifically (avoid raw meat, have someone else clean the litter, garden in gloves), water sanitation (sporulated oocysts can contaminate municipal water in cases of fecal contamination), and screening of pregnant women for prior infection (chronic carriers don't transmit; primary infection during pregnancy is the disaster scenario). Each intervention targets a specific life-cycle bottleneck rather than the parasite as a whole, which is how good public health is built when eradication is impossible.", hy:false},
+];
+
+function buildFRQ(container, questions, prefix) {
+  const el = document.getElementById(container);
+  el.innerHTML = '';
+  questions.forEach((q,i) => {
+    const hy = q.hy ? 'hy-frq' : '';
+    el.innerHTML += `
+    <div class="frq-card ${hy}">
+      <div class="frq-prompt"><span class="q-num">${i+1}</span>${q.q}${q.hy?'<span class="hy-badge">HIGH YIELD</span>':''}</div>
+      <textarea placeholder="Write your answer..." id="${prefix}-ta-${i}"></textarea>
+      <button class="frq-reveal-btn" onclick="revealFRQ('${prefix}',${i})">Reveal Answer</button>
+      <div class="frq-answer" id="${prefix}-ans-${i}">${q.a}</div>
+      <div class="frq-self-grade" id="${prefix}-grade-${i}">
+        <button class="grade-btn got-it" onclick="gradeFRQ('${prefix}',${i},'got-it')">Got it</button>
+        <button class="grade-btn partial" onclick="gradeFRQ('${prefix}',${i},'partial')">Partial</button>
+        <button class="grade-btn missed" onclick="gradeFRQ('${prefix}',${i},'missed')">Missed</button>
+      </div>
+    </div>`;
+  });
+}
+
+const frqGrades = {};
+const hardGrades = {};
+
+function revealFRQ(prefix, i) {
+  document.getElementById(prefix+'-ans-'+i).classList.add('show');
+  document.getElementById(prefix+'-grade-'+i).classList.add('show');
+}
+function gradeFRQ(prefix, i, grade) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  grades[i] = grade;
+  const btns = document.getElementById(prefix+'-grade-'+i).querySelectorAll('.grade-btn');
+  btns.forEach(b => b.classList.remove('selected-grade'));
+  event.target.classList.add('selected-grade');
+  updateFRQScore(prefix);
+}
+function updateFRQScore(prefix) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  const total = prefix === 'frq' ? frqs.length : hardFrqs.length;
+  let pts = 0;
+  Object.values(grades).forEach(g => { if(g==='got-it') pts+=1; else if(g==='partial') pts+=0.5; });
+  document.getElementById(prefix+'-score').textContent = Math.round((pts/total)*100)+'%';
+}
+function resetFRQ() {
+  Object.keys(frqGrades).forEach(k => delete frqGrades[k]);
+  buildFRQ('frq-container', frqs, 'frq');
+  document.getElementById('frq-score').textContent = '0%';
+}
+function resetHard() {
+  Object.keys(hardGrades).forEach(k => delete hardGrades[k]);
+  buildFRQ('hard-container', hardFrqs, 'hard');
+  document.getElementById('hard-score').textContent = '0%';
+}
+
+buildFRQ('frq-container', frqs, 'frq');
+buildFRQ('hard-container', hardFrqs, 'hard');
+
+// ====== MATCHING ======
+const matchPairs = [
+  {term:"Tachyzoite", def:"Rapidly multiplying <em>T. gondii</em> stage characteristic of acute infection; disseminates via blood, replicates in PV"},
+  {term:"Bradyzoite", def:"Slowly multiplying <em>T. gondii</em> stage in tissue cysts (muscle/CNS); chronic infection form"},
+  {term:"Sporozoite", def:"<em>T. gondii</em> stage produced ONLY in cats; released from sporulated oocysts (8 per oocyst)"},
+  {term:"Definitive host (felines)", def:"Where <em>T. gondii</em> sexual reproduction occurs &mdash; gametes form, fertilization, oocysts shed in feces"},
+  {term:"Sporulated oocyst", def:"Mature, infective <em>T. gondii</em> environmental form; 2 sporocysts &times; 4 sporozoites; takes 1&ndash;5 days to form outside cat"},
+  {term:"Parasitophorous vacuole (PV)", def:"<em>T. gondii</em>'s membrane-bounded replication compartment; built from rhoptry/dense granule proteins; doesn't fuse with lysosomes"},
+  {term:"Mycolic acid", def:"Long-chain fatty acids unique to <em>M. tuberculosis</em>; cause acid-fast staining, sanitizer resistance, aerosol persistence"},
+  {term:"Acid-fast bacterium", def:"<em>M. tuberculosis</em> classification &mdash; NEITHER Gram + nor &minus;; mycolic-acid envelope traps carbol fuchsin dye"},
+  {term:"Block phagosome-lysosome fusion", def:"<em>M. tb</em>'s primary intracellular survival trick &mdash; cell wall lipids (LAM) prevent phagosome maturation"},
+  {term:"Delay of adaptive immunity (16-17 days)", def:"<em>M. tb</em> infects dendritic cells and impairs MHC-II antigen presentation, buying ~7 extra days of growth"},
+  {term:"Granuloma", def:"Walled-off cluster of macrophages, giant cells, foam cells, and T/B cells; contains but does not eliminate <em>M. tb</em>"},
+  {term:"Latent TB reservoir", def:"~2.7 billion humans (1/3 of global population); <em>M. tb</em> has no environmental reservoir &mdash; humans ARE the reservoir"},
+];
+
+let matchLeft = null, matchRight = null, matchedCount = 0;
+function initMatching() {
+  matchLeft = null; matchRight = null; matchedCount = 0;
+  const lDiv = document.getElementById('match-left');
+  const rDiv = document.getElementById('match-right');
+  const sL = [...matchPairs].sort(() => Math.random()-0.5);
+  const sR = [...matchPairs].sort(() => Math.random()-0.5);
+  lDiv.innerHTML = sL.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('left',this)">${p.term}</div>`).join('');
+  rDiv.innerHTML = sR.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('right',this)">${p.def}</div>`).join('');
+  document.getElementById('match-score').textContent = '0 / '+matchPairs.length;
+}
+function selectMatch(side, el) {
+  if(el.classList.contains('matched')) return;
+  el.parentElement.querySelectorAll('.match-item').forEach(i => { if(!i.classList.contains('matched')) i.classList.remove('selected'); });
+  el.classList.add('selected');
+  if(side==='left') matchLeft = el; else matchRight = el;
+  if(matchLeft && matchRight) checkMatch();
+}
+function checkMatch() {
+  if(matchLeft.dataset.term === matchRight.dataset.term) {
+    matchLeft.classList.add('matched'); matchLeft.classList.remove('selected');
+    matchRight.classList.add('matched'); matchRight.classList.remove('selected');
+    matchedCount++;
+    document.getElementById('match-score').textContent = matchedCount+' / '+matchPairs.length;
+  } else {
+    matchLeft.classList.add('wrong-match'); matchRight.classList.add('wrong-match');
+    const l=matchLeft, r=matchRight;
+    setTimeout(() => { l.classList.remove('wrong-match','selected'); r.classList.remove('wrong-match','selected'); }, 700);
+  }
+  matchLeft = null; matchRight = null;
+}
+initMatching();
+</script>
+</body>
+</html>

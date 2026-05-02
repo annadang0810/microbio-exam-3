@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adaptive Immunity & Vaccines - BIOL 3303 Study Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232733;
+    --border: #2e3344;
+    --text: #e2e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --green: #00cec9;
+    --green-dim: #00cec920;
+    --red: #fd7272;
+    --red-dim: #fd727220;
+    --orange: #ffa94d;
+    --orange-dim: #ffa94d20;
+    --blue: #74b9ff;
+    --yellow: #ffd43b;
+    --yellow-dim: #ffd43b18;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 8px;
+    overflow-x: auto;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent-light);
+    white-space: nowrap;
+    margin-right: 16px;
+    letter-spacing: -0.3px;
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .nav-btn:hover { color: var(--text); background: var(--surface2); }
+  .nav-btn.active {
+    color: var(--accent-light);
+    background: #6c5ce715;
+    border-color: #6c5ce740;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 84px 24px 60px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+    color: var(--accent-light);
+  }
+  .card p, .card li {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 6px; }
+  .card li::marker { color: var(--accent); }
+
+  .highlight { color: var(--green); font-weight: 600; }
+  .organism { color: var(--orange); font-weight: 600; }
+  .warn { color: var(--red); font-weight: 600; }
+  .key {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+
+  /* HIGH YIELD */
+  .hy-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin-left: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    animation: hyPulse 2s ease-in-out infinite;
+  }
+  @keyframes hyPulse {
+    0%, 100% { box-shadow: 0 0 0 0 #ffd43b40; }
+    50% { box-shadow: 0 0 12px 4px #ffd43b30; }
+  }
+  .hy-card {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .hy-card h2 { color: var(--yellow); }
+
+  .hy-legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: var(--yellow-dim);
+    border: 1px solid #ffd43b40;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--yellow);
+    font-weight: 600;
+  }
+
+  .exam-topics {
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: var(--surface2);
+    border: 1px solid #ffd43b30;
+    border-radius: 10px;
+  }
+  .exam-topics p {
+    font-size: 12px;
+    color: var(--yellow);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .exam-topics ul { padding-left: 18px; }
+  .exam-topics li {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .exam-topics li::marker { color: var(--yellow); }
+
+  /* HERO */
+  .hero-card {
+    background: linear-gradient(135deg, #6c5ce730, #00cec915);
+    border-color: #6c5ce740;
+    text-align: center;
+    padding: 48px 28px;
+  }
+  .hero-card h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .hero-card p { color: var(--text-dim); font-size: 15px; }
+  .hero-stats {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat-num { font-size: 24px; font-weight: 800; color: var(--accent-light); }
+  .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+  /* TABS */
+  .tab-row { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .tab-btn.hy-tab { border-color: #ffd43b60; }
+  .tab-btn.hy-tab.active { background: linear-gradient(135deg, #ffd43b, #f59f00); color: #1a1d27; border-color: #ffd43b; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* TABLES */
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .data-table th, .data-table td { padding: 8px 12px; border: 1px solid var(--border); text-align: left; font-size: 13.5px; }
+  .data-table th { background: var(--surface2); color: var(--accent-light); font-weight: 600; }
+  .data-table td { color: var(--text-dim); }
+  .data-table.hy-table th { color: var(--yellow); }
+
+  /* DIAGRAM */
+  .diagram-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 14px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .diagram-box .arr { color: var(--accent-light); }
+  .diagram-box .mol { color: var(--green); font-weight: 700; }
+  .diagram-box .label { color: var(--text-dim); font-style: italic; }
+
+  .callout {
+    background: #00cec920;
+    border: 1px solid #00cec940;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    font-size: 13.5px;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* SCORE BAR */
+  .score-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .score-text { font-size: 15px; font-weight: 600; }
+  .score-pct { font-size: 28px; font-weight: 800; color: var(--accent-light); }
+  .reset-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { background: var(--accent-light); color: var(--bg); }
+
+  /* FLASHCARD */
+  .fc-container { perspective: 1000px; margin-bottom: 16px; }
+  .flashcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    cursor: pointer;
+    transition: transform 0.5s, box-shadow 0.3s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .flashcard:hover { box-shadow: 0 4px 24px #6c5ce720; }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .fc-front, .fc-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    backface-visibility: hidden;
+    border-radius: 14px;
+  }
+  .fc-front { font-size: 16px; font-weight: 600; color: var(--text); }
+  .fc-back {
+    transform: rotateY(180deg);
+    font-size: 15px;
+    color: var(--green);
+    background: var(--surface);
+    line-height: 1.6;
+  }
+  .fc-nav { display: flex; gap: 10px; justify-content: center; align-items: center; }
+  .fc-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .fc-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .fc-counter { font-size: 13px; color: var(--text-dim); font-weight: 600; min-width: 60px; text-align: center; }
+  .fc-hint { text-align: center; color: var(--text-dim); font-size: 12px; margin-top: 10px; }
+
+  /* MATCHING */
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .match-col-header {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+  .match-item {
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .match-item:hover { border-color: var(--accent); color: var(--text); }
+  .match-item.selected { border-color: var(--accent); background: #6c5ce715; color: var(--accent-light); }
+  .match-item.matched { border-color: var(--green); background: var(--green-dim); color: var(--green); pointer-events: none; opacity: 0.7; }
+  .match-item.wrong-match { border-color: var(--red); background: var(--red-dim); color: var(--red); }
+
+  /* FRQ */
+  .frq-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .frq-card.hy-frq {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .frq-card .q-num {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .frq-card.hy-frq .q-num {
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+  }
+  .frq-card .frq-prompt { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+  .frq-card .frq-hint { font-size: 12px; color: var(--text-dim); margin-bottom: 12px; font-style: italic; }
+  .frq-card textarea {
+    width: 100%;
+    min-height: 100px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    padding: 14px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+  .frq-card textarea:focus { outline: none; border-color: var(--accent); }
+  .frq-card textarea::placeholder { color: #4a4e63; }
+  .frq-reveal-btn {
+    display: inline-block;
+    margin-top: 12px;
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent-light);
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .frq-reveal-btn:hover { background: #6c5ce715; }
+  .frq-answer {
+    display: none;
+    margin-top: 14px;
+    padding: 16px;
+    background: var(--surface2);
+    border-radius: 10px;
+    border-left: 3px solid var(--green);
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .frq-answer.show { display: block; }
+  .frq-answer strong { color: var(--green); }
+  .frq-self-grade { display: none; margin-top: 12px; gap: 8px; }
+  .frq-self-grade.show { display: flex; }
+  .grade-btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .grade-btn.got-it { color: var(--green); border-color: var(--green); }
+  .grade-btn.got-it:hover { background: var(--green-dim); }
+  .grade-btn.partial { color: var(--orange); border-color: var(--orange); }
+  .grade-btn.partial:hover { background: var(--orange-dim); }
+  .grade-btn.missed { color: var(--red); border-color: var(--red); }
+  .grade-btn.missed:hover { background: var(--red-dim); }
+  .grade-btn.selected-grade { font-weight: 800; }
+  .grade-btn.got-it.selected-grade { background: var(--green-dim); }
+  .grade-btn.partial.selected-grade { background: var(--orange-dim); }
+  .grade-btn.missed.selected-grade { background: var(--red-dim); }
+
+  @media (max-width: 600px) {
+    .nav-brand { display: none; }
+    main { padding: 76px 14px 40px; }
+    .card { padding: 20px; }
+    .hero-card { padding: 32px 20px; }
+    .hero-card h1 { font-size: 22px; }
+    .match-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">BioStudy</span>
+    <button class="nav-btn active" onclick="showSection('home')">Home</button>
+    <button class="nav-btn" onclick="showSection('learn')">Learn</button>
+    <button class="nav-btn" onclick="showSection('flashcards')">Flashcards</button>
+    <button class="nav-btn" onclick="showSection('frq')">FRQ</button>
+    <button class="nav-btn" onclick="showSection('matching')">Matching</button>
+    <button class="nav-btn" onclick="showSection('hard')">Hard FRQ</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ==================== HOME ==================== -->
+<div class="section active" id="sec-home">
+  <div class="card hero-card">
+    <h1>Adaptive Immunity &amp; Vaccines</h1>
+    <p>BIOL 3303 &middot; Lecture 17 &mdash; Innate &amp; Adaptive Immunity, B/T-Cells, Antibodies, Vaccines</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">9</div><div class="stat-label">Topics</div></div>
+      <div class="stat"><div class="stat-num">32</div><div class="stat-label">Flashcards</div></div>
+      <div class="stat"><div class="stat-num">28</div><div class="stat-label">FRQs</div></div>
+    </div>
+    <div class="hy-legend">HIGH YIELD = Confirmed exam topics from your professor. Prioritize these.</div>
+    <div class="exam-topics">
+      <p>Your Professor's Exam Topics</p>
+      <ul>
+        <li><strong>B-cell &amp; T-cell functions</strong> &mdash; what each lymphocyte does, how they're activated</li>
+        <li><strong>Antibody response</strong> &mdash; antibody structure, classes, function, primary vs secondary response</li>
+        <li><strong>Vaccines</strong> &mdash; how they work, types of vaccines, herd immunity</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LEARN ==================== -->
+<div class="section" id="sec-learn">
+  <div class="tab-row">
+    <button class="tab-btn" onclick="showTab(this,'overview')">Innate vs Adaptive</button>
+    <button class="tab-btn" onclick="showTab(this,'innate')">Innate Defenses</button>
+    <button class="tab-btn" onclick="showTab(this,'inflam')">Inflammation</button>
+    <button class="tab-btn" onclick="showTab(this,'phago')">Phagocytes</button>
+    <button class="tab-btn" onclick="showTab(this,'comp')">Complement</button>
+    <button class="tab-btn hy-tab active" onclick="showTab(this,'tcell')">T-Cells</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'bcell')">B-Cells</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'antibody')">Antibodies</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'vaccines')">Vaccines</button>
+  </div>
+
+  <!-- INNATE VS ADAPTIVE -->
+  <div class="tab-content" id="tab-overview">
+    <div class="card">
+      <h2>Two Branches of Immunity</h2>
+      <p>Despite living in a world teeming with microbes, we are rarely infected &mdash; thanks to our <span class="highlight">immune system</span>. It has two main branches that work together.</p>
+
+      <table class="data-table">
+        <tr><th>Feature</th><th>Innate Immunity</th><th>Adaptive Immunity</th></tr>
+        <tr><td>Availability</td><td><span class="highlight">Always available</span> (constitutive)</td><td><span class="highlight">Set in motion by contact</span> with a particular agent</td></tr>
+        <tr><td>Speed</td><td>Fast (minutes&ndash;hours)</td><td>Slow at first (days&ndash;weeks)</td></tr>
+        <tr><td>Specificity</td><td>Broad (recognizes MAMPs)</td><td>Highly specific (recognizes individual antigens)</td></tr>
+        <tr><td>Memory</td><td>None</td><td><span class="highlight">YES</span> &mdash; stronger response on re-exposure</td></tr>
+        <tr><td>Components</td><td>Skin, mucous membranes, AMPs, lysozyme, complement, phagocytes (neutrophils, macrophages, dendritic cells)</td><td><span class="highlight">B cells</span> (humoral / antibodies), <span class="highlight">T cells</span> (cell-mediated)</td></tr>
+      </table>
+
+      <h3>The Cascade: Innate &rarr; Adaptive</h3>
+      <ul>
+        <li>Innate starts with the <span class="highlight">skin</span>, then resident immune cells (macrophages, dendritic cells)</li>
+        <li>When trouble is sensed, they call for backup &rarr; circulating cells (neutrophils) join the fight</li>
+        <li>If infection is bad, <span class="highlight">dendritic cells</span> activate the adaptive response</li>
+        <li>T-cell activation &rarr; more T-cells + activation of B-cells</li>
+        <li>B and T cells then enhance the innate response to clear the infection</li>
+      </ul>
+
+      <h3>Three Factors That Decide Disease Outcome</h3>
+      <ol>
+        <li><span class="highlight">Inoculum size</span> (number of invading microbes)</li>
+        <li><span class="highlight">Virulence</span> (invasive ability of the agent)</li>
+        <li><span class="highlight">Strength of host defenses</span></li>
+      </ol>
+      <p>If virulence is high (e.g. <span class="organism">Shigella</span>), required inoculum is low. If host defenses are strong, even a high inoculum may be cleared.</p>
+
+      <div class="callout">Think of it like a relay race: skin/mucous &rarr; complement &rarr; phagocytes &rarr; dendritic cells present antigen &rarr; T cells activate &rarr; B cells make antibodies. Each step buys time and amplifies the next.</div>
+    </div>
+  </div>
+
+  <!-- INNATE DEFENSES -->
+  <div class="tab-content" id="tab-innate">
+    <div class="card">
+      <h2>Innate Immunity: Barriers to Entry</h2>
+
+      <h3>1. Mechanical Barrier &mdash; Skin</h3>
+      <p>Like a <span class="highlight">massive wall</span> physically keeping microbes out.</p>
+
+      <h3>2. Antimicrobial Substances</h3>
+      <ul>
+        <li><span class="highlight">Skin</span>: high salt, antimicrobial peptides (AMPs), and fatty acids (made by normal skin bacteria)</li>
+        <li><span class="highlight">Mucous membranes</span> (respiratory, digestive, genitourinary): antibodies, lysozyme, AMPs</li>
+        <li><span class="highlight">Stomach acid (low pH)</span>: kills most ingested microbes</li>
+        <li><span class="highlight">Bile salts</span> in intestine</li>
+        <li><span class="highlight">Complement</span> in circulation (major factor)</li>
+      </ul>
+
+      <h3>3. Physical Currents That Sweep Microbes Away</h3>
+      <ul>
+        <li><span class="highlight">Respiratory cilia</span> &mdash; ciliated epithelial cells beat mucus + trapped microbes upward (mucociliary escalator)</li>
+        <li><span class="highlight">Peristalsis</span> &mdash; intestinal contractions move microbes through the GI tract</li>
+        <li><span class="highlight">Urinary flow</span> &mdash; flushes microbes out of the urinary tract</li>
+      </ul>
+
+      <h3>What Triggers the Innate Response?</h3>
+      <p>Pattern-recognition receptors detect <span class="highlight">MAMPs (microbe-associated molecular patterns)</span> &mdash; conserved microbial features that are essential for fitness, so microbes can't easily evolve away from them.</p>
+
+      <h3>Common MAMPs</h3>
+      <ul>
+        <li><span class="highlight">Lipopolysaccharide (LPS)</span> &mdash; gram-negative outer membrane</li>
+        <li><span class="highlight">Peptidoglycan</span> &mdash; bacterial cell wall</li>
+        <li><span class="highlight">Flagellin</span> &mdash; flagellum protein</li>
+        <li><span class="highlight">Pilin</span> &mdash; pilus protein</li>
+      </ul>
+
+      <p>The human innate immune system can recognize <span class="highlight">~1,000 distinct MAMPs</span>. How we avoid constant inflammation despite our microbiota is <span class="warn">still not fully understood</span>.</p>
+
+      <h3>Pattern Recognition Receptors (PRRs)</h3>
+      <table class="data-table">
+        <tr><th>Receptor</th><th>Location</th><th>What It Does</th></tr>
+        <tr><td><span class="highlight">TLR</span> (Toll-like receptor)</td><td>Cell surface, facing outward</td><td>Binds extracellular MAMPs &rarr; activates <span class="highlight">NF-&kappa;B</span> &rarr; cytokine genes + cell survival</td></tr>
+        <tr><td><span class="highlight">NLR</span> (NOD-like receptor)</td><td>Cytoplasm</td><td>Detects MAMPs that breached the phagosome &rarr; can do 3 things: NF-&kappa;B activation, <span class="highlight">inflammasome</span> assembly &rarr; <span class="warn">pyroptosis</span>, neutrophil chemotaxis</td></tr>
+      </table>
+
+      <div class="callout">Mnemonic: TLRs face OUT (look at extracellular world). NLRs face IN (look at cytoplasm). Both signal through NF-&kappa;B to "sound the alarm."</div>
+    </div>
+  </div>
+
+  <!-- INFLAMMATION -->
+  <div class="tab-content" id="tab-inflam">
+    <div class="card">
+      <h2>Inflammation</h2>
+      <p>The host's <span class="highlight">most powerful reaction</span> to an invading agent. Characterized by <span class="warn">reddening, swelling, pain, and pus</span>.</p>
+
+      <h3>The Four Cardinal Signs</h3>
+      <table class="data-table">
+        <tr><th>Sign</th><th>Cause</th></tr>
+        <tr><td><span class="highlight">Reddening</span></td><td>Increased blood flow to the area</td></tr>
+        <tr><td><span class="highlight">Swelling</span></td><td>Tissues engorged with fluid containing immune effectors</td></tr>
+        <tr><td><span class="highlight">Pain</span></td><td>Release of chemical mediators + compression of nerves</td></tr>
+        <tr><td><span class="highlight">Pus</span></td><td>Dead white blood cells</td></tr>
+      </table>
+
+      <h3>Recruitment of WBCs</h3>
+      <ol>
+        <li><span class="highlight">Complement activation</span> generates <span class="highlight">chemotaxins</span> at the infection site</li>
+        <li>WBCs in the bloodstream squeeze through the blood vessel walls &mdash; this is <span class="highlight">diapedesis</span></li>
+        <li>WBCs move up the chemotactic gradient to the infection</li>
+        <li>WBCs encounter bacteria and <span class="highlight">phagocytose</span> them</li>
+      </ol>
+
+      <h3>Disease = Damage to Host Tissue</h3>
+      <p>Damage can come from:</p>
+      <ul>
+        <li>The microbe directly (e.g. <span class="warn">toxins</span>)</li>
+        <li>The host cell triggering its own death</li>
+        <li><span class="warn">The host's own immune response</span> via inflammation &mdash; often the biggest source of damage!</li>
+      </ul>
+
+      <h3>Examples of Host Damage</h3>
+      <table class="data-table">
+        <tr><th>Disease</th><th>Immune Response</th><th>Symptoms</th></tr>
+        <tr><td>Pus diseases (gonorrhea, strep, acne)</td><td>Acute inflammation</td><td>Pus, irritation</td></tr>
+        <tr><td>Brain abscess</td><td>Acute inflammation in confined space (skull)</td><td>Neurological symptoms from pressure</td></tr>
+        <tr><td>Tuberculosis</td><td>Chronic inflammation</td><td>Cough with bleeding, ongoing tissue destruction</td></tr>
+        <tr><td>RSV infection</td><td>Allergy-like reaction in bronchioles</td><td>Wheezing, asthma-like breathing</td></tr>
+        <tr><td>Malaria</td><td>Synchronized fever-cytokine release</td><td>Periodic chills + sweats</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- PHAGOCYTES -->
+  <div class="tab-content" id="tab-phago">
+    <div class="card">
+      <h2>Phagocytes &mdash; The Innate Killers</h2>
+
+      <p><span class="highlight">Phagocytes</span> are cells with the innate ability to engulf foreign cells. Phagocytosis is one of the most effective innate defenses &mdash; the majority of bacteria invading humans are killed this way.</p>
+
+      <h3>Steps in Phagocytosis</h3>
+      <ol>
+        <li>Pseudopods engulf the microbe &rarr; trapped in a vesicle called the <span class="highlight">phagosome</span></li>
+        <li>The phagosome fuses with a <span class="highlight">lysosome</span> &rarr; forms the <span class="highlight">phagolysosome</span></li>
+        <li>Microbe is digested by <span class="highlight">hydrolytic enzymes</span> + oxidative enzymes + AMPs in the phagolysosome</li>
+      </ol>
+
+      <h3>Neutrophils &mdash; First Responders</h3>
+      <ul>
+        <li>Most numerous phagocytes</li>
+        <li>Short-lived (~1 week), <span class="warn">cannot proliferate</span> (terminally differentiated)</li>
+        <li>On a "<span class="highlight">seek and destroy</span>" mission</li>
+        <li>Loaded with lysosomal granules + oxidative enzymes that make <span class="warn">hypochlorite (bleach!)</span></li>
+        <li>Recruited by chemotaxins (complement-derived + bacterial products)</li>
+        <li>Require <span class="highlight">opsonins</span> to be effective</li>
+        <li>Can also form <span class="highlight">NETs (neutrophil extracellular traps)</span> &mdash; choose to die and release DNA + antimicrobials to entrap pathogens</li>
+      </ul>
+
+      <h3>Macrophages &amp; Monocytes &mdash; The Coordinators</h3>
+      <ul>
+        <li><span class="highlight">Monocytes</span> = long-lived; circulate in blood; can <span class="highlight">differentiate further</span></li>
+        <li><span class="highlight">Macrophages</span> = monocytes that have entered tissues</li>
+        <li>Arrive at the site of infection more slowly than neutrophils</li>
+        <li>Act as "<span class="highlight">garbage collectors</span>" &mdash; clean up microbial debris and remaining microbes after the neutrophil-microbe battle</li>
+        <li>Activated by cytokines</li>
+        <li>Produce cytokines that attract more neutrophils</li>
+        <li><span class="highlight">Help initiate cell-mediated (adaptive) immunity</span> by presenting antigen to T cells</li>
+      </ul>
+
+      <h3>Dendritic Cells &mdash; The Bridge</h3>
+      <ul>
+        <li>Specialized for <span class="highlight">antigen presentation</span></li>
+        <li>Sample antigens at infection sites, then migrate to lymph nodes</li>
+        <li><span class="highlight">Activate T cells</span> &mdash; this is the spark that lights the adaptive immune response</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- COMPLEMENT -->
+  <div class="tab-content" id="tab-comp">
+    <div class="card">
+      <h2>The Complement System</h2>
+      <p>A <span class="highlight">soluble (not cell-based)</span> defense system in the blood made of <span class="highlight">~30 different proteins</span>. Triggered by MAMPs and antibodies.</p>
+
+      <h3>Three Activation Pathways</h3>
+      <table class="data-table">
+        <tr><th>Pathway</th><th>Trigger</th></tr>
+        <tr><td><span class="highlight">Classical</span></td><td>Antigen-antibody complex (links to adaptive immunity!)</td></tr>
+        <tr><td><span class="highlight">Lectin</span></td><td>Pathogens bound by host lectin (mannose-binding protein)</td></tr>
+        <tr><td><span class="highlight">Alternative</span></td><td>Surface of pathogen directly (no antibody needed)</td></tr>
+      </table>
+
+      <p>All three pathways converge on <span class="highlight">C3 convertase</span>, which sets off a sequential proteolytic cascade. The cleavage products are pharmacologically active peptides that coordinate the inflammatory response.</p>
+
+      <h3>The 3 Outputs of Complement</h3>
+      <ol>
+        <li><span class="highlight">Inflammation &amp; phagocyte recruitment</span> &mdash; C3a, C4a, C5a are mediators of inflammation and chemotaxins</li>
+        <li><span class="highlight">Opsonization</span> &mdash; C3b coats the pathogen to make it palatable for phagocytes</li>
+        <li><span class="highlight">Membrane Attack Complex (MAC)</span> &mdash; C5b + C6, 7, 8, 9 assemble pores in foreign membranes &rarr; lyses prokaryotic cells, eukaryotic cells, and even enveloped viruses</li>
+      </ol>
+
+      <h3>Opsonization</h3>
+      <ul>
+        <li>At rest, phagocytes are <span class="warn">"sluggish eaters"</span></li>
+        <li><span class="highlight">Opsonins (C3b)</span> coat invading bacteria, making them more palatable</li>
+        <li><span class="highlight">Antibodies</span> (from the adaptive response) can also act as opsonins</li>
+        <li>Opsonin receptors on the phagocyte interact with the coating in a <span class="highlight">zipper-like fashion</span> until the prey is engulfed</li>
+      </ul>
+
+      <h3>Avoiding Self-Attack</h3>
+      <p>Host cells display <span class="highlight">sialic acid</span> on their surfaces &mdash; this is the "self" tag that prevents complement from attacking host membranes. Without it, MAC would attack host cells (auto-immunity).</p>
+
+      <div class="callout">Mnemonic: Complement does 3 things &mdash; "I.O.M." &mdash; <em>Inflammation, Opsonization, MAC</em>. C3a/C5a recruit phagocytes; C3b coats them for eating; C5b-C9 punches a hole.</div>
+    </div>
+  </div>
+
+  <!-- T-CELLS -->
+  <div class="tab-content active" id="tab-tcell">
+    <div class="card hy-card">
+      <h2>T-Cell Functions <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>T cells (T lymphocytes) are responsible for <span class="highlight">cell-mediated immunity</span>. They mature in the <span class="highlight">thymus</span> (that's the "T"). They don't make antibodies &mdash; they kill infected cells and direct the rest of the immune response.</p>
+
+      <h3>The T-Cell Receptor (TCR)</h3>
+      <ul>
+        <li>Each T cell has a unique <span class="highlight">T-cell receptor (TCR)</span> on its surface</li>
+        <li>The TCR <span class="warn">cannot see free antigen</span> &mdash; it only recognizes antigen that has been <span class="highlight">processed and presented on MHC molecules</span></li>
+        <li>This is fundamentally different from B cells, which can bind free antigen</li>
+      </ul>
+
+      <h3>MHC: The Display Case</h3>
+      <table class="data-table hy-table">
+        <tr><th>MHC Class</th><th>Found On</th><th>Presents</th><th>To Which T Cell</th></tr>
+        <tr><td><span class="highlight">MHC I</span></td><td><strong>All</strong> nucleated host cells</td><td>Peptides from <strong>cytoplasm</strong> (e.g. viruses, intracellular bacteria)</td><td><span class="highlight">CD8+ Cytotoxic T cells</span></td></tr>
+        <tr><td><span class="highlight">MHC II</span></td><td><strong>Antigen-presenting cells (APCs)</strong>: dendritic cells, macrophages, B cells</td><td>Peptides from <strong>engulfed/extracellular</strong> pathogens</td><td><span class="highlight">CD4+ Helper T cells</span></td></tr>
+      </table>
+
+      <p><strong>Memory trick:</strong> MHC I &times; CD8 = 8 (1&times;8). MHC II &times; CD4 = 8 (2&times;4). Both equal 8.</p>
+
+      <h3>T-Cell Activation (3 Signals)</h3>
+      <p>For a naive T cell to become activated by a dendritic cell:</p>
+      <ol>
+        <li><span class="highlight">Signal 1</span>: TCR binds antigen-MHC complex on the APC</li>
+        <li><span class="highlight">Signal 2</span>: Co-stimulation (CD28 on T cell binds B7 on APC) &mdash; confirms "real infection"</li>
+        <li><span class="highlight">Signal 3</span>: Cytokines from APC tell the T cell what kind of effector to become</li>
+      </ol>
+      <p>Without all 3 signals, the T cell becomes <span class="warn">anergic</span> (unresponsive) &mdash; this prevents autoimmunity.</p>
+
+      <h3>The Two Main T-Cell Types</h3>
+
+      <h3>1. CD4+ Helper T Cells (T<sub>H</sub>) &mdash; The Conductors</h3>
+      <ul>
+        <li>Recognize antigen on <span class="highlight">MHC II</span></li>
+        <li>Don't kill directly; they <span class="highlight">coordinate the rest of the immune response</span> via cytokines</li>
+        <li>Activate <span class="highlight">B cells</span> &rarr; antibody production (this is critical for the antibody response!)</li>
+        <li>Activate <span class="highlight">macrophages</span> through <span class="highlight">IFN-&gamma;</span> &rarr; activated macrophages have:
+          <ul>
+            <li>Increased metabolism &amp; lysosomal proteins</li>
+            <li>Production of cytokines &amp; growth factors</li>
+            <li>Increased phagocytosis</li>
+          </ul>
+        </li>
+        <li>Subsets include T<sub>H</sub>1 (helps cell-mediated immunity), T<sub>H</sub>2 (helps antibody response), T<sub>H</sub>17 (anti-fungal/extracellular bacteria), T<sub>reg</sub> (suppress immune response, prevent autoimmunity)</li>
+      </ul>
+
+      <h3>2. CD8+ Cytotoxic T Cells (CTL or T<sub>C</sub>) &mdash; The Assassins</h3>
+      <ul>
+        <li>Recognize antigen on <span class="highlight">MHC I</span></li>
+        <li><span class="warn">Kill infected host cells</span> &mdash; especially virus-infected cells and tumor cells</li>
+        <li>Killing mechanisms:
+          <ul>
+            <li><span class="highlight">Perforin</span> &mdash; punches holes in target membrane</li>
+            <li><span class="highlight">Granzymes</span> &mdash; enter through pores and trigger <span class="highlight">apoptosis</span></li>
+            <li><span class="highlight">Fas ligand</span> &mdash; binds Fas on target &rarr; apoptosis</li>
+          </ul>
+        </li>
+        <li>Lecture description: "Kill antigen-presenting cells" (i.e. infected cells displaying foreign antigen on MHC I)</li>
+      </ul>
+
+      <h3>Memory T Cells</h3>
+      <p>After the infection is cleared, most effector T cells die, but a small population becomes <span class="highlight">memory T cells</span> that persist for years. On re-exposure, they respond <span class="highlight">faster and stronger</span> &mdash; the basis of immunological memory and vaccines.</p>
+
+      <div class="callout">Mnemonic: <strong>Helper</strong> = "<strong>H</strong>elps everyone, doesn't kill" (CD4, MHC II). <strong>Cytotoxic</strong> = "kills infected cells" (CD8, MHC I). Both are essential &mdash; helpers tell B cells what to do, cytotoxics handle the cells that are already infected.</div>
+    </div>
+  </div>
+
+  <!-- B-CELLS -->
+  <div class="tab-content" id="tab-bcell">
+    <div class="card hy-card">
+      <h2>B-Cell Functions <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>B cells (B lymphocytes) are responsible for <span class="highlight">humoral immunity</span> &mdash; they make <span class="highlight">antibodies</span>. They mature in the <span class="highlight">bone marrow</span> (that's the "B").</p>
+
+      <h3>The B-Cell Receptor (BCR)</h3>
+      <ul>
+        <li>Each B cell has a unique <span class="highlight">B-cell receptor</span> on its surface &mdash; this is essentially a <span class="highlight">membrane-bound antibody</span></li>
+        <li>Unlike TCRs, the BCR <span class="highlight">can recognize free antigen</span> directly &mdash; no MHC presentation needed</li>
+        <li>B cells can recognize antigens of any kind: proteins, sugars, lipids, nucleic acids</li>
+      </ul>
+
+      <h3>B-Cell Activation</h3>
+      <ol>
+        <li>BCR binds free antigen (e.g. a piece of a bacterium)</li>
+        <li>B cell internalizes the antigen, processes it, and presents pieces on its <span class="highlight">MHC II</span></li>
+        <li>A <span class="highlight">CD4+ helper T cell</span> that recognizes the same antigen binds the B cell's MHC II-antigen complex</li>
+        <li>The helper T cell delivers cytokines (e.g. IL-4) &rarr; the B cell is fully activated</li>
+        <li>Activated B cell <span class="highlight">proliferates</span> (clonal expansion) and differentiates into:
+          <ul>
+            <li><span class="highlight">Plasma cells</span> &mdash; antibody-secreting factories</li>
+            <li><span class="highlight">Memory B cells</span> &mdash; long-lived; basis for faster response on re-exposure</li>
+          </ul>
+        </li>
+      </ol>
+
+      <div class="callout">Critical link: B cells need T cell help! This is why HIV (which kills CD4+ T cells) cripples antibody production too. No T-helpers = no antibody response to most antigens.</div>
+
+      <h3>Plasma Cells</h3>
+      <ul>
+        <li>Differentiated B cells specialized for <span class="highlight">antibody secretion</span></li>
+        <li>Each plasma cell pumps out <span class="highlight">~2,000 antibody molecules per second</span></li>
+        <li>All antibodies from one plasma cell are identical (same specificity)</li>
+        <li>Most live for days to weeks; some long-lived plasma cells in bone marrow can secrete antibodies for years</li>
+      </ul>
+
+      <h3>Memory B Cells</h3>
+      <ul>
+        <li>Long-lived (years to decades)</li>
+        <li>Carry the same BCR as the original activated B cell</li>
+        <li>On re-exposure to the same antigen, they activate <span class="highlight">faster and stronger</span> than naive B cells</li>
+        <li>Produce mainly <span class="highlight">IgG</span> (rather than IgM) and antibodies with much higher affinity</li>
+        <li>This is the cellular basis for the secondary antibody response and for vaccines</li>
+      </ul>
+
+      <h3>Clonal Selection</h3>
+      <p>The body makes millions of B cells, each with a unique BCR (generated by random V(D)J recombination). When a pathogen arrives, only the few B cells whose BCRs happen to match it get selected and expanded &mdash; this is <span class="highlight">clonal selection</span>. The same principle applies to T cells.</p>
+
+      <div class="callout">Mnemonic: <strong>B cells = antiBodies</strong>. They Bind antigen directly. They mature in Bone marrow. They become plasma cells (factories) and memory cells (insurance).</div>
+    </div>
+  </div>
+
+  <!-- ANTIBODIES -->
+  <div class="tab-content" id="tab-antibody">
+    <div class="card hy-card">
+      <h2>The Antibody Response <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3>What Is an Antibody?</h3>
+      <p>An antibody (also called an <span class="highlight">immunoglobulin, Ig</span>) is a Y-shaped protein made by plasma cells that binds a specific antigen.</p>
+
+      <h3>Antibody Structure</h3>
+      <ul>
+        <li>Y-shaped protein with <span class="highlight">4 chains</span>: two heavy + two light, held together by disulfide bonds</li>
+        <li><span class="highlight">Variable region (Fab tips)</span> &mdash; the two top "arms" with the antigen-binding sites; sequence varies between different antibodies</li>
+        <li><span class="highlight">Constant region (Fc tail)</span> &mdash; the bottom; defines antibody class and binds host cell receptors</li>
+        <li>Each antibody has <span class="highlight">2 identical antigen-binding sites</span> &mdash; can crosslink and clump pathogens</li>
+      </ul>
+
+      <div class="diagram-box">       <span class="mol">Fab</span>     <span class="mol">Fab</span>            <span class="label">&larr;&larr; Variable region</span>
+        <span class="warn">\\</span>   <span class="warn">//</span>              <span class="label">     antigen binding sites</span>
+         <span class="warn">\\</span> <span class="warn">//</span>
+          <span class="warn">Y</span>
+          |               <span class="label">&larr;&larr; Constant region (Fc)</span>
+          |                  <span class="label">  binds complement, phagocytes</span>
+          <span class="arr">|</span></div>
+
+      <h3>The 5 Antibody Classes (Isotypes)</h3>
+      <table class="data-table hy-table">
+        <tr><th>Class</th><th>Where Found</th><th>Function</th></tr>
+        <tr><td><span class="highlight">IgM</span></td><td>Blood (pentamer); first antibody made</td><td><strong>Primary response</strong> &mdash; first to appear; great at agglutination &amp; complement activation</td></tr>
+        <tr><td><span class="highlight">IgG</span></td><td>Blood &amp; tissues; <strong>most abundant</strong> in blood</td><td><strong>Secondary response</strong>; opsonization, neutralization, complement; <strong>only Ig that crosses placenta</strong> &rarr; protects newborns</td></tr>
+        <tr><td><span class="highlight">IgA</span></td><td>Mucous membranes (gut, respiratory, genitourinary); breast milk; saliva, tears</td><td>Mucosal immunity; <strong>passed in breast milk</strong> to protect newborns</td></tr>
+        <tr><td><span class="highlight">IgE</span></td><td>Bound to mast cells &amp; basophils</td><td>Allergic reactions, anti-parasite (worm) response</td></tr>
+        <tr><td><span class="highlight">IgD</span></td><td>B cell surface</td><td>BCR on naive B cells; function less well understood</td></tr>
+      </table>
+
+      <p><strong>Memory:</strong> "<span class="highlight">M</span>akes me <span class="highlight">G</span>o <span class="highlight">A</span>round <span class="highlight">E</span>verywhere <span class="highlight">D</span>aily" or just memorize: <span class="highlight">M G A E D</span>.</p>
+
+      <h3>How Antibodies Fight Infection (4 Functions)</h3>
+      <ol>
+        <li><span class="highlight">Neutralization</span> &mdash; antibodies bind toxins or virus surface proteins, blocking them from interacting with host cells (e.g. anti-tetanus antibodies block tetanus toxin)</li>
+        <li><span class="highlight">Opsonization</span> &mdash; antibodies coat the pathogen; phagocytes have Fc receptors that recognize the constant region &rarr; "eat me" signal (more efficient phagocytosis)</li>
+        <li><span class="highlight">Complement activation</span> &mdash; antibody-antigen complexes trigger the classical complement pathway &rarr; MAC, C3b opsonization, C3a/C5a inflammation</li>
+        <li><span class="highlight">Agglutination &amp; precipitation</span> &mdash; because antibodies have 2 binding sites, they crosslink antigens into clumps that are easier to phagocytose</li>
+      </ol>
+
+      <h3>Primary vs Secondary Antibody Response</h3>
+      <table class="data-table hy-table">
+        <tr><th>Feature</th><th>Primary Response</th><th>Secondary Response</th></tr>
+        <tr><td>When?</td><td>First exposure to antigen</td><td>Re-exposure (same antigen)</td></tr>
+        <tr><td>Lag time</td><td><span class="warn">Slow (~5&ndash;10 days)</span></td><td><span class="highlight">Fast (~1&ndash;3 days)</span></td></tr>
+        <tr><td>Antibody type</td><td>Mostly <span class="highlight">IgM</span> first, then some IgG</td><td>Mostly <span class="highlight">IgG</span> (also IgA/IgE)</td></tr>
+        <tr><td>Antibody amount</td><td>Lower titer</td><td><span class="highlight">Much higher titer</span> (often 100&times;)</td></tr>
+        <tr><td>Affinity</td><td>Lower</td><td>Higher (affinity maturation)</td></tr>
+        <tr><td>Duration</td><td>Shorter</td><td>Longer-lasting</td></tr>
+        <tr><td>Why?</td><td>Naive B cells must be selected and expanded from scratch</td><td><span class="highlight">Memory B cells</span> ready to go from prior exposure</td></tr>
+      </table>
+
+      <div class="callout">The secondary response is the WHOLE point of vaccines. By exposing you to a harmless version of an antigen first, the vaccine creates memory B cells (and T cells). When the real pathogen arrives, your immune system mounts the fast/strong secondary response and clears the infection before it takes hold.</div>
+
+      <h3>Antibody Diversity: V(D)J Recombination</h3>
+      <ul>
+        <li>The variable regions of antibodies are generated by <span class="highlight">random recombination</span> of V, D, and J gene segments during B-cell development</li>
+        <li>This produces an estimated <span class="highlight">10<sup>11</sup> unique antibody specificities</span> &mdash; far more than any pathogen we'll ever meet</li>
+        <li><span class="highlight">Affinity maturation</span> &mdash; during the secondary response, B cells in lymph nodes undergo more mutations, and the highest-affinity ones are selected</li>
+        <li><span class="highlight">Class switching</span> &mdash; activated B cells can switch from making IgM to IgG/IgA/IgE while keeping the same specificity</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- VACCINES -->
+  <div class="tab-content" id="tab-vaccines">
+    <div class="card hy-card">
+      <h2>Vaccines <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3>How Vaccines Work</h3>
+      <p>A vaccine exposes the immune system to a <span class="highlight">harmless version</span> of an antigen &mdash; either the whole pathogen weakened/killed, or pieces of it. This triggers a <span class="highlight">primary immune response</span> and generates <span class="highlight">memory B and T cells</span> without causing disease.</p>
+
+      <p>If you later encounter the real pathogen, your memory cells mount a <span class="highlight">fast, strong secondary response</span> that clears the infection before symptoms develop.</p>
+
+      <div class="diagram-box"><span class="label">No vaccine:</span>
+Real pathogen arrives &rarr; slow primary response (5-10 days) &rarr; <span class="warn">disease</span>
+
+<span class="label">With vaccine:</span>
+Vaccine &rarr; primary response &rarr; <span class="mol">memory cells</span> formed
+                                    <span class="arr">|</span>
+                                    <span class="arr">v</span>
+Real pathogen arrives &rarr; <span class="mol">fast secondary response (1-3 days)</span> &rarr; <span class="mol">no disease</span></div>
+
+      <h3>Types of Vaccines</h3>
+      <table class="data-table hy-table">
+        <tr><th>Type</th><th>What It Is</th><th>Pros</th><th>Cons</th><th>Examples</th></tr>
+        <tr><td><span class="highlight">Live attenuated</span></td><td>Weakened (but living) pathogen</td><td>Strong, long-lasting immunity (mimics real infection); 1 or 2 doses</td><td>Risk of reverting to virulence; not safe for immunocompromised; needs cold storage</td><td>MMR, oral polio (Sabin), chickenpox, yellow fever</td></tr>
+        <tr><td><span class="highlight">Inactivated (killed)</span></td><td>Whole pathogen killed by heat/chemicals</td><td>Safer than live; can't replicate</td><td>Weaker response; needs boosters</td><td>Flu shot, hepatitis A, injected polio (Salk), rabies</td></tr>
+        <tr><td><span class="highlight">Subunit / recombinant</span></td><td>Just a piece (e.g. one protein) of the pathogen</td><td>Very safe; no pathogen present</td><td>Often weaker; needs adjuvants and boosters</td><td>HepB, HPV, acellular pertussis</td></tr>
+        <tr><td><span class="highlight">Toxoid</span></td><td>Inactivated bacterial toxin</td><td>Triggers neutralizing antibodies against the toxin</td><td>Doesn't prevent infection, just toxin damage</td><td>Tetanus, diphtheria</td></tr>
+        <tr><td><span class="highlight">Conjugate</span></td><td>Bacterial polysaccharide chemically linked to a carrier protein</td><td>Polysaccharides alone don't activate T cells well; the protein recruits T-helper cells &rarr; better memory, especially in kids</td><td>More complex to make</td><td>Hib, pneumococcal (PCV), meningococcal</td></tr>
+        <tr><td><span class="highlight">mRNA</span></td><td>mRNA encoding a pathogen antigen; host cells make the antigen briefly</td><td>Fast to design &amp; manufacture; very safe (no pathogen)</td><td>Cold storage required; relatively new</td><td>COVID-19 (Pfizer, Moderna)</td></tr>
+        <tr><td><span class="highlight">Viral vector</span></td><td>Harmless virus engineered to carry pathogen genes</td><td>Strong response; no live pathogen</td><td>Pre-existing immunity to the vector can reduce effectiveness</td><td>J&amp;J COVID-19, Ebola vaccine</td></tr>
+      </table>
+
+      <h3>Adjuvants</h3>
+      <p>Many vaccines include an <span class="highlight">adjuvant</span> (e.g. aluminum salts) &mdash; an ingredient that <span class="highlight">enhances the immune response</span>. Adjuvants typically work by triggering innate pattern-recognition receptors (mimicking a real infection's "danger signal"), which boosts T- and B-cell activation.</p>
+
+      <h3>Active vs Passive Immunity</h3>
+      <table class="data-table hy-table">
+        <tr><th>Type</th><th>How Acquired</th><th>Memory?</th><th>Duration</th></tr>
+        <tr><td><span class="highlight">Active &mdash; natural</span></td><td>Real infection &rarr; your immune system makes antibodies</td><td>Yes</td><td>Long (often lifelong)</td></tr>
+        <tr><td><span class="highlight">Active &mdash; artificial</span></td><td><strong>Vaccination</strong> &rarr; your immune system makes antibodies</td><td>Yes</td><td>Long (sometimes needs boosters)</td></tr>
+        <tr><td><span class="highlight">Passive &mdash; natural</span></td><td>Antibodies from mother (placenta IgG, breast milk IgA)</td><td><strong>No</strong></td><td>Weeks to months</td></tr>
+        <tr><td><span class="highlight">Passive &mdash; artificial</span></td><td>Injection of pre-made antibodies (e.g. antivenom, IVIG, monoclonal antibodies like Rituximab)</td><td><strong>No</strong></td><td>Weeks</td></tr>
+      </table>
+
+      <p>Active = your immune system does the work and remembers. Passive = you receive ready-made antibodies; immediate but no memory.</p>
+
+      <h3>Herd Immunity</h3>
+      <ul>
+        <li>When a <span class="highlight">large enough fraction of the population is immune</span>, the pathogen can't sustain transmission</li>
+        <li>Protects people who <span class="warn">cannot be vaccinated</span> &mdash; immunocompromised patients, infants too young for vaccines, people with allergies to vaccine components</li>
+        <li>The threshold depends on the pathogen's <span class="highlight">R<sub>0</sub></span> (basic reproductive number):
+          <ul>
+            <li>Measles (R<sub>0</sub> &asymp; 12&ndash;18) needs <span class="warn">~95% coverage</span></li>
+            <li>Polio (R<sub>0</sub> &asymp; 5&ndash;7) needs ~80&ndash;85%</li>
+            <li>Influenza (R<sub>0</sub> &asymp; 1&ndash;2) needs ~50&ndash;75%</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Vaccine Successes</h3>
+      <ul>
+        <li><span class="highlight">Smallpox</span> &mdash; only human disease ever <strong>eradicated</strong>, declared eliminated in 1980</li>
+        <li><span class="highlight">Polio</span> &mdash; near-eradication; only a few cases per year worldwide</li>
+        <li><span class="highlight">Measles, mumps, rubella, diphtheria, tetanus</span> &mdash; rates dropped dramatically in vaccinated populations</li>
+      </ul>
+
+      <h3>Why Some Vaccines Are Hard</h3>
+      <ul>
+        <li><span class="warn">Antigenic variation</span> &mdash; pathogens like influenza and HIV change their surface proteins constantly &rarr; antibodies from a previous strain don't recognize the new one</li>
+        <li><span class="warn">Latency</span> &mdash; HIV, herpesviruses hide inside host cells where antibodies can't reach</li>
+        <li><span class="warn">Immune evasion</span> &mdash; some pathogens (TB, malaria) actively suppress immune responses</li>
+        <li><span class="warn">Many serotypes</span> &mdash; e.g. there are >100 strains of rhinovirus (common cold)</li>
+      </ul>
+
+      <div class="callout">Big picture: Vaccines exploit the secondary response. They trick your immune system into making memory B and T cells against a harmless preview of the pathogen. The first real exposure feels like a second exposure, so it's cleared before causing disease.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FLASHCARDS ==================== -->
+<div class="section" id="sec-flashcards">
+  <div class="score-bar">
+    <div><span class="score-text">Flashcard Progress</span></div>
+    <div><span class="score-pct" id="fc-score">0 / 32</span></div>
+  </div>
+  <div class="fc-container">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="fc-front" id="fc-front"></div>
+      <div class="fc-back" id="fc-back"></div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button class="fc-btn" onclick="prevCard()">&larr;</button>
+    <span class="fc-counter" id="fc-counter">1 / 32</span>
+    <button class="fc-btn" onclick="nextCard()">&rarr;</button>
+  </div>
+  <div class="fc-hint">Click to flip &middot; Arrow keys to navigate</div>
+</div>
+
+<!-- ==================== FRQ ==================== -->
+<div class="section" id="sec-frq">
+  <div class="score-bar">
+    <div><span class="score-text">FRQ Self-Assessment</span></div>
+    <div><span class="score-pct" id="frq-score">0%</span></div>
+    <button class="reset-btn" onclick="resetFRQ()">Reset All</button>
+  </div>
+  <div id="frq-container"></div>
+</div>
+
+<!-- ==================== MATCHING ==================== -->
+<div class="section" id="sec-matching">
+  <div class="score-bar">
+    <div><span class="score-text">Matching</span></div>
+    <div><span class="score-pct" id="match-score">0 / 12</span></div>
+    <button class="reset-btn" onclick="initMatching()">Reset</button>
+  </div>
+  <div class="match-grid">
+    <div>
+      <div class="match-col-header">Term</div>
+      <div id="match-left"></div>
+    </div>
+    <div>
+      <div class="match-col-header">Definition</div>
+      <div id="match-right"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HARD FRQ ==================== -->
+<div class="section" id="sec-hard">
+  <div class="score-bar">
+    <div><span class="score-text">Hard FRQ (Exam-Level)</span></div>
+    <div><span class="score-pct" id="hard-score">0%</span></div>
+    <button class="reset-btn" onclick="resetHard()">Reset All</button>
+  </div>
+  <div id="hard-container"></div>
+</div>
+
+</main>
+
+<script>
+// ====== NAVIGATION ======
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+function showTab(btn, id) {
+  btn.closest('.section').querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.closest('.section').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ====== FLASHCARDS ======
+const flashcards = [
+  {q:"What are the two branches of the immune system?", a:"INNATE immunity (always available, broad, no memory) and ADAPTIVE immunity (set in motion by contact with a particular agent, highly specific, has memory)."},
+  {q:"What are MAMPs and give examples.", a:"Microbe-Associated Molecular Patterns &mdash; conserved microbial features the innate immune system recognizes. Examples: LPS (gram-negative outer membrane), peptidoglycan (cell wall), flagellin (flagellum), pilin (pili). The human innate immune system recognizes ~1,000 distinct MAMPs."},
+  {q:"What are TLRs and how do they signal?", a:"Toll-Like Receptors. Located on the outward-facing membranes of macrophages and other cells. When a TLR binds a MAMP, it triggers a signaling cascade that activates the transcription factor NF-&kappa;B, which turns on cytokine genes and cell survival genes. This activates macrophages to be more effective phagocytes (sounds the alarm)."},
+  {q:"What are NLRs?", a:"NOD-Like Receptors. Cytoplasmic pattern-recognition receptors. Detect microbial products that breach the phagosomal membrane. They can trigger 3 responses: NF-&kappa;B activation, inflammasome assembly &rarr; pyroptosis (programmed inflammatory cell death), and neutrophil chemotaxis."},
+  {q:"What are the 4 cardinal signs of inflammation?", a:"1) Reddening (increased blood flow), 2) Swelling (tissues engorged with fluid + immune effectors), 3) Pain (chemical mediators + nerve compression), 4) Pus (dead white blood cells)."},
+  {q:"What is diapedesis?", a:"The process by which white blood cells squeeze through the walls of blood vessels to reach the site of infection. They follow chemotaxin gradients generated by complement activation."},
+  {q:"Describe the 3 steps of phagocytosis.", a:"1) Pseudopods engulf the microbe &rarr; trapped in a phagosome. 2) Phagosome fuses with a lysosome &rarr; phagolysosome. 3) Microbe is digested by hydrolytic and oxidative enzymes plus antimicrobial peptides."},
+  {q:"What are neutrophils and what's special about them?", a:"The most numerous phagocytes. Short-lived (~1 week), CANNOT proliferate (terminally differentiated). On a 'seek and destroy' mission. Contain hypochlorite (bleach!). Can also choose to die and form NETs (Neutrophil Extracellular Traps) to entrap pathogens."},
+  {q:"What's the difference between monocytes and macrophages?", a:"Monocytes = long-lived cells in blood, capable of differentiating further. Macrophages = monocytes that have entered tissue. Macrophages clean up debris from the neutrophil-microbe battle, secrete cytokines, and help INITIATE adaptive immunity by presenting antigens to T cells."},
+  {q:"What does the complement system do? (3 outputs)", a:"1) Inflammation &amp; phagocyte recruitment (C3a, C5a chemotaxins). 2) Opsonization (C3b coats bacteria for phagocytosis). 3) Membrane Attack Complex (C5b-C9 punches pores in foreign membranes &rarr; lyses bacteria, eukaryotic cells, and even enveloped viruses)."},
+  {q:"What are the 3 complement activation pathways?", a:"Classical (antigen-antibody complex), Lectin (host lectin binds pathogen), Alternative (pathogen surface directly)."},
+  {q:"How does the host avoid attacking itself with complement?", a:"Host cells display sialic acid on their surfaces, which marks them as 'self' and prevents the membrane attack complex from forming on host membranes."},
+  {q:"What is opsonization?", a:"The coating of a pathogen with opsonins (C3b from complement, or antibodies) to make it more 'palatable' to phagocytes. Opsonin receptors on phagocytes interact with the coating in a zipper-like fashion until the prey is engulfed."},
+  {q:"Where do T cells and B cells mature?", a:"T cells mature in the THYMUS (T = thymus). B cells mature in the BONE MARROW (B = bone marrow)."},
+  {q:"What does the T cell receptor (TCR) recognize?", a:"The TCR recognizes antigen ONLY when it is processed and presented on MHC molecules &mdash; never free antigen. This is fundamentally different from B cells."},
+  {q:"What is MHC I and which T cells recognize it?", a:"MHC I is found on ALL nucleated host cells. It presents peptides from the cytoplasm (e.g. viral or intracellular bacterial proteins). Recognized by CD8+ Cytotoxic T cells."},
+  {q:"What is MHC II and which T cells recognize it?", a:"MHC II is found on professional antigen-presenting cells (APCs): dendritic cells, macrophages, B cells. It presents peptides from engulfed/extracellular pathogens. Recognized by CD4+ Helper T cells."},
+  {q:"What do CD4+ Helper T cells do?", a:"They COORDINATE the rest of the immune response via cytokines. They activate B cells (essential for antibody production), activate macrophages via IFN-&gamma; (which boosts metabolism, lysosomal proteins, cytokine production, and phagocytosis). They don't kill directly."},
+  {q:"What do CD8+ Cytotoxic T cells do?", a:"They KILL infected host cells (especially virus-infected and tumor cells). Use perforin (punches holes), granzymes (trigger apoptosis), and Fas ligand (apoptosis signal). They recognize antigen on MHC I."},
+  {q:"What does the B cell receptor (BCR) recognize?", a:"The BCR is essentially a membrane-bound antibody. Unlike TCRs, it can directly bind FREE antigen of any kind &mdash; proteins, sugars, lipids, nucleic acids &mdash; with no MHC presentation required."},
+  {q:"How is a B cell activated?", a:"1) BCR binds free antigen. 2) B cell internalizes, processes, and presents antigen on MHC II. 3) A CD4+ helper T cell that recognizes the same antigen binds the B cell's MHC II. 4) Helper T cell delivers cytokines. 5) B cell proliferates and differentiates into plasma cells (antibody factories) and memory B cells."},
+  {q:"What is a plasma cell?", a:"A differentiated B cell specialized for antibody secretion. Pumps out ~2,000 antibody molecules per second. All antibodies from one plasma cell have the same specificity."},
+  {q:"What is the structure of an antibody?", a:"Y-shaped, 4 chains (2 heavy + 2 light) held by disulfide bonds. The two top arms (Fab) are the variable region with antigen-binding sites (2 per antibody). The bottom (Fc) is the constant region that defines the class and binds host cell receptors."},
+  {q:"Name the 5 antibody classes and their main locations.", a:"IgM (blood, pentamer, first made), IgG (most abundant in blood, crosses placenta), IgA (mucous membranes, breast milk), IgE (bound to mast cells; allergies, parasites), IgD (B cell surface)."},
+  {q:"Which antibody is most abundant in blood and what's special about it?", a:"IgG. It mediates the secondary response, opsonizes, neutralizes, activates complement, and is the ONLY antibody that crosses the placenta to protect newborns."},
+  {q:"What are the 4 functions of antibodies?", a:"1) Neutralization (block toxins or virus binding to host cells). 2) Opsonization (coat pathogen for phagocytosis via Fc receptors). 3) Complement activation (classical pathway). 4) Agglutination/precipitation (crosslink antigens into clumps)."},
+  {q:"What are the differences between primary and secondary antibody responses?", a:"Primary: slow (5-10 days), mostly IgM, lower titer, lower affinity. Secondary: fast (1-3 days), mostly IgG, much higher titer, higher affinity, longer-lasting. Secondary is faster/stronger because of memory B cells from the first exposure. THIS IS WHAT VACCINES EXPLOIT."},
+  {q:"How do vaccines work?", a:"They expose the immune system to a harmless version of an antigen, triggering a primary response and generating memory B and T cells WITHOUT causing disease. Later, when the real pathogen arrives, memory cells mount a fast secondary response that clears the infection before symptoms develop."},
+  {q:"What are live attenuated vaccines? Pros/cons + examples.", a:"Weakened but living pathogen. Pros: strongest, longest-lasting immunity (mimics real infection); 1-2 doses. Cons: can revert to virulence; not safe for immunocompromised; needs cold storage. Examples: MMR, oral polio (Sabin), chickenpox, yellow fever."},
+  {q:"What is a toxoid vaccine?", a:"A vaccine made from an inactivated bacterial toxin. Triggers neutralizing antibodies that bind the toxin. Doesn't prevent infection itself, just toxin damage. Examples: tetanus, diphtheria."},
+  {q:"What is a conjugate vaccine and why is it useful?", a:"A bacterial polysaccharide chemically linked to a carrier protein. Polysaccharides alone are T-cell-independent and trigger weak responses (especially in young kids). The carrier protein recruits T-helper cells &rarr; much stronger memory response. Examples: Hib, pneumococcal (PCV), meningococcal."},
+  {q:"What's the difference between active and passive immunity?", a:"Active = your own immune system makes antibodies (from real infection or vaccination); generates MEMORY; long-lasting. Passive = you receive pre-made antibodies (from mom via placenta/breast milk, or injected antivenom/IVIG); NO memory; immediate but short-lived (weeks to months)."},
+  {q:"What is herd immunity?", a:"When a large enough fraction of the population is immune, the pathogen can't sustain transmission. Protects people who can't be vaccinated (immunocompromised, infants, allergies). The threshold depends on R&#8320;: measles needs ~95% coverage; polio ~80-85%; flu ~50-75%."}
+];
+
+let fcIdx = 0;
+function renderCard() {
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('fc-front').innerHTML = flashcards[fcIdx].q;
+  document.getElementById('fc-back').innerHTML = flashcards[fcIdx].a.replace(/\n/g,'<br>');
+  document.getElementById('fc-counter').textContent = (fcIdx+1)+' / '+flashcards.length;
+  document.getElementById('fc-score').textContent = (fcIdx+1)+' / '+flashcards.length;
+}
+function flipCard() { document.getElementById('flashcard').classList.toggle('flipped'); }
+function nextCard() { fcIdx = (fcIdx+1) % flashcards.length; renderCard(); }
+function prevCard() { fcIdx = (fcIdx-1+flashcards.length) % flashcards.length; renderCard(); }
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight') nextCard();
+  if(e.key==='ArrowLeft') prevCard();
+  if(e.key===' '||e.key==='Enter') { e.preventDefault(); flipCard(); }
+});
+renderCard();
+
+// ====== FRQ ======
+const frqs = [
+  {q:"Compare innate and adaptive immunity in terms of speed, specificity, and memory.", a:"<strong>Innate</strong>: always available, fast (minutes-hours), broad specificity (recognizes ~1,000 conserved MAMPs), <strong>NO memory</strong> &mdash; same response every time. Includes barriers, complement, phagocytes. <strong>Adaptive</strong>: set in motion by contact with a particular agent, slow at first (days-weeks), highly specific (recognizes individual antigens), <strong>HAS memory</strong> &mdash; faster/stronger on re-exposure. Includes B cells (antibodies) and T cells (cell-mediated).", hy:false},
+  {q:"What are the 4 cardinal signs of inflammation and what causes each?", a:"1) <strong>Reddening</strong> &mdash; increased blood flow to the area. 2) <strong>Swelling</strong> &mdash; tissues engorged with fluid containing immune effectors. 3) <strong>Pain</strong> &mdash; release of chemical mediators and compression of nerves. 4) <strong>Pus</strong> &mdash; accumulation of dead white blood cells.", hy:false},
+  {q:"What are MAMPs, and how does the host detect them?", a:"<strong>MAMPs</strong> (Microbe-Associated Molecular Patterns) are conserved microbial features that are essential for fitness, so microbes can't easily evolve away from them. Examples: LPS, peptidoglycan, flagellin, pilin. The host detects them with <strong>pattern recognition receptors (PRRs)</strong>: <strong>TLRs</strong> on cell surfaces (face outward) and <strong>NLRs</strong> in the cytoplasm. Both signal through <strong>NF-&kappa;B</strong> to activate cytokine genes.", hy:false},
+  {q:"Walk through the steps of phagocytosis.", a:"1) Phagocyte's <strong>pseudopods engulf</strong> the microbe. 2) The microbe is enclosed in a vesicle called the <strong>phagosome</strong>. 3) The phagosome <strong>fuses with a lysosome</strong> &rarr; forms the <strong>phagolysosome</strong>. 4) The microbe is digested by <strong>hydrolytic enzymes</strong>, oxidative enzymes, and antimicrobial peptides inside the phagolysosome.", hy:false},
+  {q:"What does the complement system do, and what are its 3 main outputs?", a:"The complement system is a soluble (not cell-based) defense in blood made of ~30 proteins. It can be activated by 3 pathways (classical, lectin, alternative). Its 3 main outputs: 1) <strong>Inflammation &amp; chemotaxis</strong> (C3a, C5a recruit phagocytes); 2) <strong>Opsonization</strong> (C3b coats bacteria for phagocytosis); 3) <strong>Membrane Attack Complex (MAC)</strong> (C5b-C9 forms pores that lyse bacteria, eukaryotic cells, and enveloped viruses).", hy:false},
+  {q:"What's the difference between MHC I and MHC II?", a:"<strong>MHC I</strong>: on ALL nucleated host cells; presents peptides from the <strong>cytoplasm</strong> (viral or intracellular bacterial proteins); recognized by <strong>CD8+ Cytotoxic T cells</strong>. <strong>MHC II</strong>: only on professional <strong>antigen-presenting cells</strong> (dendritic cells, macrophages, B cells); presents peptides from <strong>engulfed extracellular</strong> pathogens; recognized by <strong>CD4+ Helper T cells</strong>. Memory: 1&times;8=8 (MHC I + CD8), 2&times;4=8 (MHC II + CD4).", hy:true},
+  {q:"What are the functions of CD4+ Helper T cells?", a:"They are the <strong>conductors</strong> of the immune response. They recognize antigen on MHC II. They don't kill directly &mdash; instead they coordinate everyone else via <strong>cytokines</strong>. Specifically: they <strong>activate B cells</strong> (essential for antibody production), they <strong>activate macrophages via IFN-&gamma;</strong> (which boosts metabolism, lysosomal proteins, cytokine production, and phagocytosis), and they secrete cytokines that direct the type of immune response.", hy:true},
+  {q:"What are the functions of CD8+ Cytotoxic T cells?", a:"They <strong>kill infected host cells</strong> (especially virus-infected and tumor cells). They recognize antigen presented on MHC I. Killing mechanisms: <strong>perforin</strong> (punches holes in target membrane), <strong>granzymes</strong> (enter through pores and trigger apoptosis), <strong>Fas ligand</strong> (binds Fas on target &rarr; apoptosis). The lecture description: 'kill antigen-presenting cells' (i.e. cells displaying foreign antigen on MHC I).", hy:true},
+  {q:"How does a B cell get activated, and what does it become?", a:"1) The B cell's BCR <strong>binds free antigen</strong> directly (no MHC needed). 2) The B cell <strong>internalizes and processes</strong> the antigen, then displays pieces on its own <strong>MHC II</strong>. 3) A <strong>CD4+ helper T cell</strong> that recognizes the same antigen binds the B cell's MHC II-antigen complex. 4) The helper T cell delivers <strong>cytokines</strong> &rarr; the B cell is fully activated. 5) The B cell <strong>proliferates and differentiates</strong> into <strong>plasma cells</strong> (antibody factories) and <strong>memory B cells</strong> (insurance for next time).", hy:true},
+  {q:"Compare B cells and T cells in terms of where they mature, what they recognize, and what they do.", a:"<strong>B cells</strong>: mature in <strong>bone marrow</strong>; BCR recognizes <strong>free antigen directly</strong> (any kind: protein, sugar, lipid); become <strong>plasma cells</strong> that secrete antibodies (humoral immunity). <strong>T cells</strong>: mature in <strong>thymus</strong>; TCR recognizes <strong>antigen ONLY on MHC</strong>; either help others (CD4+ helper) or kill infected cells (CD8+ cytotoxic). T cells = cell-mediated; B cells = antibody/humoral.", hy:true},
+  {q:"Describe the structure of an antibody.", a:"Y-shaped protein, 4 chains: 2 heavy + 2 light, held by disulfide bonds. The 2 top 'arms' (<strong>Fab regions</strong>) are the <strong>variable region</strong> with the antigen-binding sites (2 per antibody). The bottom (<strong>Fc region</strong>) is the <strong>constant region</strong> &mdash; defines the antibody class (IgM, IgG, etc.) and binds host cell receptors (Fc receptors on phagocytes, complement). Each antibody has 2 binding sites &rarr; can crosslink antigens.", hy:true},
+  {q:"List the 5 antibody classes and their key features.", a:"<strong>IgM</strong>: pentamer in blood; <strong>first antibody made</strong> in primary response; great at agglutination &amp; complement activation. <strong>IgG</strong>: <strong>most abundant in blood</strong>; mediates secondary response; opsonizes; <strong>only Ig that crosses the placenta</strong>. <strong>IgA</strong>: mucous membranes, breast milk, saliva, tears; mucosal immunity. <strong>IgE</strong>: bound to mast cells &amp; basophils; allergies and anti-parasite. <strong>IgD</strong>: B cell surface; function less understood.", hy:true},
+  {q:"What are the 4 functions of antibodies?", a:"1) <strong>Neutralization</strong> &mdash; block toxins or virus surface proteins from interacting with host cells (e.g. anti-tetanus antibodies block tetanus toxin). 2) <strong>Opsonization</strong> &mdash; coat pathogen so phagocytes can grab via Fc receptors. 3) <strong>Complement activation</strong> &mdash; antibody-antigen complexes trigger the classical complement pathway &rarr; MAC, C3b, C3a/C5a inflammation. 4) <strong>Agglutination/precipitation</strong> &mdash; crosslink antigens into clumps that are easier to clear.", hy:true},
+  {q:"Compare the primary and secondary antibody responses.", a:"<strong>Primary</strong> (first exposure): slow lag (~5-10 days), mostly IgM first then some IgG, lower titer, lower affinity, shorter duration. <strong>Secondary</strong> (re-exposure): fast (~1-3 days), mostly IgG (also IgA/IgE), much higher titer (~100&times;), higher affinity (affinity maturation), longer-lasting. The secondary response is faster/stronger because <strong>memory B cells</strong> from the first exposure are pre-primed and ready to go. Vaccines exploit this.", hy:true},
+  {q:"How do vaccines work? Explain in terms of primary and secondary responses.", a:"A vaccine exposes the immune system to a <strong>harmless version of an antigen</strong> &mdash; either a weakened/killed pathogen or pieces of it. This triggers a <strong>primary immune response</strong> and generates <strong>memory B cells and T cells</strong> WITHOUT causing disease. When the real pathogen arrives later, memory cells mount a <strong>fast, strong secondary response</strong> (1-3 days, high IgG titer) that clears the infection before symptoms develop. The vaccine essentially gives your immune system a 'practice round' so the real fight is its second exposure, not its first.", hy:true},
+  {q:"List the major types of vaccines and give one example of each.", a:"<strong>Live attenuated</strong> (weakened pathogen): MMR, oral polio, chickenpox. <strong>Inactivated</strong> (killed pathogen): flu shot, hep A, injected polio (Salk), rabies. <strong>Subunit/recombinant</strong> (one protein): HepB, HPV. <strong>Toxoid</strong> (inactivated toxin): tetanus, diphtheria. <strong>Conjugate</strong> (polysaccharide + carrier protein): Hib, pneumococcal. <strong>mRNA</strong> (mRNA encoding antigen): COVID-19 (Pfizer, Moderna). <strong>Viral vector</strong> (engineered harmless virus): J&amp;J COVID, Ebola.", hy:true},
+  {q:"Compare live attenuated vs inactivated vaccines.", a:"<strong>Live attenuated</strong>: weakened but still living/replicating pathogen. Pros: very strong &amp; long-lasting immunity (mimics real infection); usually 1-2 doses. Cons: small risk of reverting to virulence; not safe for immunocompromised patients or pregnant people; needs cold storage. <strong>Inactivated (killed)</strong>: pathogen killed by heat or chemicals, can't replicate. Pros: safer, no risk of reverting, can use in immunocompromised. Cons: weaker response, requires multiple doses/boosters.", hy:true},
+  {q:"What is a conjugate vaccine and why is it especially useful in children?", a:"A conjugate vaccine is a <strong>bacterial polysaccharide chemically linked to a carrier protein</strong>. The problem: polysaccharide antigens alone are <strong>T-cell-independent</strong> &mdash; they activate B cells weakly and produce poor memory, especially in young children whose immune systems handle polysaccharides poorly. Linking the polysaccharide to a protein recruits <strong>T-helper cells</strong>, which provide cytokine help to B cells, dramatically improving the response and creating long-lasting memory. Examples: Hib, pneumococcal (PCV), meningococcal.", hy:true},
+  {q:"Explain the difference between active and passive immunity.", a:"<strong>Active immunity</strong> = your own immune system makes the antibodies. Acquired by real infection (active-natural) or vaccination (active-artificial). Generates <strong>memory cells</strong>. Long-lasting (often years to lifelong). <strong>Passive immunity</strong> = you receive pre-made antibodies from someone/something else. Acquired naturally from mom (placenta IgG, breast milk IgA) or artificially (antivenom, IVIG, monoclonal antibodies). <strong>NO memory</strong>. Immediate protection but short-lived (weeks to months).", hy:true},
+  {q:"What is herd immunity?", a:"When a large enough fraction of the population is immune (via vaccination or previous infection), the pathogen <strong>cannot sustain transmission</strong> &mdash; each infected person doesn't infect at least one new person on average. This protects people who <strong>cannot be vaccinated</strong>: immunocompromised patients, infants too young for vaccines, people with allergies to vaccine components. The threshold depends on the pathogen's R&#8320; (basic reproductive number). Measles needs ~95% coverage; flu needs ~50-75%.", hy:true},
+  {q:"Why is the influenza vaccine reformulated every year?", a:"Influenza viruses undergo constant <strong>antigenic variation</strong>: <strong>antigenic drift</strong> (small mutations in surface proteins HA and NA) and <strong>antigenic shift</strong> (large reassortments). Antibodies generated against last year's HA/NA don't recognize the new strains well. Each year, public health agencies predict which strains will circulate and reformulate the vaccine to match. This is also why a universal flu vaccine has been so hard to make.", hy:true},
+  {q:"Explain why someone with an HIV infection that has destroyed their CD4+ T cells will have trouble making antibodies, even though their B cells are intact.", a:"B cells need <strong>CD4+ helper T cell</strong> assistance to be fully activated for most antigens. The pathway: B cell binds antigen via BCR &rarr; presents peptide on MHC II &rarr; <strong>CD4+ helper T cell binds the MHC II-antigen complex and provides cytokines</strong> &rarr; B cell proliferates and differentiates into plasma cells. <strong>Without CD4+ helpers, the B cell never gets the second signal</strong>, so it can't fully activate and differentiate. This is why HIV's destruction of CD4+ T cells leads to broad immunodeficiency &mdash; both cell-mediated (T cell killing) and humoral (antibody) responses are crippled.", hy:true},
+  {q:"Why is IgG the only antibody that crosses the placenta, and why is this important?", a:"IgG has a unique <strong>Fc structure</strong> recognized by the <strong>FcRn receptor</strong> on placental cells, which actively transports IgG from mother to fetus. This is critical because newborns are born with an <strong>immature immune system</strong> and need protection against pathogens during their first months of life. Maternal IgG provides <strong>natural passive immunity</strong> for ~6 months (until it decays), bridging the gap until the baby's own immune system can respond and until vaccinations begin. (Note: IgA is also passed via breast milk for mucosal protection.)", hy:true},
+  {q:"Why are toxoid vaccines effective against tetanus and diphtheria?", a:"Tetanus and diphtheria are diseases caused not directly by the bacteria but by the <strong>toxins they secrete</strong>. A toxoid vaccine contains the <strong>inactivated toxin</strong> (chemically modified so it can't damage cells but still has its antigenic shape). Vaccination triggers <strong>neutralizing antibodies</strong> against the toxin. When the bacteria infect later, the toxin is bound and neutralized by these antibodies before it can damage host tissues. The bacteria themselves may still grow, but the dangerous toxin is harmless &mdash; preventing the disease.", hy:true},
+  {q:"What's the role of an adjuvant in a vaccine?", a:"An adjuvant (e.g. aluminum salts) is added to a vaccine to <strong>boost the immune response</strong>. Adjuvants typically work by <strong>triggering innate pattern-recognition receptors</strong> (TLRs/NLRs), mimicking a real infection's 'danger signal.' This activates dendritic cells, increases cytokine production, and boosts T- and B-cell activation downstream. Subunit and inactivated vaccines especially benefit from adjuvants because they're not very immunogenic on their own.", hy:true},
+  {q:"Why was smallpox eradicable but malaria has not been?", a:"<strong>Smallpox</strong> was eradicable because: (1) only one stable serotype (no antigenic variation), (2) only humans were a reservoir (no animal carriers), (3) infection produced lifelong immunity, (4) the live attenuated vaccine produced strong, lasting immunity, (5) symptoms were obvious and traceable. <strong>Malaria</strong> resists eradication because: (1) the parasite (<em>Plasmodium</em>) has a complex life cycle with multiple stages and antigenic variation, (2) mosquito vectors are hard to eliminate, (3) infection does NOT produce lasting immunity, (4) no fully effective vaccine exists yet, (5) drug resistance keeps emerging.", hy:true},
+  {q:"Explain how innate and adaptive immunity work together to clear an infection.", a:"<strong>Innate first</strong>: skin and mucous barriers physically block entry. If breached, complement and resident phagocytes (macrophages) detect MAMPs via TLRs/NLRs &rarr; trigger inflammation, recruit neutrophils via chemotaxins. Phagocytes engulf pathogens. <strong>Bridge</strong>: dendritic cells sample antigen and migrate to lymph nodes to present it on MHC. <strong>Adaptive then</strong>: dendritic cells activate naive T cells. CD4+ helper T cells activate B cells (&rarr; antibodies) and macrophages (via IFN-&gamma;). CD8+ cytotoxic T cells kill infected cells. <strong>Synergy</strong>: antibodies opsonize pathogens for innate phagocytes; antibody-antigen complexes activate classical complement; activated macrophages phagocytose more efficiently. The infection is cleared, and memory cells remain for next time.", hy:false},
+  {q:"What are NETs and why are they useful?", a:"<strong>NETs (Neutrophil Extracellular Traps)</strong> are webs of DNA, histones, and antimicrobial proteins that neutrophils release by <strong>choosing to die</strong> in a process called NETosis. The DNA web physically <strong>entraps invading pathogens</strong>, preventing them from spreading, while the bound antimicrobial proteins kill the trapped microbes. NETs are useful against pathogens that are too large to phagocytose (e.g. fungi like <em>Candida</em>) or that escape phagosomes. They show that even neutrophil <strong>death</strong> can be a defensive strategy.", hy:false},
+];
+
+const hardFrqs = [
+  {q:"A patient receives the flu vaccine in October. In January, they catch the same strain of flu. Compare what happens at the molecular and cellular level versus an unvaccinated person catching the same flu.", a:"<strong>Vaccinated patient (secondary response)</strong>: 1) Vaccine in October triggered a primary response &mdash; naive B cells specific for HA/NA were activated by dendritic cells + CD4+ helper T cells, proliferated, and a fraction became <strong>memory B cells</strong> (plus memory T cells). Memory cells circulated for months. 2) When the real virus arrives in January, the memory B cells are pre-primed: their BCRs already match the virus. 3) Within <strong>1-3 days</strong>, memory B cells rapidly proliferate and differentiate into plasma cells producing <strong>high-titer, high-affinity IgG</strong>. Memory CD8+ T cells also re-activate quickly to kill infected cells. 4) Virus is cleared before symptoms develop or with mild symptoms. <strong>Unvaccinated patient (primary response)</strong>: 1) Virus encounters naive immune system. 2) Innate response (interferons, NK cells) buys time but doesn't clear. 3) Dendritic cells must present antigen to naive T cells in lymph nodes; B cells must clonal-select; takes <strong>5-10 days</strong> to mount appreciable IgM response (and longer for IgG). 4) Meanwhile, the virus replicates and causes full symptoms. The patient eventually clears it but suffers full disease.", hy:true},
+  {q:"You are designing a vaccine against a newly emerging respiratory virus. The virus mutates rapidly and replicates inside host cells. Which type of vaccine would you choose, and why? What are the trade-offs?", a:"Best choice depends on goals, but I would consider: <strong>mRNA vaccine</strong> (Pfizer/Moderna COVID model). Reasons: (1) <strong>Fastest to design and manufacture</strong> &mdash; critical for a rapidly mutating virus where you need to update strains quickly. (2) <strong>Activates both arms</strong>: host cells make the viral antigen and present it on MHC I (activating CD8+ cytotoxic T cells) AND release it for MHC II presentation (activating CD4+ helpers and B cells / antibody response). This is important for an intracellular virus &mdash; antibodies alone won't reach virus inside cells, so you need cytotoxic T cells. (3) Very safe &mdash; no live pathogen. <strong>Trade-offs</strong>: requires cold storage (mRNA is fragile); newer technology with less long-term safety data; can cause more reactogenicity (sore arm, fever). Alternative: <strong>viral vector vaccine</strong> (e.g. J&amp;J COVID, Ebola). Pros: strong response, no cold storage. Cons: pre-existing immunity to the vector reduces effectiveness on boosters. <strong>Avoid</strong> for a fast-mutating virus: live attenuated (slow to produce, safety risk), inactivated (slow to scale), polysaccharide subunit (won't recruit T cells well).", hy:true},
+  {q:"A person is bitten by a venomous snake and given antivenom (pre-made antibodies against the venom). 6 months later, they're bitten again. Are they protected this time? Explain why or why not.", a:"<strong>NO, they are NOT protected</strong> from the second bite by the previous antivenom. Reason: antivenom is <strong>passive immunity</strong> &mdash; the patient received pre-made antibodies but their own immune system did not generate them. Their B cells were never activated by the venom antigens, so <strong>no memory B cells were created</strong>. The injected antibodies degrade over weeks to months and are gone by 6 months. Without memory B cells, a second envenomation triggers a <strong>primary response</strong> (5-10 day lag), which is far too slow to neutralize a fast-acting toxin. They will need antivenom again. This contrasts with <strong>active immunity</strong> from vaccination: a tetanus toxoid vaccine, for example, generates memory B cells, so a person with prior tetanus vaccination has lasting protection (with periodic boosters).", hy:true},
+  {q:"Explain the molecular basis of why MHC II antigen presentation is essential for B cells to make antibodies against a protein antigen, and why polysaccharide antigens alone produce poor antibody responses.", a:"<strong>For protein antigens</strong>: 1) B cell BCR binds the protein antigen. 2) B cell internalizes the antigen, breaks it into <strong>peptide fragments</strong> in its endosome/lysosome. 3) Peptides are loaded onto <strong>MHC II</strong> and displayed on the B cell surface. 4) A CD4+ helper T cell whose TCR recognizes that peptide-MHC II complex binds the B cell. 5) The helper T cell delivers <strong>cytokines</strong> (IL-4, IL-21, etc.) and CD40L &mdash; the second signal the B cell needs to fully activate, undergo class switching (IgM &rarr; IgG/IgA), affinity maturation, and memory formation. <strong>For polysaccharide antigens</strong>: B cells can bind polysaccharides via BCR, but polysaccharides <strong>cannot be processed into peptides for MHC II presentation</strong> (MHC II only displays peptide fragments). So the B cell can't recruit T-helper cells. The result is a <strong>T-cell-independent response</strong> &mdash; only weak IgM, no class switching to IgG, no affinity maturation, and no/poor memory formation. This is especially poor in young children whose 'extrafollicular' T-independent B cell response is immature. <strong>Conjugate vaccines solve this</strong> by linking the polysaccharide to a carrier protein &mdash; the B cell binds the polysaccharide via BCR, but the protein gets processed and presented on MHC II, recruiting T-helper cells &rarr; strong, memory-forming response.", hy:true},
+  {q:"A virus has evolved to inhibit MHC I expression in host cells it infects. How does this affect the immune response, and what backup mechanism does the host have?", a:"<strong>Effect of inhibiting MHC I</strong>: Normally, host cells display peptides from cytoplasmic proteins (including viral proteins from a viral infection) on MHC I. <strong>CD8+ cytotoxic T cells</strong> recognize these peptide-MHC I complexes via their TCR and kill the infected cell. By suppressing MHC I, the virus makes infected cells <strong>invisible to CTLs</strong> &mdash; they can't be detected and killed, allowing the virus to replicate freely. Many viruses use this strategy: HIV (Nef protein), CMV, HSV, EBV. <strong>Host backup: Natural Killer (NK) cells</strong>. NK cells operate by an opposite logic from CTLs: they look for the <strong>ABSENCE of MHC I</strong> (the 'missing self' hypothesis). Healthy host cells display MHC I and are 'left alone'; cells that have lost MHC I (because of viral suppression OR cancer) are flagged as <strong>abnormal and killed</strong> by NK cells using perforin/granzymes (similar to CTLs). So while CTLs detect 'foreign peptide on MHC I,' NK cells detect 'no MHC I at all.' This represents an evolutionary arms race &mdash; if the virus shows MHC I with viral peptides, CTLs kill; if it hides MHC I, NK cells kill.", hy:true},
+  {q:"Outline the cellular and molecular events that lead to herd immunity for measles. Why does measles need 95% coverage when flu only needs ~50-75%?", a:"<strong>Herd immunity logic</strong>: A pathogen's basic reproductive number <strong>R&#8320;</strong> = average number of new infections per case in a fully susceptible population. To stop transmission, the immune fraction must be high enough that the effective R drops below 1. The threshold is approximately <strong>1 &minus; (1/R&#8320;)</strong>. <strong>Measles</strong>: R&#8320; &asymp; 12-18 &mdash; one infected person infects ~15 others on average (extremely contagious airborne virus). Threshold = 1 &minus; (1/15) &asymp; <strong>93-95%</strong>. <strong>Flu</strong>: R&#8320; &asymp; 1-2 &mdash; one infected person infects ~1.5 others. Threshold = 1 &minus; (1/1.5) &asymp; <strong>33-50%</strong>; closer to 50-75% in practice given strain variation. <strong>Cellular basis of herd immunity</strong>: Each vaccinated person has memory B/T cells specific for the pathogen. On exposure, secondary response clears the virus before the person becomes contagious. With enough vaccinated 'firewalls' surrounding any given susceptible person, the chain of transmission breaks. Vulnerable people (infants, immunocompromised, allergies) are protected because they're unlikely to encounter the virus at all. This is why <strong>declining MMR vaccination rates have caused recent measles outbreaks</strong> &mdash; even small drops below ~95% allow the virus to spread.", hy:true},
+  {q:"Compare what happens at the cellular level when (a) a virus infects an epithelial cell, (b) a phagocyte engulfs a bacterium. How does each get presented to the adaptive immune system?", a:"<strong>(a) Virus infects an epithelial cell</strong>: 1) Virus enters the cell and replicates in the <strong>cytoplasm</strong>. 2) Cytoplasmic proteasomes degrade some viral proteins into peptides. 3) Peptides are pumped into the ER by TAP transporter and loaded onto <strong>MHC I</strong>. 4) The MHC I-viral peptide complex is displayed on the cell surface. 5) <strong>CD8+ cytotoxic T cells</strong> (via their TCRs) recognize this complex &rarr; kill the infected cell with perforin/granzymes (apoptosis). <strong>(b) Phagocyte engulfs a bacterium</strong>: 1) The phagocyte (macrophage or dendritic cell) takes the bacterium into a <strong>phagosome</strong> &rarr; fuses with lysosome &rarr; <strong>phagolysosome</strong>. 2) Bacterial proteins are degraded into peptides in the phagolysosome. 3) Peptides are loaded onto <strong>MHC II</strong> in vesicles and displayed on the cell surface. 4) <strong>CD4+ helper T cells</strong> (via their TCRs) recognize the MHC II-peptide complex &rarr; activated helpers then secrete cytokines that direct the rest of the response (activate B cells &rarr; antibodies; activate macrophages via IFN-&gamma;). <strong>The big rule</strong>: ENDOGENOUS antigens (made inside the cell, e.g. viral) &rarr; <strong>MHC I &rarr; CD8+ CTLs</strong>. EXOGENOUS antigens (engulfed from outside) &rarr; <strong>MHC II &rarr; CD4+ helpers</strong>. This pathway division ensures the right effector is matched to the right threat: kill cells making intracellular pathogens, recruit antibodies for extracellular pathogens.", hy:true},
+  {q:"You are a public health official trying to control an outbreak of a bacterial infection. Lab tests show the bacterium has a thick capsule that prevents phagocytosis. What kind of vaccine would you recommend, and why does this strategy work?", a:"I would recommend a <strong>conjugate vaccine</strong> targeting the capsule polysaccharide linked to a carrier protein. <strong>Why this works</strong>: 1) The bacterial capsule is what allows the pathogen to evade phagocytosis &mdash; phagocytes can't grab the slippery polysaccharide surface, so the bacterium escapes innate immunity. 2) If we generate <strong>antibodies against the capsule</strong>, those antibodies coat the capsule (opsonization). Phagocytes have <strong>Fc receptors</strong> that grab the antibody constant regions, so the antibody-coated bacterium is now phagocytosed efficiently &mdash; the capsule's stealth advantage is neutralized. 3) Why conjugate? Polysaccharides alone are <strong>T-cell-independent</strong>: they activate B cells weakly, produce only IgM with no class switching to IgG, no affinity maturation, and poor memory formation &mdash; especially in young children who are at highest risk for capsule-rich pathogens like <em>S. pneumoniae</em>, <em>H. influenzae</em>, and <em>N. meningitidis</em>. By <strong>chemically linking the polysaccharide to a carrier protein</strong>, B cells that bind the polysaccharide can internalize the entire complex, process the protein into peptides, and present them on MHC II. This recruits <strong>CD4+ helper T cells</strong> &rarr; full B cell activation &rarr; class-switched IgG &rarr; long-lived memory B cells. <strong>Real-world successes</strong>: Hib (<em>H. influenzae</em> type b), PCV (pneumococcal), MenACWY (meningococcal). All of these dramatically reduced childhood meningitis and pneumonia after introduction.", hy:true},
+];
+
+function buildFRQ(container, questions, prefix) {
+  const el = document.getElementById(container);
+  el.innerHTML = '';
+  questions.forEach((q,i) => {
+    const hy = q.hy ? 'hy-frq' : '';
+    el.innerHTML += `
+    <div class="frq-card ${hy}">
+      <div class="frq-prompt"><span class="q-num">${i+1}</span>${q.q}${q.hy?'<span class="hy-badge">HIGH YIELD</span>':''}</div>
+      <textarea placeholder="Write your answer..." id="${prefix}-ta-${i}"></textarea>
+      <button class="frq-reveal-btn" onclick="revealFRQ('${prefix}',${i})">Reveal Answer</button>
+      <div class="frq-answer" id="${prefix}-ans-${i}">${q.a}</div>
+      <div class="frq-self-grade" id="${prefix}-grade-${i}">
+        <button class="grade-btn got-it" onclick="gradeFRQ('${prefix}',${i},'got-it')">Got it</button>
+        <button class="grade-btn partial" onclick="gradeFRQ('${prefix}',${i},'partial')">Partial</button>
+        <button class="grade-btn missed" onclick="gradeFRQ('${prefix}',${i},'missed')">Missed</button>
+      </div>
+    </div>`;
+  });
+}
+
+const frqGrades = {};
+const hardGrades = {};
+
+function revealFRQ(prefix, i) {
+  document.getElementById(prefix+'-ans-'+i).classList.add('show');
+  document.getElementById(prefix+'-grade-'+i).classList.add('show');
+}
+function gradeFRQ(prefix, i, grade) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  grades[i] = grade;
+  const btns = document.getElementById(prefix+'-grade-'+i).querySelectorAll('.grade-btn');
+  btns.forEach(b => b.classList.remove('selected-grade'));
+  event.target.classList.add('selected-grade');
+  updateFRQScore(prefix);
+}
+function updateFRQScore(prefix) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  const total = prefix === 'frq' ? frqs.length : hardFrqs.length;
+  let pts = 0;
+  Object.values(grades).forEach(g => { if(g==='got-it') pts+=1; else if(g==='partial') pts+=0.5; });
+  document.getElementById(prefix+'-score').textContent = Math.round((pts/total)*100)+'%';
+}
+function resetFRQ() {
+  Object.keys(frqGrades).forEach(k => delete frqGrades[k]);
+  buildFRQ('frq-container', frqs, 'frq');
+  document.getElementById('frq-score').textContent = '0%';
+}
+function resetHard() {
+  Object.keys(hardGrades).forEach(k => delete hardGrades[k]);
+  buildFRQ('hard-container', hardFrqs, 'hard');
+  document.getElementById('hard-score').textContent = '0%';
+}
+
+buildFRQ('frq-container', frqs, 'frq');
+buildFRQ('hard-container', hardFrqs, 'hard');
+
+// ====== MATCHING ======
+const matchPairs = [
+  {term:"CD4+ Helper T cell", def:"Recognizes antigen on MHC II; activates B cells and macrophages via cytokines"},
+  {term:"CD8+ Cytotoxic T cell", def:"Recognizes antigen on MHC I; kills infected cells with perforin/granzymes"},
+  {term:"B cell / Plasma cell", def:"Recognizes free antigen via BCR; differentiates into antibody-secreting factory"},
+  {term:"Memory B cell", def:"Long-lived B cell from prior exposure; basis of secondary response and vaccines"},
+  {term:"IgG", def:"Most abundant antibody in blood; secondary response; only Ig that crosses placenta"},
+  {term:"IgM", def:"First antibody made; pentamer in blood; great for primary response and complement activation"},
+  {term:"IgA", def:"Mucous membranes, breast milk, saliva &mdash; mucosal immunity"},
+  {term:"Live attenuated vaccine", def:"Weakened pathogen; strong long-lasting immunity but risk of reverting (e.g. MMR)"},
+  {term:"Toxoid vaccine", def:"Inactivated bacterial toxin; triggers neutralizing antibodies (e.g. tetanus, diphtheria)"},
+  {term:"Conjugate vaccine", def:"Polysaccharide + carrier protein; recruits T-helper cells for memory (e.g. Hib, PCV)"},
+  {term:"Passive immunity", def:"Pre-made antibodies (mom or injection); no memory; immediate but short-lived"},
+  {term:"Herd immunity", def:"Enough of the population is immune that the pathogen can't sustain transmission"},
+];
+
+let matchLeft = null, matchRight = null, matchedCount = 0;
+function initMatching() {
+  matchLeft = null; matchRight = null; matchedCount = 0;
+  const lDiv = document.getElementById('match-left');
+  const rDiv = document.getElementById('match-right');
+  const sL = [...matchPairs].sort(() => Math.random()-0.5);
+  const sR = [...matchPairs].sort(() => Math.random()-0.5);
+  lDiv.innerHTML = sL.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('left',this)">${p.term}</div>`).join('');
+  rDiv.innerHTML = sR.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('right',this)">${p.def}</div>`).join('');
+  document.getElementById('match-score').textContent = '0 / '+matchPairs.length;
+}
+function selectMatch(side, el) {
+  if(el.classList.contains('matched')) return;
+  el.parentElement.querySelectorAll('.match-item').forEach(i => { if(!i.classList.contains('matched')) i.classList.remove('selected'); });
+  el.classList.add('selected');
+  if(side==='left') matchLeft = el; else matchRight = el;
+  if(matchLeft && matchRight) checkMatch();
+}
+function checkMatch() {
+  if(matchLeft.dataset.term === matchRight.dataset.term) {
+    matchLeft.classList.add('matched'); matchLeft.classList.remove('selected');
+    matchRight.classList.add('matched'); matchRight.classList.remove('selected');
+    matchedCount++;
+    document.getElementById('match-score').textContent = matchedCount+' / '+matchPairs.length;
+  } else {
+    matchLeft.classList.add('wrong-match'); matchRight.classList.add('wrong-match');
+    const l=matchLeft, r=matchRight;
+    setTimeout(() => { l.classList.remove('wrong-match','selected'); r.classList.remove('wrong-match','selected'); }, 700);
+  }
+  matchLeft = null; matchRight = null;
+}
+initMatching();
+</script>
+</body>
+</html>
