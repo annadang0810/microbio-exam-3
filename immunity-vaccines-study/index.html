@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adaptive Immunity & Vaccines - BIOL 3303 Study Guide</title>
+<title>Immunity, Vaccination &amp; Epidemiology - BIOL 3303 Study Guide</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -520,20 +520,20 @@
 <!-- ==================== HOME ==================== -->
 <div class="section active" id="sec-home">
   <div class="card hero-card">
-    <h1>Adaptive Immunity &amp; Vaccines</h1>
-    <p>BIOL 3303 &middot; Lecture 17 &mdash; Innate &amp; Adaptive Immunity, B/T-Cells, Antibodies, Vaccines</p>
+    <h1>Immunity, Vaccination &amp; Epidemiology</h1>
+    <p>BIOL 3303 &middot; Lectures 17 &amp; 18 &mdash; Innate &amp; Adaptive Immunity, B/T-Cells, Antibodies, Vaccines, Epidemiology, R<sub>0</sub>, Herd Immunity</p>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num">9</div><div class="stat-label">Topics</div></div>
-      <div class="stat"><div class="stat-num">37</div><div class="stat-label">Flashcards</div></div>
+      <div class="stat"><div class="stat-num">11</div><div class="stat-label">Topics</div></div>
+      <div class="stat"><div class="stat-num">46</div><div class="stat-label">Flashcards</div></div>
       <div class="stat"><div class="stat-num">26</div><div class="stat-label">FRQs</div></div>
     </div>
     <div class="hy-legend">HIGH YIELD = Confirmed exam topics from your professor. Prioritize these.</div>
     <div class="exam-topics">
       <p>Your Professor's Exam Topics</p>
       <ul>
-        <li><strong>B-cell &amp; T-cell functions</strong> &mdash; what each lymphocyte does, how they're activated</li>
-        <li><strong>Antibody response</strong> &mdash; antibody structure, classes, function, primary vs secondary response</li>
-        <li><strong>Vaccines</strong> &mdash; how they work, types of vaccines, herd immunity</li>
+        <li><strong>Adaptive immunity / vaccines</strong> &mdash; B/T-cell functions, antibody response, vaccines</li>
+        <li><strong>Vaccination</strong> &mdash; Active vs Passive immunity, MHC I &amp; II, T-cell education, primary vs secondary humoral response, live-attenuated vs inactivated vs component vaccines</li>
+        <li><strong>Epidemiology</strong> &mdash; John Snow's experiments, descriptive vs analytic epidemiology, R<sub>0</sub>, herd immunity, vaccine efficacy (what they are and how to calculate)</li>
       </ul>
     </div>
   </div>
@@ -551,6 +551,8 @@
     <button class="tab-btn hy-tab" onclick="showTab(this,'bcell')">B-Cells</button>
     <button class="tab-btn hy-tab" onclick="showTab(this,'antibody')">Antibodies</button>
     <button class="tab-btn hy-tab" onclick="showTab(this,'vaccines')">Vaccines</button>
+    <button class="tab-btn" onclick="showTab(this,'epi')">Epidemiology</button>
+    <button class="tab-btn" onclick="showTab(this,'herd')">Herd Immunity &amp; R<sub>0</sub></button>
   </div>
 
   <!-- INNATE VS ADAPTIVE -->
@@ -957,6 +959,118 @@
       <div class="callout">Two-bucket framework: <strong>Whole-Organism</strong> (live-attenuated, inactivated) vs <strong>Component</strong> (polysaccharide, toxoid, recombinant). Live-attenuated = strong &amp; lifelong but risky for immunocompromised; component = safe but needs boosters.</div>
     </div>
   </div>
+
+  <!-- EPIDEMIOLOGY -->
+  <div class="tab-content" id="tab-epi">
+    <div class="card">
+      <h2>Epidemiology Basics</h2>
+
+      <h3>Definition</h3>
+      <p><span class="highlight">Epidemiology</span> = the study of the distribution and determinants of health-related states or events in specified populations, and the application of this study to the control of health problems.</p>
+
+      <h3>What Epidemiology Studies</h3>
+      <ul>
+        <li><span class="highlight">Frequency</span> &mdash; the number of health events and the relationship of that number to the size of the population</li>
+        <li><span class="highlight">Pattern</span> &mdash; the occurrence of health-related events by <span class="highlight">time, place, and person</span></li>
+      </ul>
+
+      <h3>John Snow &mdash; "Father of Epidemiology"</h3>
+      <ul>
+        <li>Wasn't first &mdash; <span class="highlight">Hippocrates (400 BC)</span> tried to link environment and host factors to disease</li>
+        <li>Snow established the <span class="highlight">modern techniques</span> used in epidemiology</li>
+        <li>1854: cholera outbreak in <span class="highlight">Golden Square, London</span></li>
+      </ul>
+
+      <h3>Snow's Approach (Two Types of Epidemiology)</h3>
+      <ol>
+        <li><span class="highlight">Descriptive epidemiology</span>: made a <span class="highlight">spot map</span> &mdash; marked where cholera victims lived, overlaid local water pumps, noticed correlation</li>
+        <li>Convinced city officials to <span class="highlight">remove the handle</span> from the implicated pump &mdash; epidemic ended</li>
+        <li><span class="highlight">Analytic epidemiology</span> (hypothesis testing): retrospectively examined which water company supplied each victim &mdash; found <span class="warn">downstream water (Southwark &amp; Vauxhall) had 5.0 deaths/1,000</span> vs upstream water (Lambeth) with 0.9 deaths/1,000</li>
+      </ol>
+
+      <h3>Two Types of Epidemiology</h3>
+      <table class="data-table">
+        <tr><th>Type</th><th>What It Does</th><th>Snow Example</th></tr>
+        <tr><td><span class="highlight">Descriptive</span></td><td>Describes what's happening, where, when, to whom</td><td>Spot map of cholera deaths</td></tr>
+        <tr><td><span class="highlight">Analytic</span></td><td>Tests hypotheses about cause</td><td>Comparing death rates between upstream/downstream water companies</td></tr>
+      </table>
+
+      <h3>What Epidemiology Tells You About a Pathogen</h3>
+      <ol>
+        <li><span class="highlight">Who?</span> &mdash; collects information about patients; can identify if a disease targets an age, gender, or habit</li>
+        <li><span class="highlight">How infectious?</span> &mdash; allows identification of the <span class="highlight">basic reproductive number (R<sub>0</sub>)</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- HERD IMMUNITY -->
+  <div class="tab-content" id="tab-herd">
+    <div class="card">
+      <h2>Herd Immunity, R<sub>0</sub>, &amp; Vaccine Efficacy</h2>
+
+      <h3>Basic Reproductive Number (R<sub>0</sub>)</h3>
+      <p><span class="highlight">R<sub>0</sub></span> = the average number of secondary cases generated by one primary case in a fully susceptible population.</p>
+      <table class="data-table">
+        <tr><th>R<sub>0</sub> value</th><th>What it means</th></tr>
+        <tr><td>R<sub>0</sub> = 1</td><td>A primary case generates exactly 1 new case (steady state)</td></tr>
+        <tr><td><span class="warn">R<sub>0</sub> &gt; 1</span></td><td>Expansion &mdash; pool of infected individuals grows (epidemic)</td></tr>
+        <tr><td><span class="highlight">R<sub>0</sub> &lt; 1</span></td><td>Shrinking pool &mdash; outbreak dies out</td></tr>
+      </table>
+
+      <h3>R<sub>0</sub> Examples</h3>
+      <table class="data-table">
+        <tr><th>Disease</th><th>Transmission</th><th>R<sub>0</sub></th></tr>
+        <tr><td>Measles</td><td>Airborne</td><td><span class="warn">12&ndash;18</span></td></tr>
+        <tr><td>COVID-19 Omicron BA.5</td><td>Airborne droplet</td><td>18.6</td></tr>
+        <tr><td>COVID-19 Omicron</td><td>Airborne droplet</td><td>9</td></tr>
+        <tr><td>COVID-19 Delta</td><td>Airborne droplet</td><td>8</td></tr>
+        <tr><td>Diphtheria</td><td>Saliva</td><td>6&ndash;7</td></tr>
+        <tr><td>Smallpox / Polio / Rubella</td><td>Various</td><td>5&ndash;7</td></tr>
+        <tr><td>Mumps / Pertussis</td><td>Airborne droplet</td><td>4&ndash;7</td></tr>
+        <tr><td>Original COVID-19</td><td>Airborne droplet</td><td>2.3&ndash;3.7</td></tr>
+        <tr><td>HIV/AIDS / SARS</td><td>Various</td><td>2&ndash;5</td></tr>
+        <tr><td>Influenza</td><td>Airborne droplet</td><td>2&ndash;3</td></tr>
+        <tr><td>Ebola</td><td>Bodily fluids</td><td>1.5&ndash;2.5</td></tr>
+      </table>
+
+      <h3>Herd Immunity</h3>
+      <ul>
+        <li>State where <span class="highlight">enough of the population is vaccinated/immunized</span> against a pathogen that <strong>transmission stops</strong></li>
+        <li>The presence of immunized people <span class="highlight">breaks the chain of transmission</span></li>
+        <li>The <span class="warn">more infectious the disease, the higher the percentage</span> needed</li>
+        <li>Protects people who <span class="warn">cannot be vaccinated</span>: too young, too old, or immunocompromised</li>
+      </ul>
+
+      <h3>The Herd Immunity Formula</h3>
+      <div class="diagram-box"><span class="mol">Herd immunity threshold = (1 &minus; (1/R&#8320;)) &times; 100%</span></div>
+
+      <h3>Worked Examples</h3>
+      <table class="data-table">
+        <tr><th>Pathogen</th><th>R<sub>0</sub></th><th>Calculation</th><th>Threshold</th></tr>
+        <tr><td>Ebola</td><td>2</td><td>(1 &minus; 1/2) &times; 100%</td><td>50%</td></tr>
+        <tr><td>Original COVID-19</td><td>3</td><td>(1 &minus; 1/3) &times; 100%</td><td>~66%</td></tr>
+        <tr><td>COVID Delta</td><td>8</td><td>(1 &minus; 1/8) &times; 100%</td><td>87.5%</td></tr>
+        <tr><td>COVID BA.5</td><td>18.6</td><td>(1 &minus; 1/18.6) &times; 100%</td><td><span class="warn">~94.6%</span></td></tr>
+        <tr><td>Measles</td><td>15</td><td>(1 &minus; 1/15) &times; 100%</td><td>~93%</td></tr>
+      </table>
+
+      <h3>Vaccine Efficacy (VE)</h3>
+      <p>Epidemiology principles can also assess how well a vaccine works.</p>
+      <div class="diagram-box"><span class="mol">VE (%) = (1 &minus; R<sub>V</sub> / R<sub>U</sub>) &times; 100</span>
+
+  <span class="label">VE</span>  = Vaccine Efficacy
+  <span class="label">R<sub>V</sub></span>  = incidence / attack rate in <span class="mol">vaccinated</span> people
+  <span class="label">R<sub>U</sub></span>  = incidence / attack rate in <span class="mol">unvaccinated</span> people
+
+<span class="label">As R<sub>V</sub> shrinks (vaccinated people get sick less often), VE goes UP</span></div>
+
+      <h3>Worked Example</h3>
+      <p>If 100 vaccinated people had a 5% attack rate (R<sub>V</sub> = 0.05) and 100 unvaccinated had a 50% attack rate (R<sub>U</sub> = 0.50):</p>
+      <p>VE = (1 &minus; 0.05/0.50) &times; 100 = (1 &minus; 0.10) &times; 100 = <span class="highlight">90% effective</span></p>
+
+      <div class="callout">Why didn't COVID herd immunity happen? Because the R<sub>0</sub> kept rising as new variants emerged (3 &rarr; 8 &rarr; 18.6), the threshold rose from 66% to nearly 95%. We never reached vaccination coverage that high in time, especially globally.</div>
+    </div>
+  </div>
 </div>
 
 <!-- ==================== FLASHCARDS ==================== -->
@@ -1074,7 +1188,15 @@ const flashcards = [
   {q:"List the advantages of live-attenuated vaccines.", a:"1) Because they grow and replicate similarly to natural infection, immunological memory is gained against <strong>all antigens</strong> expressed by the pathogen. 2) Prolonged immune-system exposure creates a <strong>long-lasting immune response (lifetime)</strong>. 3) <strong>Single, highly effective immunizations</strong>."},
   {q:"List the disadvantages of live-attenuated vaccines.", a:"1) <strong>Possible reversion</strong> (regaining virulence) &mdash; e.g., vaccine-derived poliovirus infections, which is why we switched back to inactivated polio vaccines. 2) Presence of <strong>contaminants/unforeseen reactions</strong>. 3) Need for constant refrigeration &mdash; <strong>cold chain</strong>. 4) <strong>Cannot be given to immunocompromised individuals</strong>."},
   {q:"List the advantages and disadvantages of component (subunit) vaccines.", a:"<strong>Advantages</strong>: strong immune response against the antigen provided; <strong>safe to use on immunocompromised individuals</strong> (no live pathogen). <strong>Disadvantages</strong>: only builds memory against the specific antigen given (need conserved, stable antigens); <strong>booster shots are required</strong> for ongoing protection because they don't mimic natural infection."},
-  {q:"Compare active and passive immunity (4 quadrants).", a:"<strong>Natural Active</strong> = infection. <strong>Natural Passive</strong> = maternal antibody. <strong>Artificial Active</strong> = vaccination. <strong>Artificial Passive</strong> = immune globulin therapy. <strong>Active</strong> = your own immune system mounts the response. <strong>Passive</strong> = you receive preformed immunity from another source. Natural = through normal life. Artificial = through medical means."}
+  {q:"Compare active and passive immunity (4 quadrants).", a:"<strong>Natural Active</strong> = infection. <strong>Natural Passive</strong> = maternal antibody. <strong>Artificial Active</strong> = vaccination. <strong>Artificial Passive</strong> = immune globulin therapy. <strong>Active</strong> = your own immune system mounts the response. <strong>Passive</strong> = you receive preformed immunity from another source. Natural = through normal life. Artificial = through medical means."},
+  {q:"What is epidemiology?", a:"The <strong>study of the distribution and determinants of health-related states or events in specified populations</strong>, and the application of this study to the control of health problems. Concerned with <strong>frequency</strong> (number of events relative to population size) and <strong>pattern</strong> (occurrence by time, place, and person)."},
+  {q:"Who is the 'Father of Epidemiology' and what did he do?", a:"<strong>John Snow</strong>. In 1854 he investigated a cholera outbreak in <strong>Golden Square, London</strong>. He made a <strong>spot map</strong> showing where victims lived and overlaid local water pumps (<strong>descriptive epidemiology</strong>). Removing the pump handle ended the epidemic. He then retrospectively compared death rates between two water companies (<strong>analytic epidemiology</strong>) &mdash; <strong>Southwark and Vauxhall</strong> (downstream) had 5.0 deaths/1,000 vs <strong>Lambeth</strong> (upstream) with 0.9/1,000."},
+  {q:"What is descriptive vs analytic epidemiology?", a:"<strong>Descriptive</strong>: describes what's happening, where, when, to whom (e.g., Snow's spot map). <strong>Analytic</strong>: tests hypotheses about cause (e.g., Snow comparing death rates between water companies)."},
+  {q:"What is R<sub>0</sub> (basic reproductive number)?", a:"The average number of <strong>secondary cases generated by ONE primary case</strong> in a fully susceptible population. <strong>R<sub>0</sub> = 1</strong>: steady state. <strong>R<sub>0</sub> &gt; 1</strong>: epidemic expanding. <strong>R<sub>0</sub> &lt; 1</strong>: outbreak shrinking."},
+  {q:"What is herd immunity?", a:"A state where <strong>enough of the population is vaccinated/immunized</strong> against a pathogen that <strong>transmission stops</strong>. The presence of immunized people <strong>breaks the chain of transmission</strong>. The more infectious the disease, the higher percentage needed. <strong>Protects people who cannot be vaccinated</strong>: too young, too old, or immunocompromised."},
+  {q:"What is the herd immunity threshold formula?", a:"<strong>Threshold = (1 &minus; (1/R<sub>0</sub>)) &times; 100%</strong>. Examples: <strong>Ebola</strong> (R<sub>0</sub> = 2) needs 50%; <strong>Original COVID-19</strong> (R<sub>0</sub> = 3) needs 66%; <strong>COVID Delta</strong> (R<sub>0</sub> = 8) needs 87.5%; <strong>COVID Omicron BA.5</strong> (R<sub>0</sub> = 18.6) needs ~94.6%; <strong>Measles</strong> (R<sub>0</sub> = ~15) needs ~93%."},
+  {q:"What is the vaccine efficacy formula?", a:"<strong>VE (%) = (1 &minus; R<sub>V</sub>/R<sub>U</sub>) &times; 100</strong>, where <strong>R<sub>V</sub></strong> = incidence/attack rate in vaccinated people and <strong>R<sub>U</sub></strong> = attack rate in unvaccinated people. As R<sub>V</sub> shrinks, VE goes up. Example: if R<sub>V</sub> = 0.05 and R<sub>U</sub> = 0.50, then VE = (1 &minus; 0.10) &times; 100 = <strong>90% effective</strong>."},
+  {q:"Why didn't COVID-19 reach herd immunity in the US?", a:"As variants emerged with higher R<sub>0</sub>, the herd immunity threshold rose: original (R<sub>0</sub> = 3) needed 66%, Delta (R<sub>0</sub> = 8) needed 87.5%, BA.5 (R<sub>0</sub> = 18.6) needed ~94.6%. The US never reached vaccination coverage that high in time."}
 ];
 
 let fcIdx = 0;
