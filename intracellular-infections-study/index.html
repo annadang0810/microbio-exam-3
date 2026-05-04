@@ -1035,8 +1035,8 @@ const flashcards = [
 let fcIdx = 0;
 function renderCard() {
   document.getElementById('flashcard').classList.remove('flipped');
-  document.getElementById('fc-front').innerHTML = flashcards[fcIdx].q;
-  document.getElementById('fc-back').innerHTML = flashcards[fcIdx].a.replace(/\n/g,'<br>');
+  document.getElementById('fc-front').innerHTML = '<div>'+flashcards[fcIdx].q+'</div>';
+  document.getElementById('fc-back').innerHTML = '<div>'+flashcards[fcIdx].a.replace(/\n/g,'<br>')+'</div>';
   document.getElementById('fc-counter').textContent = (fcIdx+1)+' / '+flashcards.length;
   document.getElementById('fc-score').textContent = (fcIdx+1)+' / '+flashcards.length;
 }
