@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viral Pathogens (Herpes &amp; Polio) - BIOL 3303 Study Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232733;
+    --border: #2e3344;
+    --text: #e2e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --green: #00cec9;
+    --green-dim: #00cec920;
+    --red: #fd7272;
+    --red-dim: #fd727220;
+    --orange: #ffa94d;
+    --orange-dim: #ffa94d20;
+    --blue: #74b9ff;
+    --yellow: #ffd43b;
+    --yellow-dim: #ffd43b18;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 8px;
+    overflow-x: auto;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent-light);
+    white-space: nowrap;
+    margin-right: 16px;
+    letter-spacing: -0.3px;
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .nav-btn:hover { color: var(--text); background: var(--surface2); }
+  .nav-btn.active {
+    color: var(--accent-light);
+    background: #6c5ce715;
+    border-color: #6c5ce740;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 84px 24px 60px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+    color: var(--accent-light);
+  }
+  .card p, .card li {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 6px; }
+  .card li::marker { color: var(--accent); }
+
+  .highlight { color: var(--green); font-weight: 600; }
+  .organism { color: var(--orange); font-weight: 600; }
+  .warn { color: var(--red); font-weight: 600; }
+  .key {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+
+  /* HIGH YIELD */
+  .hy-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin-left: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    animation: hyPulse 2s ease-in-out infinite;
+  }
+  @keyframes hyPulse {
+    0%, 100% { box-shadow: 0 0 0 0 #ffd43b40; }
+    50% { box-shadow: 0 0 12px 4px #ffd43b30; }
+  }
+  .hy-card {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .hy-card h2 { color: var(--yellow); }
+
+  .hy-legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: var(--yellow-dim);
+    border: 1px solid #ffd43b40;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--yellow);
+    font-weight: 600;
+  }
+
+  .exam-topics {
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: var(--surface2);
+    border: 1px solid #ffd43b30;
+    border-radius: 10px;
+  }
+  .exam-topics p {
+    font-size: 12px;
+    color: var(--yellow);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .exam-topics ul { padding-left: 18px; }
+  .exam-topics li {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .exam-topics li::marker { color: var(--yellow); }
+
+  /* HERO */
+  .hero-card {
+    background: linear-gradient(135deg, #6c5ce730, #00cec915);
+    border-color: #6c5ce740;
+    text-align: center;
+    padding: 48px 28px;
+  }
+  .hero-card h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .hero-card p { color: var(--text-dim); font-size: 15px; }
+  .hero-stats {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat-num { font-size: 24px; font-weight: 800; color: var(--accent-light); }
+  .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+  /* TABS */
+  .tab-row { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .tab-btn.hy-tab { border-color: #ffd43b60; }
+  .tab-btn.hy-tab.active { background: linear-gradient(135deg, #ffd43b, #f59f00); color: #1a1d27; border-color: #ffd43b; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* TABLES */
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .data-table th, .data-table td { padding: 8px 12px; border: 1px solid var(--border); text-align: left; font-size: 13.5px; }
+  .data-table th { background: var(--surface2); color: var(--accent-light); font-weight: 600; }
+  .data-table td { color: var(--text-dim); }
+  .data-table.hy-table th { color: var(--yellow); }
+
+  /* DIAGRAM */
+  .diagram-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 14px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .diagram-box .arr { color: var(--accent-light); }
+  .diagram-box .mol { color: var(--green); font-weight: 700; }
+  .diagram-box .label { color: var(--text-dim); font-style: italic; }
+
+  .callout {
+    background: #00cec920;
+    border: 1px solid #00cec940;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    font-size: 13.5px;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* SCORE BAR */
+  .score-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .score-text { font-size: 15px; font-weight: 600; }
+  .score-pct { font-size: 28px; font-weight: 800; color: var(--accent-light); }
+  .reset-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { background: var(--accent-light); color: var(--bg); }
+
+  /* FLASHCARD */
+  .fc-container { perspective: 1000px; margin-bottom: 16px; }
+  .flashcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    cursor: pointer;
+    transition: transform 0.5s, box-shadow 0.3s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .flashcard:hover { box-shadow: 0 4px 24px #6c5ce720; }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .fc-front, .fc-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    padding: 28px 32px;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    overflow-y: auto;
+  }
+  .fc-front {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .fc-back {
+    transform: rotateY(180deg);
+    font-size: 15px;
+    color: var(--green);
+    background: var(--surface);
+    line-height: 1.7;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .fc-nav { display: flex; gap: 10px; justify-content: center; align-items: center; }
+  .fc-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .fc-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .fc-counter { font-size: 13px; color: var(--text-dim); font-weight: 600; min-width: 60px; text-align: center; }
+  .fc-hint { text-align: center; color: var(--text-dim); font-size: 12px; margin-top: 10px; }
+
+  /* MATCHING */
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .match-col-header {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+  .match-item {
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .match-item:hover { border-color: var(--accent); color: var(--text); }
+  .match-item.selected { border-color: var(--accent); background: #6c5ce715; color: var(--accent-light); }
+  .match-item.matched { border-color: var(--green); background: var(--green-dim); color: var(--green); pointer-events: none; opacity: 0.7; }
+  .match-item.wrong-match { border-color: var(--red); background: var(--red-dim); color: var(--red); }
+
+  /* FRQ */
+  .frq-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .frq-card.hy-frq {
+    border-color: #ffd43b40;
+    background: linear-gradient(135deg, var(--surface), var(--yellow-dim));
+  }
+  .frq-card .q-num {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .frq-card.hy-frq .q-num {
+    background: linear-gradient(135deg, #ffd43b, #f59f00);
+    color: #1a1d27;
+  }
+  .frq-card .frq-prompt { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+  .frq-card .frq-hint { font-size: 12px; color: var(--text-dim); margin-bottom: 12px; font-style: italic; }
+  .frq-card textarea {
+    width: 100%;
+    min-height: 100px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    padding: 14px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+  .frq-card textarea:focus { outline: none; border-color: var(--accent); }
+  .frq-card textarea::placeholder { color: #4a4e63; }
+  .frq-reveal-btn {
+    display: inline-block;
+    margin-top: 12px;
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent-light);
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .frq-reveal-btn:hover { background: #6c5ce715; }
+  .frq-answer {
+    display: none;
+    margin-top: 14px;
+    padding: 16px;
+    background: var(--surface2);
+    border-radius: 10px;
+    border-left: 3px solid var(--green);
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .frq-answer.show { display: block; }
+  .frq-answer strong { color: var(--green); }
+  .frq-self-grade { display: none; margin-top: 12px; gap: 8px; }
+  .frq-self-grade.show { display: flex; }
+  .grade-btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .grade-btn.got-it { color: var(--green); border-color: var(--green); }
+  .grade-btn.got-it:hover { background: var(--green-dim); }
+  .grade-btn.partial { color: var(--orange); border-color: var(--orange); }
+  .grade-btn.partial:hover { background: var(--orange-dim); }
+  .grade-btn.missed { color: var(--red); border-color: var(--red); }
+  .grade-btn.missed:hover { background: var(--red-dim); }
+  .grade-btn.selected-grade { font-weight: 800; }
+  .grade-btn.got-it.selected-grade { background: var(--green-dim); }
+  .grade-btn.partial.selected-grade { background: var(--orange-dim); }
+  .grade-btn.missed.selected-grade { background: var(--red-dim); }
+
+  @media (max-width: 600px) {
+    .nav-brand { display: none; }
+    main { padding: 76px 14px 40px; }
+    .card { padding: 20px; }
+    .hero-card { padding: 32px 20px; }
+    .hero-card h1 { font-size: 22px; }
+    .match-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">ViralStudy</span>
+    <button class="nav-btn active" onclick="showSection('home')">Home</button>
+    <button class="nav-btn" onclick="showSection('learn')">Learn</button>
+    <button class="nav-btn" onclick="showSection('flashcards')">Flashcards</button>
+    <button class="nav-btn" onclick="showSection('frq')">FRQ</button>
+    <button class="nav-btn" onclick="showSection('matching')">Matching</button>
+    <button class="nav-btn" onclick="showSection('hard')">Hard FRQ</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ==================== HOME ==================== -->
+<div class="section active" id="sec-home">
+  <div class="card hero-card">
+    <h1>Viral Pathogens: Herpes &amp; Polio</h1>
+    <p>BIOL 3303 &middot; Lecture 24 &mdash; <em>Herpesviridae</em>, HSV life cycle, Poliovirus, IPV vs OPV</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">2</div><div class="stat-label">Viruses</div></div>
+      <div class="stat"><div class="stat-num">34</div><div class="stat-label">Flashcards</div></div>
+      <div class="stat"><div class="stat-num">22</div><div class="stat-label">FRQs</div></div>
+    </div>
+    <div class="hy-legend">HIGH YIELD = Confirmed exam topics from your professor. Prioritize these.</div>
+    <div class="exam-topics">
+      <p>Your Professor's Exam Topics (Lecture 24)</p>
+      <ul>
+        <li><strong>Herpes</strong> &mdash; <em>Herpesviridae</em> family members and diseases; HSV <strong>entry &rarr; transit &rarr; silencing &rarr; reactivation</strong></li>
+        <li><strong>Polio</strong> &mdash; pathology, replication, the <strong>2 vaccine types and why both are needed</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LEARN ==================== -->
+<div class="section" id="sec-learn">
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="showTab(this,'overview')">Overview</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'family')"><em>Herpesviridae</em></button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'entry')">HSV Entry</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'transit')">HSV Transit</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'silencing')">Silencing &amp; Latency</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'reactivation')">Reactivation</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'polio-path')">Polio Pathology</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'polio-rep')">Polio Replication</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'vaccines')">Polio Vaccines</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'compare')">Compare</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-content active" id="tab-overview">
+    <div class="card">
+      <h2>The Big Picture</h2>
+      <p>Lecture 24 contrasts two very different viruses your professor explicitly flagged for the exam. Both invade neurons, but their genomes, life cycles, and clinical strategies are opposites.</p>
+      <ul>
+        <li><span class="organism">Herpesvirus</span> &mdash; <span class="highlight">enveloped, dsDNA</span>, replicates in the <span class="highlight">nucleus</span>, establishes <span class="warn">lifelong latency</span> in sensory neurons. No cure, no vaccine.</li>
+        <li><span class="organism">Poliovirus</span> &mdash; <span class="highlight">non-enveloped, +ssRNA</span>, replicates in the <span class="highlight">cytoplasm</span>, causes <span class="warn">acute, often fatal paralysis</span>. Two vaccines, near-eradicated.</li>
+      </ul>
+
+      <h3>Connection Map</h3>
+      <table class="data-table">
+        <tr><th>Virus</th><th>Genome</th><th>Envelope</th><th>Replicates in</th><th>Persistence</th><th>Treatment</th></tr>
+        <tr><td>HSV-1 / HSV-2</td><td>Linear dsDNA, ~70 genes</td><td>Yes (envelope w/ gB, gD, gH/L)</td><td>Nucleus</td><td><span class="warn">Lifelong latency</span> in sensory neurons</td><td>Acyclovir (manage flare-ups; no cure)</td></tr>
+        <tr><td>Poliovirus</td><td>+ssRNA, ~7,500 nt</td><td>None (naked icosahedral capsid)</td><td>Cytoplasm</td><td>Acute &mdash; lytic cycle, then immunity is <span class="highlight">life-long</span></td><td>Two vaccines: IPV + OPV</td></tr>
+      </table>
+
+      <div class="callout">Same lecture, opposite strategies: HSV is the <strong>quiet long-term tenant</strong> (DNA, latency, recurrent flares); Polio is the <strong>fast attacker</strong> (RNA, lytic, paralysis). Memorize the contrast and the rest of the details fall into place.</div>
+    </div>
+  </div>
+
+  <!-- HERPES FAMILY -->
+  <div class="tab-content" id="tab-family">
+    <div class="card hy-card">
+      <h2><em>Herpesviridae</em> Family Members &amp; Diseases <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3>Why Herpes is Special (set the scene)</h3>
+      <ul>
+        <li>Hominids have carried Herpesviruses for an estimated <span class="highlight">8 million years</span></li>
+        <li>Plagued the ancient Greeks, who named it <em>herpein</em> &mdash; <span class="highlight">"to creep"</span></li>
+        <li><span class="warn">Humans are the only reservoir</span></li>
+        <li>Infections <span class="warn">persist for life</span> &mdash; cause recurrent infection in 1/3 of the world's population</li>
+        <li><span class="warn">No cure, no vaccine</span> for herpes</li>
+      </ul>
+
+      <h3>The Five Members You Must Know <span class="hy-badge">HIGH YIELD</span></h3>
+      <table class="data-table hy-table">
+        <tr><th>Virus</th><th>Disease(s)</th></tr>
+        <tr><td><strong>HSV-1</strong> (Herpes Simplex Virus 1)</td><td><span class="highlight">Oral herpes</span> &mdash; cold sores</td></tr>
+        <tr><td><strong>HSV-2</strong> (Herpes Simplex Virus 2)</td><td><span class="highlight">Genital herpes</span></td></tr>
+        <tr><td><strong>Varicella-Zoster Virus (VZV)</strong></td><td><span class="highlight">Chickenpox</span> (primary) and <span class="highlight">shingles</span> (reactivation)</td></tr>
+        <tr><td><strong>Epstein-Barr Virus (EBV)</strong></td><td><span class="highlight">Mononucleosis</span> ("mono")</td></tr>
+        <tr><td><strong>Cytomegalovirus (CMV)</strong></td><td><span class="highlight">Mononucleosis</span> (CMV mono)</td></tr>
+      </table>
+
+      <h3>Two Critical Facts About the Family</h3>
+      <ul>
+        <li>More than <span class="warn">90% of adults</span> have been infected with at <strong>least one</strong> of these viruses</li>
+        <li>The <span class="warn">defining trait of every member</span> of <em>Herpesviridae</em> is the ability to establish <span class="highlight">latent infection</span></li>
+      </ul>
+
+      <h3>HSV-1 / HSV-2 Structure</h3>
+      <ul>
+        <li>Large <span class="highlight">icosahedral capsid</span> wrapped in a <span class="highlight">phospholipid envelope</span> (with a tegument layer between)</li>
+        <li><span class="highlight">Linear, double-stranded DNA</span> genome encoding <span class="highlight">~70 genes</span></li>
+        <li>HSV-1 and HSV-2 genomes share <span class="highlight">~70% identity</span> &mdash; the lecture refers to them collectively as <strong>HSV</strong></li>
+        <li>Relatively <span class="warn">fragile</span> outside the body &mdash; depend on <span class="highlight">intimate contact between mucous membranes</span> to spread</li>
+      </ul>
+
+      <div class="callout">Memory hook: <strong>"H S V V E C"</strong> &mdash; <strong>HSV-1, HSV-2, VZV, EBV, CMV</strong>. All <em>Herpesviridae</em>. All establish latency. Most people carry at least one.</div>
+    </div>
+  </div>
+
+  <!-- HSV ENTRY -->
+  <div class="tab-content" id="tab-entry">
+    <div class="card hy-card">
+      <h2>HSV Mechanism of ENTRY <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>The model for HSV entry was derived from <span class="highlight">cryo-electron microscopy</span> of cells trapped at different infection stages. It's a glycoprotein-driven, three-step process.</p>
+
+      <h3>The 3 Glycoproteins You Need</h3>
+      <ul>
+        <li><span class="highlight">gB</span> &mdash; first contact; associates with a host receptor</li>
+        <li><span class="highlight">gD</span> &mdash; binds a <strong>different</strong> host receptor and triggers a conformational change</li>
+        <li><span class="highlight">gH/gL (the fusion complex)</span> &mdash; recruited after gD's conformational change; mediates membrane fusion</li>
+      </ul>
+
+      <h3>Step-by-Step Entry <span class="hy-badge">HIGH YIELD</span></h3>
+      <ol style="padding-left: 20px;">
+        <li style="margin-bottom: 8px;"><strong>Attachment via gB</strong> &mdash; viral glycoprotein <span class="highlight">gB</span> associates with a host receptor</li>
+        <li style="margin-bottom: 8px;"><strong>gD triggers a switch</strong> &mdash; <span class="highlight">gD binds a DIFFERENT host receptor</span> and undergoes a <span class="highlight">conformational change</span></li>
+        <li style="margin-bottom: 8px;"><strong>Fusion via gH/gL</strong> &mdash; the <span class="highlight">fusion complex (gH/L)</span> is recruited; it mediates the <span class="highlight">merging of the lipid bilayers</span> (viral envelope &harr; host plasma membrane) and the <span class="warn">release of the nucleocapsid</span> into the host cytoplasm</li>
+      </ol>
+
+      <div class="diagram-box"><span class="label">HSV entry sequence:</span>
+
+[ <span class="mol">virion</span> ] gB &rarr; <span class="arr">host receptor #1</span>          (attachment)
+            gD &rarr; <span class="arr">host receptor #2</span>  &rArr; conformational change
+            gH/gL recruited                  &rArr; lipid bilayer fusion
+                                              &rArr; <span class="warn">nucleocapsid released</span> into cytoplasm</div>
+
+      <div class="callout">The mnemonic: <strong>gB attaches, gD switches, gH/L fuses.</strong> Three glycoproteins, three jobs &mdash; in that order.</div>
+    </div>
+  </div>
+
+  <!-- HSV TRANSIT -->
+  <div class="tab-content" id="tab-transit">
+    <div class="card hy-card">
+      <h2>HSV TRANSIT &mdash; Hijacking Microtubule Motors <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3>Why HSV Needs to Travel</h3>
+      <ul>
+        <li>HSV preferentially invades <span class="highlight">sensory neurons</span></li>
+        <li>It must transit the <span class="warn">long distance</span> between the neuronal axon (entry site) and the nucleus (replication site) to complete its life cycle</li>
+        <li>It has to make this trip in BOTH directions: in to establish latency, out for shedding</li>
+      </ul>
+
+      <h3>The Cellular Highway: Microtubules</h3>
+      <ul>
+        <li>The cell's transportation system is built from <span class="highlight">tubulin</span>, organized via <span class="highlight">microtubule-organizing centers (MTOCs)</span></li>
+        <li>This system normally carries cellular cargo (e.g., vesicles) between the cell periphery and the nucleus</li>
+        <li>Microtubules are polar &mdash; they have a <span class="highlight">plus end</span> (typically at the cell periphery) and a <span class="highlight">minus end</span> (at the MTOC, near the nucleus)</li>
+      </ul>
+
+      <h3>The Two Motor Proteins (memorize the directions!) <span class="hy-badge">HIGH YIELD</span></h3>
+      <table class="data-table hy-table">
+        <tr><th>Motor</th><th>Direction</th><th>Functional meaning</th></tr>
+        <tr><td><span class="highlight">Dynein</span> (blue)</td><td>Toward the <span class="warn">MINUS end</span></td><td><span class="highlight">Toward the MTOC / nucleus</span> &mdash; INWARD transport</td></tr>
+        <tr><td><span class="highlight">Kinesin</span> (beige)</td><td>Toward the <span class="warn">PLUS end</span></td><td><span class="highlight">Toward the nucleus</span> per slide... but in neurons the plus ends point to axon terminals, so kinesin = OUTBOUND egress</td></tr>
+      </table>
+      <p style="font-size: 13px; font-style: italic; margin-top: 8px;">Note from lecture: Both proteins "walk" along microtubules, hand-over-hand. Dynein takes cargo TO the MTOC; kinesin takes cargo AWAY from it (toward the cell periphery / axon terminal).</p>
+
+      <h3>HSV Hitches a Ride</h3>
+      <ul>
+        <li><span class="warn">HSV nucleocapsids hitch a ride on dynein and kinesin!</span></li>
+        <li>This is required for transit to and from the nucleus</li>
+        <li>Live-cell imaging with fluorescent HSV capsids visualizes this transport in real time</li>
+        <li>Many viruses have evolved to bind directly to host motor proteins &mdash; an example of viral coevolution with host machinery</li>
+      </ul>
+
+      <h3>Other Viruses That Exploit These Motors (lecture table)</h3>
+      <table class="data-table">
+        <tr><th>Use DYNEIN to enter</th><th>Use KINESIN for egress</th></tr>
+        <tr><td>HSV-1, CMV, KSHV, HIV-1, HPV, Adenovirus, Parvovirus, Influenza A</td><td>KSHV, VSV, HIV-1, Sendai virus, African swine fever virus, Vaccinia</td></tr>
+      </table>
+
+      <div class="callout">The HSV transit story: <strong>nucleocapsids dock on dynein for the trip IN to the nucleus, and on kinesin for the trip OUT after replication.</strong> The virus doesn't build its own transport; it just gets on the host's bus system.</div>
+    </div>
+  </div>
+
+  <!-- SILENCING & LATENCY -->
+  <div class="tab-content" id="tab-silencing">
+    <div class="card hy-card">
+      <h2>HSV SILENCING &amp; LATENCY <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3>Step 1: How the Innate Immune System Tries to Silence HSV</h3>
+      <ul>
+        <li>Innate immune sensor <span class="highlight">IFI16</span> patrols the nucleus for <span class="highlight">foreign DNA</span></li>
+        <li>IFI16 packages naked foreign DNA into <span class="highlight">tight balls of chromatin</span></li>
+        <li>This <span class="highlight">limits access to the host transcriptional machinery</span> &mdash; the viral genome can't be read</li>
+        <li>It also <span class="highlight">triggers proinflammatory cytokine production</span></li>
+        <li>End result: HSV is <span class="warn">effectively silenced</span></li>
+      </ul>
+
+      <h3>Step 2: HSV Counteracts Silencing in Epithelial Cells (LYTIC cycle)</h3>
+      <p>HSV evolved to fight silencing in epithelial cells. Three weapons:</p>
+      <ul>
+        <li>One viral protein <span class="highlight">degrades surveillance system components</span></li>
+        <li>A second set of viral proteins keeps viral promoters <span class="highlight">free of repressive chromatin</span> (the lecture highlights <strong>VP16</strong> and <strong>ICP0</strong> driving active marks like H3K4me2 and acetylation)</li>
+        <li>Other viral proteins <span class="highlight">modify host RNA polymerase</span> to direct it toward viral promoters</li>
+      </ul>
+      <p>Together these factors orchestrate the HSV <span class="warn">lytic cycle</span>, causing the <span class="highlight">cold sores and lesions</span> characteristic of HSV.</p>
+
+      <h3>Step 3: HSV ENCOURAGES Silencing in Neurons (LATENCY) <span class="hy-badge">HIGH YIELD</span></h3>
+      <p>This is the twist. In neurons, HSV does the OPPOSITE of what it does in epithelial cells:</p>
+      <ul>
+        <li>Within <span class="highlight">neuronal cells</span>, HSV <span class="warn">does NOT subvert silencing</span></li>
+        <li>Instead, HSV <span class="warn">actively recruits chromatin assembly</span> &mdash; the viral genome is packaged into <span class="highlight">heterochromatin marked by H3K9me3</span></li>
+        <li>The result: <span class="highlight">only ONE HSV gene product is highly expressed</span> &mdash; the <strong>LAT (Latency-Associated Transcript)</strong></li>
+        <li>LAT is a viral RNA that does two key things:
+          <ul>
+            <li>Promotes <span class="highlight">tight packaging of the viral genome</span></li>
+            <li><span class="highlight">Prevents apoptosis</span> of the infected neuron &mdash; keeps the host cell alive long-term</li>
+          </ul>
+        </li>
+      </ul>
+      <p>So for the duration of its long life, the neuron harbors a <span class="warn">silent HSV genome waiting to be reactivated</span>.</p>
+
+      <div class="diagram-box"><span class="label">SAME virus, OPPOSITE behavior in two cell types:</span>
+
+EPITHELIAL CELL:  HSV <span class="arr">FIGHTS</span> silencing  &rarr; <span class="mol">LYTIC</span> cycle (cold sores, lesions)
+                  active chromatin marks (H3K4me2, Ac)
+                  ICP0 + VP16 + RNA Pol II hijack
+
+NEURONAL CELL:    HSV <span class="arr">PROMOTES</span> silencing &rarr; <span class="mol">LATENT</span> infection
+                  heterochromatin marks (H3K9me3)
+                  Only LAT expressed  &rarr; tight packaging + anti-apoptosis</div>
+
+      <div class="callout">The exam-ready summary: <strong>IFI16 silences foreign DNA via chromatin; HSV beats this in epithelial cells (lytic) but EMBRACES it in neurons (latent), where LAT is the only transcript and it both packs the genome and keeps the neuron alive.</strong></div>
+    </div>
+  </div>
+
+  <!-- REACTIVATION -->
+  <div class="tab-content" id="tab-reactivation">
+    <div class="card hy-card">
+      <h2>HSV REACTIVATION <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3>What Triggers It</h3>
+      <p>HSV can reactivate when the host cell senses <span class="warn">stress</span>:</p>
+      <ul>
+        <li><span class="highlight">Emotional</span> stress</li>
+        <li><span class="highlight">Physical</span> stress</li>
+        <li><span class="highlight">Clinical</span> stress (e.g., illness, immunosuppression)</li>
+        <li><span class="highlight">Age-associated immune decline</span></li>
+      </ul>
+
+      <h3>The Full Cycle: Latency &rarr; Reactivation &rarr; Shedding</h3>
+      <div class="diagram-box"><span class="label">A. Establishment of latency (primary infection):</span>
+
+  Epithelial cell &mdash;PRIMARY INFECTION&rarr; sensory <span class="mol">Neuron</span>
+                                            &darr;
+                                       <span class="arr">LATENCY</span> (LAT only, H3K9me3)
+
+<span class="label">B. Reactivation:</span>
+
+  <span class="mol">Neuron</span>  &mdash;STRESS / IMMUNE DECLINE&rarr; <span class="warn">REACTIVATION</span>
+   &darr;
+  Nucleocapsids deactivate chromatin silencing
+   &darr;
+  Viral genes expressed &rarr; replication restarts
+   &darr;
+  Travel back to axonal surface via microtubules
+   &darr;
+  <span class="arr">Shed virions</span> infect neighboring epithelial cells
+   &darr;
+  New round of LYTIC infection &rarr; cold sores / lesions</div>
+
+      <h3>The Mechanism Step-by-Step</h3>
+      <ol style="padding-left: 20px;">
+        <li style="margin-bottom: 8px;"><strong>Silencing reversed:</strong> in response to stress, nucleocapsids/host factors <span class="highlight">deactivate chromatin silencing</span> on the latent HSV genome</li>
+        <li style="margin-bottom: 8px;"><strong>Replication resumes:</strong> viral gene expression restarts and the replication cycle begins</li>
+        <li style="margin-bottom: 8px;"><strong>Outbound transport:</strong> new nucleocapsids <span class="highlight">travel back to the axonal surface via the microtubule network</span> (kinesin)</li>
+        <li style="margin-bottom: 8px;"><strong>Shedding:</strong> virions are <span class="highlight">shed at the periphery</span></li>
+        <li style="margin-bottom: 8px;"><strong>Lytic re-infection:</strong> shed virions infect neighboring epithelial cells, <span class="warn">initiating a new round of LYTIC infection</span> &mdash; the visible cold sore / lesion</li>
+      </ol>
+
+      <h3>Therapeutics: Acyclovir</h3>
+      <ul>
+        <li>HSV-2 is the primary causative agent of genital herpes; <span class="highlight">~50 million Americans</span> are infected</li>
+        <li>There is <span class="warn">no cure</span>, but antivirals can manage flares</li>
+        <li><strong>Acyclovir</strong> is the most commonly prescribed antiviral; given <span class="highlight">during flare-ups</span></li>
+        <li>Mechanism: it's a <span class="highlight">guanosine BASE ANALOG</span> &mdash; missing the normal ribose ring (acyclic side chain instead)</li>
+        <li>It <span class="highlight">completely inactivates HSV-specific DNA polymerases</span> and prevents further viral DNA synthesis</li>
+        <li>Crucially, acyclovir has <span class="highlight">much higher affinity for VIRAL DNA polymerase than host DNAP</span> &mdash; so it doesn't hurt the host</li>
+      </ul>
+
+      <div class="callout">Full HSV cycle for the exam: <strong>Entry (gB &rarr; gD &rarr; gH/L fusion) &rarr; Transit IN (dynein) &rarr; Silencing (LAT only, H3K9me3, no apoptosis) &rarr; Reactivation under stress &rarr; Transit OUT (kinesin) &rarr; Shed &rarr; Lytic cycle in epithelium &rarr; Cold sore.</strong></div>
+    </div>
+  </div>
+
+  <!-- POLIO PATHOLOGY -->
+  <div class="tab-content" id="tab-polio-path">
+    <div class="card hy-card">
+      <h2>Polio: Pathology &amp; Epidemiology <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3>Epidemiology</h3>
+      <ul>
+        <li><span class="highlight">Polio (poliomyelitis)</span> is caused by the highly contagious <em>poliovirus</em></li>
+        <li>Worldwide distribution &mdash; year-round in the tropics, summer/fall in temperate zones</li>
+        <li>Affects all age groups, but <span class="highlight">children are more susceptible than adults</span></li>
+        <li>Once acquired, immunity is <span class="warn">life-long</span></li>
+        <li><span class="warn">Humans are the only known reservoir</span> &rarr; eradication is biologically possible</li>
+        <li>Two major vaccines available (IPV, OPV) &rarr; eradication has been pursued aggressively</li>
+        <li>Cases dropped from <span class="highlight">350,000 in 1988 (125 countries)</span> to <span class="highlight">1,292 in 2010 (4 endemic countries)</span></li>
+      </ul>
+
+      <h3>Three Clinical Outcomes <span class="hy-badge">HIGH YIELD</span></h3>
+      <table class="data-table hy-table">
+        <tr><th>Outcome</th><th>Frequency</th><th>Symptoms</th></tr>
+        <tr><td><strong>Asymptomatic</strong></td><td><span class="highlight">~95%</span></td><td>No symptoms; person still sheds virus</td></tr>
+        <tr><td><strong>Abortive polio</strong> (minor illness)</td><td><span class="highlight">~5%</span></td><td>Fever, malaise, sore throat, myalgia, headache</td></tr>
+        <tr><td><strong>Paralytic polio</strong> (major illness)</td><td><span class="warn">~0.1%</span></td><td><span class="warn">Asymmetric flaccid paralysis</span> of lower or upper extremities, chest, or abdomen</td></tr>
+      </table>
+
+      <h3>Severity of Paralytic Polio</h3>
+      <ul>
+        <li>Paralytic polio with <span class="warn">respiratory involvement is fatal without respiratory support</span> (the iconic "iron lung")</li>
+        <li>Case fatality rate for paralytic polio: <span class="warn">5-10%</span></li>
+        <li><span class="highlight">Post-polio syndrome:</span> progressive muscle atrophy <span class="warn">years later</span>, even after initial recovery</li>
+      </ul>
+
+      <h3>How Poliovirus Reaches the CNS</h3>
+      <p>Polio is fundamentally a gut virus that becomes a nervous system virus:</p>
+      <ul>
+        <li>Once poliovirus enters the bloodstream, it can be <span class="highlight">circulated to the central nervous system</span></li>
+        <li>Spreads along <span class="highlight">axons of peripheral nerves</span> to the CNS</li>
+        <li>Spreads along <span class="highlight">fibers of the lower motor neurons</span> to the spinal cord or brain</li>
+        <li>Invades certain types of nerve cells &mdash; <span class="warn">damages or destroys them as a result of replication</span></li>
+        <li><span class="warn">Destruction of nerve cells in the spinal cord causes irreversible muscle wasting and paralysis</span> (because lower motor neurons control muscle, and they don't regenerate)</li>
+      </ul>
+
+      <div class="callout">Memorize the percentages: <strong>95% asymptomatic / 5% abortive / 0.1% paralytic, with 5-10% case fatality once paralytic.</strong> The pathology is irreversible because polio kills lower motor neurons in the spinal cord.</div>
+    </div>
+  </div>
+
+  <!-- POLIO REPLICATION -->
+  <div class="tab-content" id="tab-polio-rep">
+    <div class="card hy-card">
+      <h2>Poliovirus Structure &amp; Replication <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <h3>Structure</h3>
+      <ul>
+        <li><span class="highlight">Human enterovirus</span> &mdash; mouth is the portal of entry, primary multiplication occurs in the <span class="highlight">gastrointestinal tract</span></li>
+        <li>Family: <span class="highlight"><em>Picornaviridae</em></span> ("pico" = small + RNA)</li>
+        <li>Genome: <span class="highlight">single-stranded, POSITIVE-sense RNA (+ssRNA)</span>, ~7,500 nucleotides</li>
+        <li>Capsid: <span class="highlight">icosahedral symmetry</span>, ~30 nm in diameter</li>
+        <li><span class="warn">NON-enveloped</span> (naked virion &rarr; resists stomach acid &rarr; can be fecal-orally transmitted)</li>
+      </ul>
+
+      <h3>Why "Positive-Sense RNA" Matters</h3>
+      <p>+RNA can be <span class="highlight">directly translated by host ribosomes</span> as if it were an mRNA &mdash; no need for the virus to bring an RNA polymerase into the cell first. This makes the early steps simple and fast.</p>
+
+      <h3>The 8-Step Replication Cycle <span class="hy-badge">HIGH YIELD</span></h3>
+      <ol style="padding-left: 20px;">
+        <li style="margin-bottom: 8px;"><strong>Binding:</strong> attachment to the cell-surface receptor <span class="highlight">CD155</span> on intestinal epithelial cells</li>
+        <li style="margin-bottom: 8px;"><strong>Entry by endocytosis:</strong> the virion is taken up via endocytosis</li>
+        <li style="margin-bottom: 8px;"><strong>Genome release:</strong> viral <span class="highlight">+RNA released from the endosome into the cytoplasm</span> (pore-mediated penetration)</li>
+        <li style="margin-bottom: 8px;"><strong>Translation:</strong> the +RNA is translated (via an <span class="highlight">IRES</span>, internal ribosome entry site) into one large polyprotein, which is cleaved into individual viral proteins</li>
+        <li style="margin-bottom: 8px;"><strong>Negative-strand synthesis:</strong> <span class="highlight">viral RNA replicase produces negative-stranded RNA</span> (&minus;RNA) using the +RNA as a template</li>
+        <li style="margin-bottom: 8px;"><strong>+RNA from &minus;RNA:</strong> <span class="highlight">Host RNA polymerase makes new +RNA from the &minus;RNA</span> template</li>
+        <li style="margin-bottom: 8px;"><strong>Assembly:</strong> +RNAs are either translated to make more viral protein, or <span class="highlight">enclosed in capsids</span> for packaging</li>
+        <li style="margin-bottom: 8px;"><strong>Lysis:</strong> <span class="warn">lysis of the infected cell releases infectious progeny virions</span></li>
+      </ol>
+
+      <div class="diagram-box"><span class="label">Poliovirus replication summary:</span>
+
+[ <span class="mol">+RNA virion</span> ]
+   &darr; CD155 binding
+   &darr; endocytosis
+   &darr; +RNA released into <span class="arr">cytoplasm</span>
+   &darr; IRES-mediated <span class="arr">translation</span>  &rarr; polyprotein  &rarr; cleaved viral proteins
+   &darr; viral replicase: +RNA &rarr; <span class="mol">&minus;RNA</span>
+   &darr; host RNA pol:  &minus;RNA &rarr; <span class="mol">+RNA</span>  (amplification)
+   &darr; capsid assembly + packaging
+   &darr; <span class="warn">cell LYSIS</span>  &rarr; progeny virions</div>
+
+      <div class="callout">Why polio is FAST (vs. herpes' slow latency): <strong>+ssRNA is read directly as mRNA, replication is in the cytoplasm, and the cycle ends in lysis.</strong> No nucleus, no chromatin, no latency.</div>
+    </div>
+  </div>
+
+  <!-- POLIO VACCINES -->
+  <div class="tab-content" id="tab-vaccines">
+    <div class="card hy-card">
+      <h2>Two Polio Vaccines &mdash; And Why BOTH Are Needed <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <p>This is the most heavily flagged topic from Lecture 24. Know the names, mechanisms, advantages, and the trade-off that justifies keeping BOTH around.</p>
+
+      <h3>The Two Vaccines</h3>
+      <table class="data-table hy-table">
+        <tr><th>Feature</th><th><span class="highlight">IPV</span> (Inactivated Poliovirus Vaccine)</th><th><span class="highlight">OPV</span> (Oral Polio Vaccine)</th></tr>
+        <tr><td><strong>Form</strong></td><td>Inactivated (killed) virus</td><td>Live <span class="highlight">attenuated</span> (weakened) virus</td></tr>
+        <tr><td><strong>Route</strong></td><td><span class="highlight">Injection (shot)</span></td><td><span class="highlight">Oral</span> (drops)</td></tr>
+        <tr><td><strong>Safety</strong></td><td><span class="highlight">Safe</span> &mdash; cannot cause polio</td><td>Rarely (3 in 1,000,000 doses) can cause <span class="warn">vaccine-associated paralytic poliomyelitis (VAPP)</span></td></tr>
+        <tr><td><strong>US use</strong></td><td>Currently in use</td><td><span class="warn">Not authorized in the US since 2000</span>; only used in outbreak settings</td></tr>
+        <tr><td><strong>Spread / shedding</strong></td><td>Cannot spread</td><td>Patients can <span class="highlight">shed the attenuated virus</span> &rarr; bystanders may pick up immunity</td></tr>
+        <tr><td><strong>Risk</strong></td><td>Minimal</td><td><span class="warn">Attenuated virus can mutate</span> back to a dangerous form (VDPV &mdash; vaccine-derived poliovirus)</td></tr>
+      </table>
+
+      <h3>Why IPV Alone Isn't Enough <span class="hy-badge">HIGH YIELD</span></h3>
+      <ul>
+        <li>IPV is <span class="highlight">safe</span> and reliably induces a strong antibody response that prevents paralytic disease</li>
+        <li>But IPV alone may not be enough in <span class="warn">outbreak situations</span> or in regions with low vaccination coverage</li>
+        <li>OPV's <span class="highlight">shed attenuated virus can spread</span> and quietly confer protection on contacts (passive herd benefit) &mdash; useful in outbreaks where you need to immunize fast</li>
+      </ul>
+
+      <h3>Why OPV Alone Isn't Enough Either</h3>
+      <ul>
+        <li>OPV's attenuated virus can <span class="warn">cause vaccine-associated paralytic polio (VAPP)</span> &mdash; about 3 cases per million doses</li>
+        <li>If a population is largely <span class="warn">unvaccinated</span>, the attenuated virus can spread among them and accumulate mutations &mdash; eventually <span class="warn">reverting to a dangerous (vaccine-derived) form</span></li>
+        <li>This is exactly why OPV is now used <strong>only</strong> in outbreak settings</li>
+      </ul>
+
+      <h3>The Compromise &mdash; Why Both Are Needed</h3>
+      <ul>
+        <li><span class="highlight">IPV</span> provides safe, reliable, individual-level protection &mdash; the routine choice</li>
+        <li><span class="highlight">OPV</span> provides faster spread of immunity in outbreak settings via shedding, and stronger gut immunity that limits transmission &mdash; held in reserve for outbreaks</li>
+        <li>You need <span class="warn">IPV's safety AND OPV's transmission-blocking power</span> to drive cases to zero globally</li>
+      </ul>
+
+      <h3>The Cautionary Tale: 2022 New Jersey Case</h3>
+      <ul>
+        <li>October 2022: the United States was confirmed as a country with <span class="warn">circulating vaccine-derived poliovirus</span></li>
+        <li>The patient was <span class="warn">UNVACCINATED</span></li>
+        <li>This is exactly the OPV-derived risk in action: somewhere in the world OPV virus was shed, mutated back toward virulence, and reached a person who had no IPV protection</li>
+        <li>Vaccination coverage among US kindergartners has dropped in pockets &mdash; e.g., <span class="warn">WV at only 80.4-90.1%</span> in 2020-2021</li>
+      </ul>
+
+      <div class="callout">Two-line answer: <strong>IPV (shot, killed) is safe but doesn't transmit immunity. OPV (oral, attenuated) transmits immunity to contacts and gives strong gut immunity, but rarely causes VAPP and can revert to virulence in unvaccinated populations.</strong> Therefore: routine IPV + outbreak OPV is the global eradication strategy. Either alone has a fatal gap.</div>
+    </div>
+  </div>
+
+  <!-- COMPARE -->
+  <div class="tab-content" id="tab-compare">
+    <div class="card hy-card">
+      <h2>Compare HSV vs Poliovirus <span class="hy-badge">HIGH YIELD</span></h2>
+
+      <table class="data-table hy-table">
+        <tr><th></th><th>HSV (Herpes Simplex Virus)</th><th>Poliovirus</th></tr>
+        <tr><td><strong>Family</strong></td><td><em>Herpesviridae</em></td><td><em>Picornaviridae</em></td></tr>
+        <tr><td><strong>Genome</strong></td><td><span class="highlight">Linear dsDNA</span>, ~70 genes</td><td><span class="highlight">+ssRNA</span>, ~7,500 nt</td></tr>
+        <tr><td><strong>Envelope</strong></td><td>Yes (with gB, gD, gH/L)</td><td><span class="warn">No</span> (naked icosahedral capsid)</td></tr>
+        <tr><td><strong>Replicates in</strong></td><td>Nucleus</td><td>Cytoplasm</td></tr>
+        <tr><td><strong>Entry mechanism</strong></td><td>gB attaches &rarr; gD switches &rarr; gH/L fuses</td><td>CD155 binding &rarr; endocytosis &rarr; pore release</td></tr>
+        <tr><td><strong>Target tissue</strong></td><td>Mucous membranes &rarr; sensory neurons</td><td>GI epithelium &rarr; bloodstream &rarr; spinal motor neurons</td></tr>
+        <tr><td><strong>Persistence</strong></td><td><span class="warn">Lifelong latency</span> in neurons (LAT only, H3K9me3)</td><td>Acute, lytic; immunity is life-long after recovery</td></tr>
+        <tr><td><strong>Symptoms</strong></td><td>Cold sores, genital lesions, recurrent flares</td><td>95% asymptomatic / 5% minor / 0.1% paralytic</td></tr>
+        <tr><td><strong>Treatment / prevention</strong></td><td><span class="warn">No cure, no vaccine</span>; acyclovir manages flares</td><td><span class="highlight">Two vaccines</span> (IPV + OPV); near-eradicated</td></tr>
+        <tr><td><strong>Family trait</strong></td><td>All <em>Herpesviridae</em> establish latency</td><td>All picornaviruses are small +ssRNA, naked</td></tr>
+      </table>
+
+      <h3>Common Themes</h3>
+      <ul>
+        <li>Both invade neurons &mdash; HSV the sensory neurons; polio the motor neurons</li>
+        <li>Both spread via the host's microtubule highway in some way (HSV uses dynein/kinesin directly)</li>
+        <li>Both produce most of their disease via host cell death &mdash; HSV causes lytic lesions in epithelium; polio kills lower motor neurons in the spinal cord</li>
+      </ul>
+
+      <h3>Three Mnemonic Trios</h3>
+      <ul>
+        <li><strong>Herpes family</strong>: HSV-1, HSV-2, VZV, EBV, CMV (the 5 to know)</li>
+        <li><strong>HSV entry</strong>: gB attaches, gD switches, gH/L fuses</li>
+        <li><strong>HSV life cycle</strong>: Entry &rarr; Transit &rarr; Silencing &rarr; Reactivation (the four steps your professor explicitly listed)</li>
+        <li><strong>Polio outcomes</strong>: 95 / 5 / 0.1 (asymptomatic / abortive / paralytic)</li>
+        <li><strong>Polio vaccines</strong>: IPV (shot, safe) + OPV (oral, attenuated, transmits) &mdash; both needed</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FLASHCARDS ==================== -->
+<div class="section" id="sec-flashcards">
+  <div class="score-bar">
+    <div><span class="score-text">Flashcard Progress</span></div>
+    <div><span class="score-pct" id="fc-score">0 / 34</span></div>
+  </div>
+  <div class="fc-container">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="fc-front" id="fc-front"></div>
+      <div class="fc-back" id="fc-back"></div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button class="fc-btn" onclick="prevCard()">&larr;</button>
+    <span class="fc-counter" id="fc-counter">1 / 34</span>
+    <button class="fc-btn" onclick="nextCard()">&rarr;</button>
+  </div>
+  <div class="fc-hint">Click to flip &middot; Arrow keys to navigate</div>
+</div>
+
+<!-- ==================== FRQ ==================== -->
+<div class="section" id="sec-frq">
+  <div class="score-bar">
+    <div><span class="score-text">FRQ Self-Assessment</span></div>
+    <div><span class="score-pct" id="frq-score">0%</span></div>
+    <button class="reset-btn" onclick="resetFRQ()">Reset All</button>
+  </div>
+  <div id="frq-container"></div>
+</div>
+
+<!-- ==================== MATCHING ==================== -->
+<div class="section" id="sec-matching">
+  <div class="score-bar">
+    <div><span class="score-text">Matching</span></div>
+    <div><span class="score-pct" id="match-score">0 / 12</span></div>
+    <button class="reset-btn" onclick="initMatching()">Reset</button>
+  </div>
+  <div class="match-grid">
+    <div>
+      <div class="match-col-header">Term</div>
+      <div id="match-left"></div>
+    </div>
+    <div>
+      <div class="match-col-header">Definition</div>
+      <div id="match-right"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HARD FRQ ==================== -->
+<div class="section" id="sec-hard">
+  <div class="score-bar">
+    <div><span class="score-text">Hard FRQ (Exam-Level)</span></div>
+    <div><span class="score-pct" id="hard-score">0%</span></div>
+    <button class="reset-btn" onclick="resetHard()">Reset All</button>
+  </div>
+  <div id="hard-container"></div>
+</div>
+
+</main>
+
+<script>
+// ====== NAVIGATION ======
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+function showTab(btn, id) {
+  btn.closest('.section').querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.closest('.section').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ====== FLASHCARDS ======
+const flashcards = [
+  {q:"Name the five <em>Herpesviridae</em> family members and the disease each causes.", a:"<strong>HSV-1</strong> &mdash; oral herpes (cold sores). <strong>HSV-2</strong> &mdash; genital herpes. <strong>Varicella-Zoster Virus (VZV)</strong> &mdash; chickenpox (primary) and shingles (reactivation). <strong>Epstein-Barr Virus (EBV)</strong> &mdash; mononucleosis. <strong>Cytomegalovirus (CMV)</strong> &mdash; mononucleosis."},
+  {q:"What single trait do ALL <em>Herpesviridae</em> family members share?", a:"Every member of <em>Herpesviridae</em> can establish a <strong>latent infection</strong>. More than 90% of adults have been infected with at least one of these viruses."},
+  {q:"What is the genome and capsid type of HSV-1 / HSV-2?", a:"HSV has a <strong>large icosahedral capsid wrapped in a phospholipid envelope</strong>, with a tegument layer between. The genome is <strong>linear, double-stranded DNA</strong> encoding ~70 genes; HSV-1 and HSV-2 share ~70% genome identity."},
+  {q:"Why does HSV depend on intimate mucous-membrane contact for spread?", a:"HSV is <strong>relatively fragile outside the body</strong>, so it can't survive long on surfaces. It depends on <strong>intimate contact between mucous membranes</strong> to transmit between hosts."},
+  {q:"Walk through HSV ENTRY in three steps.", a:"<strong>Step 1:</strong> viral glycoprotein <strong>gB</strong> associates with a host receptor (attachment). <strong>Step 2:</strong> <strong>gD</strong> binds a different host receptor and triggers a conformational change. <strong>Step 3:</strong> the <strong>fusion complex gH/gL</strong> is recruited and mediates merging of the lipid bilayers and release of the nucleocapsid into the cytoplasm."},
+  {q:"What viral glycoprotein triggers the conformational change required for fusion?", a:"<strong>gD</strong>. After binding its host receptor (different from gB's), gD undergoes a conformational change that recruits the gH/gL fusion complex."},
+  {q:"What cellular structures organize microtubules, and what is their polarity?", a:"<strong>Microtubule-organizing centers (MTOCs)</strong> organize microtubules. Microtubules are polar: the <strong>minus end</strong> is at the MTOC (near the nucleus), and the <strong>plus end</strong> is at the periphery."},
+  {q:"Compare dynein and kinesin: what direction does each move on microtubules?", a:"<strong>Dynein</strong> motors move cargo toward the <strong>MINUS end</strong> &mdash; that is, <strong>toward the MTOC / nucleus</strong>. <strong>Kinesin</strong> motors move cargo toward the <strong>PLUS end</strong> &mdash; in neurons this means toward the axon terminal / periphery (egress direction)."},
+  {q:"How does HSV exploit the cellular transport system?", a:"HSV nucleocapsids <strong>hitch a ride on dynein and kinesin</strong>. They use <strong>dynein</strong> to travel from the cell periphery to the nucleus, and <strong>kinesin</strong> to travel back out to the axon terminal during egress. Many viruses (including HIV-1, KSHV, and HPV) have evolved to bind directly to host motor proteins."},
+  {q:"What innate immune sensor silences foreign DNA in the nucleus?", a:"<strong>IFI16</strong>. It patrols the nucleus for foreign DNA, packages it into <strong>tight balls of chromatin</strong> that limit access to the host transcriptional machinery, and triggers proinflammatory cytokine production."},
+  {q:"How does HSV overcome silencing in epithelial cells?", a:"In epithelial cells, HSV <strong>counteracts silencing</strong>: one viral protein <strong>degrades surveillance system components</strong>; viral proteins like <strong>VP16 and ICP0</strong> keep viral promoters <strong>free of repressive chromatin</strong> and add active marks (H3K4me2, acetylation); other viral proteins modify host RNA polymerase to direct it toward viral promoters. Together these orchestrate the <strong>lytic cycle</strong> &mdash; cold sores and lesions."},
+  {q:"What does HSV do DIFFERENTLY in neurons vs epithelial cells?", a:"In <strong>epithelial cells</strong>, HSV FIGHTS silencing &rarr; lytic infection. In <strong>neurons</strong>, HSV does the opposite: it <strong>actively recruits chromatin assembly</strong> and lets itself be silenced. The viral genome is packaged into heterochromatin marked by <strong>H3K9me3</strong>, and only one transcript (LAT) is highly expressed."},
+  {q:"What is LAT, and what two functions does it perform?", a:"LAT = <strong>Latency-Associated Transcript</strong>. It is the only viral RNA highly expressed during HSV latency in neurons. It (1) <strong>promotes tight packaging of the viral genome</strong> and (2) <strong>prevents apoptosis</strong> of the infected neuron, keeping the host cell alive long-term so HSV can persist."},
+  {q:"What can trigger HSV reactivation?", a:"HSV reactivates in response to <strong>stress</strong> &mdash; emotional, physical, or clinical &mdash; or <strong>age-associated immune decline</strong>."},
+  {q:"Walk through HSV reactivation step-by-step.", a:"(1) Stress / immune decline causes <strong>silencing to be deactivated</strong> on the latent HSV genome; (2) viral gene expression restarts and the <strong>replication cycle resumes</strong>; (3) new nucleocapsids <strong>travel back to the axonal surface via the microtubule network</strong> (kinesin); (4) virions are <strong>shed</strong>; (5) shed virions <strong>infect neighboring epithelial cells</strong>, initiating a new <strong>lytic cycle</strong> &mdash; visible as a cold sore or lesion."},
+  {q:"What is acyclovir and how does it work?", a:"<strong>Acyclovir</strong> is the most commonly prescribed antiviral for HSV-2 (genital herpes), used during flare-ups. It is a <strong>guanosine BASE ANALOG</strong> (acyclic side chain instead of ribose) that <strong>completely inactivates HSV-specific DNA polymerase</strong>, preventing further viral DNA synthesis. It has <strong>much higher affinity for viral DNAP than host DNAP</strong>, so host processes are not affected."},
+  {q:"What virus causes polio, and what family is it in?", a:"<strong>Poliovirus</strong> causes polio (poliomyelitis). It is a member of the family <strong><em>Picornaviridae</em></strong> (\"pico\" = small, RNA virus)."},
+  {q:"Describe the structure of poliovirus.", a:"Poliovirus is a <strong>human enterovirus</strong>. It has a <strong>single-stranded, positive-sense RNA genome (+ssRNA)</strong> about 7,500 nucleotides long, enclosed in an <strong>icosahedral protein capsid</strong> ~30 nm in diameter. It is <strong>NON-enveloped</strong> (naked)."},
+  {q:"Why does it matter that poliovirus has a +sense RNA genome?", a:"Because +RNA can be <strong>directly translated by host ribosomes as if it were an mRNA</strong>. This means poliovirus does NOT need to bring an RNA polymerase into the cell first &mdash; the early steps of replication are simple and fast (no nuclear entry, no chromatin)."},
+  {q:"List the three clinical outcomes of polio infection and their frequencies.", a:"<strong>~95% asymptomatic</strong>; <strong>~5% abortive polio</strong> (minor illness: fever, malaise, sore throat, myalgia, headache); <strong>~0.1% paralytic polio</strong> (asymmetric flaccid paralysis of extremities, chest, or abdomen). Paralytic polio with respiratory involvement is <strong>5-10% fatal</strong> without respiratory support."},
+  {q:"What is post-polio syndrome?", a:"<strong>Post-polio syndrome</strong> is the <strong>progressive muscle atrophy years after the initial recovery</strong> from polio. It happens because the surviving motor neurons (which compensated by re-innervating muscles) eventually become exhausted."},
+  {q:"How does poliovirus reach the central nervous system from the gut?", a:"After GI replication, poliovirus enters the bloodstream and is circulated. It can spread along <strong>axons of peripheral nerves</strong> to the CNS, and along <strong>fibers of the lower motor neurons</strong> to the spinal cord or brain. It then invades nerve cells and <strong>damages or destroys them as it replicates</strong> &mdash; destruction of spinal cord neurons causes <strong>irreversible muscle wasting and paralysis</strong>."},
+  {q:"What cell-surface receptor does poliovirus use for binding?", a:"<strong>CD155</strong>, expressed on intestinal epithelial cells (the primary site of replication)."},
+  {q:"What are the 8 steps of poliovirus replication?", a:"(1) <strong>Binding</strong> to CD155; (2) <strong>endocytosis</strong>; (3) <strong>release of +RNA</strong> from the endosome into the cytoplasm; (4) <strong>IRES-mediated translation</strong> of the viral +RNA into a polyprotein, which is cleaved into individual viral proteins; (5) <strong>viral RNA replicase synthesizes &minus;RNA</strong> from the +RNA template; (6) <strong>host RNA polymerase makes new +RNA</strong> from the &minus;RNA template (amplification); (7) +RNAs are translated for more protein OR <strong>packaged in capsids (assembly)</strong>; (8) <strong>cell lysis</strong> releases progeny virions."},
+  {q:"Where in the cell does poliovirus replicate?", a:"In the <strong>cytoplasm</strong>. Unlike HSV (which goes to the nucleus and uses host DNA replication machinery), poliovirus has a +ssRNA genome and never needs to enter the nucleus."},
+  {q:"Why is poliovirus eradication biologically possible?", a:"Because <strong>humans are the only known reservoir</strong> of poliovirus. There is no animal or environmental reservoir to repopulate it &mdash; if you can immunize enough humans, the virus has nowhere else to live."},
+  {q:"Name the two polio vaccines and how they are administered.", a:"<strong>IPV</strong> &mdash; <strong>Inactivated Poliovirus Vaccine</strong>; given as a <strong>shot</strong>; contains killed virus. <strong>OPV</strong> &mdash; <strong>Oral Polio Vaccine</strong>; given <strong>orally</strong> (drops); contains live attenuated virus."},
+  {q:"What is the main safety advantage of IPV?", a:"IPV is <strong>safe</strong> &mdash; the virus is killed/inactivated, so it <strong>cannot cause polio</strong>. It also cannot mutate back to a dangerous form, and it cannot spread between people."},
+  {q:"What are the unique advantages of OPV?", a:"(1) OPV recipients can <strong>shed the attenuated virus</strong>, which can spread to unvaccinated contacts and confer immunity passively (a form of indirect protection useful in outbreaks). (2) OPV gives stronger <strong>gut (mucosal) immunity</strong>, which limits ongoing transmission. (3) It is easier to administer in mass-vaccination campaigns (oral, no needles)."},
+  {q:"What are the risks of OPV?", a:"(1) The attenuated virus can rarely cause <strong>vaccine-associated paralytic poliomyelitis (VAPP)</strong> &mdash; about <strong>3 cases per million doses</strong>. (2) Patients can shed the attenuated virus, and in <strong>unvaccinated populations</strong>, the shed virus can <strong>mutate and revert to a dangerous (vaccine-derived) form</strong>. (3) For these reasons, OPV has <strong>not been authorized in the US since 2000</strong> &mdash; it is now used only in outbreak settings."},
+  {q:"Why are BOTH polio vaccines needed?", a:"You need <strong>IPV's safety</strong> for routine immunization (no risk of VAPP, no risk of reversion) AND you need <strong>OPV's spread of immunity + strong gut immunity</strong> to actually break transmission in outbreak settings. IPV alone may not block community transmission fast enough during outbreaks; OPV alone is too risky for routine use because of VAPP and revertant strains. Combining them &mdash; routine IPV + outbreak OPV &mdash; is the strategy that has driven polio toward eradication."},
+  {q:"What was significant about the 2022 New Jersey polio case?", a:"In October 2022, the United States was confirmed as a country with <strong>circulating vaccine-derived poliovirus</strong>. The patient was <strong>UNVACCINATED</strong> &mdash; a textbook example of the risk that arises when OPV-derived virus circulates in unvaccinated populations and reverts toward virulence. It also highlighted falling US vaccination rates (e.g., West Virginia kindergartners at 80.4-90.1%)."},
+  {q:"How is HSV's genome and replication different from poliovirus's?", a:"<strong>HSV</strong>: linear <strong>dsDNA</strong> genome (~70 genes), enveloped, replicates in the <strong>NUCLEUS</strong>, can establish <strong>lifelong latency</strong>. <strong>Poliovirus</strong>: <strong>+ssRNA</strong> genome (~7,500 nt), <strong>NON-enveloped</strong>, replicates in the <strong>CYTOPLASM</strong>, acute lytic cycle (no latency)."},
+  {q:"What is the four-step HSV life cycle that the professor specifically listed?", a:"<strong>Entry &rarr; Transit &rarr; Silencing &rarr; Reactivation</strong>. (1) <strong>Entry</strong>: gB attaches, gD switches, gH/L fuses. (2) <strong>Transit</strong>: nucleocapsids ride dynein toward the nucleus, kinesin out to the periphery. (3) <strong>Silencing/Latency</strong>: in neurons HSV recruits chromatin assembly; only LAT is expressed (anti-apoptosis + tight packaging). (4) <strong>Reactivation</strong>: stress reverses silencing &rarr; virions egress via kinesin &rarr; lytic infection of epithelium &rarr; cold sore."},
+];
+
+let fcIdx = 0;
+function renderCard() {
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('fc-front').innerHTML = '<div>'+flashcards[fcIdx].q+'</div>';
+  document.getElementById('fc-back').innerHTML = '<div>'+flashcards[fcIdx].a.replace(/\n/g,'<br>')+'</div>';
+  document.getElementById('fc-counter').textContent = (fcIdx+1)+' / '+flashcards.length;
+  document.getElementById('fc-score').textContent = (fcIdx+1)+' / '+flashcards.length;
+}
+function flipCard() { document.getElementById('flashcard').classList.toggle('flipped'); }
+function nextCard() { fcIdx = (fcIdx+1) % flashcards.length; renderCard(); }
+function prevCard() { fcIdx = (fcIdx-1+flashcards.length) % flashcards.length; renderCard(); }
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight') nextCard();
+  if(e.key==='ArrowLeft') prevCard();
+  if(e.key===' '||e.key==='Enter') { e.preventDefault(); flipCard(); }
+});
+renderCard();
+
+// ====== FRQ ======
+const frqs = [
+  {q:"Name the five members of the <em>Herpesviridae</em> family that infect humans, and state the disease(s) each causes.", a:"The five members are: <strong>HSV-1</strong> &mdash; oral herpes (cold sores); <strong>HSV-2</strong> &mdash; genital herpes; <strong>Varicella-Zoster Virus (VZV)</strong> &mdash; chickenpox (primary infection) and shingles (reactivation); <strong>Epstein-Barr Virus (EBV)</strong> &mdash; mononucleosis; <strong>Cytomegalovirus (CMV)</strong> &mdash; also causes mononucleosis. Crucially, more than 90% of adults have been infected with at least one of these viruses, and <strong>every member of the family can establish latent infection</strong>.", hy:true},
+  {q:"What single trait unites the entire <em>Herpesviridae</em> family, and why is it clinically important?", a:"Every member of <em>Herpesviridae</em> has the ability to <strong>establish latent infection</strong>. Clinically, this means once you are infected, the virus persists for life as a silent reservoir &mdash; capable of <strong>recurrent reactivation</strong> in response to stress or immune decline. This is why there is <strong>no cure</strong> for herpes infections and why diseases like shingles (VZV reactivation) appear decades after primary infection.", hy:true},
+  {q:"Describe the structure of HSV-1 / HSV-2.", a:"HSV-1 and HSV-2 have a <strong>large icosahedral capsid</strong> surrounded by a <strong>phospholipid envelope</strong>, with a <strong>tegument</strong> protein layer between them. The genome is <strong>linear, double-stranded DNA</strong> encoding approximately <strong>70 genes</strong>. HSV-1 and HSV-2 share ~70% genome identity, which is why they are studied collectively as 'HSV.' The envelope makes them relatively fragile outside the body, requiring intimate mucous-membrane contact for transmission.", hy:true},
+  {q:"Walk through the three-step mechanism of HSV ENTRY into a host cell. Name the glycoproteins involved.", a:"The cryo-EM-derived model has three steps: <strong>(1)</strong> viral glycoprotein <strong>gB associates with a host receptor</strong> (initial attachment); <strong>(2)</strong> viral glycoprotein <strong>gD binds a DIFFERENT host receptor and undergoes a conformational change</strong>, which acts as a switch; <strong>(3)</strong> the gD conformational change recruits the <strong>gH/gL fusion complex</strong>, which mediates the <strong>merging of the viral envelope with the host plasma membrane</strong> and the <strong>release of the nucleocapsid</strong> into the host cytoplasm. Mnemonic: <strong>gB attaches, gD switches, gH/L fuses.</strong>", hy:true},
+  {q:"Explain the cellular transport system that HSV uses to TRANSIT to and from the neuronal nucleus, including the directionality of the two motor proteins.", a:"HSV invades sensory neurons but must travel a long distance between the axon (entry site) and the nucleus (replication site). The cell's transportation system is built from <strong>tubulin organized via MTOCs (microtubule-organizing centers)</strong>. Microtubules are polar: minus end at the MTOC (near nucleus), plus end at the periphery. Two motor proteins walk along them: <strong>dynein</strong> moves cargo toward the <strong>MINUS end (toward the MTOC / nucleus)</strong>, and <strong>kinesin</strong> moves cargo toward the <strong>PLUS end (toward the cell periphery / axon terminal)</strong>. <strong>HSV nucleocapsids hitch a ride on both</strong>: dynein carries them inward to the nucleus for replication / latency, and kinesin carries new virions outward toward the axonal surface for shedding.", hy:true},
+  {q:"How does the innate immune system attempt to silence HSV in the nucleus, and how does HSV overcome this in EPITHELIAL cells?", a:"The innate immune sensor <strong>IFI16</strong> patrols the nucleus for foreign DNA. When it detects HSV DNA, it <strong>packages the viral genome into tight chromatin</strong>, which limits access to the host transcriptional machinery and triggers proinflammatory cytokine production &mdash; effectively silencing HSV. In <strong>epithelial cells</strong>, HSV counteracts this silencing with multiple viral proteins: one <strong>degrades surveillance system components</strong>, while proteins like <strong>VP16 and ICP0 keep viral promoters free of repressive chromatin</strong> (laying down active marks like H3K4me2 and acetylation), and others <strong>modify host RNA polymerase</strong> to direct it toward viral promoters. Together these orchestrate the <strong>lytic cycle</strong> &mdash; the cause of visible cold sores and lesions.", hy:true},
+  {q:"How does HSV behave DIFFERENTLY in neurons compared to epithelial cells, and what role does LAT play?", a:"In neurons, HSV does the OPPOSITE of what it does in epithelial cells: it <strong>does NOT subvert silencing</strong> &mdash; instead, it <strong>actively recruits chromatin assembly</strong>, packaging its genome into <strong>heterochromatin marked by H3K9me3</strong>. As a result, <strong>only one viral RNA is highly expressed: LAT (Latency-Associated Transcript)</strong>. LAT performs two essential jobs: (1) it <strong>promotes tight packaging of the viral genome</strong> for storage, and (2) it <strong>prevents apoptosis of the infected neuron</strong>, keeping the host cell alive for the duration of its long life. The result is a silent HSV genome that persists in the neuron for decades, ready to be reactivated.", hy:true},
+  {q:"Walk through HSV REACTIVATION from latent neuron to lytic epithelial infection. What triggers it, and what does the virus actually do?", a:"<strong>Triggers:</strong> reactivation occurs in response to <strong>stress (emotional, physical, or clinical)</strong> or <strong>age-associated immune decline</strong>. <strong>Mechanism:</strong> (1) the silencing on the latent HSV genome is <strong>deactivated</strong>; (2) viral gene expression restarts and the <strong>replication cycle resumes</strong> in the neuron; (3) new nucleocapsids <strong>travel back to the axonal surface via the microtubule network</strong> using kinesin (the egress motor); (4) virions are <strong>shed at the periphery</strong>; (5) the shed virions <strong>infect neighboring epithelial cells</strong>, initiating a new round of <strong>lytic infection</strong> &mdash; the visible cold sore or genital lesion.", hy:true},
+  {q:"What is acyclovir and how does it specifically target HSV without harming the host?", a:"<strong>Acyclovir</strong> is the most commonly prescribed antiviral for HSV (especially genital herpes from HSV-2), given during flare-ups. It is a <strong>guanosine base analog</strong> &mdash; structurally similar to guanosine but with an <strong>acyclic side chain instead of the normal ribose ring</strong>. When incorporated into a growing DNA strand, it <strong>completely inactivates HSV-specific DNA polymerase</strong>, preventing further viral DNA synthesis. The key to its safety is selectivity: acyclovir has a <strong>much higher affinity for VIRAL DNA polymerase than for host DNAP</strong>, so host DNA replication is essentially unaffected. There is still no cure, but acyclovir successfully manages outbreaks.", hy:true},
+  {q:"Describe the structure of poliovirus.", a:"Poliovirus is a <strong>human enterovirus</strong> in the family <strong><em>Picornaviridae</em></strong>. The genome is a <strong>single-stranded, positive-sense RNA (+ssRNA)</strong> approximately <strong>7,500 nucleotides</strong> long. It is enclosed in a <strong>protein capsid with icosahedral symmetry</strong>, ~30 nm in diameter, and the virion is <strong>NON-enveloped (naked)</strong>. The mouth is the portal of entry, and primary multiplication occurs in the gastrointestinal tract.", hy:true},
+  {q:"List and describe the three clinical outcomes of polio infection. Why is paralytic polio irreversible?", a:"<strong>(1) Asymptomatic infection &mdash; ~95%</strong>: most infections cause no symptoms (but the person sheds virus). <strong>(2) Abortive polio (minor illness) &mdash; ~5%</strong>: fever, malaise, sore throat, myalgia, headache. <strong>(3) Paralytic polio (major illness) &mdash; ~0.1%</strong>: asymmetric <strong>flaccid paralysis</strong> of lower or upper extremities, chest, or abdomen; <strong>5-10% fatal</strong> when respiratory muscles are affected without respiratory support (the iconic iron lung). Paralysis is <strong>irreversible</strong> because poliovirus enters the spinal cord and <strong>damages or destroys lower motor neurons</strong>; once a motor neuron is killed, the muscles it controlled cannot be re-innervated effectively, leading to permanent <strong>muscle wasting and paralysis</strong>. Some recovered patients later develop <strong>post-polio syndrome</strong> &mdash; progressive atrophy years later as compensating neurons exhaust.", hy:true},
+  {q:"Walk through the eight steps of poliovirus replication.", a:"<strong>(1) Binding</strong>: poliovirus attaches to its cell-surface receptor <strong>CD155</strong> on intestinal epithelial cells. <strong>(2) Endocytosis</strong>: the virion is taken up. <strong>(3) Genome release</strong>: the +RNA is released from the endosome into the cytoplasm. <strong>(4) Translation</strong>: the +RNA is directly translated (using an <strong>IRES</strong>) into a <strong>polyprotein</strong>, which is cleaved into individual viral proteins. <strong>(5) Negative-strand synthesis</strong>: viral <strong>RNA replicase</strong> uses the +RNA as a template to make <strong>&minus;RNA</strong>. <strong>(6) Positive-strand amplification</strong>: <strong>host RNA polymerase</strong> makes new +RNA from the &minus;RNA template. <strong>(7) Assembly</strong>: +RNAs are translated for more protein, or packaged into capsids. <strong>(8) Lysis</strong>: the infected cell <strong>lyses, releasing infectious progeny virions</strong>.", hy:true},
+  {q:"Why does it matter that poliovirus has a positive-sense ssRNA genome and replicates in the cytoplasm?", a:"Because +RNA can be <strong>directly translated by host ribosomes as if it were an mRNA</strong>, poliovirus does not need to bring an RNA polymerase into the cell to start expressing its genes &mdash; the early steps of replication are <strong>simple and fast</strong>. The replication cycle stays <strong>entirely in the cytoplasm</strong>, so it doesn't have to enter the nucleus, deal with chromatin, or interface with host DNA replication machinery. This is the opposite of HSV, which has dsDNA, replicates in the nucleus, and battles chromatin silencing.", hy:true},
+  {q:"How does poliovirus reach the central nervous system from its initial GI replication site, and which cells does it kill there?", a:"After replicating in the GI epithelium, poliovirus enters the bloodstream and is <strong>circulated to the CNS</strong>. From there it can spread along <strong>axons of peripheral nerves</strong> to the CNS, and along the <strong>fibers of lower motor neurons</strong> to the spinal cord and brain. Inside the CNS, poliovirus invades <strong>certain types of nerve cells &mdash; particularly the lower motor neurons of the spinal cord</strong> &mdash; and <strong>damages or destroys them as a result of viral replication</strong>. Because lower motor neurons drive muscle contraction, their destruction causes <strong>irreversible muscle wasting and asymmetric flaccid paralysis</strong>.", hy:true},
+  {q:"Compare IPV and OPV in terms of form, route, safety, and population effects.", a:"<strong>IPV (Inactivated Poliovirus Vaccine)</strong>: contains <strong>killed/inactivated virus</strong>; given as an <strong>injection (shot)</strong>; <strong>safe</strong> &mdash; cannot cause polio, cannot revert, cannot spread between people. <strong>OPV (Oral Polio Vaccine)</strong>: contains <strong>live attenuated virus</strong>; given <strong>orally</strong> as drops; recipients <strong>shed the attenuated virus</strong> in stool, which can spread to contacts and indirectly immunize them. OPV gives stronger gut (mucosal) immunity that limits transmission. However, OPV can rarely (3 in 1,000,000 doses) cause <strong>vaccine-associated paralytic polio (VAPP)</strong>, and in unvaccinated populations the shed attenuated virus can <strong>mutate and revert to a dangerous form (vaccine-derived poliovirus, VDPV)</strong>. OPV has not been authorized in the US since 2000 and is now used only in outbreak settings.", hy:true},
+  {q:"Why are BOTH polio vaccines needed? Make the case explicitly.", a:"You cannot rely on either vaccine alone, because each has a critical gap that the other fills. <strong>IPV's gap:</strong> it is safe and gives strong individual protection from paralytic disease, but it does <strong>not transmit immunity to contacts</strong> and gives <strong>weaker mucosal/gut immunity</strong>, so an IPV-vaccinated person can still shed wild poliovirus and continue transmission &mdash; a problem during outbreaks in low-coverage regions. <strong>OPV's gap:</strong> it transmits immunity to contacts and stops gut shedding, but it <strong>can rarely cause VAPP (~3 per million)</strong> and the <strong>attenuated virus can revert to virulence</strong> in unvaccinated populations &mdash; a problem for routine use in well-vaccinated populations. <strong>The combined strategy is: use IPV routinely for safe, individual protection, AND deploy OPV in outbreaks to rapidly halt transmission via shedding-mediated indirect immunity and strong mucosal protection.</strong> This dual approach is what has driven cases from 350,000 (1988) to ~1,300 (2010).", hy:true},
+  {q:"Why does the existence of a 2022 New Jersey polio case &mdash; in an unvaccinated patient with vaccine-derived poliovirus &mdash; illustrate the OPV trade-off perfectly?", a:"The case shows the OPV risk in real life. OPV's attenuated virus, while shedding through populations, can <strong>accumulate mutations and revert toward virulence</strong> &mdash; this is called <strong>circulating vaccine-derived poliovirus (VDPV)</strong>. In well-vaccinated populations, this is rare and usually contained. But when the virus reaches an <strong>unvaccinated person</strong>, there is no IPV-induced antibody barrier, and they can develop paralytic polio. The 2022 NJ patient was <strong>unvaccinated</strong>, and the virus identified was a <strong>vaccine-derived strain</strong>. This is precisely why coverage matters: even one unvaccinated pocket can host a re-emerging virus. (US kindergarten coverage in 2020-2021 was as low as 80.4-90.1% in WV.) The case justifies the existence of IPV (safe, gives immunity without VDPV risk) AND the reasoning for limiting OPV to outbreak settings.", hy:true},
+  {q:"What does it mean that 'humans are the only known reservoir' of poliovirus, and why does it matter for eradication?", a:"It means there is <strong>no animal or environmental reservoir</strong> of poliovirus &mdash; the virus only persists in human hosts. This makes <strong>eradication biologically possible</strong>: if you can immunize enough humans (or wait for transmission chains to die out), the virus has nowhere else to live and can be wiped out completely &mdash; like smallpox was. This is in stark contrast to many zoonotic viruses (e.g., influenza, rabies, COVID), which cannot be eradicated because they have animal reservoirs that can re-seed human populations.", hy:true},
+  {q:"Compare HSV and poliovirus across genome type, envelope, replication site, and persistence.", a:"<strong>HSV</strong>: linear <strong>dsDNA</strong> genome (~70 genes); <strong>enveloped</strong> with glycoproteins gB, gD, gH/L; replicates in the <strong>NUCLEUS</strong>; establishes <strong>lifelong latency</strong> in sensory neurons (LAT only, H3K9me3 chromatin); recurrent reactivation; no cure or vaccine. <strong>Poliovirus</strong>: <strong>+ssRNA</strong> genome (~7,500 nt); <strong>non-enveloped</strong> (naked icosahedral capsid); replicates in the <strong>CYTOPLASM</strong>; <strong>acute lytic</strong> infection (no latency); immunity after recovery is life-long; near eradicated thanks to two vaccines (IPV + OPV). They are essentially opposites in life-cycle strategy: HSV is the long-term tenant, poliovirus is the fast attacker.", hy:true},
+  {q:"Why are humans the only reservoir for HSV, and what consequence does this have?", a:"Humans are the only natural reservoir for HSV &mdash; the virus has co-evolved with hominids for an estimated <strong>8 million years</strong>. The consequence is similar to polio: in principle, eradication should be possible. But unlike polio, HSV's <strong>lifelong latency</strong> means that once 90%+ of adults are infected, the existing reservoir is essentially every adult in the population. There is also <strong>no vaccine</strong>. So although humans are the only reservoir, eradication is currently impossible &mdash; you would need to either prevent all new infections AND eliminate latent virus from already-infected hosts, neither of which we can do. This is why epidemiologically, HSV management is about controlling outbreaks (acyclovir) rather than eradication.", hy:false},
+  {q:"What is the role of microtubule motor proteins in viral infection more broadly?", a:"Many viruses have <strong>co-evolved with humans</strong> to exploit microtubule motors for transport &mdash; saving the energy and complexity of building their own. Viruses that use <strong>dynein for entry</strong> (toward the nucleus): HSV-1, CMV, KSHV, HIV-1, HPV, Adenovirus, Parvovirus, Influenza A. Viruses that use <strong>kinesin for egress</strong>: KSHV, VSV, HIV-1, Sendai virus, African swine fever virus, Vaccinia virus. The takeaway: motor protein hijacking is a common strategy because the host's transportation network is too useful to ignore.", hy:false},
+];
+
+const hardFrqs = [
+  {q:"Apply the four-step HSV life cycle (entry &rarr; transit &rarr; silencing &rarr; reactivation) to a clinical scenario: a 35-year-old patient experiences a fever blister on the lip during finals week. (a) Where was the virus immediately before the blister appeared? (b) Walk through the molecular events that produced the blister, including which motor proteins move the virus and which chromatin marks switched. (c) Why is acyclovir effective only during flares?", a:"<strong>(a)</strong> Immediately before the blister, the virus was <strong>latent inside a sensory neuron</strong> &mdash; specifically the trigeminal ganglion neuron innervating the lip. The viral genome was packaged into <strong>heterochromatin marked by H3K9me3</strong>, with only the <strong>LAT (Latency-Associated Transcript)</strong> highly expressed. LAT was keeping the genome tightly packaged and preventing the neuron from undergoing apoptosis. <strong>(b)</strong> The molecular cascade: (1) Finals stress acts as a <strong>reactivation trigger</strong>; (2) <strong>chromatin silencing is reversed</strong> on the HSV genome &mdash; H3K9me3 marks are lost, active marks (H3K4me2, acetylation) are added by viral factors like <strong>VP16 and ICP0</strong>; (3) viral genes are expressed and the replication cycle resumes in the neuronal nucleus; (4) new nucleocapsids assemble and are <strong>transported back to the axon terminal at the lip via kinesin</strong> on microtubules (kinesin = plus end = periphery); (5) virions are <strong>shed onto epithelial cells of the lip</strong>; (6) in the epithelial cells, HSV runs the <strong>lytic cycle</strong> &mdash; this time it FIGHTS chromatin silencing (degrades surveillance components, keeps viral promoters active), causing cell death and the visible cold sore. <strong>(c)</strong> Acyclovir is a guanosine base analog that <strong>inactivates HSV's DNA polymerase</strong> &mdash; but only when DNA polymerase is actively trying to replicate. During <strong>latency</strong>, the viral genome is silent and HSV DNAP isn't running, so there is nothing for acyclovir to target. Only during <strong>reactivation/lytic flare-ups</strong> (when DNAP is replicating new viral DNA) can acyclovir block the cycle. This is why acyclovir manages flares but does NOT clear the latent reservoir &mdash; and why there is no cure for HSV infection.", hy:true},
+  {q:"Two college roommates have herpes labialis (HSV-1, cold sores) flares with similar frequency, but only one of them has access to acyclovir. The medicated roommate has shorter, less severe flares. (a) What molecular feature explains acyclovir's selectivity for the virus? (b) The unmedicated roommate's flares occasionally trigger lesions in unusual sites (e.g., the eye). Using HSV biology, explain how this can happen and what biological feature of HSV explains why it can re-emerge in DIFFERENT body sites. (c) Why has decades of research not produced an HSV vaccine?", a:"<strong>(a)</strong> Acyclovir is a <strong>guanosine base analog</strong> that, once incorporated into a growing DNA strand, blocks chain extension. Its selectivity comes from binding affinity: <strong>HSV DNA polymerase has much higher affinity for acyclovir than the host's DNA polymerases do</strong>. Practically, this means viral DNAP eagerly incorporates acyclovir and stalls, while host replication is largely unaffected at therapeutic doses. The result is potent suppression of viral replication with minimal host toxicity. <strong>(b)</strong> Unusual lesion sites (like HSV-1 keratitis on the eye) happen because HSV's <strong>latent reservoir is in sensory ganglia</strong>. The trigeminal ganglion innervates not only the lips, but also the eye, the cornea, the cheek, and other facial regions via different sensory branches. When latency is established in a neuron whose axon ends at the eye instead of the lip, reactivation will <strong>send virions to the eye via kinesin transport along microtubules in that neuron's axon</strong>. So the lesion site depends on which sensory neuron got infected during the original primary infection &mdash; once latent there, that's where reactivation lesions appear. Different cellular real estate, same virus. <strong>(c)</strong> Several reasons: (1) HSV establishes <strong>silent latency in neurons</strong>, where the viral genome is heterochromatinized and only LAT is expressed. There are essentially <strong>no viral antigens displayed</strong> for the immune system to target during latency. (2) Even a sterilizing immune response to the lytic cycle wouldn't clear the latent reservoir, because LAT-only cells are invisible to T cells. (3) HSV has co-evolved with humans for ~8 million years and has a sophisticated immune-evasion toolkit, including the chromatin-modulating proteins that work in epithelial cells. (4) The dual-mode lifestyle (lytic + latent, very different gene expression in each) means a vaccine that controls one mode does not necessarily clear the other. So even though humans are the only reservoir (which would normally make eradication possible), HSV's latency mechanism makes vaccine development extremely hard.", hy:true},
+  {q:"Explain why the same virus (HSV) can produce two RADICALLY different outcomes &mdash; lytic infection in epithelial cells, latency in neurons. Using the lecture's molecular details, build the comparison around (a) the chromatin environment, (b) viral gene expression, (c) cell fate, and (d) the long-term consequence for the host.", a:"<strong>(a) Chromatin environment.</strong> In <em>epithelial cells</em>, HSV deploys multiple viral proteins that <strong>fight chromatin silencing</strong>: one viral protein degrades surveillance components, while VP16 and ICP0 keep viral promoters <strong>free of repressive chromatin</strong>, instead carrying active marks like <strong>H3K4me2 and acetylation</strong>. In <em>neurons</em>, HSV does the OPPOSITE &mdash; it <strong>actively recruits chromatin assembly</strong>, packaging its genome into <strong>heterochromatin marked by H3K9me3</strong>. <strong>(b) Viral gene expression.</strong> In epithelial cells, HSV expresses a full battery of genes &mdash; immediate-early, early, late &mdash; producing all the proteins needed for replication and assembly. In neurons, only ONE viral RNA is highly expressed: the <strong>Latency-Associated Transcript (LAT)</strong>. <strong>(c) Cell fate.</strong> In epithelial cells, the result is the <strong>lytic cycle</strong> &mdash; cell death producing visible cold sores or genital lesions. In neurons, LAT specifically <strong>prevents apoptosis</strong>, keeping the neuron alive long-term, while also packing the viral genome tightly so it stays silent. <strong>(d) Long-term consequence for the host.</strong> The dual strategy is what makes HSV a lifelong infection. The lytic cycle in epithelium gives the visible disease and produces virions that transmit between hosts. Latency in neurons gives a permanent reservoir &mdash; even when an immune response clears the epithelial cycle, the latent viral genomes in neurons are essentially invisible (no antigens, no replication for antivirals to target) and ready to reactivate under stress. This is why HSV has no cure: clearing the active phase doesn't touch the latent reservoir, and the latent reservoir refills the active phase forever.", hy:true},
+  {q:"You are a public-health policy advisor in 2026. The world is on the verge of polio eradication, but vaccine-derived poliovirus has been detected in wastewater in three US cities. Some politicians want to switch entirely to OPV for faster outbreak response; others want to abandon OPV entirely. Using lecture-based biology, defend the policy of using BOTH vaccines, addressing (a) why IPV alone is insufficient in outbreak settings, (b) why OPV alone is unacceptable for routine use, and (c) what biological feature of poliovirus makes eradication theoretically possible at all.", a:"<strong>(a) Why IPV alone is insufficient in outbreaks.</strong> IPV is safe (it's killed virus) and reliably induces antibodies that prevent paralytic disease in vaccinated individuals. But IPV has two limitations: (1) it does NOT pass immunity to unvaccinated contacts &mdash; recipients don't shed virus, so there's no indirect protection in the community; (2) IPV gives <strong>weaker mucosal/gut immunity</strong>, so even an IPV-vaccinated person can still shed wild poliovirus from the gut and contribute to transmission. In an outbreak, where you need to STOP transmission fast in low-coverage populations, IPV alone is too slow &mdash; you'd have to vaccinate every individual directly, with no help from indirect immunity, and they'd still be partial transmitters of the virus. <strong>(b) Why OPV alone is unacceptable for routine use.</strong> OPV uses live attenuated virus, which has two costs: (1) the attenuated virus rarely causes <strong>vaccine-associated paralytic poliomyelitis (VAPP)</strong> &mdash; about 3 cases per million doses; (2) more dangerously, recipients SHED the attenuated virus, and in <strong>unvaccinated or poorly-vaccinated populations</strong>, that shed virus can <strong>accumulate mutations and revert toward virulence (vaccine-derived poliovirus, VDPV)</strong>. The 2022 New Jersey case was an unvaccinated patient infected with VDPV &mdash; exactly this scenario. So in a country with high routine coverage, switching to OPV-only would IMPORT the very risk we're trying to prevent. <strong>(c) Why eradication is theoretically possible.</strong> <strong>Humans are the only known reservoir of poliovirus.</strong> Unlike influenza (animal reservoirs), rabies (animal reservoirs), or coronaviruses (animal reservoirs), there is no other species or environmental niche maintaining poliovirus &mdash; if we eliminate it from humans, it is gone. Combined with life-long immunity after natural infection or vaccination, this makes eradication an achievable goal &mdash; as smallpox demonstrated. <strong>Policy synthesis:</strong> use IPV as the routine, individual-protective vaccine in well-vaccinated countries (no VAPP risk, no VDPV risk); deploy OPV in <strong>outbreak settings</strong> &mdash; especially where coverage is low &mdash; to leverage shedding-mediated indirect immunity and strong gut immunity to rapidly halt transmission. Either alone leaves a fatal gap; together, they are the strategy that has driven cases from 350,000 in 1988 to under 1,300 in 2010 and toward zero now.", hy:true},
+  {q:"Compare and contrast HSV and poliovirus as a paired exam answer. The professor wants you to demonstrate that you can read across two viruses with completely different biology and identify the deep principles that connect them. Address: (a) genome and replication strategy, (b) cellular target and life cycle, (c) host immunity and treatment options, and (d) eradication potential.", a:"<strong>(a) Genome and replication strategy.</strong> HSV has a <strong>linear dsDNA genome (~70 genes)</strong>, replicates in the <strong>NUCLEUS</strong>, and engages directly with host chromatin machinery. Poliovirus has a <strong>+ssRNA genome (~7,500 nt)</strong>, replicates in the <strong>CYTOPLASM</strong>, and uses an <strong>IRES</strong> for direct ribosome-mediated translation &mdash; no nuclear involvement at all. The genomic difference dictates everything that follows. <strong>(b) Cellular target and life cycle.</strong> HSV is enveloped and uses <strong>gB / gD / gH-gL</strong> for membrane fusion to enter mucosal epithelium; it then infects sensory neurons by riding microtubule motors (<strong>dynein</strong> in, <strong>kinesin</strong> out). It runs <strong>two life cycles in two cell types</strong>: lytic in epithelium (fighting chromatin silencing via VP16/ICP0), and latent in neurons (embracing silencing via H3K9me3, expressing only LAT). Poliovirus is non-enveloped and uses <strong>CD155</strong> on intestinal epithelium, enters by endocytosis, and runs ONE life cycle: <strong>acute lytic infection</strong> ending in cell death. From the gut it spreads via blood and motor neuron axons to the spinal cord, killing lower motor neurons and causing irreversible flaccid paralysis in 0.1% of cases. <strong>(c) Host immunity and treatment.</strong> Both viruses are exclusively human (only reservoir = humans), but their immunological footprints are opposite. HSV has <strong>no vaccine and no cure</strong> &mdash; its latent neuronal reservoir is invisible to immune surveillance (only LAT is expressed) and acyclovir only works against actively replicating DNAP. Polio elicits <strong>life-long protective immunity after recovery or vaccination</strong>, and there are <strong>two effective vaccines</strong> (IPV + OPV) used in tandem for safety + outbreak control. <strong>(d) Eradication potential.</strong> Both viruses meet the basic eradication criterion of being human-only. But HSV's latency makes eradication practically impossible &mdash; ~90% of adults already host latent virus and cannot be cleared with current tools. Poliovirus has no latency mechanism; recovered or vaccinated individuals carry no persistent reservoir, and combined IPV/OPV strategy has cut global cases by &gt;99%. <strong>Deep principle:</strong> the central biological difference (DNA + nucleus + latency vs RNA + cytoplasm + lysis) determines clinical management, treatment options, and even the viability of eradication. Same lecture, opposite playbooks.", hy:true},
+  {q:"A brand-new pathogen is discovered that has BOTH HSV-like latency capabilities AND a poliovirus-like rapid lytic cycle in some tissues. Using lecture-derived biology, predict (a) which features it would need to keep from each virus, (b) where the most dangerous reservoir would be, and (c) why such a virus would be much harder to eradicate than either parent.", a:"<strong>(a) Required features.</strong> From HSV, the new pathogen would need: (1) ability to <strong>establish heterochromatin-based silencing</strong> on its genome inside long-lived host cells (probably DNA-based, since silencing via H3K9me3 etc. is built around DNA); (2) a single anti-apoptosis transcript like LAT to keep the host cell alive during latency; (3) a way to <strong>reactivate under stress</strong> by reversing chromatin marks. From poliovirus, the new pathogen would need: (1) a <strong>fast lytic replication cycle in target tissue</strong>, ideally cytoplasmic for speed; (2) a way to spread efficiently between hosts (like polio's fecal-oral route); (3) a defined cell-surface receptor to invade epithelial cells. Reconciling DNA latency with cytoplasmic RNA replication would require a hybrid genome strategy &mdash; possibly a DNA virus that produces an RNA-based lytic intermediate, or an RNA virus that integrates a DNA copy for latency (similar in spirit to retroviruses, but with explicit chromatin-based silencing). <strong>(b) Most dangerous reservoir.</strong> Like HSV, the latent reservoir would have to be in <strong>long-lived, immune-privileged cells</strong> &mdash; sensory or motor neurons would be ideal, since they can survive for decades and the neuron-axon-target geometry already supports microtubule-mediated transport in and out. A neuronal latent reservoir is invisible to most immune surveillance (HSV-style), and it could feed lytic cycles in nearby epithelium under stress. <strong>(c) Why eradication would be much harder than either parent.</strong> HSV is hard to eradicate because of latency but easy to manage clinically (rarely fatal). Polio is hard to manage clinically (irreversible paralysis) but eradicable because no latent reservoir exists. A hybrid would combine the worst of both: a <strong>silent, lifelong latent reservoir</strong> that resists vaccines and antivirals (HSV-style), feeding episodic <strong>lethal lytic cycles</strong> with serious clinical impact (polio-style). Eradication would require either curing latency in already-infected hosts (currently impossible) or interrupting transmission worldwide while every infected person remains a potential outbreak source for life. The lesson: HSV teaches us that latency defeats vaccines; poliovirus teaches us that fast lytic spread is dangerous but tractable; a virus combining both would be both untreatable and uneradicable.", hy:true},
+];
+
+function buildFRQ(container, questions, prefix) {
+  const el = document.getElementById(container);
+  el.innerHTML = '';
+  questions.forEach((q,i) => {
+    const hy = q.hy ? 'hy-frq' : '';
+    el.innerHTML += `
+    <div class="frq-card ${hy}">
+      <div class="frq-prompt"><span class="q-num">${i+1}</span>${q.q}${q.hy?'<span class="hy-badge">HIGH YIELD</span>':''}</div>
+      <textarea placeholder="Write your answer..." id="${prefix}-ta-${i}"></textarea>
+      <button class="frq-reveal-btn" onclick="revealFRQ('${prefix}',${i})">Reveal Answer</button>
+      <div class="frq-answer" id="${prefix}-ans-${i}">${q.a}</div>
+      <div class="frq-self-grade" id="${prefix}-grade-${i}">
+        <button class="grade-btn got-it" onclick="gradeFRQ('${prefix}',${i},'got-it')">Got it</button>
+        <button class="grade-btn partial" onclick="gradeFRQ('${prefix}',${i},'partial')">Partial</button>
+        <button class="grade-btn missed" onclick="gradeFRQ('${prefix}',${i},'missed')">Missed</button>
+      </div>
+    </div>`;
+  });
+}
+
+const frqGrades = {};
+const hardGrades = {};
+
+function revealFRQ(prefix, i) {
+  document.getElementById(prefix+'-ans-'+i).classList.add('show');
+  document.getElementById(prefix+'-grade-'+i).classList.add('show');
+}
+function gradeFRQ(prefix, i, grade) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  grades[i] = grade;
+  const btns = document.getElementById(prefix+'-grade-'+i).querySelectorAll('.grade-btn');
+  btns.forEach(b => b.classList.remove('selected-grade'));
+  event.target.classList.add('selected-grade');
+  updateFRQScore(prefix);
+}
+function updateFRQScore(prefix) {
+  const grades = prefix === 'frq' ? frqGrades : hardGrades;
+  const total = prefix === 'frq' ? frqs.length : hardFrqs.length;
+  let pts = 0;
+  Object.values(grades).forEach(g => { if(g==='got-it') pts+=1; else if(g==='partial') pts+=0.5; });
+  document.getElementById(prefix+'-score').textContent = Math.round((pts/total)*100)+'%';
+}
+function resetFRQ() {
+  Object.keys(frqGrades).forEach(k => delete frqGrades[k]);
+  buildFRQ('frq-container', frqs, 'frq');
+  document.getElementById('frq-score').textContent = '0%';
+}
+function resetHard() {
+  Object.keys(hardGrades).forEach(k => delete hardGrades[k]);
+  buildFRQ('hard-container', hardFrqs, 'hard');
+  document.getElementById('hard-score').textContent = '0%';
+}
+
+buildFRQ('frq-container', frqs, 'frq');
+buildFRQ('hard-container', hardFrqs, 'hard');
+
+// ====== MATCHING ======
+const matchPairs = [
+  {term:"<em>Herpesviridae</em>", def:"Viral family whose defining trait is the ability to establish latent infection (HSV-1, HSV-2, VZV, EBV, CMV)"},
+  {term:"gB / gD / gH-gL", def:"HSV envelope glycoproteins: gB attaches, gD switches (conformational change), gH/L fuses lipid bilayers"},
+  {term:"Dynein", def:"Motor protein that walks toward the MINUS end of microtubules &mdash; carries HSV nucleocapsids INTO the cell, toward the nucleus/MTOC"},
+  {term:"Kinesin", def:"Motor protein that walks toward the PLUS end of microtubules &mdash; carries HSV virions OUT to the axon terminal for shedding"},
+  {term:"IFI16", def:"Innate immune sensor that patrols the nucleus for foreign DNA and silences it via tight chromatin packaging"},
+  {term:"LAT (Latency-Associated Transcript)", def:"Only viral RNA highly expressed during HSV neuronal latency; promotes tight genome packaging AND prevents apoptosis"},
+  {term:"H3K9me3", def:"Repressive heterochromatin mark used to silence HSV genome in neurons during latency"},
+  {term:"Acyclovir", def:"Guanosine base analog with high affinity for HSV DNA polymerase; manages flares but cannot clear latent reservoir"},
+  {term:"<em>Picornaviridae</em>", def:"Viral family of poliovirus &mdash; small, non-enveloped, +ssRNA viruses with icosahedral capsids"},
+  {term:"CD155", def:"Cell-surface receptor on intestinal epithelial cells used by poliovirus to bind and enter"},
+  {term:"IPV", def:"Inactivated Poliovirus Vaccine &mdash; injected, killed virus, safe but no shedding-based community immunity"},
+  {term:"OPV", def:"Oral Polio Vaccine &mdash; live attenuated; transmits immunity via shedding but rarely causes VAPP and can revert in unvaccinated populations"},
+];
+
+let matchLeft = null, matchRight = null, matchedCount = 0;
+function initMatching() {
+  matchLeft = null; matchRight = null; matchedCount = 0;
+  const lDiv = document.getElementById('match-left');
+  const rDiv = document.getElementById('match-right');
+  const sL = [...matchPairs].sort(() => Math.random()-0.5);
+  const sR = [...matchPairs].sort(() => Math.random()-0.5);
+  lDiv.innerHTML = sL.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('left',this)">${p.term}</div>`).join('');
+  rDiv.innerHTML = sR.map(p => `<div class="match-item" data-term="${p.term}" onclick="selectMatch('right',this)">${p.def}</div>`).join('');
+  document.getElementById('match-score').textContent = '0 / '+matchPairs.length;
+}
+function selectMatch(side, el) {
+  if(el.classList.contains('matched')) return;
+  el.parentElement.querySelectorAll('.match-item').forEach(i => { if(!i.classList.contains('matched')) i.classList.remove('selected'); });
+  el.classList.add('selected');
+  if(side==='left') matchLeft = el; else matchRight = el;
+  if(matchLeft && matchRight) checkMatch();
+}
+function checkMatch() {
+  if(matchLeft.dataset.term === matchRight.dataset.term) {
+    matchLeft.classList.add('matched'); matchLeft.classList.remove('selected');
+    matchRight.classList.add('matched'); matchRight.classList.remove('selected');
+    matchedCount++;
+    document.getElementById('match-score').textContent = matchedCount+' / '+matchPairs.length;
+  } else {
+    matchLeft.classList.add('wrong-match'); matchRight.classList.add('wrong-match');
+    const l=matchLeft, r=matchRight;
+    setTimeout(() => { l.classList.remove('wrong-match','selected'); r.classList.remove('wrong-match','selected'); }, 700);
+  }
+  matchLeft = null; matchRight = null;
+}
+initMatching();
+</script>
+</body>
+</html>
