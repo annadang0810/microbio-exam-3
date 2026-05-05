@@ -551,6 +551,9 @@
       <p>Your Professor's Exam Topics</p>
       <ul>
         <li><strong>Innate immunological cells</strong> <span class="new-badge">Newly Added</span> &mdash; characteristics of different cell types, different kinds of phagocytes, differences in characteristics / jobs / activity</li>
+        <li><strong>Primary and secondary humoral responses</strong> <span class="new-badge">Newly Added</span> &mdash; what they are, characteristics, what is involved, when they are involved</li>
+        <li><strong>Complement</strong> <span class="new-badge">Newly Added</span> &mdash; what it is, when it is involved, what contributes to its activation</li>
+        <li><strong>Barriers to infection</strong> <span class="new-badge">Newly Added</span> &mdash; the 4 main barriers to pathogen entry in humans</li>
         <li><strong>Adaptive immunity / vaccines</strong> &mdash; B/T-cell functions, antibody response, vaccines</li>
         <li><strong>Vaccination</strong> &mdash; Active vs Passive immunity, MHC I &amp; II, T-cell education, primary vs secondary humoral response, live-attenuated vs inactivated vs component vaccines</li>
         <li><strong>Epidemiology</strong> &mdash; John Snow's experiments, descriptive vs analytic epidemiology, R<sub>0</sub>, herd immunity, vaccine efficacy (what they are and how to calculate)</li>
@@ -566,7 +569,7 @@
     <button class="tab-btn hy-tab" onclick="showTab(this,'innate')">Innate Defenses</button>
     <button class="tab-btn" onclick="showTab(this,'inflam')">Inflammation</button>
     <button class="tab-btn hy-tab" onclick="showTab(this,'phago')">Phagocytes</button>
-    <button class="tab-btn" onclick="showTab(this,'comp')">Complement</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'comp')">Complement</button>
     <button class="tab-btn hy-tab active" onclick="showTab(this,'tcell')">T-Cells</button>
     <button class="tab-btn hy-tab" onclick="showTab(this,'bcell')">B-Cells</button>
     <button class="tab-btn hy-tab" onclick="showTab(this,'antibody')">Antibodies</button>
@@ -616,24 +619,14 @@
     <div class="card hy-card">
       <h2>Innate Immunity: Barriers to Entry <span class="new-badge">Newly Added</span></h2>
 
-      <h3>1. Mechanical Barrier &mdash; Skin</h3>
-      <p>Like a <span class="highlight">massive wall</span> physically keeping microbes out.</p>
-
-      <h3>2. Antimicrobial Substances</h3>
-      <ul>
-        <li><span class="highlight">Skin</span>: high salt, antimicrobial peptides (AMPs), and fatty acids (made by normal skin bacteria)</li>
-        <li><span class="highlight">Mucous membranes</span> (respiratory, digestive, genitourinary): antibodies, lysozyme, AMPs</li>
-        <li><span class="highlight">Stomach acid (low pH)</span>: kills most ingested microbes</li>
-        <li><span class="highlight">Bile salts</span> in intestine</li>
-        <li><span class="highlight">Complement</span> in circulation (major factor)</li>
-      </ul>
-
-      <h3>3. Physical Currents That Sweep Microbes Away</h3>
-      <ul>
-        <li><span class="highlight">Respiratory cilia</span> &mdash; ciliated epithelial cells beat mucus + trapped microbes upward (mucociliary escalator)</li>
-        <li><span class="highlight">Peristalsis</span> &mdash; intestinal contractions move microbes through the GI tract</li>
-        <li><span class="highlight">Urinary flow</span> &mdash; flushes microbes out of the urinary tract</li>
-      </ul>
+      <h3>The 4 Main Barriers to Pathogen Entry <span class="hy-badge">HIGH YIELD</span></h3>
+      <table class="data-table hy-table">
+        <tr><th>#</th><th>Barrier</th><th>What it does</th></tr>
+        <tr><td><strong>1</strong></td><td><span class="highlight">Skin</span></td><td>Like a <span class="highlight">massive wall</span> that physically keeps microbes out of our body</td></tr>
+        <tr><td><strong>2</strong></td><td><span class="highlight">Antimicrobial substances</span></td><td>Skin coated with high concentrations of <strong>salt, antimicrobial peptides (AMPs), and fatty acids</strong>. Mucous membranes coated with <strong>antibodies, lysozyme, AMPs</strong>, and other protective compounds</td></tr>
+        <tr><td><strong>3</strong></td><td><span class="highlight">Mechanical currents</span></td><td>Respiratory, digestive, and genitourinary tracts are protected by currents that sweep invading microbes away: <strong>respiratory cilia, peristalsis, urinary flow</strong></td></tr>
+        <tr><td><strong>4</strong></td><td><span class="highlight">Stomach</span></td><td><strong>Low pH</strong> of the stomach kills most organisms</td></tr>
+      </table>
 
       <h3>What Triggers the Innate Response?</h3>
       <p>Pattern-recognition receptors detect <span class="highlight">MAMPs (microbe-associated molecular patterns)</span> &mdash; conserved microbial features that are essential for fitness, so microbes can't easily evolve away from them.</p>
@@ -761,8 +754,8 @@
 
   <!-- COMPLEMENT -->
   <div class="tab-content" id="tab-comp">
-    <div class="card">
-      <h2>The Complement System</h2>
+    <div class="card hy-card">
+      <h2>The Complement System <span class="new-badge">Newly Added</span></h2>
       <p>A <span class="highlight">soluble (not cell-based)</span> defense system in the blood made of <span class="highlight">~30 different proteins</span>. Triggered by MAMPs and antibodies.</p>
 
       <h3>Three Activation Pathways</h3>
@@ -895,7 +888,7 @@
         <li>Grouped into one of <span class="highlight">five Ig classes</span> determined by the <span class="highlight">constant region</span>: <strong>IgG, IgM, IgA, IgD, IgE</strong></li>
       </ul>
 
-      <h3>Primary Humoral Immune Response (first exposure)</h3>
+      <h3>Primary Humoral Immune Response (first exposure) <span class="new-badge">Newly Added</span></h3>
       <ul>
         <li>Cell proliferation &amp; differentiation upon <span class="highlight">first antigen exposure</span></li>
         <li><span class="highlight">Lag period</span>: 3 to 6 days</li>
@@ -903,7 +896,7 @@
         <li>Antibody levels then decline</li>
       </ul>
 
-      <h3>Secondary Humoral Immune Response (re-exposure)</h3>
+      <h3>Secondary Humoral Immune Response (re-exposure) <span class="new-badge">Newly Added</span></h3>
       <ul>
         <li>Re-exposure to the same antigen gives a <span class="highlight">faster, more prolonged, more effective</span> response</li>
         <li>Sensitized <span class="highlight">memory cells</span> respond <span class="highlight">within hours</span></li>
