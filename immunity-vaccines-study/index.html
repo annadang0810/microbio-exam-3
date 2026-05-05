@@ -160,6 +160,25 @@
   }
   .hy-card h2 { color: var(--yellow); }
 
+  .new-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff6b9d, #c2185b);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin-left: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    animation: newPulse 2s ease-in-out infinite;
+  }
+  @keyframes newPulse {
+    0%, 100% { box-shadow: 0 0 0 0 #ff6b9d40; }
+    50% { box-shadow: 0 0 12px 4px #ff6b9d30; }
+  }
+
   .hy-legend {
     display: flex;
     align-items: center;
@@ -531,6 +550,7 @@
     <div class="exam-topics">
       <p>Your Professor's Exam Topics</p>
       <ul>
+        <li><strong>Innate immunological cells</strong> <span class="new-badge">Newly Added</span> &mdash; characteristics of different cell types, different kinds of phagocytes, differences in characteristics / jobs / activity</li>
         <li><strong>Adaptive immunity / vaccines</strong> &mdash; B/T-cell functions, antibody response, vaccines</li>
         <li><strong>Vaccination</strong> &mdash; Active vs Passive immunity, MHC I &amp; II, T-cell education, primary vs secondary humoral response, live-attenuated vs inactivated vs component vaccines</li>
         <li><strong>Epidemiology</strong> &mdash; John Snow's experiments, descriptive vs analytic epidemiology, R<sub>0</sub>, herd immunity, vaccine efficacy (what they are and how to calculate)</li>
@@ -543,9 +563,9 @@
 <div class="section" id="sec-learn">
   <div class="tab-row">
     <button class="tab-btn" onclick="showTab(this,'overview')">Innate vs Adaptive</button>
-    <button class="tab-btn" onclick="showTab(this,'innate')">Innate Defenses</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'innate')">Innate Defenses</button>
     <button class="tab-btn" onclick="showTab(this,'inflam')">Inflammation</button>
-    <button class="tab-btn" onclick="showTab(this,'phago')">Phagocytes</button>
+    <button class="tab-btn hy-tab" onclick="showTab(this,'phago')">Phagocytes</button>
     <button class="tab-btn" onclick="showTab(this,'comp')">Complement</button>
     <button class="tab-btn hy-tab active" onclick="showTab(this,'tcell')">T-Cells</button>
     <button class="tab-btn hy-tab" onclick="showTab(this,'bcell')">B-Cells</button>
@@ -593,8 +613,8 @@
 
   <!-- INNATE DEFENSES -->
   <div class="tab-content" id="tab-innate">
-    <div class="card">
-      <h2>Innate Immunity: Barriers to Entry</h2>
+    <div class="card hy-card">
+      <h2>Innate Immunity: Barriers to Entry <span class="new-badge">Newly Added</span></h2>
 
       <h3>1. Mechanical Barrier &mdash; Skin</h3>
       <p>Like a <span class="highlight">massive wall</span> physically keeping microbes out.</p>
@@ -684,10 +704,19 @@
 
   <!-- PHAGOCYTES -->
   <div class="tab-content" id="tab-phago">
-    <div class="card">
-      <h2>Phagocytes &mdash; The Innate Killers</h2>
+    <div class="card hy-card">
+      <h2>Phagocytes &amp; Innate Cells <span class="new-badge">Newly Added</span></h2>
 
       <p><span class="highlight">Phagocytes</span> are cells with the innate ability to engulf foreign cells. Phagocytosis is one of the most effective innate defenses &mdash; the majority of bacteria invading humans are killed this way.</p>
+
+      <h3>Innate Cells at a Glance &mdash; Characteristics, Jobs, Activity</h3>
+      <table class="data-table hy-table">
+        <tr><th>Cell type</th><th>Phagocyte?</th><th>Lifespan / location</th><th>Main job</th><th>Distinguishing activity</th></tr>
+        <tr><td><strong>Neutrophil</strong></td><td>Yes &mdash; <span class="highlight">most numerous phagocyte</span></td><td>Short-lived (~1 week); circulating; <span class="warn">terminally differentiated, cannot proliferate</span></td><td>"<span class="highlight">Seek and destroy</span>" first responder against bacteria</td><td>Loaded with lysosomal granules + oxidative enzymes that make <span class="warn">hypochlorite (bleach)</span>; can form <span class="highlight">NETs</span> &mdash; choose to die and release DNA + antimicrobials to trap pathogens; require opsonins</td></tr>
+        <tr><td><strong>Monocyte</strong></td><td>Yes (precursor)</td><td><span class="highlight">Long-lived</span>; circulates in the blood; can <span class="highlight">differentiate further</span></td><td>Travels in blood until recruited to tissue, where it becomes a macrophage</td><td>Reservoir/precursor population for tissue macrophages</td></tr>
+        <tr><td><strong>Macrophage</strong></td><td>Yes</td><td>Long-lived; <span class="highlight">monocyte that has entered the tissue</span></td><td>"<span class="highlight">Garbage collector</span>" &mdash; cleans up microbial debris and remaining microbes after the neutrophil-microbe battle; helps <span class="highlight">initiate cell-mediated adaptive immunity</span> by presenting antigen to T cells</td><td>Arrives <span class="warn">more slowly</span> than neutrophils; activated by cytokines; produces cytokines that recruit more neutrophils</td></tr>
+        <tr><td><strong>Dendritic cell</strong></td><td>Yes</td><td>Resident at infection-prone surfaces; migrates to lymph nodes</td><td>The <span class="highlight">bridge</span> between innate and adaptive &mdash; specialized for <span class="highlight">antigen presentation</span></td><td>Samples antigens at infection sites, migrates to lymph nodes, and <span class="highlight">activates T cells</span> &mdash; the spark that lights the adaptive immune response</td></tr>
+      </table>
 
       <h3>Steps in Phagocytosis</h3>
       <ol>
@@ -724,6 +753,8 @@
         <li>Sample antigens at infection sites, then migrate to lymph nodes</li>
         <li><span class="highlight">Activate T cells</span> &mdash; this is the spark that lights the adaptive immune response</li>
       </ul>
+
+      <div class="callout">Quick contrast: <strong>Neutrophil</strong> = fast first responder, short-lived, makes bleach; <strong>Monocyte/Macrophage</strong> = slower, long-lived garbage collector that hands antigens to T cells; <strong>Dendritic cell</strong> = the dedicated antigen-presenter that triggers adaptive immunity.</div>
     </div>
   </div>
 
